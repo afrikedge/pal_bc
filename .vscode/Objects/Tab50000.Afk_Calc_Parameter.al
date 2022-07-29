@@ -6,29 +6,30 @@ table 50000 Afk_Calc_Parameter
     {
         field(1; Code; Code[20])
         {
-            DataClassification = ToBeClassified;
+            Caption = 'Code';
         }
         field(2; Description; Text[50])
         {
-            DataClassification = ToBeClassified;
+            Caption = 'Description';
         }
         field(3; DataType; Option)
         {
+            Caption = 'Parameter Type';
             DataClassification = ToBeClassified;
             OptionMembers = Fixe,Calculated;
             OptionCaption = 'Fixe,Calculated';
         }
         field(4; Value; Decimal)
         {
-            DataClassification = ToBeClassified;
+            Caption = 'Value';
         }
         field(5; System; Boolean)
         {
-            DataClassification = ToBeClassified;
+            Caption = 'System Parameter';
         }
         field(6; Notes; Text[100])
         {
-            DataClassification = ToBeClassified;
+            Caption = 'Notes';
         }
     }
 

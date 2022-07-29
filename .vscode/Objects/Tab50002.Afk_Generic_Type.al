@@ -24,7 +24,7 @@ table 50002 Afk_Generic_Type
 
     keys
     {
-        key(PK; "Type", "Code")
+        key(PK; "RecordType", "Code")
         {
             Clustered = true;
         }
