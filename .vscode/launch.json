@@ -10,7 +10,9 @@
             "serverInstance": "BC200",
             //"authentication": "UserPassword",
             "authentication": "Windows",
-            "startupObjectId": 22,
+            //"startupObjectId": 22,
+            "startupObjectId": 130401,
+            
             "startupObjectType": "Page",
             "breakOnError": true,
             "launchBrowser": true,
