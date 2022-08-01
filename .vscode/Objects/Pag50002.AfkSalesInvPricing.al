@@ -25,6 +25,11 @@ page 50002 "AfkSalesInvPricing"
                     ApplicationArea = All;
                     //ToolTip = 'Specifies a code for the boat type';
                 }
+                field("Service Name"; Rec."Service Name")
+                {
+                    ApplicationArea = All;
+                    //ToolTip = 'Specifies a code for the boat type';
+                }
                 field(Terminal; Rec.Terminal)
                 {
                     ApplicationArea = All;
@@ -67,7 +72,7 @@ page 50002 "AfkSalesInvPricing"
                     ApplicationArea = All;
                     //ToolTip = 'Specifies a code for the boat type';
                 }
-                
+
                 field("Maximum Quantity 2"; Rec."Maximum Quantity 2")
                 {
                     ApplicationArea = All;

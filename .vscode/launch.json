@@ -11,8 +11,7 @@
             //"authentication": "UserPassword",
             "authentication": "Windows",
             //"startupObjectId": 22,
-            "startupObjectId": 130401,
-            
+            //"startupObjectId": 130401,
             "startupObjectType": "Page",
             "breakOnError": true,
             "launchBrowser": true,
@@ -21,7 +20,6 @@
             "tenant": "default",
             "port": 7249,
             "schemaUpdateMode": "ForceSync"
-
         }
     ]
 }

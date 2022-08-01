@@ -1,6 +1,6 @@
 {
   "id": "4d1c2c45-95df-4131-a67e-cb4288c574fd",
-  "name": "Port Services Invoicing",
+  "name": "Afk_Port_Serv_Invoicing",
   "publisher": "Afrikedge SARL",
   "version": "1.0.0.0",
   "brief": "",
@@ -25,5 +25,8 @@
     "allowDownloadingSource": false,
     "includeSourceInSymbolFile": false
   },
-  "runtime": "9.0"
+  "runtime": "9.0",
+  "features": [
+    "TranslationFile"
+  ]
 }

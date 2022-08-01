@@ -23,6 +23,7 @@ codeunit 50000 AfkPortServiceInvMgt
             sLine.Validate("Unit Price", 0);
         end else begin
 
+            priceInInvoiceCurr := linePrice."Unit Price";
             if (linePrice."Currency Code" <> '') then begin
                 priceInInvoiceCurr := CurrExchRate.ExchangeAmtFCYToFCY(sHeader."Document Date",
                     linePrice."Currency Code",
@@ -68,7 +69,8 @@ codeunit 50000 AfkPortServiceInvMgt
         sLine.Afk_Unit_of_Measure_Code_1 := Item1.Afk_Unit_of_Measure_Code_1;
         sLine.Afk_Unit_of_Measure_Code_2 := Item1.Afk_Unit_of_Measure_Code_2;
 
-        if (sLine."Line No." > 0) then sLine.Modify();
+        SetSalesLinePrices(sLine, sHeader);
+        //if (sLine."Line No." > 0) then sLine.Modify();
 
     end;
 

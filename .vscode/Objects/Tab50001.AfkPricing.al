@@ -126,6 +126,13 @@ table 50001 Afk_Princing
             OptionMembers = Qty1,Qty1_x_Qty2,Qty2,FlatRate;
             OptionCaption = 'Base,Base x Number,Number,Flat Rate';
         }
+        field(21; "Service Name"; Text[100])
+        {
+            Caption = 'Service Name';
+            Editable = false;
+            FieldClass = FlowField;
+            CalcFormula = lookup(Item.Description where("No." = field("Item No.")));
+        }
 
     }
 

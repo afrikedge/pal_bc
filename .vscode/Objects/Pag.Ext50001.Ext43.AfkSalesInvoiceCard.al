@@ -9,6 +9,7 @@ pageextension 50001 AfkSalesInvoiceCard extends "Sales Invoice"
                 field(Afk_Boat_Number; Rec.Afk_Boat_Number)
                 {
                     ApplicationArea = Suite;
+                    ToolTip = 'Vessel concerned by the invoice';
                 }
                 field("Afk_Arrival_TirantEau_Avant"; Rec.Afk_Arrival_TirantEau_Avant)
                 {
@@ -29,34 +30,43 @@ pageextension 50001 AfkSalesInvoiceCard extends "Sales Invoice"
                 field("Afk_Arrival_Pilot_Name"; Rec.Afk_Arrival_Pilot_Name)
                 {
                     ApplicationArea = Suite;
+                    ToolTip = 'Pilot''s full name';
                 }
                 field("Afk_Arrival_Pilot_MAD_Date"; Rec.Afk_Arrival_Pilot_MAD_Date)
                 {
                     ApplicationArea = Suite;
+                    ToolTip = 'Pilot availability date';
                 }
                 field("Afk_Arrival_Pilot_MAD_Time"; Rec.Afk_Arrival_Pilot_MAD_Time)
                 {
                     ApplicationArea = Suite;
+                    ToolTip = 'Pilot availability time';
                 }
                 field("Afk_Arrival_Pilot_OnBoard_Date"; Rec.Afk_Arrival_Pilot_OnBoard_Date)
                 {
                     ApplicationArea = Suite;
+                    ToolTip = 'Date of arrival on board of the pilot';
                 }
                 field("Afk_Arrival_Pilot_OnBoard_Time"; Rec.Afk_Arrival_Pilot_OnBoard_Time)
                 {
                     ApplicationArea = Suite;
+                    ToolTip = 'Pilot arrival time on board';
                 }
                 field("Afk_Arrival_Boat_Amarre_On"; Rec.Afk_Arrival_Boat_Amarre_On)
                 {
                     ApplicationArea = Suite;
+                    ToolTip = 'Ship mooring dock';
+
                 }
                 field("Afk_Arrival_Boat_Amarre_Date"; Rec.Afk_Arrival_Boat_Amarre_Date)
                 {
                     ApplicationArea = Suite;
+                    ToolTip = 'Docking date of the ship';
                 }
                 field("Afk_Arrival_Boat_Amarre_Time"; Rec.Afk_Arrival_Boat_Amarre_Time)
                 {
                     ApplicationArea = Suite;
+                    ToolTip = 'Vessel docking time';
                 }
                 field("Afk_Depart_Destination"; Rec.Afk_Depart_Destination)
                 {
@@ -77,14 +87,17 @@ pageextension 50001 AfkSalesInvoiceCard extends "Sales Invoice"
                 field("Afk_Depart_Boat_Appareil_Date"; Rec.Afk_Depart_Boat_Appareil_Date)
                 {
                     ApplicationArea = Suite;
+                    ToolTip = 'Date of departure of the vessel';
                 }
                 field("Afk_Depart_Boat_Appareil_Time"; Rec.Afk_Depart_Boat_Appareil_Time)
                 {
                     ApplicationArea = Suite;
+                    ToolTip = 'Ship''s departure time';
                 }
                 field("Afk_Departure_Pilot_Name"; Rec.Afk_Departure_Pilot_Name)
                 {
                     ApplicationArea = Suite;
+                    ToolTip = 'Full name of the pilot at the departure of the boat';
                 }
                 field("Afk_Depart_Pilot_OnLoad_Date"; Rec.Afk_Depart_Pilot_OnLoad_Date)
                 {
@@ -97,10 +110,12 @@ pageextension 50001 AfkSalesInvoiceCard extends "Sales Invoice"
                 field("Afk_Depart_Pilot_Return_Date"; Rec.Afk_Depart_Pilot_Return_Date)
                 {
                     ApplicationArea = Suite;
+                    ToolTip = 'Date of return of the pilot to the station';
                 }
                 field("Afk_Depart_Pilot_Return_Time"; Rec.Afk_Depart_Pilot_Return_Time)
                 {
                     ApplicationArea = Suite;
+                    ToolTip = 'Time of return of the pilot to the station';
                 }
                 field("Afk_Gross_Weight_OnBoard"; Rec.Afk_Gross_Weight_OnBoard)
                 {
