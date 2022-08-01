@@ -191,7 +191,7 @@
         </trans-unit>
         <trans-unit id="Table 2341516183 - Field 3891976766 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Maximum Base</source>
-          <target>Base Maximuml</target>
+          <target>Base Maximum</target>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Table Afk_Princing - Field Maximum Quantity 1 - Property Caption</note>
         </trans-unit>
@@ -626,6 +626,118 @@
           <target>Heure de retour du pilote à la station</target>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkSalesInvoiceCard - Control Afk_Depart_Pilot_Return_Time - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3297313626 - Action 2904448309 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 2747922353">
+          <source>Port Services Managment</source>
+          <target>Tarifaire services</target>
+          <target state="needs-translation"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkSalesOrderProRC - Action AddOns - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3297313626 - Action 2904448309 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 2747922353">
+          <source>Addons</source>
+          <target>AddOns</target>
+          <target state="needs-translation"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkSalesOrderProRC - Action AddOns - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3297313626 - Action 834463121 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 2747922353">
+          <source>View or edit detailed information for the boats</source>
+          <target>Liste des navires</target>
+          <target state="needs-translation"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkSalesOrderProRC - Action AfkBoats - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3297313626 - Action 834463121 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 2747922353">
+          <source>Boats</source>
+          <target>Navires</target>
+          <target state="needs-translation"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkSalesOrderProRC - Action AfkBoats - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3297313626 - Action 907089321 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 2747922353">
+          <source>View or edit detailed information for the boat types</source>
+          <target>Types de navire</target>
+          <target state="needs-translation"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkSalesOrderProRC - Action AfkBoatTypes - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3297313626 - Action 907089321 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 2747922353">
+          <source>Boat Types</source>
+          <target>Types de navire</target>
+          <target state="needs-translation"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkSalesOrderProRC - Action AfkBoatTypes - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3297313626 - Action 4074592957 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 2747922353">
+          <source>View or edit detailed information for the calculation parameters</source>
+          <target>Paramètres de calcul</target>
+          <target state="needs-translation"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkSalesOrderProRC - Action AfkCalcParameters - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3297313626 - Action 4074592957 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 2747922353">
+          <source>Calculation Parameters</source>
+          <target>Paramètres de calcul</target>
+          <target state="needs-translation"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkSalesOrderProRC - Action AfkCalcParameters - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3297313626 - Action 3103517221 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 2747922353">
+          <source>View or edit detailed information about customers</source>
+          <target>Clients</target>
+          <target state="needs-translation"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkSalesOrderProRC - Action AfkCustomers - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3297313626 - Action 3103517221 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 2747922353">
+          <source>Customers</source>
+          <target>Clients</target>
+          <target state="needs-translation"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkSalesOrderProRC - Action AfkCustomers - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3297313626 - Action 3367737302 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 2747922353">
+          <source>View or edit detailed information about services</source>
+          <target>Services</target>
+          <target state="needs-translation"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkSalesOrderProRC - Action AfkItems - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3297313626 - Action 3367737302 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 2747922353">
+          <source>Items</source>
+          <target>Services</target>
+          <target state="needs-translation"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkSalesOrderProRC - Action AfkItems - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3297313626 - Action 3214625496 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 2747922353">
+          <source>View or edit detailed information for the pricing of port services</source>
+          <target>Tarifaire des produits pétroliers</target>
+          <target state="needs-translation"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkSalesOrderProRC - Action AfkPricing - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3297313626 - Action 3214625496 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 2747922353">
+          <source>Port Services pricing</source>
+          <target>Tarifaire des services</target>
+          <target state="needs-translation"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkSalesOrderProRC - Action AfkPricing - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3297313626 - Action 3392071991 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 2747922353">
+          <source>View or edit detailed information about sales invoices</source>
+          <target>Factures de vents</target>
+          <target state="needs-translation"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkSalesOrderProRC - Action AfkPSalesInvoice - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3297313626 - Action 3392071991 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 2747922353">
+          <source>Sales Invoices</source>
+          <target>Factures de vents</target>
+          <target state="needs-translation"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkSalesOrderProRC - Action AfkPSalesInvoice - Property Caption</note>
         </trans-unit>
         <trans-unit id="TableExtension 1216657483 - Field 1298251163 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 3276313895">
           <source>Base</source>
