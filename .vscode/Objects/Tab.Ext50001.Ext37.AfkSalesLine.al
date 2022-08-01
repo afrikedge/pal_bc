@@ -4,23 +4,39 @@ tableextension 50001 AfkSalesLine extends "Sales Line"
     {
         field(50000; "Afk_Quantity1"; Decimal)
         {
-            Caption = 'Quantity 1';
+            Caption = 'Base';
             DecimalPlaces = 0 : 5;
+            trigger OnValidate()
+            begin              
+                AfkPricingMgt.SetSalesLinePrices(Rec,GetSalesHeader());
+            end;
         }
         field(50001; "Afk_Unit_of_Measure_Code_1"; Code[10])
         {
-            Caption = 'Unit of Measure Code 1';
+            Caption = 'Unit of Base';
             TableRelation = "Unit of Measure".Code;
+            trigger OnValidate()
+            begin
+                AfkPricingMgt.SetSalesLinePrices(Rec, GetSalesHeader());
+            end;
         }
         field(50002; "Afk_Quantity2"; Decimal)
         {
-            Caption = 'Quantity 2';
+            Caption = 'Number';
             DecimalPlaces = 0 : 5;
+            trigger OnValidate()
+            begin
+                AfkPricingMgt.SetSalesLinePrices(Rec, GetSalesHeader());
+            end;
         }
         field(50003; "Afk_Unit_of_Measure_Code_2"; Code[10])
         {
-            Caption = 'Unit of Measure Code 2';
+            Caption = 'Unit of Number';
             TableRelation = "Unit of Measure".Code;
+            trigger OnValidate()
+            begin
+                AfkPricingMgt.SetSalesLinePrices(Rec, GetSalesHeader());
+            end;
         }
         field(50006; "Afk_Strip_On_Quay"; Boolean)
         {
@@ -47,5 +63,7 @@ tableextension 50001 AfkSalesLine extends "Sales Line"
             Caption = 'Phone Network';
         }
     }
+    var
+    AfkPricingMgt:Codeunit AfkPortServiceInvMgt;
     
 }

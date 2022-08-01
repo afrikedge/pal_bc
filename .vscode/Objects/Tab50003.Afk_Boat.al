@@ -15,22 +15,34 @@ table 50003 Afk_Boat
         }
         field(3; "Length"; Decimal)
         {
-            Caption = 'Length';
+            Caption = 'Length (m)';
             DecimalPlaces = 0 : 5;
+            trigger OnValidate()
+            begin
+                RefreshVolume();
+            end;
         }
         field(4; "Width"; Decimal)
         {
-            Caption = 'Width';
+            Caption = 'Width (m)';
             DecimalPlaces = 0 : 5;
+            trigger OnValidate()
+            begin
+                RefreshVolume();
+            end;
         }
         field(5; "Boat Draught"; Decimal)
         {
-            Caption = 'Boat Draught';
+            Caption = 'Boat Draught (m)';
             DecimalPlaces = 0 : 5;
+            trigger OnValidate()
+            begin
+                RefreshVolume();
+            end;
         }
         field(6; "Volume"; Decimal)
         {
-            Caption = 'Volume';
+            Caption = 'Volume (m3)';
             DecimalPlaces = 0 : 5;
         }
         field(7; "TJB"; Decimal)
@@ -57,7 +69,7 @@ table 50003 Afk_Boat
         {
             NotBlank = true;
             Caption = 'Boat Type';
-            TableRelation = "Afk_Generic_Type" where(RecordType = const(BoatType));
+            TableRelation = "Afk_Generic_Type".Code where(RecordType = const(BoatType));
         }
         field(20; NavigationType; Option)
         {
@@ -74,5 +86,11 @@ table 50003 Afk_Boat
             Clustered = true;
         }
     }
+
+    local procedure RefreshVolume()
+    var
+    begin
+        Volume := Length*Width*"Boat Draught";
+    end;
 
 }

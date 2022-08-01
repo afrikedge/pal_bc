@@ -53,7 +53,7 @@ tableextension 50000 AfkSalesHeader extends "Sales Header"
         field(50011; "Afk_Arrival_Boat_Amarre_Time"; Time)
         {
             Caption = 'Arrival: Boat Mooring time';
-        }       
+        }
         field(50012; "Afk_Arrival_Boat_Amarre_On"; Text[30])
         {
             //Quai d’amarrage du navire
@@ -112,7 +112,7 @@ tableextension 50000 AfkSalesHeader extends "Sales Header"
             Caption = 'Gross weight on board';
             DecimalPlaces = 0 : 5;
         }
-        field(50025; "Afk_Nb_Passengers"; Integer)
+        field(50025; "Afk_Nb_National_Passengers"; Integer)
         {
             Caption = 'Number of National passengers';
         }
@@ -121,5 +121,5 @@ tableextension 50000 AfkSalesHeader extends "Sales Header"
             Caption = 'Number of Foreign passengers';
         }
     }
-    
+
 }

@@ -14,6 +14,14 @@ table 50001 Afk_Princing
             Caption = 'Item No.';
             NotBlank = true;
             TableRelation = Item;
+            trigger OnValidate()
+            var
+            begin
+                if (Item1.Get("Item No.")) then begin
+                    "Unit of Measure Code 1" := Item1.Afk_Unit_of_Measure_Code_1;
+                    "Unit of Measure Code 2" := Item1.Afk_Unit_of_Measure_Code_2;
+                end;
+            end;
         }
         field(3; "Terminal"; Code[10])
         {
@@ -27,55 +35,44 @@ table 50001 Afk_Princing
         }
         field(5; "Pavillon"; Code[10])
         {
-            Caption = 'Terminal';
+            Caption = 'Pavillon';
             TableRelation = "Country/Region";
         }
         field(6; "Notes"; Text[100])
         {
             Caption = 'Notes';
         }
-        field(7; "Quantity1"; Code[20])
-        {
-            Caption = 'Quantity 1';
-            TableRelation = "Afk_Calc_Parameter";
-        }
         field(8; "Unit of Measure Code 1"; Code[10])
         {
-            Caption = 'Unit of Measure Code 1';
+            Caption = 'Unit of Base';
             TableRelation = "Unit of Measure".Code;
         }
         field(9; "Minimum Quantity 1"; Decimal)
         {
-            Caption = 'Minimum Quantity 1';
+            Caption = 'Minimum Base';
             DecimalPlaces = 0 : 5;
             MinValue = 0;
         }
         field(10; "Maximum Quantity 1"; Decimal)
         {
-            Caption = 'Maximum Quantity 1';
+            Caption = 'Maximum Base';
             DecimalPlaces = 0 : 5;
             MinValue = 0;
         }
-
-        field(11; "Quantity2"; Code[20])
-        {
-            Caption = 'Quantity 2';
-            TableRelation = "Afk_Calc_Parameter";
-        }
         field(5400; "Unit of Measure Code 2"; Code[10])
         {
-            Caption = 'Unit of Measure Code 2';
+            Caption = 'Unit of Number,';
             TableRelation = "Unit of Measure".Code;
         }
         field(12; "Minimum Quantity 2"; Decimal)
         {
-            Caption = 'Minimum Quantity 2';
+            Caption = 'Minimum Number';
             DecimalPlaces = 0 : 5;
             MinValue = 0;
         }
         field(13; "Maximum Quantity 2"; Decimal)
         {
-            Caption = 'Maximum Quantity 2';
+            Caption = 'Maximum Number';
             DecimalPlaces = 0 : 5;
             MinValue = 0;
         }
@@ -123,11 +120,11 @@ table 50001 Afk_Princing
             AutoFormatType = 2;
             Caption = 'Majoration';
         }
-        field(20; PriceType; Option)
+        field(20; QtyCalculation; Option)
         {
             Caption = 'Price Type';
-            OptionMembers = PerUnit,FlatRate;
-            OptionCaption = 'Per unit,Flat Rate';
+            OptionMembers = Qty1,Qty1_x_Qty2,Qty2,FlatRate;
+            OptionCaption = 'Base,Base x Number,Number,Flat Rate';
         }
 
     }
@@ -144,4 +141,5 @@ table 50001 Afk_Princing
     }
     var
         Text000: Label '%1 cannot be after %2';
+        Item1: Record Item;
 }
