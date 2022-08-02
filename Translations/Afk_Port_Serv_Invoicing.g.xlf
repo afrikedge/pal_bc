@@ -254,7 +254,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Page AfkBoatCard - Control General - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 3064218428 - Control 972110707 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Specifies if the consignee of the vessel.</source>
+          <source>Specifies the consignee of the vessel.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page AfkBoatCard - Control Agent - Property ToolTip</note>
         </trans-unit>
@@ -264,7 +264,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Page AfkBoatCard - Control Boat Draught - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 3064218428 - Control 2712378956 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Specifies if the type of the ship.</source>
+          <source>Specifies the type of the ship.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page AfkBoatCard - Control BoatType - Property ToolTip</note>
         </trans-unit>
@@ -279,7 +279,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Page AfkBoatCard - Control Name - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 3064218428 - Control 779563094 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Specifies if the navigation type of the ship.</source>
+          <source>Specifies the navigation type of the ship.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page AfkBoatCard - Control NavigationType - Property ToolTip</note>
         </trans-unit>
@@ -289,7 +289,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Page AfkBoatCard - Control OMI_Number - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 3064218428 - Control 150506489 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Specifies if the country of registry of the ship.</source>
+          <source>Specifies the country of registry of the ship.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page AfkBoatCard - Control Pavillon - Property ToolTip</note>
         </trans-unit>
@@ -319,7 +319,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Page AfkBoatList - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 3244132890 - Control 972110707 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Specifies if the consignee of the vessel.</source>
+          <source>Specifies the consignee of the vessel.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page AfkBoatList - Control Agent - Property ToolTip</note>
         </trans-unit>
@@ -329,7 +329,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Page AfkBoatList - Control Boat Draught - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 3244132890 - Control 2712378956 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Specifies if the type of the ship.</source>
+          <source>Specifies the type of the ship.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page AfkBoatList - Control BoatType - Property ToolTip</note>
         </trans-unit>
@@ -344,7 +344,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Page AfkBoatList - Control Name - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 3244132890 - Control 779563094 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Specifies if the navigation type of the ship.</source>
+          <source>Specifies the navigation type of the ship.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page AfkBoatList - Control NavigationType - Property ToolTip</note>
         </trans-unit>
@@ -354,7 +354,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Page AfkBoatList - Control OMI_Number - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 3244132890 - Control 150506489 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Specifies if the country of registry of the ship.</source>
+          <source>Specifies the country of registry of the ship.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page AfkBoatList - Control Pavillon - Property ToolTip</note>
         </trans-unit>

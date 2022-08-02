@@ -27,7 +27,7 @@ page 50004 AfkBoatCard
                 field("BoatType"; rec.BoatType)
                 {
                     ApplicationArea = Basic, Suite;
-                    ToolTip = 'Specifies if the type of the ship.';
+                    ToolTip = 'Specifies the type of the ship.';
                 }
                 field(Length; rec.Length)
                 {
@@ -71,17 +71,17 @@ page 50004 AfkBoatCard
                 field("Pavillon"; rec.Pavillon)
                 {
                     ApplicationArea = Basic, Suite;
-                    ToolTip = 'Specifies if the country of registry of the ship.';
+                    ToolTip = 'Specifies the country of registry of the ship.';
                 }
                 field("Agent"; rec.Agent)
                 {
                     ApplicationArea = Basic, Suite;
-                    ToolTip = 'Specifies if the consignee of the vessel.';
+                    ToolTip = 'Specifies the consignee of the vessel.';
                 }
                 field("NavigationType"; rec.NavigationType)
                 {
                     ApplicationArea = Basic, Suite;
-                    ToolTip = 'Specifies if the navigation type of the ship.';
+                    ToolTip = 'Specifies the navigation type of the ship.';
                 }
             }
 

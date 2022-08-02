@@ -304,8 +304,9 @@
           <note from="Xliff Generator" annotates="general" priority="3">Page AfkBoatCard - Control General - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 3064218428 - Control 972110707 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Specifies if the consignee of the vessel.</source>
+          <source>Specifies the consignee of the vessel.</source>
           <target>Consignataire du navire</target>
+          <note from="XLIFF Sync" annotates="general" priority="1">Source text has changed. Please review the translation.</note>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page AfkBoatCard - Control Agent - Property ToolTip</note>
         </trans-unit>
@@ -316,8 +317,8 @@
           <note from="Xliff Generator" annotates="general" priority="3">Page AfkBoatCard - Control Boat Draught - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 3064218428 - Control 2712378956 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Specifies if the type of the ship.</source>
-          <target state="needs-translation"/>
+          <source>Specifies the type of the ship.</source>
+          <target>Type du navire</target>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page AfkBoatCard - Control BoatType - Property ToolTip</note>
         </trans-unit>
@@ -334,8 +335,9 @@
           <note from="Xliff Generator" annotates="general" priority="3">Page AfkBoatCard - Control Name - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 3064218428 - Control 779563094 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Specifies if the navigation type of the ship.</source>
+          <source>Specifies the navigation type of the ship.</source>
           <target>Type de navigation du navire</target>
+          <note from="XLIFF Sync" annotates="general" priority="1">Source text has changed. Please review the translation.</note>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page AfkBoatCard - Control NavigationType - Property ToolTip</note>
         </trans-unit>
@@ -346,8 +348,9 @@
           <note from="Xliff Generator" annotates="general" priority="3">Page AfkBoatCard - Control OMI_Number - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 3064218428 - Control 150506489 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Specifies if the country of registry of the ship.</source>
+          <source>Specifies the country of registry of the ship.</source>
           <target>Pays d'immatriculation du navire</target>
+          <note from="XLIFF Sync" annotates="general" priority="1">Source text has changed. Please review the translation.</note>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page AfkBoatCard - Control Pavillon - Property ToolTip</note>
         </trans-unit>
@@ -382,8 +385,9 @@
           <note from="Xliff Generator" annotates="general" priority="3">Page AfkBoatList - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 3244132890 - Control 972110707 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Specifies if the consignee of the vessel.</source>
+          <source>Specifies the consignee of the vessel.</source>
           <target>Consignataire du navire</target>
+          <note from="XLIFF Sync" annotates="general" priority="1">Source text has changed. Please review the translation.</note>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page AfkBoatList - Control Agent - Property ToolTip</note>
         </trans-unit>
@@ -394,8 +398,9 @@
           <note from="Xliff Generator" annotates="general" priority="3">Page AfkBoatList - Control Boat Draught - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 3244132890 - Control 2712378956 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Specifies if the type of the ship.</source>
+          <source>Specifies the type of the ship.</source>
           <target>Type du navire</target>
+          <note from="XLIFF Sync" annotates="general" priority="1">Source text has changed. Please review the translation.</note>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page AfkBoatList - Control BoatType - Property ToolTip</note>
         </trans-unit>
@@ -412,8 +417,9 @@
           <note from="Xliff Generator" annotates="general" priority="3">Page AfkBoatList - Control Name - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 3244132890 - Control 779563094 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Specifies if the navigation type of the ship.</source>
+          <source>Specifies the navigation type of the ship.</source>
           <target>Type navigation du navire</target>
+          <note from="XLIFF Sync" annotates="general" priority="1">Source text has changed. Please review the translation.</note>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page AfkBoatList - Control NavigationType - Property ToolTip</note>
         </trans-unit>
@@ -424,7 +430,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Page AfkBoatList - Control OMI_Number - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 3244132890 - Control 150506489 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Specifies if the country of registry of the ship.</source>
+          <source>Specifies the country of registry of the ship.</source>
           <target>Pays d'immatriculation du navire</target>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page AfkBoatList - Control Pavillon - Property ToolTip</note>
@@ -630,112 +636,96 @@
         <trans-unit id="PageExtension 3297313626 - Action 2904448309 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 2747922353">
           <source>Port Services Managment</source>
           <target>Tarifaire services</target>
-          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkSalesOrderProRC - Action AddOns - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="PageExtension 3297313626 - Action 2904448309 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 2747922353">
           <source>Addons</source>
           <target>AddOns</target>
-          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkSalesOrderProRC - Action AddOns - Property Caption</note>
         </trans-unit>
         <trans-unit id="PageExtension 3297313626 - Action 834463121 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 2747922353">
           <source>View or edit detailed information for the boats</source>
           <target>Liste des navires</target>
-          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkSalesOrderProRC - Action AfkBoats - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="PageExtension 3297313626 - Action 834463121 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 2747922353">
           <source>Boats</source>
           <target>Navires</target>
-          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkSalesOrderProRC - Action AfkBoats - Property Caption</note>
         </trans-unit>
         <trans-unit id="PageExtension 3297313626 - Action 907089321 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 2747922353">
           <source>View or edit detailed information for the boat types</source>
           <target>Types de navire</target>
-          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkSalesOrderProRC - Action AfkBoatTypes - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="PageExtension 3297313626 - Action 907089321 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 2747922353">
           <source>Boat Types</source>
           <target>Types de navire</target>
-          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkSalesOrderProRC - Action AfkBoatTypes - Property Caption</note>
         </trans-unit>
         <trans-unit id="PageExtension 3297313626 - Action 4074592957 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 2747922353">
           <source>View or edit detailed information for the calculation parameters</source>
           <target>Paramètres de calcul</target>
-          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkSalesOrderProRC - Action AfkCalcParameters - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="PageExtension 3297313626 - Action 4074592957 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 2747922353">
           <source>Calculation Parameters</source>
           <target>Paramètres de calcul</target>
-          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkSalesOrderProRC - Action AfkCalcParameters - Property Caption</note>
         </trans-unit>
         <trans-unit id="PageExtension 3297313626 - Action 3103517221 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 2747922353">
           <source>View or edit detailed information about customers</source>
           <target>Clients</target>
-          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkSalesOrderProRC - Action AfkCustomers - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="PageExtension 3297313626 - Action 3103517221 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 2747922353">
           <source>Customers</source>
           <target>Clients</target>
-          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkSalesOrderProRC - Action AfkCustomers - Property Caption</note>
         </trans-unit>
         <trans-unit id="PageExtension 3297313626 - Action 3367737302 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 2747922353">
           <source>View or edit detailed information about services</source>
           <target>Services</target>
-          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkSalesOrderProRC - Action AfkItems - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="PageExtension 3297313626 - Action 3367737302 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 2747922353">
           <source>Items</source>
           <target>Services</target>
-          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkSalesOrderProRC - Action AfkItems - Property Caption</note>
         </trans-unit>
         <trans-unit id="PageExtension 3297313626 - Action 3214625496 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 2747922353">
           <source>View or edit detailed information for the pricing of port services</source>
           <target>Tarifaire des produits pétroliers</target>
-          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkSalesOrderProRC - Action AfkPricing - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="PageExtension 3297313626 - Action 3214625496 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 2747922353">
           <source>Port Services pricing</source>
           <target>Tarifaire des services</target>
-          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkSalesOrderProRC - Action AfkPricing - Property Caption</note>
         </trans-unit>
         <trans-unit id="PageExtension 3297313626 - Action 3392071991 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 2747922353">
           <source>View or edit detailed information about sales invoices</source>
-          <target>Factures de vents</target>
-          <target state="needs-translation"/>
+          <target>Factures de vente</target>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkSalesOrderProRC - Action AfkPSalesInvoice - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="PageExtension 3297313626 - Action 3392071991 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 2747922353">
           <source>Sales Invoices</source>
           <target>Factures de vents</target>
-          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkSalesOrderProRC - Action AfkPSalesInvoice - Property Caption</note>
         </trans-unit>
