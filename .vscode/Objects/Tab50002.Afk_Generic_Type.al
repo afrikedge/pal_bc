@@ -19,7 +19,11 @@ table 50002 Afk_Generic_Type
         {
             DataClassification = ToBeClassified;
         }
-
+        field(4; Drivable; Boolean)
+        {
+            Caption = 'Drivable';
+            DataClassification = ToBeClassified;
+        }
     }
 
     keys

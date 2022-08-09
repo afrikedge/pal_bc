@@ -77,6 +77,12 @@ table 50003 Afk_Boat
             OptionMembers = Cabotage,LongDistance;
             OptionCaption = 'Cabotage,Long Distance';
         }
+        field(21; Weight; Decimal)
+        {
+            Caption = 'Boat Weight (T)';
+            DecimalPlaces = 0 : 5;
+        }
+
     }
 
     keys
@@ -90,7 +96,7 @@ table 50003 Afk_Boat
     local procedure RefreshVolume()
     var
     begin
-        Volume := Length*Width*"Boat Draught";
+        Volume := Length * Width * "Boat Draught";
     end;
 
 }

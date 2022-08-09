@@ -2,7 +2,7 @@ tableextension 50002 AfkItem extends "Item"
 {
     fields
     {
-        field(50000; "Afk_Quantity1"; Code[20])
+        field(50000; "Afk_Quantity1"; Code[30])
         {
             Caption = 'Base';
             TableRelation = "Afk_Calc_Parameter";
@@ -12,7 +12,7 @@ tableextension 50002 AfkItem extends "Item"
             Caption = 'Unit of Base';
             TableRelation = "Unit of Measure".Code;
         }
-        field(50002; "Afk_Quantity2"; Code[20])
+        field(50002; "Afk_Quantity2"; Code[30])
         {
             Caption = 'Number';
             TableRelation = "Afk_Calc_Parameter";
@@ -23,5 +23,5 @@ tableextension 50002 AfkItem extends "Item"
             TableRelation = "Unit of Measure".Code;
         }
     }
-    
+
 }

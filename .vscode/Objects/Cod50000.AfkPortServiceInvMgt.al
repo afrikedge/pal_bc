@@ -74,6 +74,31 @@ codeunit 50000 AfkPortServiceInvMgt
 
     end;
 
+    procedure CalcAllLines(sHeader: Record "Sales Header")
+    var
+        salesL: Record "Sales Line";
+        totalHT: Decimal;
+        Item2: Record Item;
+    begin
+        //Calcul lignes simples
+        salesL.Reset();
+        salesL.SetRange("Document Type", sHeader."Document Type");
+        salesL.SetRange("Document No.", sHeader."No.");
+        if salesL.FindSet() then
+            repeat
+                if (salesL.Type = salesL.Type::Item) then begin
+                    if (not IsLigneTotalHT(salesL)) then begin
+                        salesL.Validate(salesL.Afk_Quantity1);
+                        salesL.Modify();
+                    end;
+                end;
+            until salesL.Next() < 1;
+
+        //Calcul lignes de total
+        CalcTotalLines(sHeader);
+    end;
+
+
     procedure CalcTotalLines(sHeader: Record "Sales Header")
     var
         salesL: Record "Sales Line";
@@ -86,8 +111,7 @@ codeunit 50000 AfkPortServiceInvMgt
         if salesL.FindSet() then
             repeat
                 if (salesL.Type = salesL.Type::Item) then begin
-                    Item2.get(salesL."No.");
-                    if ((Item2.Afk_Quantity1 <> 'TOTAL_HT') and (Item2.Afk_Quantity2 <> 'TOTAL_HT')) then
+                    if (not IsLigneTotalHT(salesL)) then
                         totalHT := totalHT + salesL."Line Amount";
                 end else
                     totalHT := totalHT + salesL."Line Amount";
@@ -114,6 +138,18 @@ codeunit 50000 AfkPortServiceInvMgt
                     end;
                 end
             until salesL.Next() < 1;
+    end;
+
+    local procedure IsLigneTotalHT(salesL: Record "Sales Line"): Boolean
+    var
+        Item2: Record Item;
+    begin
+
+        if (salesL."No." = '') then exit(false);
+        if (salesL.Type <> salesL.Type::Item) then exit(false);
+
+        Item2.get(salesL."No.");
+        exit((Item2.Afk_Quantity1 = 'TOTAL_HT') or (Item2.Afk_Quantity2 = 'TOTAL_HT'));
     end;
 
     local procedure SpecificUnitPriceExists(itemNo: Code[20]): Boolean

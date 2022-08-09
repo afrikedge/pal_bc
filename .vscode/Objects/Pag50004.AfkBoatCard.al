@@ -57,6 +57,11 @@ page 50004 AfkBoatCard
                     Editable = false;
                     ToolTip = 'Specifies the vessel volume in m3.';
                 }
+                field("Weight"; rec.Weight)
+                {
+                    ApplicationArea = Basic, Suite;
+                    ToolTip = 'Specifies the weight of the ship.';
+                }
                 field("TJB"; rec.TJB)
                 {
                     ApplicationArea = Basic, Suite;

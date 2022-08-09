@@ -3,6 +3,26 @@
   <file datatype="xml" source-language="en-US" target-language="en-US" original="Afk_Port_Serv_Invoicing">
     <body>
       <group id="body">
+        <trans-unit id="Table 252127493 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>AFK Setup</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkSetup - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 252127493 - Field 3148429643 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Day starting time</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkSetup - Field Day starting time - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 252127493 - Field 3277287259 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Night starting time</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkSetup - Field Night starting time - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 252127493 - Field 1663593181 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Primary Key</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkSetup - Field Primary Key - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 1484905965 - Field 972110707 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Agent</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -63,6 +83,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Afk_Boat - Field Volume - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 1484905965 - Field 2854289444 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Boat Weight (T)</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Afk_Boat - Field Weight - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 1484905965 - Field 613790498 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Width (m)</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -112,6 +137,11 @@
           <source>Description</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Afk_Generic_Type - Field Description - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 294736983 - Field 3631250717 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Drivable</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Afk_Generic_Type - Field Drivable - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 294736983 - Field 1365996575 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>RecordType</source>
@@ -308,6 +338,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page AfkBoatCard - Control Volume - Property ToolTip</note>
         </trans-unit>
+        <trans-unit id="Page 3064218428 - Control 2854289444 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the weight of the ship.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page AfkBoatCard - Control Weight - Property ToolTip</note>
+        </trans-unit>
         <trans-unit id="Page 3064218428 - Control 613790498 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the vessel width in meters</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -372,6 +407,11 @@
           <source>Specifies the vessel volume in m3.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page AfkBoatList - Control Volume - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3244132890 - Control 2854289444 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the weight of the ship.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page AfkBoatList - Control Weight - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 3244132890 - Control 613790498 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the vessel width in meters</source>
@@ -442,6 +482,31 @@
           <source>Specifies how final quantity is calculated</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page AfkSalesInvPricing - Control QtyCalculation - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 2705747673 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>AFK Setup</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page AfkSetupCard - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2705747673 - Property 3863440606" size-unit="char" translate="yes" xml:space="preserve">
+          <source>params</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page AfkSetupCard - Property AdditionalSearchTerms</note>
+        </trans-unit>
+        <trans-unit id="Page 2705747673 - Control 2445482498 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>General</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page AfkSetupCard - Control General - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2705747673 - Control 2493968059 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Day starting time.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page AfkSetupCard - Control DayStartingTime - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 2705747673 - Control 2552448523 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Night starting time</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page AfkSetupCard - Control NightStartingTime - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="PageExtension 3041876875 - Action 4042581002 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 4034894651">
           <source>calculate special lines based on the tax-free total of the invoice.</source>
@@ -523,6 +588,16 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkSalesInvoiceCard - Control Afk_Depart_Pilot_Return_Time - Property ToolTip</note>
         </trans-unit>
+        <trans-unit id="PageExtension 1624506953 - Action 804567400 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 3689007477">
+          <source>calculate amount on lines</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkSalesInvSubForm - Action AfkCalcLines - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 1624506953 - Action 804567400 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 3689007477">
+          <source>Calculate lines</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkSalesInvSubForm - Action AfkCalcLines - Property Caption</note>
+        </trans-unit>
         <trans-unit id="PageExtension 3297313626 - Action 2904448309 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 2747922353">
           <source>Port Services Managment</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -602,6 +677,16 @@
           <source>Sales Invoices</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkSalesOrderProRC - Action AfkPSalesInvoice - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3297313626 - Action 252127493 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 2747922353">
+          <source>View or edit setup parameters</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkSalesOrderProRC - Action AfkSetup - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3297313626 - Action 252127493 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 2747922353">
+          <source>Setup</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkSalesOrderProRC - Action AfkSetup - Property Caption</note>
         </trans-unit>
         <trans-unit id="TableExtension 1216657483 - Field 1298251163 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 3276313895">
           <source>Base</source>

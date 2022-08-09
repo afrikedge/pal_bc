@@ -75,6 +75,12 @@ page 50003 "AfkBoatList"
                     ApplicationArea = Basic, Suite;
                     ToolTip = 'Specifies the navigation type of the ship.';
                 }
+                field("Weight"; rec.Weight)
+                {
+                    ApplicationArea = Basic, Suite;
+                    ToolTip = 'Specifies the weight of the ship.';
+                }
+
             }
         }
     }

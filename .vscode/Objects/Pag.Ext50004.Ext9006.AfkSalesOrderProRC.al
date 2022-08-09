@@ -79,6 +79,16 @@ pageextension 50004 AfkSalesOrderProRC extends "Order Processor Role Center"
                     RunObject = Page "Sales Invoice List";
                     ToolTip = 'View or edit detailed information about sales invoices';
                 }
+                action(AfkSetup)
+                {
+                    ApplicationArea = Basic, Suite;
+                    Caption = 'Setup';
+                    Image = Setup;
+                    Promoted = true;
+                    PromotedCategory = Process;
+                    RunObject = Page AfkSetupCard;
+                    ToolTip = 'View or edit setup parameters';
+                }
             }
         }
 

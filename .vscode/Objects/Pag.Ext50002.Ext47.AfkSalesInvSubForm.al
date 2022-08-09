@@ -52,6 +52,27 @@ pageextension 50002 AfkSalesInvSubForm extends "Sales invoice subform"
 
     actions
     {
-        // Add changes to page actions here
+        addafter("SelectMultiItems")
+        {
+            action(AfkCalcLines)
+            {
+                ApplicationArea = All;
+                Caption = 'Calculate lines';
+                Ellipsis = true;
+                //Enabled = "No." <> '';
+                Image = Calculate;
+                Promoted = true;
+                PromotedCategory = Category6;
+                PromotedIsBig = true;
+                ToolTip = 'calculate amount on lines';
+
+                trigger OnAction()
+                var
+                    PricingCalc: Codeunit AfkPortServiceInvMgt;
+                begin
+                    PricingCalc.CalcAllLines(Rec.GetSalesHeader());
+                end;
+            }
+        }
     }
 }
