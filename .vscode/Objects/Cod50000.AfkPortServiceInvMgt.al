@@ -69,8 +69,10 @@ codeunit 50000 AfkPortServiceInvMgt
         sLine.Afk_Unit_of_Measure_Code_1 := Item1.Afk_Unit_of_Measure_Code_1;
         sLine.Afk_Unit_of_Measure_Code_2 := Item1.Afk_Unit_of_Measure_Code_2;
 
+
+        if (sLine."Line No." > 0) then sLine.Modify();
         SetSalesLinePrices(sLine, sHeader);
-        //if (sLine."Line No." > 0) then sLine.Modify();
+        //
 
     end;
 
@@ -88,8 +90,9 @@ codeunit 50000 AfkPortServiceInvMgt
             repeat
                 if (salesL.Type = salesL.Type::Item) then begin
                     if (not IsLigneTotalHT(salesL)) then begin
-                        salesL.Validate(salesL.Afk_Quantity1);
-                        salesL.Modify();
+                        //salesL.Validate(salesL.Afk_Quantity1);
+                        PortServMft.SetSalesLineDefValues(salesL, sHeader);
+                        //salesL.Modify();
                     end;
                 end;
             until salesL.Next() < 1;
@@ -304,4 +307,5 @@ codeunit 50000 AfkPortServiceInvMgt
         Item1: Record Item;
         CalcParamValues: Codeunit AfkCalcValueParams;
         CurrExchRate: Record "Currency Exchange Rate";
+        PortServMft: Codeunit AfkPortServiceInvMgt;
 }

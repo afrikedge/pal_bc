@@ -122,7 +122,7 @@ table 50001 Afk_Princing
         }
         field(20; QtyCalculation; Option)
         {
-            Caption = 'Price Type';
+            Caption = 'Qty Calculation Mode';
             OptionMembers = Qty1,Qty1_x_Qty2,Qty2,FlatRate;
             OptionCaption = 'Base,Base x Number,Number,Flat Rate';
         }

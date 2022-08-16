@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd">
-  <file datatype="xml" source-language="en-US" target-language="en-US" original="Afk_Port_Serv_Invoicing">
+  <file datatype="xml" source-language="en-US" target-language="en-US" original="PAL">
     <body>
       <group id="body">
         <trans-unit id="Table 252127493 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
@@ -224,7 +224,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table Afk_Princing - Field Price Includes VAT - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 2341516183 - Field 3070372111 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Price Type</source>
+          <source>Qty Calculation Mode</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Afk_Princing - Field QtyCalculation - Property Caption</note>
         </trans-unit>
@@ -437,6 +437,11 @@
           <source>Specifies a description of the boat type.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page AfkBoatTypes - Control Description - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 907089321 - Control 3631250717 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies if the boat is drivable.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page AfkBoatTypes - Control Drivable - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 4074592957 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Calculator parameters</source>

@@ -25,6 +25,11 @@ page 50000 "AfkBoatTypes"
                     ApplicationArea = Basic, Suite, Invoicing;
                     ToolTip = 'Specifies a description of the boat type.';
                 }
+                field(Drivable; Rec.Drivable)
+                {
+                    ApplicationArea = Basic, Suite, Invoicing;
+                    ToolTip = 'Specifies if the boat is drivable.';
+                }
             }
         }
         area(factboxes)
