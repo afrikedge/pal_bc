@@ -61,6 +61,11 @@ codeunit 50002 AfkCalcValueParams
             exit(Boat.Weight);
         end;
 
+        if (paramCode = 'DEP_TONNAGE_EMBARQUE') then begin
+            sHeader.TestField(Afk_Gross_Weight_OnBoard);
+            exit(sHeader.Afk_Gross_Weight_OnBoard);
+        end;
+
 
         if (paramCode = 'NB_PASSENGERS') then begin
             sHeader.TestField(Afk_Boat_Number);
@@ -176,6 +181,47 @@ codeunit 50002 AfkCalcValueParams
             end;
             exit(nb);
         end;
+
+
+        //Temps de veille sécurité pilote (jour)
+        if (paramCode = 'NBH_PILOT_SEC_VEILLE_DAY') then begin
+            nb := 0;
+            sHeader.TestField(Afk_Arrival_Pilot_OnBoard_Date);
+            sHeader.TestField(Afk_Arrival_Pilot_OnBoard_Time);
+            sHeader.TestField(Afk_Depart_Pilot_Return_Date);
+            sHeader.TestField(Afk_Depart_Pilot_Return_Time);
+            actualDate := CreateDateTime(sHeader.Afk_Arrival_Pilot_OnBoard_Date, sHeader.Afk_Arrival_Pilot_OnBoard_Time);
+            //actualDate := actualDate + (1 * 60 * 60 * 1000);//add free hour
+            endDate := CreateDateTime(sHeader.Afk_Depart_Pilot_Return_Date, sHeader.Afk_Depart_Pilot_Return_Time);
+            while (actualDate < endDate) do begin
+                if (not IsHoliDayDate(DT2Date(actualDate)) and IsDuringDay(DT2Time(actualDate))) then
+                    nb += 1;
+                actualDate := actualDate + (1 * 60 * 60 * 1000);//add 1 hour
+            end;
+            exit(nb);
+        end;
+
+        if (paramCode = 'NBH_PILOT_SEC_VEILLE_HOLIDAY') then begin
+            nb := 0;
+            sHeader.TestField(Afk_Arrival_Pilot_OnBoard_Date);
+            sHeader.TestField(Afk_Arrival_Pilot_OnBoard_Time);
+            sHeader.TestField(Afk_Depart_Pilot_Return_Date);
+            sHeader.TestField(Afk_Depart_Pilot_Return_Time);
+            actualDate := CreateDateTime(sHeader.Afk_Arrival_Pilot_OnBoard_Date, sHeader.Afk_Arrival_Pilot_OnBoard_Time);
+            //actualDate := actualDate + (1 * 60 * 60 * 1000);//add free hour
+            endDate := CreateDateTime(sHeader.Afk_Depart_Pilot_Return_Date, sHeader.Afk_Depart_Pilot_Return_Time);
+            while (actualDate < endDate) do begin
+                if (IsHoliDayDate(DT2Date(actualDate)) or IsDuringNight(DT2Time(actualDate))) then
+                    nb += 1;
+                actualDate := actualDate + (1 * 60 * 60 * 1000);//add 1 hour
+            end;
+            exit(nb);
+        end;
+
+
+
+
+
 
 
         exit(0);
