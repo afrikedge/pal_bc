@@ -49,7 +49,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table Afk_Boat - Field Name - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 1484905965 - Field 779563094 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Navigation Type</source>
+          <source>Type of Navigation1</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Afk_Boat - Field NavigationType - Property Caption</note>
         </trans-unit>
