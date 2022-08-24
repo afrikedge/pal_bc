@@ -6,6 +6,11 @@ pageextension 50001 AfkSalesInvoiceCard extends "Sales Invoice"
         {
             group("Boat Informations")
             {
+                field(Afk_Invoice_Object; Rec.Afk_Invoice_Object)
+                {
+                    ApplicationArea = Suite;
+                    ToolTip = 'Invoice subject';
+                }
                 field(Afk_Boat_Number; Rec.Afk_Boat_Number)
                 {
                     ApplicationArea = Suite;

@@ -4,6 +4,11 @@ pageextension 50002 AfkSalesInvSubForm extends "Sales invoice subform"
     {
         addafter("Description")
         {
+            field("Afk_Printed_Description"; Rec.Afk_Printed_Description)
+            {
+                ApplicationArea = Suite;
+                ToolTip = 'Description displayed on the invoice';
+            }
             field("Afk_Quantity1"; Rec.Afk_Quantity1)
             {
                 ApplicationArea = Suite;

@@ -120,6 +120,10 @@ tableextension 50000 AfkSalesHeader extends "Sales Header"
         {
             Caption = 'Number of Foreign passengers';
         }
+        field(50027; "Afk_Invoice_Object"; Text[100])
+        {
+            Caption = 'Subject';
+        }
     }
 
 }

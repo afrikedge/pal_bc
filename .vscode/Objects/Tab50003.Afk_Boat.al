@@ -73,7 +73,7 @@ table 50003 Afk_Boat
         }
         field(20; NavigationType; Option)
         {
-            Caption = 'Type of Navigation1';
+            Caption = 'Type of Navigation';
             OptionMembers = Cabotage,LongDistance;
             OptionCaption = 'Cabotage,Long Distance';
         }

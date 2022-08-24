@@ -7,8 +7,8 @@ tableextension 50001 AfkSalesLine extends "Sales Line"
             Caption = 'Base';
             DecimalPlaces = 0 : 5;
             trigger OnValidate()
-            begin              
-                AfkPricingMgt.SetSalesLinePrices(Rec,GetSalesHeader());
+            begin
+                AfkPricingMgt.SetSalesLinePrices(Rec, GetSalesHeader());
             end;
         }
         field(50001; "Afk_Unit_of_Measure_Code_1"; Code[10])
@@ -62,8 +62,13 @@ tableextension 50001 AfkSalesLine extends "Sales Line"
         {
             Caption = 'Phone Network';
         }
+        field(500012; "Afk_Printed_Description"; Text[100])
+        {
+            Caption = 'Printed Description';
+        }
     }
+
     var
-    AfkPricingMgt:Codeunit AfkPortServiceInvMgt;
-    
+        AfkPricingMgt: Codeunit AfkPortServiceInvMgt;
+
 }
