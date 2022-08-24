@@ -17,6 +17,143 @@ report 50000 "AfkSalesInvoicePreview"
             RequestFilterFields = "No.", "Sell-to Customer No.";
             RequestFilterHeading = 'Sales Invoice';
 
+            //*************************************ENtete*************************************************************
+            column(Afk_LieuDateFacturation; AfkLieuAdresseFacturation)
+            {
+            }
+            column(Afk_Invoice_Object; Header.Afk_Invoice_Object)
+            {
+            }
+            column(Afk_Terminal; Header."Responsibility Center")
+            {
+            }
+            column(Afk_BoatType; AfkBoat.BoatType)
+            {
+            }
+            column(Afk_BoatName; AfkBoat.Name)
+            {
+            }
+            column(Afk_UserID; USERID)
+            {
+            }
+            column(Afk_Contribuable; Cust.Afk_Tax_Number)
+            {
+            }
+            column(Afk_RegistreCommerce; Cust.Afk_TradeRegister)
+            {
+            }
+            column(Afk_CurrencyCode; Header."Currency Code")
+            {
+            }
+            column(AfkTerminalLbl; AfkTerminalLbl)
+            {
+            }
+            column(AfkTypeNavireLbl; AfkTypeNavireLbl)
+            {
+            }
+            column(AfkNomNavireLbl; AfkNomNavireLbl)
+            {
+            }
+            column(AfkDateLieuFacturationLbl; AfkDateLieuFacturationLbl)
+            {
+            }
+            column(AfkAgentFacturationLbl; AfkAgentFacturationLbl)
+            {
+            }
+            column(AfkAddresseFacturationLbl; AfkAddresseFacturationLbl)
+            {
+            }
+            column(AfkAddresseFacturationClientLbl; AfkAddresseFacturationClientLbl)
+            {
+            }
+            column(AfkCodeClientLbl; AfkCodeClientLbl)
+            {
+            }
+            column(AfkNomClientLbl; AfkNomClientLbl)
+            {
+            }
+            column(AfkNumContribuableLbl; AfkNumContribuableLbl)
+            {
+            }
+            column(AfkRCCMLbl; AfkRCCMLbl)
+            {
+            }
+            column(AfkLigneNoLbl; AfkLigneNoLbl)
+            {
+            }
+            column(AfkLigneQteLbl; AfkLigneQteLbl)
+            {
+            }
+            column(AfkLignePULbl; AfkLignePULbl)
+            {
+            }
+            column(AfkLigneTVALbl; AfkLigneTVALbl)
+            {
+            }
+            column(AfkLigneTotalHTLbl; AfkLigneTotalHTLbl)
+            {
+            }
+            column(AfkLignePrestationsLbl; AfkLignePrestationsLbl)
+            {
+            }
+            column(AfkCondPaiementLbl; AfkCondPaiementLbl)
+            {
+            }
+            column(AfkCompteAfrilandLbl; AfkCompteAfrilandLbl)
+            {
+            }
+            column(AfkVAT1925Lbl; AfkVAT1925Lbl)
+            {
+            }
+            column(AfkTotalTTCDeviseLbl; AfkTotalTTCDeviseLbl)
+            {
+            }
+            column(AfkDeviseLbl; AfkDeviseLbl)
+            {
+            }
+            column(AfkTotalHTDeviseLbl; AfkTotalHTDeviseLbl)
+            {
+            }
+            column(AfkArreteMontantLbl; AfkArreteMontantLbl)
+            {
+            }
+            column(AfkLieuAdresseFacturation; AfkLieuAdresseFacturation)
+            {
+            }
+
+            column(AfkBaseCaptionLbl; AfkBaseCaptionLbl)
+            {
+            }
+
+
+            column(AfkCustName; Cust.Name)
+            {
+            }
+            column(AfkCustNo; Cust."No.")
+            {
+            }
+
+
+            // AfkTotalAmountInclVAT_LCYText := '';
+            //             AfkLocalCurrencyText := '';
+            //             AfkTotalAmount_LCYText := '';
+            //             AfkTotalVAT_LCYText := '';
+            //             AfkLocalCurrencyCaption := '';
+            //             AfkTotalAmount_LCYCaption := '';
+            //             AfkTotalVAT_LCYCaption := '';
+            //             AfkTotalAmountInclVAT_LCYCaption := '';
+            //****************************************************************************************
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -56,21 +193,21 @@ report 50000 "AfkSalesInvoicePreview"
             column(CompanyPhoneNo; CompanyInfo."Phone No.")
             {
             }
-            column(CompanyPhoneNo_Lbl; CompanyInfoPhoneNoLbl)
-            {
-            }
+            // column(CompanyPhoneNo_Lbl; CompanyInfoPhoneNoLbl)
+            // {
+            // }
             column(CompanyGiroNo; CompanyInfo."Giro No.")
             {
             }
-            column(CompanyGiroNo_Lbl; CompanyInfoGiroNoLbl)
-            {
-            }
+            // column(CompanyGiroNo_Lbl; CompanyInfoGiroNoLbl)
+            // {
+            // }
             column(CompanyBankName; CompanyBankAccount.Name)
             {
             }
-            column(CompanyBankName_Lbl; CompanyInfoBankNameLbl)
-            {
-            }
+            // column(CompanyBankName_Lbl; CompanyInfoBankNameLbl)
+            // {
+            // }
             column(CompanyBankBranchNo; CompanyBankAccount."Bank Branch No.")
             {
             }
@@ -80,9 +217,9 @@ report 50000 "AfkSalesInvoicePreview"
             column(CompanyBankAccountNo; CompanyBankAccount."Bank Account No.")
             {
             }
-            column(CompanyBankAccountNo_Lbl; CompanyInfoBankAccNoLbl)
-            {
-            }
+            // column(CompanyBankAccountNo_Lbl; CompanyInfoBankAccNoLbl)
+            // {
+            // }
             column(CompanyIBAN; CompanyBankAccount.IBAN)
             {
             }
@@ -170,24 +307,24 @@ report 50000 "AfkSalesInvoicePreview"
             column(ShipmentMethodDescription; ShipmentMethod.Description)
             {
             }
-            column(ShipmentMethodDescription_Lbl; ShptMethodDescLbl)
-            {
-            }
+            // column(ShipmentMethodDescription_Lbl; ShptMethodDescLbl)
+            // {
+            // }
             column(ShipmentDate; Format("Shipment Date", 0, 4))
             {
             }
             column(ShipmentDate_Lbl; FieldCaption("Shipment Date"))
             {
             }
-            column(Shipment_Lbl; ShipmentLbl)
-            {
-            }
-            column(ShowShippingAddress; ShowShippingAddr)
-            {
-            }
-            column(ShipToAddress_Lbl; ShiptoAddrLbl)
-            {
-            }
+            // column(Shipment_Lbl; ShipmentLbl)
+            // {
+            // }
+            // column(ShowShippingAddress; ShowShippingAddr)
+            // {
+            // }
+            // column(ShipToAddress_Lbl; ShiptoAddrLbl)
+            // {
+            // }
             column(ShipToAddress1; ShipToAddr[1])
             {
             }
@@ -212,24 +349,24 @@ report 50000 "AfkSalesInvoicePreview"
             column(ShipToAddress8; ShipToAddr[8])
             {
             }
-            column(SellToContactPhoneNoLbl; SellToContactPhoneNoLbl)
-            {
-            }
-            column(SellToContactMobilePhoneNoLbl; SellToContactMobilePhoneNoLbl)
-            {
-            }
-            column(SellToContactEmailLbl; SellToContactEmailLbl)
-            {
-            }
-            column(BillToContactPhoneNoLbl; BillToContactPhoneNoLbl)
-            {
-            }
-            column(BillToContactMobilePhoneNoLbl; BillToContactMobilePhoneNoLbl)
-            {
-            }
-            column(BillToContactEmailLbl; BillToContactEmailLbl)
-            {
-            }
+            // column(SellToContactPhoneNoLbl; SellToContactPhoneNoLbl)
+            // {
+            // }
+            // column(SellToContactMobilePhoneNoLbl; SellToContactMobilePhoneNoLbl)
+            // {
+            // }
+            // column(SellToContactEmailLbl; SellToContactEmailLbl)
+            // {
+            // }
+            // column(BillToContactPhoneNoLbl; BillToContactPhoneNoLbl)
+            // {
+            // }
+            // column(BillToContactMobilePhoneNoLbl; BillToContactMobilePhoneNoLbl)
+            // {
+            // }
+            // column(BillToContactEmailLbl; BillToContactEmailLbl)
+            // {
+            // }
             column(SellToContactPhoneNo; SellToContact."Phone No.")
             {
             }
@@ -299,9 +436,9 @@ report 50000 "AfkSalesInvoicePreview"
             column(PricesIncludingVATYesNo; Format("Prices Including VAT"))
             {
             }
-            column(SalesPerson_Lbl; SalespersonLbl)
-            {
-            }
+            // column(SalesPerson_Lbl; SalespersonLbl)
+            // {
+            // }
             column(SalesPersonBlank_Lbl; SalesPersonText)
             {
             }
@@ -353,36 +490,36 @@ report 50000 "AfkSalesInvoicePreview"
             column(LegalEntityType_Lbl; Cust.GetLegalEntityTypeLbl)
             {
             }
-            column(Copy_Lbl; CopyLbl)
-            {
-            }
+            // column(Copy_Lbl; CopyLbl)
+            // {
+            // }
             column(EMail_Header_Lbl; EMailLbl)
             {
             }
-            column(HomePage_Header_Lbl; HomePageLbl)
-            {
-            }
-            column(InvoiceDiscountBaseAmount_Lbl; InvDiscBaseAmtLbl)
-            {
-            }
-            column(InvoiceDiscountAmount_Lbl; InvDiscountAmtLbl)
-            {
-            }
-            column(LineAmountAfterInvoiceDiscount_Lbl; LineAmtAfterInvDiscLbl)
-            {
-            }
-            column(LocalCurrency_Lbl; LocalCurrencyLbl)
-            {
-            }
+            // column(HomePage_Header_Lbl; HomePageLbl)
+            // {
+            // }
+            // column(InvoiceDiscountBaseAmount_Lbl; InvDiscBaseAmtLbl)
+            // {
+            // }
+            // column(InvoiceDiscountAmount_Lbl; InvDiscountAmtLbl)
+            // {
+            // }
+            // column(LineAmountAfterInvoiceDiscount_Lbl; LineAmtAfterInvDiscLbl)
+            // {
+            // }
+            // column(LocalCurrency_Lbl; LocalCurrencyLbl)
+            // {
+            // }
             column(ExchangeRateAsText; ExchangeRateText)
             {
             }
-            column(Page_Lbl; PageLbl)
-            {
-            }
-            column(SalesInvoiceLineDiscount_Lbl; SalesInvLineDiscLbl)
-            {
-            }
+            // column(Page_Lbl; PageLbl)
+            // {
+            // }
+            // column(SalesInvoiceLineDiscount_Lbl; SalesInvLineDiscLbl)
+            // {
+            // }
             column(Questions_Lbl; QuestionsLbl)
             {
             }
@@ -392,9 +529,9 @@ report 50000 "AfkSalesInvoicePreview"
             column(DocumentTitle_Lbl; DocumentCaption)
             {
             }
-            column(YourDocumentTitle_Lbl; YourSalesInvoiceLbl)
-            {
-            }
+            // column(YourDocumentTitle_Lbl; YourSalesInvoiceLbl)
+            // {
+            // }
             column(Thanks_Lbl; ThanksLbl)
             {
             }
@@ -419,18 +556,18 @@ report 50000 "AfkSalesInvoicePreview"
             column(VATBase_Lbl; VATBaseLbl)
             {
             }
-            column(VATAmountSpecification_Lbl; VATAmtSpecificationLbl)
-            {
-            }
+            // column(VATAmountSpecification_Lbl; VATAmtSpecificationLbl)
+            // {
+            // }
             column(VATClauses_Lbl; VATClausesLbl)
             {
             }
-            column(VATIdentifier_Lbl; VATIdentifierLbl)
-            {
-            }
-            column(VATPercentage_Lbl; VATPercentageLbl)
-            {
-            }
+            // column(VATIdentifier_Lbl; VATIdentifierLbl)
+            // {
+            // }
+            // column(VATPercentage_Lbl; VATPercentageLbl)
+            // {
+            // }
             column(VATClause_Lbl; VATClause.TableCaption)
             {
             }
@@ -463,6 +600,34 @@ report 50000 "AfkSalesInvoicePreview"
                 column(LineNo_Line; "Line No.")
                 {
                 }
+                //*************LIGNES**LIGNES**LIGNES**************************************************
+                column(AfkNumLigne; NumLigneText)
+                {
+                }
+                column(AfkLigneBase; AfkFormattedBase)
+                {
+                }
+                column(AfkLigneQte; AfkFormattedNumber)
+                {
+                }
+                column(AfkLignePrintedDescr; Line.Afk_Printed_Description)
+                {
+                }
+                column(AfkAmountVAT_Line; AfkFormattedVAT)
+                {
+                    AutoFormatExpression = Header."Currency Code";
+                    AutoFormatType = 1;
+                }
+                column(AfkFormattedBase; AfkFormattedBase)
+                {
+                }
+                column(AfkFormattedNumber; AfkFormattedNumber)
+                {
+                }
+                column(AfkFormattedVAT; AfkFormattedVAT)
+                {
+                }
+                //*************LIGNES**LIGNES**LIGNES**************************************************
                 column(AmountExcludingVAT_Line; Amount)
                 {
                     AutoFormatExpression = Header."Currency Code";
@@ -481,7 +646,7 @@ report 50000 "AfkSalesInvoicePreview"
                     AutoFormatExpression = Header."Currency Code";
                     AutoFormatType = 1;
                 }
-                column(Description_Line; Description)
+                column(Description_Line; Line.Afk_Printed_Description)
                 {
                 }
                 column(Description_Line_Lbl; FieldCaption(Description))
@@ -493,7 +658,7 @@ report 50000 "AfkSalesInvoicePreview"
                 column(LineDiscountPercentText_Line; LineDiscountPctText)
                 {
                 }
-                column(LineAmount_Line; FormattedLineAmount)
+                column(AfkLineAmount_Line; FormattedLineAmount)
                 {
                     AutoFormatExpression = Header."Currency Code";
                     AutoFormatType = 1;
@@ -516,9 +681,9 @@ report 50000 "AfkSalesInvoicePreview"
                 column(ShipmentDate_Line; Format("Shipment Date"))
                 {
                 }
-                column(ShipmentDate_Line_Lbl; PostedShipmentDateLbl)
-                {
-                }
+                // column(ShipmentDate_Line_Lbl; PostedShipmentDateLbl)
+                // {
+                // }
                 column(Quantity_Line; FormattedQuantity)
                 {
                 }
@@ -650,6 +815,27 @@ report 50000 "AfkSalesInvoicePreview"
 
                 trigger OnAfterGetRecord()
                 begin
+
+                    //******************************************************LIGNE**********************
+
+                    NumLigne := NumLigne + 1;
+                    if (NumLigne < 10) then
+                        NumLigneText := '0' + Format(NumLigne)
+                    else
+                        NumLigneText := Format(NumLigne);
+
+                    if Line.Type = Line.Type::" " then begin
+                        AfkFormattedBase := '';
+                        AfkFormattedNumber := '';
+                        AfkFormattedVAT := '';
+                    end else begin
+                        AfkFormattedBase := Format(Line.Afk_Quantity1);
+                        AfkFormattedNumber := Format(Line.Afk_Quantity2);
+                        AfkFormattedVAT := Format("Amount Including VAT" - "Line Amount", 0, AutoFormat.ResolveAutoFormat("Auto Format"::AmountFormat, Header."Currency Code"));
+                    end;
+                    ;
+
+                    //**************************************************LIGNE**********************
                     InitializeShipmentLine;
                     if Type = Type::"G/L Account" then
                         "No." := '';
@@ -725,6 +911,13 @@ report 50000 "AfkSalesInvoicePreview"
                     DummyCompanyInfo.Picture := CompanyInfo.Picture;
 
                     OnAfterLineOnPreDataItem(Header, Line);
+                end;
+
+                trigger OnPostDataItem()
+                var
+
+                begin
+
                 end;
             }
             dataitem(WorkDescriptionLines; "Integer")
@@ -811,9 +1004,9 @@ report 50000 "AfkSalesInvoicePreview"
                 column(VATBaseLCY_VATAmountLine; VATBaseLCY)
                 {
                 }
-                column(VATBaseLCY_VATAmountLine_Lbl; VATBaseLCYLbl)
-                {
-                }
+                // column(VATBaseLCY_VATAmountLine_Lbl; VATBaseLCYLbl)
+                // {
+                // }
                 column(VATIdentifier_VatAmountLine; "VAT Identifier")
                 {
                 }
@@ -1070,6 +1263,44 @@ report 50000 "AfkSalesInvoicePreview"
                 column(TotalAmountExclInclVATText; TotalAmountExclInclVATTextValue)
                 {
                 }
+                //**************************************************************************
+                column(AfkFormattedTotalVAT; AfkFormattedTotalVAT)
+                {
+                }
+                column(AfkFormattedTotalHT; AfkFormattedTotalHT)
+                {
+                }
+                column(AfkFormattedTotalTTC; AfkFormattedTotalTTC)
+                {
+                }
+                column(AfkTotalAmount_LCYText; AfkTotalAmount_LCYText)
+                {
+                }
+                column(Afk_AmountInWords; Afk_AmountInWords)
+                {
+                }
+                column(AfkTotalAmountInclVAT_LCYText; AfkTotalAmountInclVAT_LCYText)
+                {
+                }
+                column(AfkTotalVAT_LCYText; AfkTotalVAT_LCYText)
+                {
+                }
+                column(AfkLocalCurrencyText; AfkLocalCurrencyText)
+                {
+                }
+                column(AfkLocalCurrencyCaption; AfkLocalCurrencyCaption)
+                {
+                }
+                column(AfkTotalVAT_LCYCaption; AfkTotalVAT_LCYCaption)
+                {
+                }
+                column(AfkTotalAmount_LCYCaption; AfkTotalAmount_LCYCaption)
+                {
+                }
+                column(AfkTotalAmountInclVAT_LCYCaption; AfkTotalAmountInclVAT_LCYCaption)
+                {
+                }
+                //**************************************************************************
 
                 trigger OnPreDataItem()
                 begin
@@ -1080,12 +1311,72 @@ report 50000 "AfkSalesInvoicePreview"
                         TotalAmountExclInclVATTextValue := TotalInclVATText;
                         TotalAmountExclInclVATValue := TotalAmountInclVAT;
                     end;
+
+                    //******************************************************Sales Header************************************
+
+
+
+                    AfkFormattedTotalVAT :=
+                        Format(TotalAmountVAT, 0,
+                        AutoFormat.ResolveAutoFormat("Auto Format"::AmountFormat, Header."Currency Code"));
+                    AfkFormattedTotalHT :=
+                        Format(TotalAmount, 0,
+                        AutoFormat.ResolveAutoFormat("Auto Format"::AmountFormat, Header."Currency Code"));
+                    AfkFormattedTotalTTC :=
+                        Format(TotalAmountExclInclVATValue, 0,
+                        AutoFormat.ResolveAutoFormat("Auto Format"::AmountFormat, Header."Currency Code"));
+
+
+                    AfkTotalAmountInclVAT_LCY := CurrencyExchangeRate.ExchangeAmtFCYToLCY(Header."Posting Date",
+                        Header."Currency Code", TotalAmountExclInclVATValue, Header."Currency Factor");
+                    AfkTotalAmount_LCY := CurrencyExchangeRate.ExchangeAmtFCYToLCY(Header."Posting Date",
+                        Header."Currency Code", TotalAmount, Header."Currency Factor");
+                    AfkTotalVAT_LCY := CurrencyExchangeRate.ExchangeAmtFCYToLCY(Header."Posting Date",
+                        Header."Currency Code", TotalAmountVAT, Header."Currency Factor");
+
+                    if (Header."Currency Factor" = 1) then begin
+                        AfkTotalAmountInclVAT_LCYText := '';
+                        AfkLocalCurrencyText := '';
+                        AfkTotalAmount_LCYText := '';
+                        AfkTotalVAT_LCYText := '';
+                        AfkLocalCurrencyCaption := '';
+                        AfkTotalAmount_LCYCaption := '';
+                        AfkTotalVAT_LCYCaption := '';
+                        AfkTotalAmountInclVAT_LCYCaption := '';
+                    end else begin
+                        AfkTotalAmountInclVAT_LCYText :=
+                            Format(AfkTotalAmountInclVAT_LCY, 0,
+                            AutoFormat.ResolveAutoFormat("Auto Format"::AmountFormat, Header."Currency Code"));
+                        AfkTotalAmount_LCYText :=
+                            Format(AfkTotalAmount_LCY, 0,
+                            AutoFormat.ResolveAutoFormat("Auto Format"::AmountFormat, Header."Currency Code"));
+                        AfkLocalCurrencyText := 'XAF';
+                        AfkTotalVAT_LCYText :=
+                            Format(AfkTotalVAT_LCY, 0,
+                            AutoFormat.ResolveAutoFormat("Auto Format"::AmountFormat, Header."Currency Code"));
+                        AfkLocalCurrencyCaption := AfkDeviseLbl;
+                        AfkTotalAmount_LCYCaption := AfkTotalHTCFALbl;
+                        AfkTotalVAT_LCYCaption := AfkVAT1925Lbl;
+                        AfkTotalAmountInclVAT_LCYCaption := AfkTotalTTCCFALbl;
+                    end;
+                    ;
+
+                    RepCheck.InitTextVariable();
+                    RepCheck.FormatNoText(NoText, AfkTotalAmountInclVAT_LCY, Header."Currency Code");
+                    Afk_AmountInWords := NoText[1];
+                    //******************************************************************************************
+
+                end;
+
+                trigger OnAfterGetRecord()//************************Sales Header*******************************************
+                begin
+
                 end;
             }
 
             trigger OnAfterGetRecord()
             var
-                CurrencyExchangeRate: Record "Currency Exchange Rate";
+
                 PaymentServiceSetup: Record "Payment Service Setup";
             begin
                 CurrReport.Language := Language.GetLanguageIdOrDefault("Language Code");
@@ -1095,6 +1386,13 @@ report 50000 "AfkSalesInvoicePreview"
 
                 //CalcFields("Work Description");
                 //ShowWorkDescription := "Work Description".HasValue;
+                //*************************************************************SALES HEADER***********************
+                AfkLieuAdresseFacturation := StrSubstNo(AfkDateLieuFacturationLbl, Format(Header."Document Date", 0, 4));
+                AfkBoat.Get(Header.Afk_Boat_Number);
+                NumLigne := 0;
+
+                //************************************************************************************
+
 
                 ChecksPayableText := StrSubstNo(ChecksPayableLbl, CompanyInfo.Name);
 
@@ -1143,6 +1441,9 @@ report 50000 "AfkSalesInvoicePreview"
                 TotalPaymentDiscOnVAT := 0;
                 //if ("Order No." = '') and "Prepayment Invoice" then
                 //    "Order No." := "Prepayment Order No.";
+                AfkTotalAmountInclVAT_LCY := 0;
+                AfkTotalAmount_LCY := 0;
+                AfkTotalVAT_LCY := 0;//*************************************
             end;
 
             trigger OnPreDataItem()
@@ -1249,46 +1550,115 @@ report 50000 "AfkSalesInvoicePreview"
     end;
 
     var
+        NumLigne: Integer;
+        AfkBoat: Record Afk_Boat;
         AfkObjectLbl: Label 'Object';
-        SalespersonLbl: Label 'Salesperson';
+        AfkTerminalLbl: Label 'Terminal';
+        AfkTypeNavireLbl: Label 'Type of ship';
+        AfkNomNavireLbl: Label 'Ship''s name';
+        AfkDateLieuFacturationLbl: Label 'Limbe on %1', Comment = '%1 is invoice date';
+        AfkAgentFacturationLbl: Label 'Agent';
+        AfkAddresseFacturationLbl: Label 'Invoice Address';
+        AfkAddresseFacturationClientLbl: Label 'Customer Address';
+        AfkCodeClientLbl: Label 'Customer No';
+        AfkNomClientLbl: Label 'Customer Name';
+        AfkNumContribuableLbl: Label 'Taxpayer Number';
+        AfkRCCMLbl: Label 'Trade Register';
+        AfkLigneNoLbl: Label 'No';
+        AfkLigneQteLbl: Label 'QTY';
+        AfkLignePULbl: Label 'UNIT PRICE';
+        AfkLigneTVALbl: Label 'VAT';
+        AfkLigneTotalHTLbl: Label 'TOTAL Excl VAT';
+        AfkLignePrestationsLbl: Label 'SERVICES';
+        AfkCondPaiementLbl: Label 'Payment terms';
+        AfkCompteAfrilandLbl: Label 'Afriland First Bank Account';
+        AfkVAT1925Lbl: Label 'VAT 19.25% :';
+        AfkTotalTTCDeviseLbl: Label 'Total Incl. VAT :';
+        AfkDeviseLbl: Label 'Currency :';
+        AfkTotalHTDeviseLbl: Label 'Total Excl. VAT :';
+        AfkTotalTTCCFALbl: Label 'Total Incl. VAT CFAF :';
+        AfkTotalHTCFALbl: Label 'Total Excl. VAT CFAF :';
+        AfkExClientLbl: Label 'Ex Client';
+        AfkArreteMontantLbl: Label 'Fixed and certifies this invoice for the sum of :';
+        AfkLieuAdresseFacturation: Text[50];
+        NumLigneText: Code[2];
+        RepCheck: Report "Check";
+        NoText: array[2] of Text;
+        Afk_AmountInWords: Text;
+        CurrencyExchangeRate: Record "Currency Exchange Rate";
+        AfkTotalAmountInclVAT_LCY: Decimal;
+        AfkTotalAmount_LCY: Decimal;
+        AfkTotalVAT_LCY: Decimal;
+        AfkTotalAmountInclVAT_LCYText: Text[50];
+        AfkTotalAmount_LCYText: Text[50];
+        AfkTotalVAT_LCYText: Text[50];
+        AfkLocalCurrencyText: Text[10];
+        AfkLocalCurrencyCaption: Text[50];
+        AfkTotalVAT_LCYCaption: Text[50];
+        AfkTotalAmount_LCYCaption: Text[50];
+        AfkTotalAmountInclVAT_LCYCaption: Text[50];
+        AfkBaseCaptionLbl: Label 'BASE';
+        AfkFormattedBase: Text[50];
+        AfkFormattedNumber: Text[50];
+        AfkFormattedVAT: Text[50];
+        AfkFormattedTotalVAT: Text[50];
+        AfkFormattedTotalHT: Text[50];
+        AfkFormattedTotalTTC: Text[50];
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        // SalespersonLbl: Label 'Salesperson';
         CompanyInfoBankAccNoLbl: Label 'Account No.';
         CompanyInfoBankNameLbl: Label 'Bank';
         CompanyInfoGiroNoLbl: Label 'Giro No.';
         CompanyInfoPhoneNoLbl: Label 'Phone No.';
-        CopyLbl: Label 'Copy';
+        // CopyLbl: Label 'Copy';
         EMailLbl: Label 'Email';
         HomePageLbl: Label 'Home Page';
-        InvDiscBaseAmtLbl: Label 'Invoice Discount Base Amount';
+        // InvDiscBaseAmtLbl: Label 'Invoice Discount Base Amount';
         InvDiscountAmtLbl: Label 'Invoice Discount';
         InvNoLbl: Label 'Invoice No.';
-        LineAmtAfterInvDiscLbl: Label 'Payment Discount on VAT';
-        LocalCurrencyLbl: Label 'Local Currency';
-        PageLbl: Label 'Page';
+        // LineAmtAfterInvDiscLbl: Label 'Payment Discount on VAT';
+        // LocalCurrencyLbl: Label 'Local Currency';
+        // PageLbl: Label 'Page';
         PaymentTermsDescLbl: Label 'Payment Terms';
         PaymentMethodDescLbl: Label 'Payment Method';
-        PostedShipmentDateLbl: Label 'Shipment Date';
-        SalesInvLineDiscLbl: Label 'Discount %';
+        // PostedShipmentDateLbl: Label 'Shipment Date';
+        // SalesInvLineDiscLbl: Label 'Discount %';
         SalesInvoiceLbl: Label 'Invoice';
-        YourSalesInvoiceLbl: Label 'Your Invoice';
-        ShipmentLbl: Label 'Shipment';
-        ShiptoAddrLbl: Label 'Ship-to Address';
+        // YourSalesInvoiceLbl: Label 'Your Invoice';
+        // ShipmentLbl: Label 'Shipment';
+        // ShiptoAddrLbl: Label 'Ship-to Address';
         ShptMethodDescLbl: Label 'Shipment Method';
         SubtotalLbl: Label 'Subtotal';
         TotalLbl: Label 'Total';
-        VATAmtSpecificationLbl: Label 'VAT Amount Specification';
+        // VATAmtSpecificationLbl: Label 'VAT Amount Specification';
         VATAmtLbl: Label 'VAT Amount';
         VATAmountLCYLbl: Label 'VAT Amount (LCY)';
         VATBaseLbl: Label 'VAT Base';
-        VATBaseLCYLbl: Label 'VAT Base (LCY)';
+        // VATBaseLCYLbl: Label 'VAT Base (LCY)';
         VATClausesLbl: Label 'VAT Clause';
-        VATIdentifierLbl: Label 'VAT Identifier';
-        VATPercentageLbl: Label 'VAT %';
-        SellToContactPhoneNoLbl: Label 'Sell-to Contact Phone No.';
-        SellToContactMobilePhoneNoLbl: Label 'Sell-to Contact Mobile Phone No.';
-        SellToContactEmailLbl: Label 'Sell-to Contact E-Mail';
-        BillToContactPhoneNoLbl: Label 'Bill-to Contact Phone No.';
-        BillToContactMobilePhoneNoLbl: Label 'Bill-to Contact Mobile Phone No.';
-        BillToContactEmailLbl: Label 'Bill-to Contact E-Mail';
+        // VATIdentifierLbl: Label 'VAT Identifier';
+        // VATPercentageLbl: Label 'VAT %';
+        // SellToContactPhoneNoLbl: Label 'Sell-to Contact Phone No.';
+        // SellToContactMobilePhoneNoLbl: Label 'Sell-to Contact Mobile Phone No.';
+        // SellToContactEmailLbl: Label 'Sell-to Contact E-Mail';
+        // BillToContactPhoneNoLbl: Label 'Bill-to Contact Phone No.';
+        // BillToContactMobilePhoneNoLbl: Label 'Bill-to Contact Mobile Phone No.';
+        // BillToContactEmailLbl: Label 'Bill-to Contact E-Mail';
         GLSetup: Record "General Ledger Setup";
         ShipmentMethod: Record "Shipment Method";
         PaymentTerms: Record "Payment Terms";

@@ -161,6 +161,26 @@ pageextension 50001 AfkSalesInvoiceCard extends "Sales Invoice"
                     PricingCalc.CalcTotalLines(Rec);
                 end;
             }
+            action(AfkPrintPeview)
+            {
+                ApplicationArea = All;
+                Caption = 'Print Preview';
+                Ellipsis = true;
+                //Enabled = "No." <> '';
+                Image = PrintVoucher;
+                Promoted = true;
+                PromotedCategory = Category6;
+                PromotedIsBig = true;
+                //ToolTip = 'calculate special lines based on the tax-free total of the invoice.';
+
+                trigger OnAction()
+                var
+                    SalesFilter: Record "Sales Header";
+                begin
+                    SalesFilter.SETRANGE("No.", Rec."No.");
+                    REPORT.RUN(REPORT::AfkSalesInvoicePreview, TRUE, FALSE, SalesFilter);
+                end;
+            }
         }
     }
 }

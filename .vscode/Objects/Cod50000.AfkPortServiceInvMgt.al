@@ -56,6 +56,9 @@ codeunit 50000 AfkPortServiceInvMgt
         if (sLine.Type <> sLine.Type::Item) then exit;
         Item1.Get(sLine."No.");
 
+        if (sLine.Afk_Printed_Description = '') then
+            sLine.Afk_Printed_Description := Item1.Description;
+
         if (Item1.Afk_Quantity1 <> '') then begin
             calcVal := CalcParamValues.GetParamValue(sHeader, sLine, Item1.Afk_Quantity1);
             sLine.Afk_Quantity1 := calcVal;
@@ -91,7 +94,7 @@ codeunit 50000 AfkPortServiceInvMgt
                 if (salesL.Type = salesL.Type::Item) then begin
                     if (not IsLigneTotalHT(salesL)) then begin
                         //salesL.Validate(salesL.Afk_Quantity1);
-                        PortServMft.SetSalesLineDefValues(salesL, sHeader);
+                        PortServMgt.SetSalesLineDefValues(salesL, sHeader);
                         //salesL.Modify();
                     end;
                 end;
@@ -307,5 +310,5 @@ codeunit 50000 AfkPortServiceInvMgt
         Item1: Record Item;
         CalcParamValues: Codeunit AfkCalcValueParams;
         CurrExchRate: Record "Currency Exchange Rate";
-        PortServMft: Codeunit AfkPortServiceInvMgt;
+        PortServMgt: Codeunit AfkPortServiceInvMgt;
 }
