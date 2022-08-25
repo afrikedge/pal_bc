@@ -134,6 +134,10 @@ pageextension 50001 AfkSalesInvoiceCard extends "Sales Invoice"
                 {
                     ApplicationArea = Suite;
                 }
+                field("Afk_LanguageCode"; Rec."Language Code")
+                {
+                    ApplicationArea = Suite;
+                }
             }
         }
     }

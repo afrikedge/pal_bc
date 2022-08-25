@@ -858,51 +858,6 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report AfkSalesInvoicePreview - ReportDataItem Header - Property RequestFilterHeading</note>
         </trans-unit>
-        <trans-unit id="Report 882492609 - Control 2346885236 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Options</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Report AfkSalesInvoicePreview - Control Options - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Report 882492609 - Control 215716959 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Specifies if you want notes about additional fees to be shown on the document.</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Report AfkSalesInvoicePreview - Control DisplayAdditionalFeeNote - Property ToolTip</note>
-        </trans-unit>
-        <trans-unit id="Report 882492609 - Control 215716959 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Show Additional Fee Note</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Report AfkSalesInvoicePreview - Control DisplayAdditionalFeeNote - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Report 882492609 - Control 1885540899 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Specifies if you want the report to include information about components that were used in linked assembly orders that supplied the item(s) being sold. (Only possible for RDLC report layout.)</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Report AfkSalesInvoicePreview - Control DisplayAsmInformation - Property ToolTip</note>
-        </trans-unit>
-        <trans-unit id="Report 882492609 - Control 1885540899 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Show Assembly Components</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Report AfkSalesInvoicePreview - Control DisplayAsmInformation - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Report 882492609 - Control 4222219250 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Specifies that shipments are shown on the document.</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Report AfkSalesInvoicePreview - Control DisplayShipmentInformation - Property ToolTip</note>
-        </trans-unit>
-        <trans-unit id="Report 882492609 - Control 4222219250 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Show Shipments</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Report AfkSalesInvoicePreview - Control DisplayShipmentInformation - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Report 882492609 - Control 816368762 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Specifies that interactions with the contact are logged.</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Report AfkSalesInvoicePreview - Control LogInteraction - Property ToolTip</note>
-        </trans-unit>
-        <trans-unit id="Report 882492609 - Control 816368762 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Log Interaction</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Report AfkSalesInvoicePreview - Control LogInteraction - Property Caption</note>
-        </trans-unit>
         <trans-unit id="PageExtension 1967294696 - Control 528949462 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 523354100">
           <source>Taxpayer Number</source>
           <note from="Developer" annotates="general" priority="2"></note>

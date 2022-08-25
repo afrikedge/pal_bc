@@ -1362,7 +1362,9 @@ report 50000 "AfkSalesInvoicePreview"
                     ;
 
                     RepCheck.InitTextVariable();
-                    RepCheck.FormatNoText(NoText, AfkTotalAmountInclVAT_LCY, Header."Currency Code");
+                    //RepCheck.FormatNoText(NoText, AfkTotalAmountInclVAT_LCY, Header."Currency Code");
+                    RepCheck.FormatNoText(NoText, ROUND(AfkTotalAmountInclVAT_LCY), '');
+                    //RepCheck.FormatNoTextFR(NoText, AfkTotalAmountInclVAT_LCY, '');
                     Afk_AmountInWords := NoText[1];
                     //******************************************************************************************
 
@@ -1461,35 +1463,35 @@ report 50000 "AfkSalesInvoicePreview"
         {
             area(content)
             {
-                group(Options)
-                {
-                    Caption = 'Options';
-                    field(LogInteraction; LogInteraction)
-                    {
-                        ApplicationArea = Basic, Suite;
-                        Caption = 'Log Interaction';
-                        Enabled = LogInteractionEnable;
-                        ToolTip = 'Specifies that interactions with the contact are logged.';
-                    }
-                    field(DisplayAsmInformation; DisplayAssemblyInformation)
-                    {
-                        ApplicationArea = Assembly;
-                        Caption = 'Show Assembly Components';
-                        ToolTip = 'Specifies if you want the report to include information about components that were used in linked assembly orders that supplied the item(s) being sold. (Only possible for RDLC report layout.)';
-                    }
-                    field(DisplayShipmentInformation; DisplayShipmentInformation)
-                    {
-                        ApplicationArea = Basic, Suite;
-                        Caption = 'Show Shipments';
-                        ToolTip = 'Specifies that shipments are shown on the document.';
-                    }
-                    field(DisplayAdditionalFeeNote; DisplayAdditionalFeeNote)
-                    {
-                        ApplicationArea = Basic, Suite;
-                        Caption = 'Show Additional Fee Note';
-                        ToolTip = 'Specifies if you want notes about additional fees to be shown on the document.';
-                    }
-                }
+                // group(Options)
+                // {
+                //     Caption = 'Options';
+                //     field(LogInteraction; LogInteraction)
+                //     {
+                //         ApplicationArea = Basic, Suite;
+                //         Caption = 'Log Interaction';
+                //         Enabled = LogInteractionEnable;
+                //         ToolTip = 'Specifies that interactions with the contact are logged.';
+                //     }
+                //     field(DisplayAsmInformation; DisplayAssemblyInformation)
+                //     {
+                //         ApplicationArea = Assembly;
+                //         Caption = 'Show Assembly Components';
+                //         ToolTip = 'Specifies if you want the report to include information about components that were used in linked assembly orders that supplied the item(s) being sold. (Only possible for RDLC report layout.)';
+                //     }
+                //     field(DisplayShipmentInformation; DisplayShipmentInformation)
+                //     {
+                //         ApplicationArea = Basic, Suite;
+                //         Caption = 'Show Shipments';
+                //         ToolTip = 'Specifies that shipments are shown on the document.';
+                //     }
+                //     field(DisplayAdditionalFeeNote; DisplayAdditionalFeeNote)
+                //     {
+                //         ApplicationArea = Basic, Suite;
+                //         Caption = 'Show Additional Fee Note';
+                //         ToolTip = 'Specifies if you want notes about additional fees to be shown on the document.';
+                //     }
+                // }
             }
         }
 
