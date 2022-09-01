@@ -82,6 +82,35 @@ table 50003 Afk_Boat
             Caption = 'Boat Weight (T)';
             DecimalPlaces = 0 : 5;
         }
+        field(22; CallSign; Text[50])
+        {
+            Caption = 'Call Sign';
+        }
+        field(23; ShipOwner; Text[50])
+        {
+            Caption = 'Armateur';
+        }
+        field(24; MasterName; Text[50])
+        {
+            Caption = 'Master''s Name';
+        }
+        field(25; TypeOfOperation; Option)
+        {
+            Caption = 'Type d''exploitation';
+            OptionMembers = Liner,Tramp;
+            OptionCaption = 'Liner,Tramp';
+        }
+        field(26; "Calculated Boat Draught"; Decimal)
+        {
+            Caption = 'Calculated Boat Draught (m)';
+            DecimalPlaces = 0 : 5;
+            Editable = false;
+        }
+        field(27; Drivable; Boolean)
+        {
+            Caption = 'Drivable';
+            DataClassification = ToBeClassified;
+        }
 
     }
 
@@ -95,8 +124,13 @@ table 50003 Afk_Boat
 
     local procedure RefreshVolume()
     var
+        finalTE: Decimal;
     begin
-        Volume := Length * Width * "Boat Draught";
+        "Calculated Boat Draught" := 0.14 * System.Power(Length * Width, 0.5);
+        finalTE := "Boat Draught";
+        if ("Calculated Boat Draught" > "Boat Draught") then
+            finalTE := "Calculated Boat Draught";
+        Volume := Length * Width * finalTE;
     end;
 
 }

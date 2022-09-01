@@ -50,6 +50,11 @@ page 50004 AfkBoatCard
                     ApplicationArea = Basic, Suite;
                     ToolTip = 'Specifies the height in meters of the submerged part of the boat which varies according to the load transported.';
                 }
+                field("Calculated Boat Draught"; rec."Calculated Boat Draught")
+                {
+                    ApplicationArea = Basic, Suite;
+                    //ToolTip = 'Specifies the height in meters of the submerged part of the boat which varies according to the load transported.';
+                }
                 field(Volume; rec.Volume)
                 {
                     ApplicationArea = Basic, Suite;
@@ -87,6 +92,32 @@ page 50004 AfkBoatCard
                 {
                     ApplicationArea = Basic, Suite;
                     ToolTip = 'Specifies the navigation type of the ship.';
+                }
+
+                field("CallSign"; rec.CallSign)
+                {
+                    ApplicationArea = Basic, Suite;
+                    //ToolTip = 'Specifies the navigation type of the ship.';
+                }
+                field("ShipOwner"; rec.ShipOwner)
+                {
+                    ApplicationArea = Basic, Suite;
+                    //ToolTip = 'Specifies the navigation type of the ship.';
+                }
+                field("MasterName"; rec.MasterName)
+                {
+                    ApplicationArea = Basic, Suite;
+                    //ToolTip = 'Specifies the navigation type of the ship.';
+                }
+                field("TypeOfOperation"; rec.TypeOfOperation)
+                {
+                    ApplicationArea = Basic, Suite;
+                    //ToolTip = 'Specifies the navigation type of the ship.';
+                }
+                field("Drivable"; rec.Drivable)
+                {
+                    ApplicationArea = Basic, Suite;
+                    //ToolTip = 'Specifies the navigation type of the ship.';
                 }
             }
 

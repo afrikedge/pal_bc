@@ -107,9 +107,10 @@ tableextension 50000 AfkSalesHeader extends "Sales Header"
         {
             Caption = 'Departure: pilot return to the station time';
         }
-        field(50024; "Afk_Gross_Weight_OnBoard"; Decimal)
+        field(50024; "Afk_Arr_Tonnage_Debarque"; Decimal)
         {
-            Caption = 'Gross weight on board';
+            //Tonnage débarqué arrivée
+            Caption = 'Arrival: Landed tonnage';
             DecimalPlaces = 0 : 5;
         }
         field(50025; "Afk_Nb_National_Passengers"; Integer)
@@ -123,6 +124,10 @@ tableextension 50000 AfkSalesHeader extends "Sales Header"
         field(50027; "Afk_Invoice_Object"; Text[100])
         {
             Caption = 'Subject';
+        }
+        field(50028; "Piloting sheet number"; Text[50])
+        {
+            Caption = 'Piloting sheet number';
         }
     }
 

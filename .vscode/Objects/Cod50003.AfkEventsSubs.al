@@ -20,4 +20,13 @@ codeunit 50003 AfkEventsSubs
     begin
         AfkPricingMgt.SetSalesLineDefValues(SalesLine, SalesLine.GetSalesHeader());
     end;
+
+
+    [EventSubscriber(ObjectType::Table, Database::"Sales Header", 'OnBeforeInitInsert', '', true, false)]
+    local procedure UpdateSalesInvoiceNosSeries(var SalesHeader: Record "Sales Header"; xSalesHeader: Record "Sales Header"; var IsHandled: Boolean)
+    var
+        AfkPricingMgt: codeunit AfkPortServiceInvMgt;
+    begin
+        AfkPricingMgt.LoadSalesInvoiceNosSeries(SalesHeader, xSalesHeader, IsHandled);
+    end;
 }

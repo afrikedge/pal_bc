@@ -61,9 +61,16 @@ codeunit 50002 AfkCalcValueParams
             exit(Boat.Weight);
         end;
 
+        //Tonnage embarqué - départ
         if (paramCode = 'DEP_TONNAGE_EMBARQUE') then begin
-            sHeader.TestField(Afk_Gross_Weight_OnBoard);
-            exit(sHeader.Afk_Gross_Weight_OnBoard);
+            sHeader.TestField(Afk_Depart_Tonnage_Emb);
+            exit(sHeader.Afk_Depart_Tonnage_Emb);
+        end;
+
+        //Tonnage débarqué - arrivée
+        if (paramCode = 'ARR_TONNAGE_DEBARQUE') then begin
+            sHeader.TestField("Afk_Arr_Tonnage_Debarque");
+            exit(sHeader."Afk_Arr_Tonnage_Debarque");
         end;
 
 

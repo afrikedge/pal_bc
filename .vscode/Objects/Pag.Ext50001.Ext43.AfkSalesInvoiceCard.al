@@ -2,6 +2,13 @@ pageextension 50001 AfkSalesInvoiceCard extends "Sales Invoice"
 {
     layout
     {
+        addafter("Job Queue Status")
+        {
+            field("Afk_LanguageCode"; Rec."Language Code")
+            {
+                ApplicationArea = Suite;
+            }
+        }
         addafter(General)
         {
             group("Boat Informations")
@@ -15,6 +22,11 @@ pageextension 50001 AfkSalesInvoiceCard extends "Sales Invoice"
                 {
                     ApplicationArea = Suite;
                     ToolTip = 'Vessel concerned by the invoice';
+                }
+                field("Piloting sheet number"; Rec."Piloting sheet number")
+                {
+                    ApplicationArea = Suite;
+                    //ToolTip = 'Invoice subject';
                 }
                 field("Afk_Arrival_TirantEau_Avant"; Rec.Afk_Arrival_TirantEau_Avant)
                 {
@@ -73,6 +85,11 @@ pageextension 50001 AfkSalesInvoiceCard extends "Sales Invoice"
                     ApplicationArea = Suite;
                     ToolTip = 'Vessel docking time';
                 }
+                field("Afk_Arr_Tonnage_Debarque"; Rec."Afk_Arr_Tonnage_Debarque")
+                {
+                    //Tonnage débarque arrivee
+                    ApplicationArea = Suite;
+                }
                 field("Afk_Depart_Destination"; Rec.Afk_Depart_Destination)
                 {
                     ApplicationArea = Suite;
@@ -122,10 +139,7 @@ pageextension 50001 AfkSalesInvoiceCard extends "Sales Invoice"
                     ApplicationArea = Suite;
                     ToolTip = 'Time of return of the pilot to the station';
                 }
-                field("Afk_Gross_Weight_OnBoard"; Rec.Afk_Gross_Weight_OnBoard)
-                {
-                    ApplicationArea = Suite;
-                }
+
                 field("Afk_Nb_Passengers"; Rec."Afk_Nb_National_Passengers")
                 {
                     ApplicationArea = Suite;
@@ -134,11 +148,16 @@ pageextension 50001 AfkSalesInvoiceCard extends "Sales Invoice"
                 {
                     ApplicationArea = Suite;
                 }
-                field("Afk_LanguageCode"; Rec."Language Code")
-                {
-                    ApplicationArea = Suite;
-                }
+
             }
+        }
+        modify("Salesperson Code")
+        {
+            Caption = 'Billing Agent';
+        }
+        modify("Responsibility Center")
+        {
+            Caption = 'Terminal';
         }
     }
 

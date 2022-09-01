@@ -146,6 +146,28 @@ codeunit 50000 AfkPortServiceInvMgt
             until salesL.Next() < 1;
     end;
 
+    procedure LoadSalesInvoiceNosSeries(var SalesH: Record "Sales Header"; var xSalesH: Record "Sales Header"; var IsHandled: Boolean)
+    var
+        RespCenter: Record "Responsibility Center";
+        UserSetup1: Record "User Setup";
+        UserSetupMgt: Codeunit "User Setup Management";
+        respCenterCode: Code[20];
+        NoSeriesMgt: Codeunit NoSeriesManagement;
+    begin
+        if (SalesH."Document Type" <> SalesH."Document Type"::Invoice) then
+            exit;
+        UserSetup1.get(UserId);
+        UserSetup1.TestField("Sales Resp. Ctr. Filter");
+        respCenterCode := UserSetupMgt.GetRespCenter(0, SalesH."Responsibility Center");
+        RespCenter.get(RespCentercode);
+        RespCenter.TestField(RespCenter.AfkSalesInvoiceNos);
+        if SalesH."No." = '' then begin
+            //SalesH.TestNoSeries;
+            NoSeriesMgt.InitSeries(RespCenter.AfkSalesInvoiceNos, xSalesH."No. Series", SalesH."Posting Date", SalesH."No.", SalesH."No. Series");
+            IsHandled := true;
+        end;
+    end;
+
     local procedure IsLigneTotalHT(salesL: Record "Sales Line"): Boolean
     var
         Item2: Record Item;
