@@ -676,8 +676,8 @@
           <note from="Xliff Generator" annotates="general" priority="3">Report AfkSalesInvoicePreview - NamedType AfkAddresseFacturationLbl</note>
         </trans-unit>
         <trans-unit id="Report 882492609 - NamedType 3104439655" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Agent</source>
-          <target>Agent de facturation</target>
+          <source>Agent :</source>
+          <target>Agent facturation :</target>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Report AfkSalesInvoicePreview - NamedType AfkAgentFacturationLbl</note>
         </trans-unit>
@@ -694,8 +694,8 @@
           <note from="Xliff Generator" annotates="general" priority="3">Report AfkSalesInvoicePreview - NamedType AfkBaseCaptionLbl</note>
         </trans-unit>
         <trans-unit id="Report 882492609 - NamedType 2733544342" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Customer No</source>
-          <target>N° Client</target>
+          <source>Customer No :</source>
+          <target>N° Client :</target>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Report AfkSalesInvoicePreview - NamedType AfkCodeClientLbl</note>
         </trans-unit>
@@ -706,7 +706,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Report AfkSalesInvoicePreview - NamedType AfkCompteAfrilandLbl</note>
         </trans-unit>
         <trans-unit id="Report 882492609 - NamedType 2297264105" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Payment terms</source>
+          <source>Payment terms :</source>
           <target>Conditions de paiement :</target>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Report AfkSalesInvoicePreview - NamedType AfkCondPaiementLbl</note>
@@ -766,37 +766,37 @@
           <note from="Xliff Generator" annotates="general" priority="3">Report AfkSalesInvoicePreview - NamedType AfkLigneTVALbl</note>
         </trans-unit>
         <trans-unit id="Report 882492609 - NamedType 4265900397" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Customer Name</source>
-          <target>Nom du Client</target>
+          <source>Customer Name :</source>
+          <target>Nom du Client :</target>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Report AfkSalesInvoicePreview - NamedType AfkNomClientLbl</note>
         </trans-unit>
         <trans-unit id="Report 882492609 - NamedType 69001919" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Ship's name</source>
+          <source>Ship's name :</source>
           <target>Nom du Navire :</target>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Report AfkSalesInvoicePreview - NamedType AfkNomNavireLbl</note>
         </trans-unit>
         <trans-unit id="Report 882492609 - NamedType 1037045324" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Taxpayer Number</source>
+          <source>Taxpayer Number :</source>
           <target>N° Contribuable :</target>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Report AfkSalesInvoicePreview - NamedType AfkNumContribuableLbl</note>
         </trans-unit>
         <trans-unit id="Report 882492609 - NamedType 3067529037" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Object</source>
+          <source>Object :</source>
           <target>Objet :</target>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Report AfkSalesInvoicePreview - NamedType AfkObjectLbl</note>
         </trans-unit>
         <trans-unit id="Report 882492609 - NamedType 2330609739" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Trade Register</source>
+          <source>Trade Register :</source>
           <target>RCCM :</target>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Report AfkSalesInvoicePreview - NamedType AfkRCCMLbl</note>
         </trans-unit>
         <trans-unit id="Report 882492609 - NamedType 1277528142" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Terminal</source>
+          <source>Terminal :</source>
           <target>Terminal :</target>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Report AfkSalesInvoicePreview - NamedType AfkTerminalLbl</note>
@@ -826,8 +826,8 @@
           <note from="Xliff Generator" annotates="general" priority="3">Report AfkSalesInvoicePreview - NamedType AfkTotalTTCDeviseLbl</note>
         </trans-unit>
         <trans-unit id="Report 882492609 - NamedType 1625964115" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Type of ship</source>
-          <target>Type de navire</target>
+          <source>Type of ship :</source>
+          <target>Type de navire :</target>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Report AfkSalesInvoicePreview - NamedType AfkTypeNavireLbl</note>
         </trans-unit>
@@ -928,8 +928,8 @@
           <note from="Xliff Generator" annotates="general" priority="3">Report AfkSalesInvoicePreview - NamedType InvDiscountAmtLbl</note>
         </trans-unit>
         <trans-unit id="Report 882492609 - NamedType 259914550" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Invoice No.</source>
-          <target>FR</target>
+          <source>Invoice No</source>
+          <target>Facture N°</target>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Report AfkSalesInvoicePreview - NamedType InvNoLbl</note>
         </trans-unit>
@@ -964,14 +964,15 @@
           <note from="Xliff Generator" annotates="general" priority="3">Report AfkSalesInvoicePreview - NamedType PartiallyPaidLbl</note>
         </trans-unit>
         <trans-unit id="Report 882492609 - NamedType 36769898" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Payment Method</source>
+          <source>Payment Method :</source>
           <target>FR</target>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Report AfkSalesInvoicePreview - NamedType PaymentMethodDescLbl</note>
         </trans-unit>
         <trans-unit id="Report 882492609 - NamedType 2906320672" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Payment Terms</source>
-          <target>Conditions de paiement</target>
+          <source>Payment Terms :</source>
+          <target>Conditions de paiement :</target>
+          <note from="XLIFF Sync" annotates="general" priority="1">Source text has changed. Please review the translation.</note>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Report AfkSalesInvoicePreview - NamedType PaymentTermsDescLbl</note>
         </trans-unit>

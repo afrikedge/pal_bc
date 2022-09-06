@@ -31,7 +31,7 @@ table 50001 Afk_Princing
         field(4; "BoatType"; Code[20])
         {
             Caption = 'Boat Type';
-            TableRelation = "Afk_Generic_Type" where(RecordType = const(BoatType));
+            TableRelation = "Afk_Generic_Type".Code where(RecordType = const(BoatType));
         }
         field(5; "Pavillon"; Code[10])
         {

@@ -1,9 +1,9 @@
 report 50000 "AfkSalesInvoicePreview"
 {
-    //RDLCLayout = './AfkSalesInvoicePreview.rdlc';
+    RDLCLayout = './AfkSalesInvoicePreview.rdlc';
     WordLayout = './AfkSalesInvoicePreview.docx';
     Caption = 'Sales - Invoice';
-    DefaultLayout = Word;
+    DefaultLayout = RDLC;
     EnableHyperlinks = true;
     Permissions = TableData "Sales Shipment Buffer" = rimd;
     PreviewMode = PrintLayout;
@@ -132,6 +132,16 @@ report 50000 "AfkSalesInvoicePreview"
             column(AfkCustNo; Cust."No.")
             {
             }
+            column(AfkInvNoLbl; InvNoLbl)
+            {
+            }
+            column(AfkObjectLbl; AfkObjectLbl)
+            {
+            }
+
+
+
+
 
 
             // AfkTotalAmountInclVAT_LCYText := '';
@@ -600,6 +610,9 @@ report 50000 "AfkSalesInvoicePreview"
                 column(LineNo_Line; "Line No.")
                 {
                 }
+                column(AfkIsLine; AfkIsLine)
+                {
+                }
                 //*************LIGNES**LIGNES**LIGNES**************************************************
                 column(AfkNumLigne; NumLigneText)
                 {
@@ -817,7 +830,7 @@ report 50000 "AfkSalesInvoicePreview"
                 begin
 
                     //******************************************************LIGNE**********************
-
+                    AfkIsLine := 1;
                     NumLigne := NumLigne + 1;
                     if (NumLigne < 10) then
                         NumLigneText := '0' + Format(NumLigne)
@@ -1554,25 +1567,25 @@ report 50000 "AfkSalesInvoicePreview"
     var
         NumLigne: Integer;
         AfkBoat: Record Afk_Boat;
-        AfkObjectLbl: Label 'Object';
-        AfkTerminalLbl: Label 'Terminal';
-        AfkTypeNavireLbl: Label 'Type of ship';
-        AfkNomNavireLbl: Label 'Ship''s name';
+        AfkObjectLbl: Label 'Object :';
+        AfkTerminalLbl: Label 'Terminal :';
+        AfkTypeNavireLbl: Label 'Type of ship :';
+        AfkNomNavireLbl: Label 'Ship''s name :';
         AfkDateLieuFacturationLbl: Label 'Limbe on %1', Comment = '%1 is invoice date';
-        AfkAgentFacturationLbl: Label 'Agent';
+        AfkAgentFacturationLbl: Label 'Agent :';
         AfkAddresseFacturationLbl: Label 'Invoice Address';
         AfkAddresseFacturationClientLbl: Label 'Customer Address';
-        AfkCodeClientLbl: Label 'Customer No';
-        AfkNomClientLbl: Label 'Customer Name';
-        AfkNumContribuableLbl: Label 'Taxpayer Number';
-        AfkRCCMLbl: Label 'Trade Register';
+        AfkCodeClientLbl: Label 'Customer No :';
+        AfkNomClientLbl: Label 'Customer Name :';
+        AfkNumContribuableLbl: Label 'Taxpayer Number :';
+        AfkRCCMLbl: Label 'Trade Register :';
         AfkLigneNoLbl: Label 'No';
         AfkLigneQteLbl: Label 'QTY';
         AfkLignePULbl: Label 'UNIT PRICE';
         AfkLigneTVALbl: Label 'VAT';
         AfkLigneTotalHTLbl: Label 'TOTAL Excl VAT';
         AfkLignePrestationsLbl: Label 'SERVICES';
-        AfkCondPaiementLbl: Label 'Payment terms';
+        AfkCondPaiementLbl: Label 'Payment terms :';
         AfkCompteAfrilandLbl: Label 'Afriland First Bank Account';
         AfkVAT1925Lbl: Label 'VAT 19.25% :';
         AfkTotalTTCDeviseLbl: Label 'Total Incl. VAT :';
@@ -1632,12 +1645,12 @@ report 50000 "AfkSalesInvoicePreview"
         HomePageLbl: Label 'Home Page';
         // InvDiscBaseAmtLbl: Label 'Invoice Discount Base Amount';
         InvDiscountAmtLbl: Label 'Invoice Discount';
-        InvNoLbl: Label 'Invoice No.';
+        InvNoLbl: Label 'Invoice No';
         // LineAmtAfterInvDiscLbl: Label 'Payment Discount on VAT';
         // LocalCurrencyLbl: Label 'Local Currency';
         // PageLbl: Label 'Page';
-        PaymentTermsDescLbl: Label 'Payment Terms';
-        PaymentMethodDescLbl: Label 'Payment Method';
+        PaymentTermsDescLbl: Label 'Payment Terms :';
+        PaymentMethodDescLbl: Label 'Payment Method :';
         // PostedShipmentDateLbl: Label 'Shipment Date';
         // SalesInvLineDiscLbl: Label 'Discount %';
         SalesInvoiceLbl: Label 'Invoice';
@@ -1753,6 +1766,7 @@ report 50000 "AfkSalesInvoicePreview"
         QtyLbl: Label 'Qty', Comment = 'Short form of Quantity';
         PriceLbl: Label 'Price';
         PricePerLbl: Label 'Price per';
+        AfkIsLine: Integer;
 
     local procedure InitLogInteraction()
     begin
