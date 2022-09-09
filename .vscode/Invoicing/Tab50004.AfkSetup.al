@@ -17,7 +17,12 @@ table 50004 AfkSetup
         {
             Caption = 'Night starting time';
         }
-
+        field(4; "Purchase Req Nos."; Code[20])
+        {
+            //AccessByPermission = TableData Insurance = R;
+            Caption = 'Purchase Req Nos.';
+            TableRelation = "No. Series";
+        }
 
 
 

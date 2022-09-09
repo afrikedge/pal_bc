@@ -1,6 +1,6 @@
 table 50003 Afk_Boat
 {
-    DataClassification = ToBeClassified;
+    //DataClassification = ToBeClassified;
 
     fields
     {
