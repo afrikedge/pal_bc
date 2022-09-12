@@ -1,7 +1,7 @@
 report 50000 "AfkSalesInvoicePreview"
 {
-    RDLCLayout = './AfkSalesInvoicePreview.rdlc';
-    WordLayout = './AfkSalesInvoicePreview.docx';
+    RDLCLayout = './Reporting/AfkSalesInvoicePreview.rdlc';
+    WordLayout = './Reporting/AfkSalesInvoicePreview.docx';
     Caption = 'Sales - Invoice';
     DefaultLayout = RDLC;
     EnableHyperlinks = true;

@@ -110,14 +110,22 @@ table 50005 "AfkPurchaseRequisition"
         field(18; "Item Type"; Option)
         {
             Caption = 'Item Type';
-            OptionMembers = FA,Item,Non Item,Others;
+            OptionMembers = FA,Item,NonItem,Others;
             OptionCaption = 'Fixed Asset,Item,Non Item,Others';
         }
         field(19; "Processing Status"; Option)
         {
             Caption = 'Processing Status';
-            OptionMembers =  ,Partially processed,Totally processed;
+            OptionMembers = " ","Partially processed","Totally processed";
             OptionCaption = ' ,Partially processed,Totally processed';
+            Editable = false;
+        }
+        field(30; "Status"; Option)
+        {
+            Caption = 'Status';
+            OptionMembers = Open,Released,"Pending Approval";
+            OptionCaption = 'Open,Released,Pending Approval';
+            Editable = false;
         }
         field(480; "Dimension Set ID"; Integer)
         {
@@ -170,8 +178,26 @@ table 50005 "AfkPurchaseRequisition"
 
     trigger OnDelete()
     var
-
+        RegLine: Record AfkPurchaseRequisitionLine;
+        PurchH: Record "Purchase Header";
+        BudgetLineP: Record AfkPurchaseRequisitionBudget;
     begin
+        //Supprimer les lignes
+        IF NOT CONFIRM(Text001) THEN EXIT;
+
+        RegLine.RESET;
+        RegLine.SETRANGE("Document No.", "No.");
+        RegLine.DELETEALL(TRUE);
+
+        PurchH.RESET;
+        PurchH.SETRANGE("Document Type", PurchH."Document Type"::Quote);
+        PurchH.SETRANGE(Afk_RequisitionCode, "No.");
+        PurchH.DELETEALL(TRUE);
+
+        BudgetLineP.RESET;
+        BudgetLineP.SETRANGE("Document Type", BudgetLineP."Document Type"::Requisition);
+        BudgetLineP.SETRANGE("Document No.", "No.");
+        BudgetLineP.DELETEALL;
 
     end;
 
@@ -189,6 +215,7 @@ table 50005 "AfkPurchaseRequisition"
         // Text007: Label 'The currency code for the document is %1.\\Please select a bank for which the currency code is %1 or the LCY Code.';
         // Text008: Label 'Your bank''s currency code is %1.\\You must change the bank account code before modifying the currency code.';
         Text009: Label 'You may have changed a dimension.\\Do you want to update the lines?';
+        Text001: Label 'All offers associated with this request will be deleted! \\Do you want to continue ?';
 
 
 
@@ -196,7 +223,7 @@ table 50005 "AfkPurchaseRequisition"
     begin
         DimManagement.LookupDimValueCode(FieldNo, ShortcutDimCode);
         DimManagement.ValidateShortcutDimValues(FieldNo, ShortcutDimCode, "Dimension Set ID");
-    end;
+    end:
 
     procedure ValidateShortcutDimCode(FieldNo: Integer; var ShortcutDimCode: Code[20])
     begin
