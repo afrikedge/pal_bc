@@ -13,6 +13,11 @@ table 50006 AfkPurchaseRequisitionLine
         {
             Caption = 'Line No.';
         }
+        field(3; "Description"; Text[100])
+        {
+            Caption = 'Description';
+        }
+
         field(5; Type; Enum "Purchase Line Type")
         {
             Caption = 'Type';
@@ -41,6 +46,126 @@ table 50006 AfkPurchaseRequisitionLine
             if (Type = const(Resource)) Resource;
 
             ValidateTableRelation = false;
+            trigger OnValidate()
+            var
+
+            begin
+                GLSetup.GET;
+
+                CASE Type OF
+                    Type::Item:
+                        BEGIN
+                            Item.GET("No.");
+                            Item.TESTFIELD(Blocked, FALSE);
+                            IF Item.Type = Item.Type::Inventory THEN
+                                Item.TESTFIELD("Inventory Posting Group");
+                            Item.TESTFIELD("Gen. Prod. Posting Group");
+
+                            //CreateDimFromDefaultDim(Rec.FieldNo("No."));
+
+                            // CreateDim(
+                            //   DATABASE::Item, "No.",
+                            //   DATABASE::Job, '',
+                            //   DATABASE::"Responsibility Center", '');
+
+
+                            Description := Item.Description;
+                            "Item Description" := Item.Description;
+                            "Gen. Prod. Posting Group" := Item."Gen. Prod. Posting Group";
+                            "VAT Prod. Posting Group" := Item."VAT Prod. Posting Group";
+                            Item.TESTFIELD("Base Unit of Measure");
+                            VALIDATE("Unit of Measure Code", Item."Base Unit of Measure");
+
+                            "Last Direct Cost" := Item."Last Direct Cost";
+                            //Item.TESTFIELD("Poste Budgétaire");
+                            //IF Item."Code Nature"<>'' THEN
+                            //   VALIDATE("Nature code",Item."Code Nature");
+
+
+                        END;
+                    Type::"G/L Account":
+                        BEGIN
+                            GLAcc.GET("No.");
+                            GLAcc.TESTFIELD(GLAcc.Blocked, FALSE);
+                            GLAcc.TESTFIELD("Direct Posting", TRUE);
+
+                            //Serv.GET("No.");
+                            GLAcc.TESTFIELD("Gen. Prod. Posting Group");
+                            IF Description = '' THEN
+                                Description := GLAcc.Name;
+                            "Item Description" := GLAcc.Name;
+
+                            //CreateDimFromDefaultDim(Rec.FieldNo("No."));
+
+                            // CreateDim(
+                            //   DATABASE::"G/L Account", "No.",
+                            //   DATABASE::Job, '',
+                            //   DATABASE::"Responsibility Center", '');
+
+                            "Gen. Prod. Posting Group" := GLAcc."Gen. Prod. Posting Group";
+                            "VAT Prod. Posting Group" := GLAcc."VAT Prod. Posting Group";
+                            "Qty. per Unit of Measure" := 1;
+                            //Serv.TESTFIELD("Poste Budgétaire");
+                            //IF GLAcc."Nature Code"<>'' THEN
+                            //   VALIDATE("Nature Code",GLAcc."Code Nature");
+                        END;
+
+                    Type::"Charge (Item)":
+                        BEGIN
+                            ItemCharge.GET("No.");
+                            ItemCharge.TESTFIELD("Gen. Prod. Posting Group");
+                            Description := ItemCharge.Description;
+                            "Item Description" := ItemCharge.Description;
+                            // CreateDim(
+                            //   DATABASE::"Item Charge", "No.",
+                            //   DATABASE::Job, '',
+                            //   DATABASE::"Responsibility Center", '');
+
+                            "Gen. Prod. Posting Group" := ItemCharge."Gen. Prod. Posting Group";
+                            "VAT Prod. Posting Group" := ItemCharge."VAT Prod. Posting Group";
+                            "Qty. per Unit of Measure" := 1;
+                            //"Prix Unitaire" := ItemCharge."Prix unitaire";
+
+                            //ItemCharge.TESTFIELD("Poste Budgétaire");
+                            //IF ItemCharge."Poste Budgétaire"<>'' THEN
+                            //   VALIDATE("Code Section 3",ItemCharge."Poste Budgétaire");
+                        END;
+
+
+                    Type::"Fixed Asset":
+                        BEGIN
+                            FA.GET("No.");
+                            FA.TESTFIELD(Inactive, FALSE);
+                            FA.TESTFIELD(Blocked, FALSE);
+                            GetFAPostingGroup;
+
+                            // CreateDim(
+                            //   DATABASE::"Fixed Asset", "No.",
+                            //   DATABASE::Job, '',
+                            //   DATABASE::"Responsibility Center", '');
+
+                            Description := FA.Description;
+                            "Item Description" := FA.Description;
+                            "Qty. per Unit of Measure" := 1;
+                            //      "Gen. Prod. Posting Group" := ;
+                            //      "VAT Prod. Posting Group" := Serv."VAT Prod. Posting Group";
+                            //IF FA."Code Nature"<>'' THEN
+                            //   VALIDATE("Code Nature",FA."Code Nature");
+
+                        END;
+                END;
+
+
+                ServRequest.GET("Document No.");
+                VALIDATE("Gen. Bus. Posting Group", ServRequest."Gen. Bus. Posting Group");
+                //VALIDATE("VAT Bus. Posting Group", ServRequest.v);
+
+
+                //**************************************************************************************************
+                //Budget Mgt***************************************
+                //"Purchase Account" := BudgetMgt.GetPurchAccFromReq(Rec, ServRequest);
+                //*************************************************Jn0001
+            end;
         }
         field(7; "Unit of Measure Code"; Code[10])
         {
@@ -51,11 +176,40 @@ table 50006 AfkPurchaseRequisitionLine
             if (Type = const(Resource), "No." = filter(<> '')) "Resource Unit of Measure".Code where("Resource No." = field("No."))
             else
             "Unit of Measure";
+
+            trigger OnValidate()
+            begin
+                IF Type <> Rec.Type::" " THEN BEGIN
+                    GetItem;
+                    "Qty. per Unit of Measure" := UOMMgt.GetQtyPerUnitOfMeasure(Item, Rec."Unit of Measure Code");
+                    VALIDATE(Quantity);
+                END;
+            end;
         }
         field(8; Quantity; Decimal)
         {
             Caption = 'Quantity';
             DecimalPlaces = 0 : 5;
+            trigger OnValidate()
+            begin
+                IF Quantity <> xRec.Quantity THEN BEGIN
+                    GetPurchHeader;
+                    IF ServRequest.Status = ServRequest.Status::Released THEN
+                        ERROR(Text001);
+                END;
+
+
+                // Amount := ROUND(Quantity * "Unit Price", 0.00001);
+                // "Amount Incl VAT" := Amount + "VAT Amount";
+                // VALIDATE("VAT %");
+
+                IF Type = Type::Item THEN
+                    "Quantity (Base)" := CalcBaseQty(Quantity)
+                ELSE
+                    "Quantity (Base)" := (Quantity);
+
+                "Remaining Quantity (Base)" := "Quantity (Base)" - "Ordered Quantity (Base)";
+            end;
         }
         // field(9; "Unit Price"; Decimal)
         // {
@@ -195,6 +349,12 @@ table 50006 AfkPurchaseRequisitionLine
             Caption = 'Item Description';
             Editable = false;
         }
+        field(30; "Last Direct Cost"; Decimal)
+        {
+            AutoFormatType = 2;
+            Caption = 'Last Direct Cost';
+            MinValue = 0;
+        }
         // field(30; "System-Created Entry"; Boolean)
         // {
         //     Caption = 'System-Created Entry';
@@ -236,6 +396,16 @@ table 50006 AfkPurchaseRequisitionLine
         DimMgt: Codeunit DimensionManagement;
         PurchHeader: Record "AfkPurchaseRequisition";
         GLSetup: Record "General Ledger Setup";
+        Item: Record Item;
+        GLAcc: Record "G/L Account";
+        ItemCharge: Record "Item Charge";
+        FA: Record "Fixed Asset";
+        FASetup: Record "FA Setup";
+        FADeprBook: Record "FA Depreciation Book";
+        LocalGLAcc: Record "G/L Account";
+        FAPostingGr: Record "FA Posting Group";
+        ServRequest: Record AfkPurchaseRequisition;
+        UOMMgt: Codeunit "Unit of Measure Management";
         Text001: Label 'The request can no longer be modified because it has already been validated';
 
     procedure ValidateShortcutDimCode(FieldNumber: Integer; var ShortcutDimCode: Code[20])
@@ -244,6 +414,25 @@ table 50006 AfkPurchaseRequisitionLine
         DimMgt.ValidateShortcutDimValues(FieldNumber, ShortcutDimCode, "Dimension Set ID");
         //VerifyItemLineDim;
 
+    end;
+
+    procedure CreateDimFromDefaultDim(FieldNo: Integer)
+    var
+        DefaultDimSource: List of [Dictionary of [Integer, Code[20]]];
+    begin
+        InitDefaultDimensionSources(DefaultDimSource, FieldNo);
+        CreateDim(DefaultDimSource);
+    end;
+
+    local procedure InitDefaultDimensionSources(var DefaultDimSource: List of [Dictionary of [Integer, Code[20]]]; FieldNo: Integer)
+    begin
+        DimMgt.AddDimSource(DefaultDimSource, DimMgt.PurchLineTypeToTableID(Rec.Type), Rec."No.", FieldNo = Rec.FieldNo("No."));
+        // DimMgt.AddDimSource(DefaultDimSource, Database::Job, Rec."Job No.", FieldNo = Rec.FieldNo("Job No."));
+        // DimMgt.AddDimSource(DefaultDimSource, Database::"Responsibility Center", Rec."Responsibility Center", FieldNo = Rec.FieldNo("Responsibility Center"));
+        // DimMgt.AddDimSource(DefaultDimSource, Database::"Work Center", Rec."Work Center No.", FieldNo = Rec.FieldNo("Work Center No."));
+        // DimMgt.AddDimSource(DefaultDimSource, Database::Location, Rec."Location Code", FieldNo = Rec.FieldNo("Location Code"));
+
+        // OnAfterInitDefaultDimensionSources(Rec, DefaultDimSource);
     end;
 
     procedure ShowDimensions() IsChanged: Boolean
@@ -294,5 +483,50 @@ table 50006 AfkPurchaseRequisitionLine
         IF Type <> Type::" " THEN
             IF PurchHeader.Status = PurchHeader.Status::Released THEN
                 ERROR(Text001);
+    end;
+
+    local procedure GetFAPostingGroup()
+    var
+        myInt: Integer;
+    begin
+        IF (Type <> Type::"G/L Account") OR ("No." = '') THEN
+            EXIT;
+
+        IF "Depreciation Book Code" = '' THEN BEGIN
+            FASetup.GET;
+            "Depreciation Book Code" := FASetup."Default Depr. Book";
+            MESSAGE('2 %1', "Depreciation Book Code");
+            IF NOT FADeprBook.GET("No.", "Depreciation Book Code") THEN
+                "Depreciation Book Code" := '';
+            IF "Depreciation Book Code" = '' THEN
+                EXIT;
+        END;
+
+        //MESSAGE('3 %1',"Depreciation Book Code");
+        FADeprBook.GET("No.", "Depreciation Book Code");
+        FADeprBook.TESTFIELD("FA Posting Group");
+        FAPostingGr.GET(FADeprBook."FA Posting Group");
+
+        FAPostingGr.TESTFIELD("Acquisition Cost Account");
+        LocalGLAcc.GET(FAPostingGr."Acquisition Cost Account");
+
+        LocalGLAcc.CheckGLAcc;
+        LocalGLAcc.TESTFIELD("Gen. Prod. Posting Group");
+
+        "Posting Group" := FADeprBook."FA Posting Group";
+        "Gen. Prod. Posting Group" := LocalGLAcc."Gen. Prod. Posting Group";
+        VALIDATE("VAT Prod. Posting Group", LocalGLAcc."VAT Prod. Posting Group");
+    end;
+
+    procedure GetItem()
+    begin
+        IF Item."No." <> Rec."No." THEN
+            Item.GET("No.");
+    end;
+
+    local procedure CalcBaseQty(Qty: Decimal): Decimal
+    begin
+        TESTFIELD("Qty. per Unit of Measure");
+        EXIT(ROUND(Qty * "Qty. per Unit of Measure", 0.00001));
     end;
 }

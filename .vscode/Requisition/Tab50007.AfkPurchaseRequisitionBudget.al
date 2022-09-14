@@ -5,11 +5,9 @@ table 50007 AfkPurchaseRequisitionBudget
     //LookupPageID = "Purchase Lines";
     fields
     {
-        field(1; "Document Type"; Option)
+        field(1; "Document Type"; Enum "Purchase Document Type")
         {
             Caption = 'Document Type';
-            OptionMembers = Quote,Order,Invoice,"Credit Memo","Blanket Order","Return Order","Requisition";
-            OptionCaption = 'Quote,Order,Invoice,Credit Memo,Blanket Order,Return Order,Requisition';
         }
         field(2; "Document No."; Code[20])
         {

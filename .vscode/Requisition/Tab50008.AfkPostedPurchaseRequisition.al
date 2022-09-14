@@ -1,6 +1,6 @@
-table 50005 "AfkPurchaseRequisition"
+table 50008 "AfkPostedPurchaseRequisition"
 {
-    Caption = 'Purchase Requisition';
+    Caption = 'Posted Purchase Requisition';
     //DrillDownPageID = "Payment Slip List";
     //LookupPageID = "Payment Slip List";
 
@@ -10,27 +10,16 @@ table 50005 "AfkPurchaseRequisition"
         {
             Caption = 'No.';
             Editable = false;
-
-            trigger OnValidate()
-            begin
-                if "No." <> xRec."No." then begin
-                    AfkSetup.Get();
-                    NoSeriesMgt.TestManual(AfkSetup."Purchase Req Nos.");
-                    "No. Series" := '';
-                end;
-            end;
         }
         field(2; "Currency Code"; Code[10])
         {
             Caption = 'Currency Code';
             TableRelation = Currency;
-            // CreateDimFromDefaultDim(Rec.FieldNo("Location Code"));
         }
         field(3; "Budget Code"; Code[10])
         {
             Caption = 'Budget Code';
             TableRelation = "G/L Budget Name";
-            // CreateDimFromDefaultDim(Rec.FieldNo("Location Code"));
         }
 
         field(4; "Posting Date"; Date)
@@ -56,11 +45,6 @@ table 50005 "AfkPurchaseRequisition"
                 Validate("Shortcut Dimension 1 Code");
             end;
 
-            trigger OnValidate()
-            begin
-                ValidateShortcutDimCode(1, "Shortcut Dimension 1 Code");
-                Modify;
-            end;
         }
         field(10; "Shortcut Dimension 2 Code"; Code[20])
         {
@@ -73,11 +57,6 @@ table 50005 "AfkPurchaseRequisition"
                 Validate("Shortcut Dimension 2 Code");
             end;
 
-            trigger OnValidate()
-            begin
-                ValidateShortcutDimCode(2, "Shortcut Dimension 2 Code");
-                Modify;
-            end;
         }
         field(12; "No. Series"; Code[20])
         {
@@ -144,19 +123,27 @@ table 50005 "AfkPurchaseRequisition"
             Caption = 'Dimension Set ID';
             Editable = false;
             TableRelation = "Dimension Set Entry";
-
-            trigger OnLookup()
-            begin
-                ShowDocDim;
-            end;
-
-            trigger OnValidate()
-            var
-                DimMgt: Codeunit DimensionManagement;
-            begin
-                DimMgt.UpdateGlobalDimFromDimSetID("Dimension Set ID", "Shortcut Dimension 1 Code", "Shortcut Dimension 2 Code");
-            end;
         }
+
+        field(481; "Created Doc Type"; Option)
+        {
+            Caption = 'Created Doc Type';
+            OptionMembers = "Commande","Contrat";
+            OptionCaption = 'Purchase order,Contract';
+        }
+        field(482; "Created Doc Code"; Code[20])
+        {
+            Caption = 'Created Doc Code';
+        }
+        field(483; "Closed Date"; Date)
+        {
+            Caption = '"Closed Date"';
+        }
+        field(484; "Closed By"; Code[50])
+        {
+            Caption = 'Closed By';
+        }
+
     }
 
     keys
@@ -176,42 +163,6 @@ table 50005 "AfkPurchaseRequisition"
         // {
         // }
     }
-
-    trigger OnInsert()
-    begin
-        if "No." = '' then begin
-            AfkSetup.Get();
-            AfkSetup.TestField("Purchase Req Nos.");
-            NoSeriesMgt.InitSeries(AfkSetup."Purchase Req Nos.", xRec."No. Series", 0D, "No.", "No. Series");
-
-        end;
-        InitHeader;
-    end;
-
-    trigger OnDelete()
-    var
-        RegLine: Record AfkPurchaseRequisitionLine;
-        PurchH: Record "Purchase Header";
-        BudgetLineP: Record AfkPurchaseRequisitionBudget;
-    begin
-        //Supprimer les lignes
-        IF NOT CONFIRM(Text001) THEN EXIT;
-
-        RegLine.RESET;
-        RegLine.SETRANGE("Document No.", "No.");
-        RegLine.DELETEALL(TRUE);
-
-        PurchH.RESET;
-        PurchH.SETRANGE("Document Type", PurchH."Document Type"::Quote);
-        PurchH.SETRANGE(Afk_RequisitionCode, "No.");
-        PurchH.DELETEALL(TRUE);
-
-        //BudgetLineP.RESET;
-        //BudgetLineP.SETRANGE("Document Type", BudgetLineP."Document Type"::Requisition);
-        //BudgetLineP.SETRANGE("Document No.", "No.");
-        //BudgetLineP.DELETEALL;
-
-    end;
 
 
 
@@ -237,28 +188,15 @@ table 50005 "AfkPurchaseRequisition"
         DimManagement.ValidateShortcutDimValues(FieldNo, ShortcutDimCode, "Dimension Set ID");
     end;
 
-    procedure ValidateShortcutDimCode(FieldNo: Integer; var ShortcutDimCode: Code[20])
-    begin
-        DimManagement.ValidateShortcutDimValues(FieldNo, ShortcutDimCode, "Dimension Set ID");
-        if xRec."Dimension Set ID" <> "Dimension Set ID" then
-            if PRLinesExist() then
-                UpdateAllLineDim("Dimension Set ID", xRec."Dimension Set ID");
-    end;
+    // procedure ValidateShortcutDimCode(FieldNo: Integer; var ShortcutDimCode: Code[20])
+    // begin
+    //     DimManagement.ValidateShortcutDimValues(FieldNo, ShortcutDimCode, "Dimension Set ID");
+    //     if xRec."Dimension Set ID" <> "Dimension Set ID" then
+    //         if PRLinesExist() then
+    //             UpdateAllLineDim("Dimension Set ID", xRec."Dimension Set ID");
+    // end;
 
 
-    procedure AssistEdit(OldReglHeader: Record AfkPurchaseRequisition): Boolean
-    begin
-
-        PRHeader := Rec;
-        AfkSetup.Get();
-        AfkSetup.TestField("Purchase Req Nos.");
-        if NoSeriesMgt.SelectSeries(AfkSetup."Purchase Req Nos.", OldReglHeader."No. Series", "No. Series") then begin
-            NoSeriesMgt.SetSeries("No.");
-            Rec := PRHeader;
-            exit(true);
-        end;
-
-    end;
 
 
 
@@ -273,42 +211,42 @@ table 50005 "AfkPurchaseRequisition"
 
 
 
-    procedure CreateDim(DefaultDimSource: List of [Dictionary of [Integer, Code[20]]])
-    var
-        SourceCodeSetup: Record "Source Code Setup";
-        OldDimSetID: Integer;
-        IsHandled: Boolean;
-    begin
-        IsHandled := false;
+    // procedure CreateDim(DefaultDimSource: List of [Dictionary of [Integer, Code[20]]])
+    // var
+    //     SourceCodeSetup: Record "Source Code Setup";
+    //     OldDimSetID: Integer;
+    //     IsHandled: Boolean;
+    // begin
+    //     IsHandled := false;
 
-        if IsHandled then
-            exit;
+    //     if IsHandled then
+    //         exit;
 
-        SourceCodeSetup.Get();
-
-
-        "Shortcut Dimension 1 Code" := '';
-        "Shortcut Dimension 2 Code" := '';
-        OldDimSetID := "Dimension Set ID";
-        "Dimension Set ID" :=
-          DimManagement.GetRecDefaultDimID(
-            Rec, CurrFieldNo, DefaultDimSource, SourceCodeSetup.Sales, "Shortcut Dimension 1 Code", "Shortcut Dimension 2 Code", 0, 0);
+    //     SourceCodeSetup.Get();
 
 
+    //     "Shortcut Dimension 1 Code" := '';
+    //     "Shortcut Dimension 2 Code" := '';
+    //     OldDimSetID := "Dimension Set ID";
+    //     "Dimension Set ID" :=
+    //       DimManagement.GetRecDefaultDimID(
+    //         Rec, CurrFieldNo, DefaultDimSource, SourceCodeSetup.Sales, "Shortcut Dimension 1 Code", "Shortcut Dimension 2 Code", 0, 0);
 
-        if (OldDimSetID <> "Dimension Set ID") and PRLinesExist then begin
-            Modify;
-            UpdateAllLineDim("Dimension Set ID", OldDimSetID);
-        end;
-    end;
 
-    procedure CreateDimFromDefaultDim(FieldNo: Integer)
-    var
-        DefaultDimSource: List of [Dictionary of [Integer, Code[20]]];
-    begin
-        InitDefaultDimensionSources(DefaultDimSource, FieldNo);
-        CreateDim(DefaultDimSource);
-    end;
+
+    //     if (OldDimSetID <> "Dimension Set ID") and PRLinesExist then begin
+    //         Modify;
+    //         UpdateAllLineDim("Dimension Set ID", OldDimSetID);
+    //     end;
+    // end;
+
+    // procedure CreateDimFromDefaultDim(FieldNo: Integer)
+    // var
+    //     DefaultDimSource: List of [Dictionary of [Integer, Code[20]]];
+    // begin
+    //     InitDefaultDimensionSources(DefaultDimSource, FieldNo);
+    //     CreateDim(DefaultDimSource);
+    // end;
 
     local procedure InitDefaultDimensionSources(var DefaultDimSource: List of [Dictionary of [Integer, Code[20]]]; FieldNo: Integer)
     begin
@@ -322,55 +260,55 @@ table 50005 "AfkPurchaseRequisition"
     end;
 
 
-    procedure ShowDocDim()
-    var
-        OldDimSetID: Integer;
-    begin
-        OldDimSetID := "Dimension Set ID";
-        "Dimension Set ID" :=
-          DimManagement.EditDimensionSet(
-            "Dimension Set ID", StrSubstNo('%1 %2', 'Payment: ', "No."),
-            "Shortcut Dimension 1 Code", "Shortcut Dimension 2 Code");
+    // procedure ShowDocDim()
+    // var
+    //     OldDimSetID: Integer;
+    // begin
+    //     OldDimSetID := "Dimension Set ID";
+    //     "Dimension Set ID" :=
+    //       DimManagement.EditDimensionSet(
+    //         "Dimension Set ID", StrSubstNo('%1 %2', 'Payment: ', "No."),
+    //         "Shortcut Dimension 1 Code", "Shortcut Dimension 2 Code");
 
-        if OldDimSetID <> "Dimension Set ID" then begin
-            Modify;
-            if PRLinesExist() then
-                UpdateAllLineDim("Dimension Set ID", OldDimSetID);
-        end;
-    end;
+    //     if OldDimSetID <> "Dimension Set ID" then begin
+    //         Modify;
+    //         if PRLinesExist() then
+    //             UpdateAllLineDim("Dimension Set ID", OldDimSetID);
+    //     end;
+    // end;
 
-    procedure PRLinesExist(): Boolean
-    var
-        PrLine: Record AfkPurchaseRequisitionLine;
-    begin
-        PrLine.Reset();
-        PrLine.SetRange("Document No.", "No.");
-        exit(PrLine.FindFirst);
-    end;
+    // procedure PRLinesExist(): Boolean
+    // var
+    //     PrLine: Record AfkPurchaseRequisitionLine;
+    // begin
+    //     PrLine.Reset();
+    //     PrLine.SetRange("Document No.", "No.");
+    //     exit(PrLine.FindFirst);
+    // end;
 
-    local procedure UpdateAllLineDim(NewParentDimSetID: Integer; OldParentDimSetID: Integer)
-    var
-        PaymentLine: Record "Payment Line";
-        NewDimSetID: Integer;
-    begin
-        // Update all lines with changed dimensions.
+    // local procedure UpdateAllLineDim(NewParentDimSetID: Integer; OldParentDimSetID: Integer)
+    // var
+    //     PaymentLine: Record "Payment Line";
+    //     NewDimSetID: Integer;
+    // begin
+    //     // Update all lines with changed dimensions.
 
-        if NewParentDimSetID = OldParentDimSetID then
-            exit;
-        if not Confirm(Text009) then
-            exit;
+    //     if NewParentDimSetID = OldParentDimSetID then
+    //         exit;
+    //     if not Confirm(Text009) then
+    //         exit;
 
-        PaymentLine.Reset();
-        PaymentLine.SetRange("No.", "No.");
-        PaymentLine.LockTable();
-        if PaymentLine.Find('-') then
-            repeat
-                NewDimSetID := DimManagement.GetDeltaDimSetID(PaymentLine."Dimension Set ID", NewParentDimSetID, OldParentDimSetID);
-                if PaymentLine."Dimension Set ID" <> NewDimSetID then begin
-                    PaymentLine."Dimension Set ID" := NewDimSetID;
-                    PaymentLine.Modify();
-                end;
-            until PaymentLine.Next() = 0;
-    end;
+    //     PaymentLine.Reset();
+    //     PaymentLine.SetRange("No.", "No.");
+    //     PaymentLine.LockTable();
+    //     if PaymentLine.Find('-') then
+    //         repeat
+    //             NewDimSetID := DimManagement.GetDeltaDimSetID(PaymentLine."Dimension Set ID", NewParentDimSetID, OldParentDimSetID);
+    //             if PaymentLine."Dimension Set ID" <> NewDimSetID then begin
+    //                 PaymentLine."Dimension Set ID" := NewDimSetID;
+    //                 PaymentLine.Modify();
+    //             end;
+    //         until PaymentLine.Next() = 0;
+    // end;
 }
 
