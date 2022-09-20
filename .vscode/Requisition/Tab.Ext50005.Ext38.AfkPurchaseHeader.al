@@ -10,17 +10,13 @@ tableextension 50005 AfkPurchaseHeader extends "Purchase Header"
         {
             Caption = 'PR Description';
         }
-        field(50002; "PR Type"; Option)
+        field(50002; "PR Type"; Enum AfkPurchReqType)
         {
             Caption = 'Purchase Requisition Type';
-            OptionMembers = " ";
-            OptionCaption = ' ';
         }
-        field(50003; "PO Type"; Option)
+        field(50003; "PO Type"; Enum AfkPurchOrderType)
         {
             Caption = 'Purchase Order Type';
-            OptionMembers = " ";
-            OptionCaption = ' ';
         }
         field(50004; "Purchase Type"; Option)
         {
@@ -32,6 +28,12 @@ tableextension 50005 AfkPurchaseHeader extends "Purchase Header"
         {
             Caption = 'Budget Code';
             TableRelation = "G/L Budget Name";
+        }
+        field(50006; "Afk_ProcessingStatus"; Option)
+        {
+            Caption = 'Purchase Type';
+            OptionMembers = " ",Closed;
+            OptionCaption = ' ,Closed';
         }
     }
 

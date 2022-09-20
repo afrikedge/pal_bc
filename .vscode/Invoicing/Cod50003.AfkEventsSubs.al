@@ -29,4 +29,30 @@ codeunit 50003 AfkEventsSubs
     begin
         AfkPricingMgt.LoadSalesInvoiceNosSeries(SalesHeader, xSalesHeader, IsHandled);
     end;
+
+
+
+    [EventSubscriber(ObjectType::Page, Page::"Sales Invoice Subform", 'OnBeforeSetDefaultType', '', true, false)]
+    local procedure OnBeforeSetDefaultType(var SalesLine: Record "Sales Line"; var xSalesLine: Record "Sales Line"; var IsHandled: Boolean)
+    var
+        AfkPricingMgt: codeunit AfkPortServiceInvMgt;
+    begin
+        AfkPricingMgt.InitSalesLineType(SalesLine, xSalesLine, IsHandled);
+    end;
+
+
+    [EventSubscriber(ObjectType::Table, Database::"Standard Customer Sales Code", 'OnBeforeApplyStdCodesToSalesLines', '', true, false)]
+    local procedure OnBeforeApplyStdCodesToSalesLines(var SalesLine: Record "Sales Line"; StdSalesLine: Record "Standard Sales Line")
+    var
+        AfkPricingMgt: codeunit AfkPortServiceInvMgt;
+    begin
+        AfkPricingMgt.InitSalesLineFromStandartLine(SalesLine, StdSalesLine);
+    end;
+
+    // [IntegrationEvent(false, false)]
+    // local procedure OnBeforeApplyStdCodesToSalesLines(var SalesLine: Record "Sales Line"; StdSalesLine: Record "Standard Sales Line")
+    // begin
+    // end;
+
+
 }

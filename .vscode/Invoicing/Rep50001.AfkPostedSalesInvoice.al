@@ -1,8 +1,8 @@
-report 50000 "AfkSalesInvoicePreview"
+report 50001 "AfkPostedSalesInvoice"
 {
-    RDLCLayout = './Reporting/AfkSalesInvoicePreview.rdlc';
-    WordLayout = './Reporting/AfkSalesInvoicePreview.docx';
-    Caption = 'PAL Sales Invoice Preview';
+    RDLCLayout = './Reporting/AfkPostedSalesInvoice.rdlc';
+    //WordLayout = './Reporting/AfkSalesInvoicePreview.docx';
+    Caption = 'PAL Posted Sales Invoice';
     DefaultLayout = RDLC;
     EnableHyperlinks = true;
     Permissions = TableData "Sales Shipment Buffer" = rimd;
@@ -11,7 +11,7 @@ report 50000 "AfkSalesInvoicePreview"
 
     dataset
     {
-        dataitem(Header; "Sales Header")
+        dataitem(Header; "Sales Invoice Header")
         {
             DataItemTableView = SORTING("No.");
             RequestFilterFields = "No.", "Sell-to Customer No.";
@@ -115,6 +115,10 @@ report 50000 "AfkSalesInvoicePreview"
             column(AfkDeviseLbl; AfkDeviseLbl)
             {
             }
+            column(TextDuplicata; TextDuplicata)
+            {
+            }
+
             column(AfkTotalHTDeviseLbl; AfkTotalHTDeviseLbl)
             {
             }
@@ -258,10 +262,6 @@ report 50000 "AfkSalesInvoicePreview"
             column(CompanyVATRegNo; CompanyInfo.GetVATRegistrationNumber)
             {
             }
-            column(TextApercu; TextApercu)
-            {
-            }
-
             column(CompanyVATRegNo_Lbl; CompanyInfo.GetVATRegistrationNumberLbl)
             {
             }
@@ -367,7 +367,6 @@ report 50000 "AfkSalesInvoicePreview"
             column(ShipToAddress8; ShipToAddr[8])
             {
             }
-
             // column(SellToContactPhoneNoLbl; SellToContactPhoneNoLbl)
             // {
             // }
@@ -611,7 +610,7 @@ report 50000 "AfkSalesInvoicePreview"
             column(ExternalDocumentNo_Lbl; FieldCaption("External Document No."))
             {
             }
-            dataitem(Line; "Sales Line")
+            dataitem(Line; "Sales Invoice Line")
             {
                 DataItemLink = "Document No." = FIELD("No.");
                 DataItemLinkReference = Header;
@@ -918,7 +917,7 @@ report 50000 "AfkSalesInvoicePreview"
                     else
                         JobNoLbl := '';
 
-                    FormatDocument.SetSalesLine(Line, FormattedQuantity, FormattedUnitPrice, FormattedVATPct, FormattedLineAmount);
+                    FormatDocument.SetSalesInvoiceLine(Line, FormattedQuantity, FormattedUnitPrice, FormattedVATPct, FormattedLineAmount);
                 end;
 
                 trigger OnPreDataItem()
@@ -1411,8 +1410,12 @@ report 50000 "AfkSalesInvoicePreview"
             begin
                 CurrReport.Language := Language.GetLanguageIdOrDefault("Language Code");
 
-                //if not IsReportInPreviewMode then
-                //    CODEUNIT.Run(CODEUNIT::"Sales Inv.-Printed", Header);
+                TextDuplicata := '';
+                if Header."No. Printed" > 0 then
+                    TextDuplicata := duplicatalbl;
+
+                if not IsReportInPreviewMode then
+                    CODEUNIT.Run(CODEUNIT::"Sales Inv.-Printed", Header);
 
                 AfkCurrCode := Header."Currency Code";
                 if (AfkCurrCode = '') then
@@ -1420,8 +1423,6 @@ report 50000 "AfkSalesInvoicePreview"
 
                 //CalcFields("Work Description");
                 //ShowWorkDescription := "Work Description".HasValue;
-                TextApercu := ApercuLbl;
-
                 //*************************************************************SALES HEADER***********************
                 AfkLieuAdresseFacturation := StrSubstNo(AfkDateLieuFacturationLbl, Format(Header."Document Date", 0, 4));
                 if AfkBoat.Get(Header.Afk_Boat_Number) then;
@@ -1587,7 +1588,6 @@ report 50000 "AfkSalesInvoicePreview"
 
     var
         NumLigne: Integer;
-        AfkCurrCode: Code[20];
         AfkBoat: Record Afk_Boat;
         AfkObjectLbl: Label 'Object :';
         AfkTerminalLbl: Label 'Terminal :';
@@ -1766,6 +1766,7 @@ report 50000 "AfkSalesInvoicePreview"
         VATAmountLCY: Decimal;
         TotalVATBaseLCY: Decimal;
         TotalVATAmountLCY: Decimal;
+        TextDuplicata: Text[20];
         PrevLineAmount: Decimal;
         NoFilterSetErr: Label 'You must specify one or more filters to avoid accidently printing all documents.';
         TotalAmountExclInclVATValue: Decimal;
@@ -1781,18 +1782,18 @@ report 50000 "AfkSalesInvoicePreview"
         ChecksPayableLbl: Label 'Please make checks payable to %1', Comment = '%1 = company name';
         QuestionsLbl: Label 'Questions?';
         ThanksLbl: Label 'Thank You!';
-        ApercuLbl: Label 'Preview';
         JobNoLbl2: Label 'Job No.';
         JobTaskNoLbl2: Label 'Job Task No.';
         JobTaskDescription: Text[100];
         JobTaskDescLbl: Label 'Job Task Description';
         UnitLbl: Label 'Unit';
+        DuplicataLbl: Label 'DUPLICATA';
         VATClausesText: Text;
         QtyLbl: Label 'Qty', Comment = 'Short form of Quantity';
         PriceLbl: Label 'Price';
         PricePerLbl: Label 'Price per';
         AfkIsLine: Integer;
-        TextApercu: Text[20];
+        AfkCurrCode: code[20];
 
     local procedure InitLogInteraction()
     begin
@@ -1968,21 +1969,21 @@ report 50000 "AfkSalesInvoicePreview"
         end;
     end;
 
-    local procedure FormatAddressFields(var SalesHeader: Record "Sales Header")
+    local procedure FormatAddressFields(var SalesInvoiceHeader: Record "Sales Invoice Header")
     begin
-        FormatAddr.GetCompanyAddr(SalesHeader."Responsibility Center", RespCenter, CompanyInfo, CompanyAddr);
-        FormatAddr.SalesHeaderBillTo(CustAddr, SalesHeader);
-        ShowShippingAddr := FormatAddr.SalesHeaderShipTo(ShipToAddr, CustAddr, SalesHeader);
+        FormatAddr.GetCompanyAddr(SalesInvoiceHeader."Responsibility Center", RespCenter, CompanyInfo, CompanyAddr);
+        FormatAddr.SalesInvBillTo(CustAddr, SalesInvoiceHeader);
+        ShowShippingAddr := FormatAddr.SalesInvShipTo(ShipToAddr, CustAddr, SalesInvoiceHeader);
     end;
 
-    local procedure FormatDocumentFields(SalesHeader: Record "Sales Header")
+    local procedure FormatDocumentFields(SalesInvoiceHeader: Record "Sales Invoice Header")
     begin
-        //with SalesHeader do begin
-        FormatDocument.SetTotalLabels(SalesHeader.GetCurrencySymbol, TotalText, TotalInclVATText, TotalExclVATText);
-        FormatDocument.SetSalesPerson(SalespersonPurchaser, SalesHeader."Salesperson Code", SalesPersonText);
-        FormatDocument.SetPaymentTerms(PaymentTerms, SalesHeader."Payment Terms Code", SalesHeader."Language Code");
-        FormatDocument.SetPaymentMethod(PaymentMethod, SalesHeader."Payment Method Code", SalesHeader."Language Code");
-        FormatDocument.SetShipmentMethod(ShipmentMethod, SalesHeader."Shipment Method Code", SalesHeader."Language Code");
+        //with SalesInvoiceHeader do begin
+        FormatDocument.SetTotalLabels(SalesInvoiceHeader.GetCurrencySymbol, TotalText, TotalInclVATText, TotalExclVATText);
+        FormatDocument.SetSalesPerson(SalespersonPurchaser, SalesInvoiceHeader."Salesperson Code", SalesPersonText);
+        FormatDocument.SetPaymentTerms(PaymentTerms, SalesInvoiceHeader."Payment Terms Code", SalesInvoiceHeader."Language Code");
+        FormatDocument.SetPaymentMethod(PaymentMethod, SalesInvoiceHeader."Payment Method Code", SalesInvoiceHeader."Language Code");
+        FormatDocument.SetShipmentMethod(ShipmentMethod, SalesInvoiceHeader."Shipment Method Code", SalesInvoiceHeader."Language Code");
         //end;
     end;
 
@@ -2000,34 +2001,38 @@ report 50000 "AfkSalesInvoicePreview"
     end;
 
     [IntegrationEvent(false, false)]
-    local procedure OnAfterLineOnPreDataItem(var SalesHeader: Record "Sales Header"; var SalesLine: Record "Sales Line")
+    local procedure OnAfterFillRightHeader(var RightHeader: Record "Name/Value Buffer"; SalesInvoiceHeader: Record "Sales Invoice Header")
     begin
     end;
 
     [IntegrationEvent(false, false)]
-    local procedure OnAfterFillLeftHeader(var LeftHeader: Record "Name/Value Buffer"; SalesHeader: Record "Sales Header")
+    local procedure OnBeforeLineOnAfterGetRecord(var SalesInvoiceHeader: Record "Sales Invoice Header"; var SalesInvoiceLine: Record "Sales Invoice Line")
     begin
     end;
 
     [IntegrationEvent(false, false)]
-    local procedure OnAfterFillRightHeader(var RightHeader: Record "Name/Value Buffer"; SalesHeader: Record "Sales Header")
-    begin
-    end;
-
-    [IntegrationEvent(false, false)]
-    local procedure OnBeforeLineOnAfterGetRecord(var SalesHeader: Record "Sales Header"; var SalesLine: Record "Sales Line")
-    begin
-    end;
-
-    [IntegrationEvent(false, false)]
-    local procedure OnBeforeGetDocumentCaption(SalesHeader: Record "Sales Header"; var DocCaption: Text)
+    local procedure OnBeforeGetDocumentCaption(SalesInvoiceHeader: Record "Sales Invoice Header"; var DocCaption: Text)
     begin
     end;
 
     [IntegrationEvent(TRUE, FALSE)]
-    local procedure OnAfterGetSalesHeader(SalesHeader: Record "Sales Header")
+    local procedure OnAfterGetSalesHeader(SalesInvoiceHeader: Record "Sales Invoice Header")
     begin
     end;
+
+    [IntegrationEvent(false, false)]
+    local procedure OnAfterLineOnPreDataItem(var SalesInvoiceHeader: Record "Sales Invoice Header"; var SalesInvoiceLine: Record "Sales Invoice Line")
+    begin
+    end;
+
+    [IntegrationEvent(false, false)]
+    local procedure OnAfterFillLeftHeader(var LeftHeader: Record "Name/Value Buffer"; SalesInvoiceHeader: Record "Sales Invoice Header")
+    begin
+    end;
+
+
+
+
 
     local procedure ShowVATClause(VATClauseCode: Code[20]): Boolean
     begin

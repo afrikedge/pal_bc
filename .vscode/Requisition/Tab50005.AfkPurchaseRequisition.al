@@ -127,17 +127,13 @@ table 50005 "AfkPurchaseRequisition"
             OptionCaption = 'Open,Released,Pending Approval';
             Editable = false;
         }
-        field(31; "PR Type"; Option)
+        field(31; "PR Type"; Enum AfkPurchReqType)
         {
             Caption = 'Purchase Requisition Type';
-            OptionMembers = " ";
-            OptionCaption = ' ';
         }
-        field(32; "PO Type"; Option)
+        field(32; "PO Type"; Enum AfkPurchOrderType)
         {
             Caption = 'Purchase Order Type';
-            OptionMembers = " ";
-            OptionCaption = ' ';
         }
         field(480; "Dimension Set ID"; Integer)
         {
@@ -206,10 +202,10 @@ table 50005 "AfkPurchaseRequisition"
         PurchH.SETRANGE(Afk_RequisitionCode, "No.");
         PurchH.DELETEALL(TRUE);
 
-        //BudgetLineP.RESET;
-        //BudgetLineP.SETRANGE("Document Type", BudgetLineP."Document Type"::Requisition);
-        //BudgetLineP.SETRANGE("Document No.", "No.");
-        //BudgetLineP.DELETEALL;
+        BudgetLineP.RESET;
+        BudgetLineP.SETRANGE("Document Type", BudgetLineP."Document Type"::Requisition);
+        BudgetLineP.SETRANGE("Document No.", "No.");
+        BudgetLineP.DELETEALL;
 
     end;
 

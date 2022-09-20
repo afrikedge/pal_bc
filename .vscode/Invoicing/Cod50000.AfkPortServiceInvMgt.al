@@ -57,7 +57,7 @@ codeunit 50000 AfkPortServiceInvMgt
         Item1.Get(sLine."No.");
 
         if (sLine.Afk_Printed_Description = '') then
-            sLine.Afk_Printed_Description := Item1.Description;
+            sLine.Afk_Printed_Description := Item1."Description 2";
 
         if (Item1.Afk_Quantity1 <> '') then begin
             calcVal := CalcParamValues.GetParamValue(sHeader, sLine, Item1.Afk_Quantity1);
@@ -166,6 +166,30 @@ codeunit 50000 AfkPortServiceInvMgt
             NoSeriesMgt.InitSeries(RespCenter.AfkSalesInvoiceNos, xSalesH."No. Series", SalesH."Posting Date", SalesH."No.", SalesH."No. Series");
             IsHandled := true;
         end;
+    end;
+
+    procedure InitSalesLineType(var SalesLine: Record "Sales Line"; var xSalesLine: Record "Sales Line"; var IsHandled: Boolean)
+    begin
+        SalesLine.Type := SalesLine.Type::Item;
+        IsHandled := true;
+    end;
+
+    procedure InitSalesLineFromStandartLine(var SalesLine: Record "Sales Line"; StdSalesLine: Record "Standard Sales Line")
+    begin
+
+        SalesLine.Afk_Unit_of_Measure_Code_1 := StdSalesLine.Afk_Unit_of_Measure_Code_1;
+        SalesLine.Afk_Unit_of_Measure_Code_2 := StdSalesLine.Afk_Unit_of_Measure_Code_2;
+
+        SalesLine.Afk_Elect_Network := StdSalesLine.Afk_Elect_Network;
+        SalesLine.Afk_Phone_Network := StdSalesLine.Afk_Phone_Network;
+        SalesLine.Afk_Strip_On_Quay := StdSalesLine.Afk_Strip_On_Quay;
+        SalesLine.Afk_Road_Access := StdSalesLine.Afk_Road_Access;
+        SalesLine.Afk_Rail_Access := StdSalesLine.Afk_Rail_Access;
+        SalesLine.Afk_Water_Network := StdSalesLine.Afk_Water_Network;
+
+        SalesLine.validate(Afk_Quantity1, StdSalesLine.Afk_Quantity1);
+        SalesLine.validate(Afk_Quantity2, StdSalesLine.Afk_Quantity2);
+
     end;
 
     local procedure IsLigneTotalHT(salesL: Record "Sales Line"): Boolean

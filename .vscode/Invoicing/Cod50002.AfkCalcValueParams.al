@@ -38,26 +38,22 @@ codeunit 50002 AfkCalcValueParams
     begin
 
         if (paramCode = 'BOAT_VOLUME') then begin
-            sHeader.TestField(Afk_Boat_Number);
-            Boat.Get(sHeader.Afk_Boat_Number);
+            if Boat.Get(sHeader.Afk_Boat_Number) then;
             exit(Boat.Volume);
         end;
 
         if (paramCode = 'BOAT_TJB') then begin
-            sHeader.TestField(Afk_Boat_Number);
-            Boat.Get(sHeader.Afk_Boat_Number);
+            if Boat.Get(sHeader.Afk_Boat_Number) then;
             exit(Boat.TJB);
         end;
 
         if (paramCode = 'BOAT_TJN') then begin
-            sHeader.TestField(Afk_Boat_Number);
-            Boat.Get(sHeader.Afk_Boat_Number);
+            if Boat.Get(sHeader.Afk_Boat_Number) then;
             exit(Boat.TJN);
         end;
 
         if (paramCode = 'BOAT_WEIGHT') then begin
-            sHeader.TestField(Afk_Boat_Number);
-            Boat.Get(sHeader.Afk_Boat_Number);
+            if Boat.Get(sHeader.Afk_Boat_Number) then;
             exit(Boat.Weight);
         end;
 
@@ -80,12 +76,10 @@ codeunit 50002 AfkCalcValueParams
         end;
 
         if (paramCode = 'NB_LOCAL_PASSENGERS') then begin
-            sHeader.TestField(Afk_Boat_Number);
             exit(sHeader."Afk_Nb_National_Passengers");
         end;
 
         if (paramCode = 'NB_FOREIGN_PASSENGER') then begin
-            sHeader.TestField(Afk_Boat_Number);
             exit(sHeader.Afk_Nb_Foreign_Passengers);
         end;
 

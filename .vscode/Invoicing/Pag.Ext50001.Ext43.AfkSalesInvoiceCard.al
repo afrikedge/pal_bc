@@ -13,6 +13,7 @@ pageextension 50001 AfkSalesInvoiceCard extends "Sales Invoice"
         {
             group("Boat Informations")
             {
+                Caption = 'Boat Informations';
                 field(Afk_Invoice_Object; Rec.Afk_Invoice_Object)
                 {
                     ApplicationArea = Suite;

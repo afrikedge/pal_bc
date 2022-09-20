@@ -334,7 +334,7 @@ codeunit 50004 AfkPurchaseReqMgt
         GLAcc: Record "G/L Account";
         DateDeb: Date;
         DateFin: Date;
-        OldCodeBudget:Code[20];
+        OldCodeBudget: Code[20];
         NewCodeBudget: Code[20];
     begin
 
@@ -401,8 +401,8 @@ codeunit 50004 AfkPurchaseReqMgt
 
     local procedure CalcValuesBudget(VAR BudgetLine: Record AfkPurchaseRequisitionBudget; DateRef: Date; CurrOrderNo: Code[20]; GLAcc: Code[20]; CodeBudget: Code[20])
     var
-    DateDeb:Date;
-    DateFin: Date;
+        DateDeb: Date;
+        DateFin: Date;
     begin
 
         AddOnSetup.GET;
@@ -472,7 +472,7 @@ codeunit 50004 AfkPurchaseReqMgt
 
     local procedure GetPeriodDates(DateRef: Date; Type: Integer; VAR DateDeb: Date; VAR DateFin: Date)
     var
-    DebutMois:Date;
+        DebutMois: Date;
     begin
         //Month
         IF Type = 1 THEN BEGIN
@@ -522,6 +522,164 @@ codeunit 50004 AfkPurchaseReqMgt
             UNTIL PurchLine.NEXT = 0;
     end;
 
+    procedure CreatePurchaseBudgetLines(PurchaseH: Record "Purchase Header")
+    var
+        BudgetLine: Record AfkPurchaseRequisitionBudget;
+        DateDeb: Date;
+        DateFin: Date;
+        HaveLines: Boolean;
+        PurchLine: Record "Purchase Line";
+        OldAcc: Code[20];
+        OldCodeBudget: Code[20];
+        NewAcc: Code[20];
+        NewCodeBudget: Code[20];
+        GLAcc: Record "G/L Account";
+        OldAccAmt: Decimal;
+    begin
+
+        GetPeriod(PurchaseH."Document Date", DateDeb, DateFin);
+        //MESSAGE('%1 - %2',DateDeb,DateFin);
+
+        CLEAR(BudgetLine);
+        BudgetLine.SETRANGE("Document Type", PurchaseH."Document Type");
+        BudgetLine.SETRANGE("Document No.", PurchaseH."No.");
+        BudgetLine.DELETEALL;
+
+        PurchLine.RESET;
+        PurchLine.SETCURRENTKEY(Afk_PurchaseAccount, "Shortcut Dimension 1 Code");
+        PurchLine.SETRANGE("Document Type", PurchaseH."Document Type");
+        PurchLine.SETRANGE("Document No.", PurchaseH."No.");
+        IF PurchLine.FINDSET THEN
+            OldAcc := PurchLine.Afk_PurchaseAccount;
+        OldCodeBudget := PurchLine."Shortcut Dimension 1 Code";
+        REPEAT
+
+            NewAcc := PurchLine.Afk_PurchaseAccount;
+            NewCodeBudget := PurchLine."Shortcut Dimension 1 Code";
+            CheckData(NewAcc, NewCodeBudget, PurchLine."Line No.");
+
+            IF ((OldAcc <> NewAcc) OR (OldCodeBudget <> NewCodeBudget)) THEN BEGIN
+                CLEAR(BudgetLine);
+                BudgetLine."Document Type" := PurchaseH."Document Type";
+                BudgetLine."Document No." := PurchaseH."No.";
+                BudgetLine."G/L Account No" := OldAcc;
+                BudgetLine."Dimension Code 1" := OldCodeBudget;
+                IF GLAcc.GET(OldAcc) THEN BudgetLine."G/L Account Name" := GLAcc.Name;
+
+                CalcValuesBudget(BudgetLine, PurchaseH."Document Date", PurchaseH."No.", OldAcc, OldCodeBudget);
+
+                IF OldAcc <> '' THEN BudgetLine.INSERT;
+                OldAcc := PurchLine.Afk_PurchaseAccount;
+                OldCodeBudget := PurchLine."Shortcut Dimension 1 Code";
+                OldAccAmt := ConvertAmtLCY(PurchaseH."Document Date", PurchLine."Line Amount", PurchaseH."Currency Code");
+            END ELSE BEGIN
+                OldAccAmt := OldAccAmt + ConvertAmtLCY(PurchaseH."Document Date", PurchLine."Line Amount", PurchaseH."Currency Code");
+            END;
+            HaveLines := TRUE;
+        UNTIL PurchLine.NEXT = 0;
+
+        //Derniere ligne
+        IF HaveLines THEN BEGIN
+            CLEAR(BudgetLine);
+            BudgetLine."Document Type" := PurchaseH."Document Type";
+            BudgetLine."Document No." := PurchaseH."No.";
+            BudgetLine."G/L Account No" := OldAcc;
+
+            IF GLAcc.GET(OldAcc) THEN BudgetLine."G/L Account Name" := GLAcc.Name;
+            BudgetLine."Dimension Code 1" := OldCodeBudget;
+            BudgetLine."Document Amount" := OldAccAmt;
+
+            CalcValuesBudget(BudgetLine, PurchaseH."Document Date", PurchaseH."No.", OldAcc, OldCodeBudget);
+
+            //IF (BudgetLine."Remaining Amount"<0) THEN BudgetLine."Remaining Amount":=0;
+
+            IF OldAcc <> '' THEN BudgetLine.INSERT;
+        END;
+    end;
+
+    procedure CreatePurchaseBudgetLinesFromReq(PurchaseH: Record AfkPurchaseRequisition)
+    var
+        BudgetLine: Record AfkPurchaseRequisitionBudget;
+        DateDeb: Date;
+        DateFin: Date;
+        HaveLines: Boolean;
+        PurchLine: Record "Purchase Line";
+        OldAcc: Code[20];
+        OldCodeBudget: Code[20];
+        NewAcc: Code[20];
+        NewCodeBudget: Code[20];
+        GLAcc: Record "G/L Account";
+        OldAccAmt: Decimal;
+        CreationDate: Date;
+    begin
+
+        CreationDate := DT2Date(PurchaseH.SystemCreatedAt);
+
+        GetPeriod(CreationDate, DateDeb, DateFin);
+        //MESSAGE('%1 - %2',DateDeb,DateFin);
+
+        AddOnSetup.GET;
+        AddOnSetup.TESTFIELD(AddOnSetup."Default Budget Code");
+
+        CLEAR(BudgetLine);
+        BudgetLine.SETRANGE("Document Type", BudgetLine."Document Type"::Requisition);
+        BudgetLine.SETRANGE("Document No.", PurchaseH."No.");
+        BudgetLine.DELETEALL;
+
+        PurchLine.RESET;
+        PurchLine.SETCURRENTKEY("Afk_PurchaseAccount", "Shortcut Dimension 1 Code");
+        //PurchLine.SETRANGE("Document Type",BudgetLine."Document Type"::Requisition);
+        PurchLine.SETRANGE("Document No.", PurchaseH."No.");
+        IF PurchLine.FINDSET THEN
+            OldAcc := PurchLine."Afk_PurchaseAccount";
+        OldCodeBudget := PurchLine."Shortcut Dimension 1 Code";
+        REPEAT
+            NewAcc := PurchLine."Afk_PurchaseAccount";
+            NewCodeBudget := PurchLine."Shortcut Dimension 1 Code";
+            CheckData(NewAcc, NewCodeBudget, PurchLine."Line No.");
+
+            IF ((OldAcc <> NewAcc) OR (OldCodeBudget <> NewCodeBudget)) THEN BEGIN
+                CLEAR(BudgetLine);
+                BudgetLine."Document Type" := BudgetLine."Document Type"::Requisition;
+                BudgetLine."Document No." := PurchaseH."No.";
+                BudgetLine."G/L Account No" := OldAcc;
+                BudgetLine."Dimension Code 1" := OldCodeBudget;
+                IF GLAcc.GET(OldAcc) THEN BudgetLine."G/L Account Name" := GLAcc.Name;
+
+                BudgetLine."Document Amount" := OldAccAmt;
+
+                CalcValuesBudget(BudgetLine, CreationDate, PurchaseH."No.", OldAcc, OldCodeBudget);
+
+                IF OldAcc <> '' THEN BudgetLine.INSERT;
+                OldAcc := PurchLine."Afk_PurchaseAccount";
+                OldCodeBudget := PurchLine."Shortcut Dimension 1 Code";
+                //OldAccAmt:=ConvertAmtLCY(PurchaseH."Creation Date",PurchLine."Line Amount",PurchaseH."Currency Code");
+            END ELSE BEGIN
+                //OldAccAmt := OldAccAmt + ConvertAmtLCY(PurchaseH."Document Date",PurchLine."Line Amount",PurchaseH."Currency Code");
+            END;
+
+            HaveLines := TRUE;
+        UNTIL PurchLine.NEXT = 0;
+
+
+        //Derniere ligne
+        IF HaveLines THEN BEGIN
+            CLEAR(BudgetLine);
+            BudgetLine."Document Type" := BudgetLine."Document Type"::Requisition;
+            BudgetLine."Document No." := PurchaseH."No.";
+            BudgetLine."G/L Account No" := OldAcc;
+
+            IF GLAcc.GET(OldAcc) THEN BudgetLine."G/L Account Name" := GLAcc.Name;
+            BudgetLine."Dimension Code 1" := OldCodeBudget;
+            BudgetLine."Commitment Amount" := GetPrecommitmentAmt(OldAcc, OldCodeBudget, PurchaseH."No.", DateDeb, DateFin);
+            BudgetLine."Document Amount" := OldAccAmt;
+
+            CalcValuesBudget(BudgetLine, CreationDate, PurchaseH."No.", OldAcc, OldCodeBudget);
+
+            IF OldAcc <> '' THEN BudgetLine.INSERT;
+        END;
+
+    end;
 
     local procedure ConvertAmtLCY(PostingDate: Date; ForeignAmt: Decimal; CurrencyCode: Code[10]): Decimal
     var
@@ -590,6 +748,14 @@ codeunit 50004 AfkPurchaseReqMgt
         END;
     end;
 
+    procedure RefreshRemainingQtyReqByCode(PurchReqCode: Code[20])
+    var
+        PurchReq: Record AfkPurchaseRequisition;
+    begin
+        IF PurchReq.GET(PurchReqCode) THEN
+            RefreshRemainingQtyReq(PurchReq);
+    end;
+
     local procedure GetInvoicedQtyReqLine(DocNo: Code[20]; LineNo: Integer) ReturnQty: Decimal
     var
         PurchInvLine: Record "Purchase Line";
@@ -623,6 +789,158 @@ codeunit 50004 AfkPurchaseReqMgt
         EXIT(ReturnQty);
     end;
 
+    procedure SolderCdeAchat(VAR PurchH: Record "Purchase Header")
+    var
+        ReleaseMgt: Codeunit "Release Purchase Document";
+        PurchLine1: Record "Purchase Line";
+    begin
+        IF NOT CONFIRM(STRSUBSTNO(Text014, PurchH."No.")) THEN EXIT;
+        ReleaseMgt.PerformManualReopen(PurchH);
+
+
+
+        PurchLine1.RESET;
+        PurchLine1.SETRANGE("Document Type", PurchLine1."Document Type"::Order);
+        PurchLine1.SETRANGE("Document No.", PurchH."No.");
+        IF PurchLine1.FINDSET THEN
+            REPEAT
+
+                IF PurchLine1."Quantity Invoiced" <> PurchLine1."Quantity Received" THEN
+                    ERROR(Text013, PurchLine1."No.");
+
+                PurchLine1.VALIDATE(PurchLine1.Quantity, PurchLine1."Quantity Received");
+                PurchLine1.MODIFY;
+
+            UNTIL PurchLine1.NEXT = 0;
+
+
+        PurchH."Afk_ProcessingStatus" := PurchH.Afk_ProcessingStatus::Closed;
+        PurchH.MODIFY;
+        ArchiveManagement.ArchPurchDocumentNoConfirm(PurchH);
+
+        //PurchH.AFK_AllowDeletion(TRUE);
+        PurchH.DELETE(TRUE);
+    end;
+
+    procedure GetFiltreTypeDemandeAchat() Rep: Enum AfkPurchReqType
+    var
+        UserSetup1: Record "User Setup";
+    begin
+        UserSetup1.GET(USERID);
+        EXIT(UserSetup1.Afk_PRType);
+    end;
+
+    procedure GetFiltreTypeCommandeAchat() Rep: Enum AfkPurchOrderType
+    var
+        UserSetup1: Record "User Setup";
+    begin
+        UserSetup1.GET(USERID);
+        EXIT(UserSetup1.Afk_POType);
+    end;
+
+    procedure CheckPurchaseOrderInWflw(PurchOrder: Record "Purchase Header")
+    var
+        PurchL: Record "Purchase Line";
+        Item1: Record Item;
+    begin
+        IF PurchOrder."Document Type" <> PurchOrder."Document Type"::Order THEN
+            EXIT;
+
+        PurchOrder.TESTFIELD(PurchOrder."Buy-from Vendor No.");
+
+        PurchL.RESET;
+        PurchL.SETRANGE("Document Type", PurchOrder."Document Type");
+        PurchL.SETRANGE("Document No.", PurchOrder."No.");
+        IF PurchL.FINDSET THEN
+            REPEAT
+                IF PurchL.Type <> PurchL.Type::" " THEN BEGIN
+
+                    PurchL.TESTFIELD("No.");
+                    PurchL.TESTFIELD("Direct Unit Cost");
+                    IF PurchL.Type = PurchL.Type::Item THEN
+                        IF Item1.GET(PurchL."No.") THEN
+                            IF Item1.Type = Item1.Type::Inventory THEN
+                                PurchL.TESTFIELD(PurchL."Location Code");
+
+                END;
+            UNTIL PurchL.NEXT = 0;
+    end;
+
+    procedure CheckDim(PurchReq: Record AfkPurchaseRequisition)
+    var
+        PurchReqLine2: Record AfkPurchaseRequisitionLine;
+        Item1: Record Item;
+    begin
+        PurchReqLine2.SETRANGE(PurchReqLine2."Document No.", PurchReq."No.");
+        PurchReqLine2.SETFILTER(Type, '<>%1', PurchReqLine2.Type::" ");
+        IF PurchReqLine2.FINDSET THEN
+            REPEAT
+                IF (PurchReqLine2.Quantity <> 0)
+                THEN BEGIN
+                    CheckDimComb(PurchReqLine2);
+                    CheckDimValuePosting(PurchReqLine2, PurchReq);
+                END;
+            UNTIL PurchReqLine2.NEXT = 0;
+    end;
+
+    local procedure CheckDimComb(PurchReqLine: Record AfkPurchaseRequisitionLine)
+    var
+        PurchReqLine2: Record AfkPurchaseRequisitionLine;
+
+    begin
+        IF PurchReqLine."Line No." = 0 THEN
+            IF NOT DimMgt.CheckDimIDComb(PurchReqLine."Dimension Set ID") THEN
+                ERROR(
+                  Text028,
+                  'Demande', PurchReqLine."Document No.", DimMgt.GetDimCombErr);
+
+        IF PurchReqLine."Line No." <> 0 THEN
+            IF NOT DimMgt.CheckDimIDComb(PurchReqLine."Dimension Set ID") THEN
+                ERROR(
+                  Text029,
+                  'Demande', PurchReqLine."Document No.", PurchReqLine."Line No.", DimMgt.GetDimCombErr);
+    end;
+
+    local procedure CheckDimValuePosting(VAR PurchReqLine: Record AfkPurchaseRequisitionLine; PurchReq: Record AfkPurchaseRequisition)
+    var
+        TableIDArr: Array[10] of Integer;
+        NumberArr: Array[10] of Code[10];
+    begin
+        IF PurchReqLine."Line No." = 0 THEN BEGIN
+
+        END ELSE BEGIN
+            TableIDArr[1] := TypeToTableID3(PurchReqLine.Type);
+            NumberArr[1] := PurchReqLine."No.";
+            IF NOT DimMgt.CheckDimValuePosting(TableIDArr, NumberArr, PurchReqLine."Dimension Set ID") THEN
+                ERROR(
+                  Text031,
+                  'Demande', PurchReqLine."Document No.", PurchReqLine."Line No.", DimMgt.GetDimValuePostingErr);
+        END;
+    end;
+
+    local procedure TypeToTableID3(Type: Enum "Purchase Line Type"): Integer
+    var
+        TableIDArr: Array[10] of Integer;
+        NumberArr: Array[10] of Code[10];
+    begin
+        CASE Type OF
+            Type::" ":
+                EXIT(0);
+            Type::"G/L Account":
+                EXIT(DATABASE::"G/L Account");
+            Type::Item:
+                EXIT(DATABASE::Item);
+            //Type::Resource:
+            //  EXIT(DATABASE::Resource);
+            Type::"Fixed Asset":
+                EXIT(DATABASE::"Fixed Asset");
+            Type::"Charge (Item)":
+                EXIT(DATABASE::"Item Charge");
+        END;
+    end;
+
+
+
     local procedure DDATotalementFacturee(var SRequisition: Record AfkPurchaseRequisition): Boolean
     var
         SRLine: Record AfkPurchaseRequisitionLine;
@@ -649,7 +967,8 @@ codeunit 50004 AfkPurchaseReqMgt
         UOMMgt: Codeunit "Unit of Measure Management";
         ArchiveManagement: Codeunit ArchiveManagement;
         FASetup: Record "FA Setup";
-        AddOnSetup:Record AfkSetup;
+        AddOnSetup: Record AfkSetup;
+        DimMgt: Codeunit DimensionManagement;
         Text002: Label 'The document has no lines';
         Text032: Label 'This purchase requisition has already been completely processed.';
         Text010: Label 'Do you want to close the purchasing document?';
@@ -657,7 +976,12 @@ codeunit 50004 AfkPurchaseReqMgt
         Text009: Label 'Posting groups not defined on purchase requisition line %1 - %2';
 
         Text011: Label 'Purchase account is invalid on line %1';
+        Text014: Label 'Would you like to close this purchase order: %1?';
+        Text013: Label 'You cannot close this order because the quantity received has not been fully invoiced for item %1';
 
         Text012: Label 'Budget code not filled in on line %1';
+        Text028: Label 'The dimension combination used in %1 %2 is blocked. %3';
+        Text029: Label 'The dimension combination used in %1 %2, row no. %3, is blocked. %4';
+        Text031: Label 'The dimensions used in %1 %2, line n° %3, are invalid. %4';
 
 }

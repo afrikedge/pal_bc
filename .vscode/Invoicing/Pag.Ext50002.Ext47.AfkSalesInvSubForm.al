@@ -2,6 +2,22 @@ pageextension 50002 AfkSalesInvSubForm extends "Sales invoice subform"
 {
     layout
     {
+        modify("Type")
+        {
+            Editable = false;
+        }
+        modify("FilteredTypeField")
+        {
+            Editable = false;
+        }
+        modify("Unit Price")
+        {
+            Editable = false;
+        }
+        modify("Line Amount")
+        {
+            Editable = false;
+        }
         addafter("Description")
         {
             field("Afk_Printed_Description"; Rec.Afk_Printed_Description)

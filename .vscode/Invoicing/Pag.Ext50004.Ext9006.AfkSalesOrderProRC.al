@@ -89,6 +89,27 @@ pageextension 50004 AfkSalesOrderProRC extends "Order Processor Role Center"
                     RunObject = Page AfkSetupCard;
                     ToolTip = 'View or edit setup parameters';
                 }
+                action(AfkSalesStandardCode)
+                {
+                    ApplicationArea = Basic, Suite;
+                    Caption = 'Standard Sales Codes';
+                    Image = Sales;
+                    Promoted = true;
+                    PromotedCategory = Process;
+                    RunObject = Page "Standard Sales Codes";
+                    //ToolTip = 'View or edit setup parameters';
+                }
+                action(AfkCreateSalesStandardCode)
+                {
+                    ApplicationArea = Basic, Suite;
+                    Caption = 'Create Recurring Sales Invoice';
+                    Image = CreateDocuments;
+                    Promoted = true;
+                    PromotedCategory = Process;
+                    RunObject = Report "Create Recurring Sales Inv.";
+                    //ToolTip = 'View or edit setup parameters';
+                }
+
             }
         }
 
