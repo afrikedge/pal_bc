@@ -6,6 +6,7 @@ tableextension 50008 AfkStandardSalesLine extends "Standard Sales Line"
         {
             Caption = 'Base';
             //TableRelation = "Afk_Calc_Parameter";
+            DecimalPlaces = 0 : 5;
         }
         field(50001; "Afk_Unit_of_Measure_Code_1"; Code[10])
         {
@@ -16,6 +17,7 @@ tableextension 50008 AfkStandardSalesLine extends "Standard Sales Line"
         {
             Caption = 'Number';
             //TableRelation = "Afk_Calc_Parameter";
+            DecimalPlaces = 0 : 5;
         }
         field(50003; "Afk_Unit_of_Measure_Code_2"; Code[10])
         {
