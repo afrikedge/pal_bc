@@ -183,6 +183,16 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table AfkPostPurchaseRequisitionLine - NamedType Text001</note>
         </trans-unit>
+        <trans-unit id="Table 3454197991 - Field 636392376 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Amount</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkPostPurchaseRequisitionLine - Field Amount - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3454197991 - Field 1650118938 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Amount Including VAT</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkPostPurchaseRequisitionLine - Field Amount Including VAT - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 3454197991 - Field 2223214263 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Depreciation Book Code</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -298,10 +308,25 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table AfkPostPurchaseRequisitionLine - Field Unit of Measure Code - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 3454197991 - Field 2937233469 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Unit Price</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkPostPurchaseRequisitionLine - Field Unit Price - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 3454197991 - Field 3450651614 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Variant Code</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table AfkPostPurchaseRequisitionLine - Field Variant Code - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3454197991 - Field 1246077090 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>VAT %</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkPostPurchaseRequisitionLine - Field VAT % - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3454197991 - Field 1108276017 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>VAT Amount</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkPostPurchaseRequisitionLine - Field VAT Amount - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 3454197991 - Field 1844012642 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>VAT Bus. Posting Group</source>
@@ -327,6 +352,11 @@
           <source>You may have changed a dimension.\\Do you want to update the lines?</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table AfkPurchaseRequisition - NamedType Text009</note>
+        </trans-unit>
+        <trans-unit id="Table 3713992565 - Field 1650118938 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Amount Including VAT</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkPurchaseRequisition - Field Amount Including VAT - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 3713992565 - Field 4169368700 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Budget Code</source>
@@ -443,10 +473,15 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table AfkPurchaseRequisition - Field Status - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Table 3713992565 - Field 513339096 - Property 62802879" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Open,Released,Pending Approval</source>
+        <trans-unit id="Table 3713992565 - Field 2708250016 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>User ID</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Table AfkPurchaseRequisition - Field Status - Property OptionCaption</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkPurchaseRequisition - Field User ID - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3713992565 - Field 1844012642 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>VAT Bus. Posting Group</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkPurchaseRequisition - Field VAT Bus. Posting Group - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 178511970 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Purchase Requisition Budget Line</source>
@@ -598,6 +633,16 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table AfkPurchaseRequisitionLine - NamedType Text001</note>
         </trans-unit>
+        <trans-unit id="Table 1182874135 - Field 636392376 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Amount</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkPurchaseRequisitionLine - Field Amount - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 1182874135 - Field 1650118938 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Amount Including VAT</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkPurchaseRequisitionLine - Field Amount Including VAT - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 1182874135 - Field 2223214263 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Depreciation Book Code</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -617,11 +662,6 @@
           <source>Document No.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table AfkPurchaseRequisitionLine - Field Document No. - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Table 1182874135 - Field 633819257 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Gen. Bus. Posting Group</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Table AfkPurchaseRequisitionLine - Field Gen. Bus. Posting Group - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 1182874135 - Field 2139693550 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Gen. Prod. Posting Group</source>
@@ -713,15 +753,25 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table AfkPurchaseRequisitionLine - Field Unit of Measure Code - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 1182874135 - Field 2937233469 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Unit Price</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkPurchaseRequisitionLine - Field Unit Price - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 1182874135 - Field 3450651614 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Variant Code</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table AfkPurchaseRequisitionLine - Field Variant Code - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Table 1182874135 - Field 1844012642 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>VAT Bus. Posting Group</source>
+        <trans-unit id="Table 1182874135 - Field 1246077090 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>VAT %</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Table AfkPurchaseRequisitionLine - Field VAT Bus. Posting Group - Property Caption</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkPurchaseRequisitionLine - Field VAT % - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 1182874135 - Field 1108276017 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>VAT Amount</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkPurchaseRequisitionLine - Field VAT Amount - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 1182874135 - Field 236064653 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>VAT Prod. Posting Group</source>
@@ -1312,6 +1362,116 @@
           <source>Specifies the fixed value of this parameter</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page AfkCalcParameters - Control Value1 - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3713992565 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Purchase Requisition</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page AfkPurchaseRequisition - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3713992565 - NamedType 3114637384" size-unit="char" translate="yes" xml:space="preserve">
+          <source>This payment class does not authorize vendor suggestions.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page AfkPurchaseRequisition - NamedType Text001</note>
+        </trans-unit>
+        <trans-unit id="Page 3713992565 - NamedType 3752334001" size-unit="char" translate="yes" xml:space="preserve">
+          <source>This payment class does not authorize customer suggestions.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page AfkPurchaseRequisition - NamedType Text002</note>
+        </trans-unit>
+        <trans-unit id="Page 3713992565 - NamedType 95063322" size-unit="char" translate="yes" xml:space="preserve">
+          <source>You cannot suggest payments on a posted header.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page AfkPurchaseRequisition - NamedType Text003</note>
+        </trans-unit>
+        <trans-unit id="Page 3713992565 - NamedType 3921243024" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Do you want to archive this document?</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page AfkPurchaseRequisition - NamedType Text009</note>
+        </trans-unit>
+        <trans-unit id="Page 3713992565 - Control 2445482498 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>General</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page AfkPurchaseRequisition - Control General - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3713992565 - Control 4200184881 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the number of the purchase requisition.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page AfkPurchaseRequisition - Control No. - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3713992565 - Control 1577567912 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the code for Shortcut Dimension 1, which is one of two global dimension codes that you set up in the General Ledger Setup window.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page AfkPurchaseRequisition - Control Shortcut Dimension 1 Code - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3713992565 - Control 1003760969 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the code for Shortcut Dimension 2, which is one of two global dimension codes that you set up in the General Ledger Setup window.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page AfkPurchaseRequisition - Control Shortcut Dimension 2 Code - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3713992565 - Action 2947630187 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>&amp;Header</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page AfkPurchaseRequisition - Action &amp;Header - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3713992565 - Action 2173385693 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>View or change the dimension settings for this payment slip. If you change the dimension, you can update all lines on the payment slip.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page AfkPurchaseRequisition - Action Dimensions - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3713992565 - Action 2173385693 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Dimensions</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page AfkPurchaseRequisition - Action Dimensions - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3955058971 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Lines</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page AfkPurchaseRequisitionSubform - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3955058971 - NamedType 2476940767" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Assign No. ?</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page AfkPurchaseRequisitionSubform - NamedType Text000</note>
+        </trans-unit>
+        <trans-unit id="Page 3955058971 - NamedType 3114637384" size-unit="char" translate="yes" xml:space="preserve">
+          <source>There is no line to modify.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page AfkPurchaseRequisitionSubform - NamedType Text001</note>
+        </trans-unit>
+        <trans-unit id="Page 3955058971 - NamedType 3752334001" size-unit="char" translate="yes" xml:space="preserve">
+          <source>A posted line cannot be modified.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page AfkPurchaseRequisitionSubform - NamedType Text002</note>
+        </trans-unit>
+        <trans-unit id="Page 3955058971 - NamedType 95063322" size-unit="char" translate="yes" xml:space="preserve">
+          <source>You cannot assign numbers to a posted header.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page AfkPurchaseRequisitionSubform - NamedType Text003</note>
+        </trans-unit>
+        <trans-unit id="Page 3955058971 - Action 1402615620 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>&amp;Line</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page AfkPurchaseRequisitionSubform - Action &amp;Line - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3955058971 - Action 2173385693 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>View or change the dimension settings for this payment slip. If you change the dimension, you can update all lines on the payment slip.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page AfkPurchaseRequisitionSubform - Action Dimensions - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3955058971 - Action 2173385693 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Dimensions</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page AfkPurchaseRequisitionSubform - Action Dimensions - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3955058971 - Action 3106002577 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>F&amp;unctions</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page AfkPurchaseRequisitionSubform - Action F&amp;unctions - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1260750698 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Purchase Requisition List</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page AfkPurchRequisitionList - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 2735124623 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Port Services Pricing</source>
@@ -2302,6 +2462,56 @@
           <source>Setup</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkSalesOrderProRC - Action AfkSetup - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3297313626 - Action 3419410083 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 2747922353">
+          <source>Purchase and Budget Managment</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkSalesOrderProRC - Action AddOns2 - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3297313626 - Action 3419410083 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 2747922353">
+          <source>Addons2</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkSalesOrderProRC - Action AddOns2 - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3297313626 - Action 3247986958 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 2747922353">
+          <source>View or edit detailed information for the budgets</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkSalesOrderProRC - Action AfkBudgets - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3297313626 - Action 3247986958 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 2747922353">
+          <source>Budgets</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkSalesOrderProRC - Action AfkBudgets - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3297313626 - Action 3322381308 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 2747922353">
+          <source>Purchase orders</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkSalesOrderProRC - Action AfkCalcPurchOrders - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3297313626 - Action 3911085804 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 2747922353">
+          <source>View or edit detailed information about services</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkSalesOrderProRC - Action AfkItems2 - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3297313626 - Action 3911085804 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 2747922353">
+          <source>Items</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkSalesOrderProRC - Action AfkItems2 - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3297313626 - Action 1352582856 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 2747922353">
+          <source>Purchase Requisition List</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkSalesOrderProRC - Action AfkPRList - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3297313626 - Action 1270802125 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 2747922353">
+          <source>View or edit detailed information about vendors</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkSalesOrderProRC - Action AfkVendors - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3297313626 - Action 1270802125 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 2747922353">
+          <source>Vendors</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkSalesOrderProRC - Action AfkVendors - Property Caption</note>
         </trans-unit>
         <trans-unit id="TableExtension 1729255492 - Field 528949462 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 1994964448">
           <source>Tax Number</source>

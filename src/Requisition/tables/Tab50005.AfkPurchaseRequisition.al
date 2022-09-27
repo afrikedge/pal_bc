@@ -120,11 +120,11 @@ table 50005 "AfkPurchaseRequisition"
             OptionCaption = ' ,Partially processed,Totally processed';
             Editable = false;
         }
-        field(30; "Status"; Option)
+        field(30; "Status"; Enum AfkPurchReqStatus)
         {
             Caption = 'Status';
-            OptionMembers = Open,Released,"Pending Approval";
-            OptionCaption = 'Open,Released,Pending Approval';
+            // OptionMembers = Open,Released,"Pending Approval";
+            // OptionCaption = 'Open,Released,Pending Approval';
             Editable = false;
         }
         field(31; "PR Type"; Enum AfkPurchReqType)
@@ -141,13 +141,37 @@ table 50005 "AfkPurchaseRequisition"
             TableRelation = "VAT Business Posting Group";
 
             trigger OnValidate()
+            var
+                PRLine1: record AfkPurchaseRequisitionLine;
             begin
-                // TestStatusOpen();
-                // if (xRec."Buy-from Vendor No." = "Buy-from Vendor No.") and
-                //    (xRec."VAT Bus. Posting Group" <> "VAT Bus. Posting Group")
-                // then
-                //     RecreatePurchLines(FieldCaption("VAT Bus. Posting Group"));
+                TestStatusOpen();
+                if //(xRec."Buy-from Vendor No." = "Buy-from Vendor No.") and
+                   (xRec."VAT Bus. Posting Group" <> "VAT Bus. Posting Group")
+                then begin
+                    PRLine1.SetRange(PRLine1."Document No.", "No.");
+                    if PRLine1.FindSet() then
+                        repeat
+                            PRLine1.Validate("VAT Prod. Posting Group");
+                        until PRLine1.Next() < 1;
+                end;
+
             end;
+        }
+        field(58; "Amount Including VAT"; Decimal)
+        {
+            AutoFormatExpression = "Currency Code";
+            AutoFormatType = 1;
+            CalcFormula = Sum("AfkPurchaseRequisitionLine"."Amount Including VAT" WHERE("Document No." = FIELD("No.")));
+            Caption = 'Amount Including VAT';
+            Editable = false;
+            FieldClass = FlowField;
+        }
+        field(27; "User ID"; Code[50])
+        {
+            Caption = 'User ID';
+            DataClassification = EndUserIdentifiableInformation;
+            TableRelation = User."User Name";
+            ValidateTableRelation = false;
         }
         field(480; "Dimension Set ID"; Integer)
         {
@@ -190,11 +214,11 @@ table 50005 "AfkPurchaseRequisition"
     trigger OnInsert()
     begin
         if "No." = '' then begin
-            AfkSetup.Get();
+            GetSetup();
             AfkSetup.TestField("Purchase Req Nos.");
             NoSeriesMgt.InitSeries(AfkSetup."Purchase Req Nos.", xRec."No. Series", 0D, "No.", "No. Series");
-
         end;
+
         InitHeader;
     end;
 
@@ -238,7 +262,7 @@ table 50005 "AfkPurchaseRequisition"
         // Text008: Label 'Your bank''s currency code is %1.\\You must change the bank account code before modifying the currency code.';
         Text009: Label 'You may have changed a dimension.\\Do you want to update the lines?';
         Text001: Label 'All offers associated with this request will be deleted! \\Do you want to continue ?';
-
+        SetupHasBeenRead: Boolean;
 
 
     procedure LookupShortcutDimCode(FieldNo: Integer; var ShortcutDimCode: Code[20])
@@ -277,11 +301,22 @@ table 50005 "AfkPurchaseRequisition"
     begin
         "Posting Date" := WorkDate;
         "Document Date" := WorkDate;
+        "User ID" := UserId;
+        GetSetup();
+        "Budget Code" := AfkSetup."Default Budget Code";
     end;
 
 
 
 
+
+    procedure GetSetup()
+    begin
+        if SetupHasBeenRead then
+            exit;
+        AfkSetup.Get();
+        SetupHasBeenRead := true;
+    end;
 
     procedure CreateDim(DefaultDimSource: List of [Dictionary of [Integer, Code[20]]])
     var
@@ -360,7 +395,7 @@ table 50005 "AfkPurchaseRequisition"
 
     local procedure UpdateAllLineDim(NewParentDimSetID: Integer; OldParentDimSetID: Integer)
     var
-        PaymentLine: Record "Payment Line";
+        PRLine: Record AfkPurchaseRequisitionLine;
         NewDimSetID: Integer;
     begin
         // Update all lines with changed dimensions.
@@ -370,17 +405,22 @@ table 50005 "AfkPurchaseRequisition"
         if not Confirm(Text009) then
             exit;
 
-        PaymentLine.Reset();
-        PaymentLine.SetRange("No.", "No.");
-        PaymentLine.LockTable();
-        if PaymentLine.Find('-') then
+        PRLine.Reset();
+        PRLine.SetRange("No.", "No.");
+        PRLine.LockTable();
+        if PRLine.Find('-') then
             repeat
-                NewDimSetID := DimManagement.GetDeltaDimSetID(PaymentLine."Dimension Set ID", NewParentDimSetID, OldParentDimSetID);
-                if PaymentLine."Dimension Set ID" <> NewDimSetID then begin
-                    PaymentLine."Dimension Set ID" := NewDimSetID;
-                    PaymentLine.Modify();
+                NewDimSetID := DimManagement.GetDeltaDimSetID(PRLine."Dimension Set ID", NewParentDimSetID, OldParentDimSetID);
+                if PRLine."Dimension Set ID" <> NewDimSetID then begin
+                    PRLine."Dimension Set ID" := NewDimSetID;
+                    PRLine.Modify();
                 end;
-            until PaymentLine.Next() = 0;
+            until PRLine.Next() = 0;
+    end;
+
+    procedure TestStatusOpen()
+    begin
+        TestField(Status, Status::Open);
     end;
 }
 

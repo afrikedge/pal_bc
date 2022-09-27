@@ -1,7 +1,7 @@
 report 50001 "AfkPostedSalesInvoice"
 {
-    RDLCLayout = './Reporting/AfkPostedSalesInvoice.rdlc';
-    //WordLayout = './Reporting/AfkSalesInvoicePreview.docx';
+    RDLCLayout = './src/Invoicing/reports/layouts/AfkPostedSalesInvoice.rdlc';
+    //WordLayout = './src/Invoicing/reports/layouts/AfkSalesInvoicePreview.docx';
     Caption = 'PAL Posted Sales Invoice';
     DefaultLayout = RDLC;
     EnableHyperlinks = true;

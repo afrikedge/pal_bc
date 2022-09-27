@@ -962,6 +962,10 @@ codeunit 50004 AfkPurchaseReqMgt
     end;
 
 
+
+
+
+
     var
         SRDoc: Record AfkPurchaseRequisition;
         UOMMgt: Codeunit "Unit of Measure Management";

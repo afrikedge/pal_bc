@@ -44,11 +44,12 @@ table 50009 AfkPostPurchaseRequisitionLine
             DecimalPlaces = 0 : 5;
 
         }
-        // field(9; "Unit Price"; Decimal)
-        // {
-        //     AutoFormatType = 2;
-        //     Caption = 'Unit Price';
-        // }
+        field(9; "Unit Price"; Decimal)
+        {
+            AutoFormatType = 2;
+            Caption = 'Unit Price';
+
+        }
         field(10; "Gen. Bus. Posting Group"; Code[20])
         {
             Caption = 'Gen. Bus. Posting Group';
@@ -59,26 +60,34 @@ table 50009 AfkPostPurchaseRequisitionLine
             Caption = 'Gen. Prod. Posting Group';
             TableRelation = "Gen. Product Posting Group";
         }
-        // field(12; Amount; Decimal)
-        // {
-        //     //AutoFormatExpression = "Currency Code";
-        //     AutoFormatType = 1;
-        //     Caption = 'Amount';
-        //     //Editable = false;
-        // }
-        // field(13; "Amount Including VAT"; Decimal)
-        // {
-        //     //AutoFormatExpression = "Currency Code";
-        //     AutoFormatType = 1;
-        //     Caption = 'Amount Including VAT';
-        //     Editable = false;
-        // }
-        // field(14; "VAT %"; Decimal)
-        // {
-        //     Caption = 'VAT %';
-        //     DecimalPlaces = 0 : 5;
-        //     Editable = false;
-        // }
+        field(12; Amount; Decimal)
+        {
+            //AutoFormatExpression = "Currency Code";
+            AutoFormatType = 1;
+            Caption = 'Amount';
+            //Editable = false;
+        }
+        field(13; "Amount Including VAT"; Decimal)
+        {
+            //AutoFormatExpression = "Currency Code";
+            AutoFormatType = 1;
+            Caption = 'Amount Including VAT';
+            Editable = false;
+        }
+        field(14; "VAT %"; Decimal)
+        {
+            Caption = 'VAT %';
+            DecimalPlaces = 0 : 5;
+            Editable = false;
+
+
+        }
+        field(74; "VAT Amount"; Decimal)
+        {
+            Caption = 'VAT Amount';
+            DecimalPlaces = 0 : 5;
+            Editable = false;
+        }
         field(15; "VAT Bus. Posting Group"; Code[20])
         {
             Caption = 'VAT Bus. Posting Group';
@@ -93,11 +102,14 @@ table 50009 AfkPostPurchaseRequisitionLine
         {
             Caption = 'VAT Prod. Posting Group';
             TableRelation = "VAT Product Posting Group";
+
+
         }
         field(17; "Quantity (Base)"; Decimal)
         {
             Caption = 'Quantity (Base)';
             DecimalPlaces = 0 : 5;
+            Editable = false;
         }
         field(18; "Qty. per Unit of Measure"; Decimal)
         {
@@ -216,6 +228,9 @@ table 50009 AfkPostPurchaseRequisitionLine
         ServRequest: Record AfkPurchaseRequisition;
         UOMMgt: Codeunit "Unit of Measure Management";
         Text001: Label 'The request can no longer be modified because it has already been validated';
+        VATPostingSetup: Record "VAT Posting Setup";
+        Currency: Record Currency;
+
 
 
 

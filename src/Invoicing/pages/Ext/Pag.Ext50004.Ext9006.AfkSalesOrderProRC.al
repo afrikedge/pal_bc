@@ -112,7 +112,67 @@ pageextension 50004 AfkSalesOrderProRC extends "Order Processor Role Center"
 
             }
         }
+        addafter(AddOns)
+        {
+            group(AddOns2)
+            {
+                Caption = 'Addons2';
+                Image = Sales;
+                ToolTip = 'Purchase and Budget Managment';
+                action(AfkPRList)
+                {
+                    ApplicationArea = Basic, Suite;
+                    Caption = 'Purchase Requisition List';
+                    Image = Track;
+                    Promoted = true;
+                    PromotedCategory = Process;
+                    RunObject = Page AfkPurchRequisitionList;
+                    //ToolTip = 'View or edit detailed information for the boat types';
+                }
+                action(AfkItems2)
+                {
+                    ApplicationArea = Basic, Suite;
+                    Caption = 'Items';
+                    Image = ItemLines;
+                    Promoted = true;
+                    PromotedCategory = Process;
+                    RunObject = Page "Item List";
+                    ToolTip = 'View or edit detailed information about services';
+                }
+                action(AfkVendors)
+                {
+                    ApplicationArea = Basic, Suite;
+                    Caption = 'Vendors';
+                    Image = CustomerList;
+                    Promoted = true;
+                    PromotedCategory = Process;
+                    RunObject = Page "Vendor List";
+                    ToolTip = 'View or edit detailed information about vendors';
+                }
+                action(AfkBudgets)
+                {
+                    ApplicationArea = Basic, Suite;
+                    Caption = 'Budgets';
+                    Image = Track;
+                    Promoted = true;
+                    PromotedCategory = Process;
+                    RunObject = Page "G/L Budget Names";
+                    ToolTip = 'View or edit detailed information for the budgets';
+                }
+                action(AfkCalcPurchOrders)
+                {
+                    ApplicationArea = Basic, Suite;
+                    Caption = 'Purchase orders';
+                    Image = Track;
+                    Promoted = true;
+                    PromotedCategory = Process;
+                    RunObject = Page "Purchase Order List";
+                    //ToolTip = 'View or edit detailed information for the calculation parameters';
+                }
 
+
+            }
+        }
     }
 
 

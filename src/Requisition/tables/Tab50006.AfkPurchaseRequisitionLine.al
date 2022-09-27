@@ -21,6 +21,7 @@ table 50006 AfkPurchaseRequisitionLine
         field(5; Type; Enum "Purchase Line Type")
         {
             Caption = 'Type';
+            Editable = false;
             trigger OnValidate()
             begin
                 IF Type <> xRec.Type THEN
@@ -45,7 +46,7 @@ table 50006 AfkPurchaseRequisitionLine
             else
             if (Type = const(Resource)) Resource;
 
-            ValidateTableRelation = false;
+            //ValidateTableRelation = false;
             trigger OnValidate()
             var
 
@@ -61,7 +62,7 @@ table 50006 AfkPurchaseRequisitionLine
                                 Item.TESTFIELD("Inventory Posting Group");
                             Item.TESTFIELD("Gen. Prod. Posting Group");
 
-                            //CreateDimFromDefaultDim(Rec.FieldNo("No."));
+                            CreateDimFromDefaultDim(Rec.FieldNo("No."));
 
                             // CreateDim(
                             //   DATABASE::Item, "No.",
@@ -95,7 +96,7 @@ table 50006 AfkPurchaseRequisitionLine
                                 Description := GLAcc.Name;
                             "Item Description" := GLAcc.Name;
 
-                            //CreateDimFromDefaultDim(Rec.FieldNo("No."));
+                            CreateDimFromDefaultDim(Rec.FieldNo("No."));
 
                             // CreateDim(
                             //   DATABASE::"G/L Account", "No.",
@@ -116,6 +117,7 @@ table 50006 AfkPurchaseRequisitionLine
                             ItemCharge.TESTFIELD("Gen. Prod. Posting Group");
                             Description := ItemCharge.Description;
                             "Item Description" := ItemCharge.Description;
+                            CreateDimFromDefaultDim(Rec.FieldNo("No."));
                             // CreateDim(
                             //   DATABASE::"Item Charge", "No.",
                             //   DATABASE::Job, '',
@@ -138,7 +140,7 @@ table 50006 AfkPurchaseRequisitionLine
                             FA.TESTFIELD(Inactive, FALSE);
                             FA.TESTFIELD(Blocked, FALSE);
                             GetFAPostingGroup;
-
+                            CreateDimFromDefaultDim(Rec.FieldNo("No."));
                             // CreateDim(
                             //   DATABASE::"Fixed Asset", "No.",
                             //   DATABASE::Job, '',
@@ -156,13 +158,13 @@ table 50006 AfkPurchaseRequisitionLine
                 END;
 
 
-                ServRequest.GET("Document No.");
-                VALIDATE("Gen. Bus. Posting Group", ServRequest."Gen. Bus. Posting Group");
+                GetPurchHeader();
+                //VALIDATE("Gen. Bus. Posting Group", PRHeader."Gen. Bus. Posting Group");
                 //VALIDATE("VAT Bus. Posting Group", ServRequest.v);
 
 
 
-                "Purchase Account" := BudgetMgt.GetPurchAccFromReq(Rec, ServRequest);
+                "Purchase Account" := BudgetMgt.GetPurchAccFromReq(Rec, PRHeader);
 
             end;
         }
@@ -193,7 +195,7 @@ table 50006 AfkPurchaseRequisitionLine
             begin
                 IF Quantity <> xRec.Quantity THEN BEGIN
                     GetPurchHeader;
-                    IF ServRequest.Status = ServRequest.Status::Released THEN
+                    IF PRHeader.Status = PRHeader.Status::Released THEN
                         ERROR(Text001);
                 END;
 
@@ -217,11 +219,11 @@ table 50006 AfkPurchaseRequisitionLine
                 CalcAmounts();
             end;
         }
-        field(10; "Gen. Bus. Posting Group"; Code[20])
-        {
-            Caption = 'Gen. Bus. Posting Group';
-            TableRelation = "Gen. Business Posting Group";
-        }
+        // field(10; "Gen. Bus. Posting Group"; Code[20])
+        // {
+        //     Caption = 'Gen. Bus. Posting Group';
+        //     TableRelation = "Gen. Business Posting Group";
+        // }
         field(11; "Gen. Prod. Posting Group"; Code[20])
         {
             Caption = 'Gen. Prod. Posting Group';
@@ -240,10 +242,7 @@ table 50006 AfkPurchaseRequisitionLine
             AutoFormatType = 1;
             Caption = 'VAT Amount';
             Editable = false;
-            trigger OnValidate()
-            begin
-                CalcAmounts();
-            end;
+
         }
         field(13; "Amount Including VAT"; Decimal)
         {
@@ -251,23 +250,28 @@ table 50006 AfkPurchaseRequisitionLine
             AutoFormatType = 1;
             Caption = 'Amount Including VAT';
             Editable = false;
+
         }
         field(14; "VAT %"; Decimal)
         {
             Caption = 'VAT %';
             DecimalPlaces = 0 : 5;
             Editable = false;
-        }
-        field(15; "VAT Bus. Posting Group"; Code[20])
-        {
-            Caption = 'VAT Bus. Posting Group';
-            TableRelation = "VAT Business Posting Group";
-
             trigger OnValidate()
             begin
-                Validate("VAT Prod. Posting Group");
+                CalcAmounts();
             end;
         }
+        // field(15; "VAT Bus. Posting Group"; Code[20])
+        // {
+        //     Caption = 'VAT Bus. Posting Group';
+        //     TableRelation = "VAT Business Posting Group";
+
+        //     trigger OnValidate()
+        //     begin
+        //         Validate("VAT Prod. Posting Group");
+        //     end;
+        // }
         field(16; "VAT Prod. Posting Group"; Code[20])
         {
             Caption = 'VAT Prod. Posting Group';
@@ -276,7 +280,8 @@ table 50006 AfkPurchaseRequisitionLine
             var
                 VATPostingSetup: Record "VAT Posting Setup";
             begin
-                IF VATPostingSetup.Get("VAT Bus. Posting Group", "VAT Prod. Posting Group") then begin
+                GetPurchHeader();
+                IF VATPostingSetup.Get(PRHeader."VAT Bus. Posting Group", "VAT Prod. Posting Group") then begin
                     VALIDATE("VAT %", VATPostingSetup."VAT %");
                 end;
             end;
@@ -410,11 +415,14 @@ table 50006 AfkPurchaseRequisitionLine
 
     begin
         TestStatusOpen();
+
+        GetPurchHeader();
+        // va := PRHeader."VAT Bus. Posting Group";
     end;
 
     var
         DimMgt: Codeunit DimensionManagement;
-        PurchHeader: Record "AfkPurchaseRequisition";
+        PRHeader: Record "AfkPurchaseRequisition";
         GLSetup: Record "General Ledger Setup";
         Item: Record Item;
         GLAcc: Record "G/L Account";
@@ -424,10 +432,11 @@ table 50006 AfkPurchaseRequisitionLine
         FADeprBook: Record "FA Depreciation Book";
         LocalGLAcc: Record "G/L Account";
         FAPostingGr: Record "FA Posting Group";
-        ServRequest: Record AfkPurchaseRequisition;
+        //ServRequest: Record AfkPurchaseRequisition;
         UOMMgt: Codeunit "Unit of Measure Management";
         Text001: Label 'The request can no longer be modified because it has already been validated';
         BudgetMgt: Codeunit AfkPurchaseReqMgt;
+        Currency: Record Currency;
 
     procedure ValidateShortcutDimCode(FieldNumber: Integer; var ShortcutDimCode: Code[20])
     var
@@ -471,6 +480,11 @@ table 50006 AfkPurchaseRequisitionLine
 
     end;
 
+    procedure ShowShortcutDimCode(var ShortcutDimCode: array[8] of Code[20])
+    begin
+        DimMgt.GetShortcutDimensions("Dimension Set ID", ShortcutDimCode);
+    end;
+
     procedure CreateDim(DefaultDimSource: List of [Dictionary of [Integer, Code[20]]])
     var
         SourceCodeSetup: Record "Source Code Setup";
@@ -485,24 +499,18 @@ table 50006 AfkPurchaseRequisitionLine
         "Dimension Set ID" :=
           DimMgt.GetRecDefaultDimID(
             Rec, CurrFieldNo, DefaultDimSource, SourceCodeSetup.Purchases,
-            "Shortcut Dimension 1 Code", "Shortcut Dimension 2 Code", PurchHeader."Dimension Set ID", DATABASE::Vendor);
+            "Shortcut Dimension 1 Code", "Shortcut Dimension 2 Code", PRHeader."Dimension Set ID", DATABASE::Vendor);
         DimMgt.UpdateGlobalDimFromDimSetID("Dimension Set ID", "Shortcut Dimension 1 Code", "Shortcut Dimension 2 Code");
 
     end;
 
-    procedure GetPurchHeader(): Record AfkPurchaseRequisition
-    begin
-        TestField("Document No.");
-        if ("Document No." <> PurchHeader."No.") then
-            PurchHeader.Get("Document No.");
-        exit(PurchHeader);
-    end;
+
 
     procedure TestStatusOpen()
     begin
         GetPurchHeader;
         IF Type <> Type::" " THEN
-            IF PurchHeader.Status = PurchHeader.Status::Released THEN
+            IF PRHeader.Status = PRHeader.Status::Released THEN
                 ERROR(Text001);
     end;
 
@@ -551,11 +559,34 @@ table 50006 AfkPurchaseRequisitionLine
         EXIT(ROUND(Qty * "Qty. per Unit of Measure", 0.00001));
     end;
 
-    local procedure CalcAmounts()
-    var
+    procedure GetPurchHeader(): Record "AfkPurchaseRequisition"
     begin
-        Amount := ROUND(Quantity * "Unit Price", 0.00001);
-        "VAT Amount" := Amount * "VAT %" / 100;
-        "Amount Including VAT" := Amount + "VAT Amount";
+        GetPurchHeader(PRHeader, Currency);
+        exit(PRHeader);
     end;
+
+    procedure GetPurchHeader(var OutPurchHeader: Record "AfkPurchaseRequisition"; var OutCurrency: Record Currency)
+    begin
+        TestField("Document No.");
+        if ("Document No." <> PRHeader."No.") then begin
+            PRHeader.Get("Document No.");
+            if PRHeader."Currency Code" = '' then
+                Currency.InitRoundingPrecision
+            else begin
+                //PurchHeader.TestField("Currency Factor");
+                Currency.Get(PRHeader."Currency Code");
+                Currency.TestField("Amount Rounding Precision");
+            end;
+        end;
+    end;
+
+    local procedure CalcAmounts()
+    begin
+        "Amount" := Round(Quantity * "Unit Price", Currency."Amount Rounding Precision");
+        "VAT Amount" := Round("VAT %" * Amount / 100, Currency."Amount Rounding Precision");
+        "Amount Including VAT" := "Amount" + "VAT Amount";
+    end;
+
+
+
 }

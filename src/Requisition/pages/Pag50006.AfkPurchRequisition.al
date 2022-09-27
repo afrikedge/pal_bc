@@ -1,4 +1,4 @@
-page 50006 "Purchase Requisition"
+page 50006 "AfkPurchaseRequisition"
 {
     Caption = 'Purchase Requisition';
     PageType = Document;
@@ -31,7 +31,7 @@ page 50006 "Purchase Requisition"
                     Editable = false;
                     Lookup = false;
                 }
-                field(SystemCreatedBy; Rec.SystemCreatedBy)
+                field("User ID"; Rec."User ID")
                 {
                     ApplicationArea = Basic, Suite;
                     DrillDown = false;
@@ -40,6 +40,7 @@ page 50006 "Purchase Requisition"
                 field("Description"; Rec.Description)
                 {
                     ApplicationArea = Basic, Suite;
+                    MultiLine = true;
                 }
                 field("Requested Receipt Date"; Rec."Requested Receipt Date")
                 {
@@ -73,16 +74,20 @@ page 50006 "Purchase Requisition"
                 {
                     ApplicationArea = Basic, Suite;
                 }
-                field("VAT Bus. Posting Group"; Rec."VAT Bus. Posting Group")
+                // field("VAT Bus. Posting Group"; Rec."VAT Bus. Posting Group")
+                // {
+                //     ApplicationArea = Basic, Suite;
+                // }
+                field("Amount Including VAT"; Rec."Amount Including VAT")
                 {
                     ApplicationArea = Basic, Suite;
                 }
 
             }
-            part(Lines; "Payment Slip Subform")
+            part(Lines; "AfkPurchaseRequisitionSubform")
             {
                 ApplicationArea = Basic, Suite;
-                SubPageLink = "No." = FIELD("No.");
+                SubPageLink = "Document No." = FIELD("No.");
             }
 
         }
