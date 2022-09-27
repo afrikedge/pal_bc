@@ -135,6 +135,20 @@ table 50005 "AfkPurchaseRequisition"
         {
             Caption = 'Purchase Order Type';
         }
+        field(33; "VAT Bus. Posting Group"; Code[20])
+        {
+            Caption = 'VAT Bus. Posting Group';
+            TableRelation = "VAT Business Posting Group";
+
+            trigger OnValidate()
+            begin
+                // TestStatusOpen();
+                // if (xRec."Buy-from Vendor No." = "Buy-from Vendor No.") and
+                //    (xRec."VAT Bus. Posting Group" <> "VAT Bus. Posting Group")
+                // then
+                //     RecreatePurchLines(FieldCaption("VAT Bus. Posting Group"));
+            end;
+        }
         field(480; "Dimension Set ID"; Integer)
         {
             Caption = 'Dimension Set ID';

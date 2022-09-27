@@ -974,7 +974,6 @@ codeunit 50004 AfkPurchaseReqMgt
         Text010: Label 'Do you want to close the purchasing document?';
         Text008: Label 'Posting groups not defined on command line %1 - %2 - (%3 - %4)';
         Text009: Label 'Posting groups not defined on purchase requisition line %1 - %2';
-
         Text011: Label 'Purchase account is invalid on line %1';
         Text014: Label 'Would you like to close this purchase order: %1?';
         Text013: Label 'You cannot close this order because the quantity received has not been fully invoiced for item %1';

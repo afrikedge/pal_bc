@@ -72,7 +72,7 @@ table 50006 AfkPurchaseRequisitionLine
                             Description := Item.Description;
                             "Item Description" := Item.Description;
                             "Gen. Prod. Posting Group" := Item."Gen. Prod. Posting Group";
-                            "VAT Prod. Posting Group" := Item."VAT Prod. Posting Group";
+                            VALIDATE("VAT Prod. Posting Group", Item."VAT Prod. Posting Group");
                             Item.TESTFIELD("Base Unit of Measure");
                             VALIDATE("Unit of Measure Code", Item."Base Unit of Measure");
 
@@ -103,7 +103,7 @@ table 50006 AfkPurchaseRequisitionLine
                             //   DATABASE::"Responsibility Center", '');
 
                             "Gen. Prod. Posting Group" := GLAcc."Gen. Prod. Posting Group";
-                            "VAT Prod. Posting Group" := GLAcc."VAT Prod. Posting Group";
+                            VALIDATE("VAT Prod. Posting Group", GLAcc."VAT Prod. Posting Group");
                             "Qty. per Unit of Measure" := 1;
                             //Serv.TESTFIELD("Poste Budgétaire");
                             //IF GLAcc."Nature Code"<>'' THEN
@@ -122,7 +122,7 @@ table 50006 AfkPurchaseRequisitionLine
                             //   DATABASE::"Responsibility Center", '');
 
                             "Gen. Prod. Posting Group" := ItemCharge."Gen. Prod. Posting Group";
-                            "VAT Prod. Posting Group" := ItemCharge."VAT Prod. Posting Group";
+                            VALIDATE("VAT Prod. Posting Group", ItemCharge."VAT Prod. Posting Group");
                             "Qty. per Unit of Measure" := 1;
                             //"Prix Unitaire" := ItemCharge."Prix unitaire";
 
@@ -161,10 +161,9 @@ table 50006 AfkPurchaseRequisitionLine
                 //VALIDATE("VAT Bus. Posting Group", ServRequest.v);
 
 
-                //**************************************************************************************************
-                //Budget Mgt***************************************
-                //"Purchase Account" := BudgetMgt.GetPurchAccFromReq(Rec, ServRequest);
-                //*************************************************Jn0001
+
+                "Purchase Account" := BudgetMgt.GetPurchAccFromReq(Rec, ServRequest);
+
             end;
         }
         field(7; "Unit of Measure Code"; Code[10])
@@ -199,9 +198,7 @@ table 50006 AfkPurchaseRequisitionLine
                 END;
 
 
-                // Amount := ROUND(Quantity * "Unit Price", 0.00001);
-                // "Amount Incl VAT" := Amount + "VAT Amount";
-                // VALIDATE("VAT %");
+                CalcAmounts();
 
                 IF Type = Type::Item THEN
                     "Quantity (Base)" := CalcBaseQty(Quantity)
@@ -211,11 +208,15 @@ table 50006 AfkPurchaseRequisitionLine
                 "Remaining Quantity (Base)" := "Quantity (Base)" - "Ordered Quantity (Base)";
             end;
         }
-        // field(9; "Unit Price"; Decimal)
-        // {
-        //     AutoFormatType = 2;
-        //     Caption = 'Unit Price';
-        // }
+        field(9; "Unit Price"; Decimal)
+        {
+            AutoFormatType = 2;
+            Caption = 'Unit Price';
+            trigger OnValidate()
+            begin
+                CalcAmounts();
+            end;
+        }
         field(10; "Gen. Bus. Posting Group"; Code[20])
         {
             Caption = 'Gen. Bus. Posting Group';
@@ -226,26 +227,37 @@ table 50006 AfkPurchaseRequisitionLine
             Caption = 'Gen. Prod. Posting Group';
             TableRelation = "Gen. Product Posting Group";
         }
-        // field(12; Amount; Decimal)
-        // {
-        //     //AutoFormatExpression = "Currency Code";
-        //     AutoFormatType = 1;
-        //     Caption = 'Amount';
-        //     //Editable = false;
-        // }
-        // field(13; "Amount Including VAT"; Decimal)
-        // {
-        //     //AutoFormatExpression = "Currency Code";
-        //     AutoFormatType = 1;
-        //     Caption = 'Amount Including VAT';
-        //     Editable = false;
-        // }
-        // field(14; "VAT %"; Decimal)
-        // {
-        //     Caption = 'VAT %';
-        //     DecimalPlaces = 0 : 5;
-        //     Editable = false;
-        // }
+        field(12; Amount; Decimal)
+        {
+            //AutoFormatExpression = "Currency Code";
+            AutoFormatType = 1;
+            Caption = 'Amount';
+            Editable = false;
+        }
+        field(72; "VAT Amount"; Decimal)
+        {
+            //AutoFormatExpression = "Currency Code";
+            AutoFormatType = 1;
+            Caption = 'VAT Amount';
+            Editable = false;
+            trigger OnValidate()
+            begin
+                CalcAmounts();
+            end;
+        }
+        field(13; "Amount Including VAT"; Decimal)
+        {
+            //AutoFormatExpression = "Currency Code";
+            AutoFormatType = 1;
+            Caption = 'Amount Including VAT';
+            Editable = false;
+        }
+        field(14; "VAT %"; Decimal)
+        {
+            Caption = 'VAT %';
+            DecimalPlaces = 0 : 5;
+            Editable = false;
+        }
         field(15; "VAT Bus. Posting Group"; Code[20])
         {
             Caption = 'VAT Bus. Posting Group';
@@ -260,6 +272,14 @@ table 50006 AfkPurchaseRequisitionLine
         {
             Caption = 'VAT Prod. Posting Group';
             TableRelation = "VAT Product Posting Group";
+            trigger OnValidate()
+            var
+                VATPostingSetup: Record "VAT Posting Setup";
+            begin
+                IF VATPostingSetup.Get("VAT Bus. Posting Group", "VAT Prod. Posting Group") then begin
+                    VALIDATE("VAT %", VATPostingSetup."VAT %");
+                end;
+            end;
         }
         field(17; "Quantity (Base)"; Decimal)
         {
@@ -407,6 +427,7 @@ table 50006 AfkPurchaseRequisitionLine
         ServRequest: Record AfkPurchaseRequisition;
         UOMMgt: Codeunit "Unit of Measure Management";
         Text001: Label 'The request can no longer be modified because it has already been validated';
+        BudgetMgt: Codeunit AfkPurchaseReqMgt;
 
     procedure ValidateShortcutDimCode(FieldNumber: Integer; var ShortcutDimCode: Code[20])
     var
@@ -528,5 +549,13 @@ table 50006 AfkPurchaseRequisitionLine
     begin
         TESTFIELD("Qty. per Unit of Measure");
         EXIT(ROUND(Qty * "Qty. per Unit of Measure", 0.00001));
+    end;
+
+    local procedure CalcAmounts()
+    var
+    begin
+        Amount := ROUND(Quantity * "Unit Price", 0.00001);
+        "VAT Amount" := Amount * "VAT %" / 100;
+        "Amount Including VAT" := Amount + "VAT Amount";
     end;
 }
