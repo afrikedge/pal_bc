@@ -4,6 +4,8 @@ page 50006 "AfkPurchaseRequisition"
     PageType = Document;
     RefreshOnActivate = true;
     SourceTable = AfkPurchaseRequisition;
+    SourceTableView = WHERE("Document Type" = FILTER(Requisition));
+    UsageCategory = Documents;
     PromotedActionCategories = 'New,Process,Report,Approbation,Release,Request Approval,Purchase Requisition';
 
     layout
@@ -19,6 +21,7 @@ page 50006 "AfkPurchaseRequisition"
                     AssistEdit = false;
                     ToolTip = 'Specifies the number of the purchase requisition.';
                     Editable = false;
+                    Visible = false;
 
                     trigger OnAssistEdit()
                     begin
@@ -42,6 +45,14 @@ page 50006 "AfkPurchaseRequisition"
                 {
                     ApplicationArea = Basic, Suite;
                     MultiLine = true;
+                }
+                field("Status"; Rec.Status)
+                {
+                    ApplicationArea = Basic, Suite;
+                }
+                field("Document Date"; Rec."Document Date")
+                {
+                    ApplicationArea = Basic, Suite;
                 }
                 field("Requested Receipt Date"; Rec."Requested Receipt Date")
                 {
@@ -75,11 +86,11 @@ page 50006 "AfkPurchaseRequisition"
                 {
                     ApplicationArea = Basic, Suite;
                 }
-                // field("VAT Bus. Posting Group"; Rec."VAT Bus. Posting Group")
-                // {
-                //     ApplicationArea = Basic, Suite;
-                // }
-                field("Amount Including VAT"; Rec."Amount Including VAT")
+                field("VAT Bus. Posting Group"; Rec."VAT Bus. Posting Group")
+                {
+                    ApplicationArea = Basic, Suite;
+                }
+                field("Amount (LCY)"; Rec."Amount (LCY)")
                 {
                     ApplicationArea = Basic, Suite;
                 }
@@ -121,7 +132,7 @@ page 50006 "AfkPurchaseRequisition"
             group("&Header")
             {
                 Caption = '&Header';
-                Image = DepositSlip;
+                Image = Purchasing;
                 action(Dimensions)
                 {
                     ApplicationArea = Basic, Suite;
@@ -246,7 +257,7 @@ page 50006 "AfkPurchaseRequisition"
                     var
                         EmpLoanWkflMgt: Codeunit AfkPRReqWorkflowMgt;
                     begin
-                        IF EmpLoanWkflMgt.CheckPurchRequisitionApprovalPossible_AFK(Rec) THEN;
+                        IF EmpLoanWkflMgt.CheckDocRequisitionApprovalPossible_AFK(Rec) THEN;
                         EmpLoanWkflMgt.OnSendPurchRequisitionForApproval_AFK(Rec);
                     end;
                 }

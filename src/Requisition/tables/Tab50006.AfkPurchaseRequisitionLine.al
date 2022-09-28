@@ -5,10 +5,16 @@ table 50006 AfkPurchaseRequisitionLine
     //LookupPageID = "Purchase Lines";
     fields
     {
+
         field(1; "Document No."; Code[20])
         {
             Caption = 'Document No.';
         }
+        field(51; "Document Type"; Enum AfkRequisitionDocType)
+        {
+            Caption = 'Document Type';
+        }
+
         field(2; "Line No."; Integer)
         {
             Caption = 'Line No.';
@@ -252,7 +258,7 @@ table 50006 AfkPurchaseRequisitionLine
             Editable = false;
 
         }
-        field(53; "Amount (LCY)"; Decimal)
+        field(53; "Amount Including VAT (LCY)"; Decimal)
         {
             //AutoFormatExpression = "Currency Code";
             AutoFormatType = 1;
@@ -415,7 +421,7 @@ table 50006 AfkPurchaseRequisitionLine
     }
     keys
     {
-        key(Key1; "Document No.", "Line No.")
+        key(Key1; "Document Type", "Document No.", "Line No.")
         {
             Clustered = true;
         }
@@ -578,8 +584,8 @@ table 50006 AfkPurchaseRequisitionLine
     procedure GetPurchHeader(var OutPurchHeader: Record "AfkPurchaseRequisition"; var OutCurrency: Record Currency)
     begin
         TestField("Document No.");
-        if ("Document No." <> PRHeader."No.") then begin
-            PRHeader.Get("Document No.");
+        if (("Document No." <> PRHeader."No.") or ("Document Type" <> PRHeader."Document Type")) then begin
+            PRHeader.Get("Document Type", "Document No.");
             if PRHeader."Currency Code" = '' then
                 Currency.InitRoundingPrecision
             else begin
@@ -601,12 +607,12 @@ table 50006 AfkPurchaseRequisitionLine
         GetPurchHeader();
         factor := CurrExchRate.ExchangeRate(PRHeader."Document Date", PRHeader."Currency Code");
         IF PRHeader."Currency Code" = '' THEN
-            "Amount (LCY)" := "Amount Including VAT"
+            "Amount Including VAT (LCY)" := "Amount Including VAT"
         ELSE
-            "Amount (LCY)" := ROUND(
+            "Amount Including VAT (LCY)" := ROUND(
                 CurrExchRate.ExchangeAmtFCYToLCY(
                   PRHeader."Document Date", PRHeader."Currency Code",
-                  "Amount (LCY)", factor));
+                  "Amount Including VAT (LCY)", factor));
     end;
 
 

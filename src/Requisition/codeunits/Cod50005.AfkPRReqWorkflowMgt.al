@@ -14,11 +14,11 @@ codeunit 50005 AfkPRReqWorkflowMgt
     procedure AddWorkflowEventsToLibrary()
 
     begin
-        WEventHandling.AddEventToLibrary(GetOnSendPurchRequisitionForApprovalCode, DATABASE::"AfkPurchaseRequisition",
+        WEventHandling.AddEventToLibrary(GetOnSendDocRequisitionForApprovalCode, DATABASE::"AfkPurchaseRequisition",
             PurchRequisitionSendForApprovalEventDescTxt_AFK, 0, FALSE);
-        WEventHandling.AddEventToLibrary(GetOnAfterReleasePurchRequisitionCode, DATABASE::"AfkPurchaseRequisition",
+        WEventHandling.AddEventToLibrary(GetOnAfterReleaseDocRequisitionCode, DATABASE::"AfkPurchaseRequisition",
             PurchRequisitionReleasedEventDescTxt_AFK, 0, FALSE);
-        WEventHandling.AddEventToLibrary(GetOnCancelPurchRequisitionApprovalRequestCode, DATABASE::"AfkPurchaseRequisition",
+        WEventHandling.AddEventToLibrary(GetOnCancelDocRequisitionApprovalRequestCode, DATABASE::"AfkPurchaseRequisition",
             PurchRequisitionApprReqCancelledEventDescTxt_AFK, 0, FALSE);
     end;
 
@@ -26,26 +26,26 @@ codeunit 50005 AfkPRReqWorkflowMgt
 
     begin
         case EventFunctionName of
-            GetOnCancelPurchRequisitionApprovalRequestCode:
-                WEventHandling.AddEventPredecessor(GetOnCancelPurchRequisitionApprovalRequestCode, GetOnSendPurchRequisitionForApprovalCode);
+            GetOnCancelDocRequisitionApprovalRequestCode:
+                WEventHandling.AddEventPredecessor(GetOnCancelDocRequisitionApprovalRequestCode, GetOnSendDocRequisitionForApprovalCode);
             WEventHandling.RunWorkflowOnApproveApprovalRequestCode:
-                WEventHandling.AddEventPredecessor(WEventHandling.RunWorkflowOnApproveApprovalRequestCode, GetOnSendPurchRequisitionForApprovalCode);
+                WEventHandling.AddEventPredecessor(WEventHandling.RunWorkflowOnApproveApprovalRequestCode, GetOnSendDocRequisitionForApprovalCode);
             WEventHandling.RunWorkflowOnRejectApprovalRequestCode:
-                WEventHandling.AddEventPredecessor(WEventHandling.RunWorkflowOnRejectApprovalRequestCode, GetOnSendPurchRequisitionForApprovalCode);
+                WEventHandling.AddEventPredecessor(WEventHandling.RunWorkflowOnRejectApprovalRequestCode, GetOnSendDocRequisitionForApprovalCode);
             WEventHandling.RunWorkflowOnDelegateApprovalRequestCode:
-                WEventHandling.AddEventPredecessor(WEventHandling.RunWorkflowOnDelegateApprovalRequestCode, GetOnSendPurchRequisitionForApprovalCode);
+                WEventHandling.AddEventPredecessor(WEventHandling.RunWorkflowOnDelegateApprovalRequestCode, GetOnSendDocRequisitionForApprovalCode);
         end;
     end;
 
 
     procedure HandleOnCancePurchRequisitionApprovalRequest(var PurchRequisition: Record "AfkPurchaseRequisition")
     begin
-        WorkflowManagement.HandleEvent(GetOnCancelPurchRequisitionApprovalRequestCode, PurchRequisition);
+        WorkflowManagement.HandleEvent(GetOnCancelDocRequisitionApprovalRequestCode, PurchRequisition);
     end;
 
     procedure HandleOnSendPurchRequisitionForApproval(var PurchRequisition: Record "AfkPurchaseRequisition")
     begin
-        WorkflowManagement.HandleEvent(GetOnSendPurchRequisitionForApprovalCode, PurchRequisition);
+        WorkflowManagement.HandleEvent(GetOnSendDocRequisitionForApprovalCode, PurchRequisition);
     end;
 
     procedure OpenApprovalsEmplLoan(EmpLoan: Record AfkPurchaseRequisition)
@@ -56,21 +56,21 @@ codeunit 50005 AfkPRReqWorkflowMgt
 
     procedure SetStatusToPendingApproval(RecRef: RecordRef; Variant: Variant; var IsHandled: Boolean)
     var
-        PurchRequisition: Record "AfkPurchaseRequisition";
+        DocRequisition: Record "AfkPurchaseRequisition";
     begin
         case RecRef.Number of
             DATABASE::"AfkPurchaseRequisition":
                 begin
-                    RecRef.SETTABLE(PurchRequisition);
-                    PurchRequisition.VALIDATE(Status, PurchRequisition.Status::"Pending Approval");
-                    PurchRequisition.MODIFY(TRUE);
-                    Variant := PurchRequisition;
+                    RecRef.SETTABLE(DocRequisition);
+                    DocRequisition.VALIDATE(Status, DocRequisition.Status::"Pending Approval");
+                    DocRequisition.MODIFY(TRUE);
+                    Variant := DocRequisition;
                     IsHandled := true;
                 end;
         end;
     end;
 
-    procedure ReleasePurchRequisitionDoc(RecRef: RecordRef; VAR Handled: Boolean)
+    procedure ReleaseRequisitionDoc(RecRef: RecordRef; VAR Handled: Boolean)
     var
         PurchRequisition: Record "AfkPurchaseRequisition";
     begin
@@ -84,28 +84,28 @@ codeunit 50005 AfkPRReqWorkflowMgt
         end;
     end;
 
-    procedure ShowPurchRequisitionApprovalStatus_AFK(PurchRequisition: Record "AfkPurchaseRequisition")
+    procedure ShowRequisitionApprovalStatus_AFK(PurchRequisition: Record "AfkPurchaseRequisition")
     begin
         PurchRequisition.FIND;
 
         CASE PurchRequisition.Status OF
             PurchRequisition.Status::Released:
-                MESSAGE(DocStatusChangedMsg, LoanTypeDocumentText_AFK, PurchRequisition."No.", PurchRequisition.Status);
+                MESSAGE(DocStatusChangedMsg, ReqTypeDocumentText_AFK, PurchRequisition."No.", PurchRequisition.Status);
             PurchRequisition.Status::"Pending Approval":
                 IF ApprovMgt.HasOpenOrPendingApprovalEntries(PurchRequisition.RECORDID) THEN
                     MESSAGE(PendingApprovalMsg);
         END;
     end;
 
-    local procedure CalcPurchRequisitionAmount_AFK(PurchRequisition: Record "AfkPurchaseRequisition"; VAR ApprovalAmount: Decimal; VAR ApprovalAmountLCY: Decimal)
+    local procedure CalcPurchRequisitionAmount_AFK(DocRequisition: Record "AfkPurchaseRequisition"; VAR ApprovalAmount: Decimal; VAR ApprovalAmountLCY: Decimal)
     begin
-        ApprovalAmount := PurchRequisition."Amount Including VAT";
-        ApprovalAmountLCY := PurchRequisition."Amount (LCY)";
+        ApprovalAmount := DocRequisition."Amount Including VAT";
+        ApprovalAmountLCY := DocRequisition."Amount (LCY)";
     end;
 
     procedure PopulateApprovalEntryArgument(RecRef: RecordRef; WorkflowStepInstance: Record "Workflow Step Instance"; VAR ApprovalEntryArgument: Record "Approval Entry")
     var
-        PurchRequisition: Record "AfkPurchaseRequisition";
+        DocRequisition: Record "AfkPurchaseRequisition";
         ApprovalAmount: Decimal;
         ApprovalAmountLCY: Decimal;
     begin
@@ -113,12 +113,12 @@ codeunit 50005 AfkPRReqWorkflowMgt
         CASE RecRef.NUMBER OF
             DATABASE::"AfkPurchaseRequisition":
                 begin
-                    RecRef.SETTABLE(PurchRequisition);
-                    CalcPurchRequisitionAmount_AFK(PurchRequisition, ApprovalAmount, ApprovalAmountLCY);
-                    ApprovalEntryArgument."Document No." := PurchRequisition."No.";
+                    RecRef.SETTABLE(DocRequisition);
+                    CalcPurchRequisitionAmount_AFK(DocRequisition, ApprovalAmount, ApprovalAmountLCY);
+                    ApprovalEntryArgument."Document No." := DocRequisition."No.";
                     ApprovalEntryArgument.Amount := ApprovalAmount;
                     ApprovalEntryArgument."Amount (LCY)" := ApprovalAmountLCY;
-                    ApprovalEntryArgument."Currency Code" := PurchRequisition."Currency Code";
+                    ApprovalEntryArgument."Currency Code" := DocRequisition."Currency Code";
                 end;
         end;
     end;
@@ -128,11 +128,11 @@ codeunit 50005 AfkPRReqWorkflowMgt
     begin
         CASE ApprovalEntryArgument."Table ID" OF
             DATABASE::"AfkPurchaseRequisition":
-                IsSufficient := IsSufficientPurchRequisitionApprover_AFK(UserSetup, ApprovalEntryArgument."Amount (LCY)");
+                IsSufficient := IsSufficientDocRequisitionApprover_AFK(UserSetup, ApprovalEntryArgument."Amount (LCY)");
         end;
     end;
 
-    local procedure IsSufficientPurchRequisitionApprover_AFK(UserSetup: Record "User Setup"; ApprovalAmountLCY: Decimal): Boolean
+    local procedure IsSufficientDocRequisitionApprover_AFK(UserSetup: Record "User Setup"; ApprovalAmountLCY: Decimal): Boolean
     begin
         IF UserSetup."User ID" = UserSetup."Approver ID" THEN
             EXIT(true);
@@ -146,22 +146,22 @@ codeunit 50005 AfkPRReqWorkflowMgt
         exit(false);
     end;
 
-    procedure IsPurchRequisitionApprovalsWorkflowEnabled_AFK(var PurchRequisition: Record "AfkPurchaseRequisition"): Boolean
+    procedure IsDocRequisitionApprovalsWorkflowEnabled_AFK(var DocRequisition: Record "AfkPurchaseRequisition"): Boolean
     begin
-        EXIT(WorkflowManagement.CanExecuteWorkflow(PurchRequisition, GetOnSendPurchRequisitionForApprovalCode));
+        EXIT(WorkflowManagement.CanExecuteWorkflow(DocRequisition, GetOnSendDocRequisitionForApprovalCode));
     end;
 
-    procedure IsPurchRequisitionPendingApproval_AFK(var PurchRequisition: Record "AfkPurchaseRequisition"): Boolean
+    procedure IsDocRequisitionPendingApproval_AFK(var DocRequisition: Record "AfkPurchaseRequisition"): Boolean
     begin
-        IF PurchRequisition.Status <> PurchRequisition.Status::Open THEN
+        IF DocRequisition.Status <> DocRequisition.Status::Open THEN
             EXIT(FALSE);
 
-        EXIT(IsPurchRequisitionApprovalsWorkflowEnabled_AFK(PurchRequisition));
+        EXIT(IsDocRequisitionApprovalsWorkflowEnabled_AFK(DocRequisition));
     end;
 
-    procedure CheckPurchRequisitionApprovalPossible_AFK(var PurchRequisition: Record "AfkPurchaseRequisition"): Boolean
+    procedure CheckDocRequisitionApprovalPossible_AFK(var DocRequisition: Record "AfkPurchaseRequisition"): Boolean
     begin
-        IF NOT IsPurchRequisitionApprovalsWorkflowEnabled_AFK(PurchRequisition) THEN
+        IF NOT IsDocRequisitionApprovalsWorkflowEnabled_AFK(DocRequisition) THEN
             ERROR(NoWorkflowEnabledErr);
 
         EXIT(TRUE);
@@ -169,32 +169,32 @@ codeunit 50005 AfkPRReqWorkflowMgt
 
     procedure ShowCommonApprovalStatus(var RecRef: RecordRef; var IsHandle: Boolean)
     var
-        PurchRequisition: Record "AfkPurchaseRequisition";
+        DocRequisition: Record "AfkPurchaseRequisition";
     begin
 
         CASE RecRef.NUMBER OF
             DATABASE::"AfkPurchaseRequisition":
                 begin
-                    RecRef.SETTABLE(PurchRequisition);
-                    ShowPurchRequisitionApprovalStatus_AFK(PurchRequisition);
+                    RecRef.SETTABLE(DocRequisition);
+                    ShowRequisitionApprovalStatus_AFK(DocRequisition);
                     IsHandle := true;
                 end;
         end;
     end;
 
-    procedure GetOnSendPurchRequisitionForApprovalCode(): Text[128]
+    procedure GetOnSendDocRequisitionForApprovalCode(): Text[128]
     begin
-        EXIT(UPPERCASE('RunWorkflowOnSendPurchRequisitionForApproval'));
+        EXIT(UPPERCASE('RunWorkflowOnSendDocRequisitionForApproval'));
     end;
 
-    local procedure GetOnAfterReleasePurchRequisitionCode(): Text[128]
+    local procedure GetOnAfterReleaseDocRequisitionCode(): Text[128]
     begin
-        EXIT(UPPERCASE('RunWorkflowOnAfterReleasePurchRequisition'));
+        EXIT(UPPERCASE('RunWorkflowOnAfterReleaseDocRequisition'));
     end;
 
-    local procedure GetOnCancelPurchRequisitionApprovalRequestCode(): Text[128]
+    local procedure GetOnCancelDocRequisitionApprovalRequestCode(): Text[128]
     begin
-        EXIT(UPPERCASE('RunWorkflowOnCancelPurchRequisitionApprovalRequest'));
+        EXIT(UPPERCASE('RunWorkflowOnCancelDocRequisitionApprovalRequest'));
     end;
 
 
@@ -202,12 +202,12 @@ codeunit 50005 AfkPRReqWorkflowMgt
         ApprovMgt: Codeunit "Approvals Mgmt.";
         WorkflowManagement: Codeunit "Workflow Management";
         WEventHandling: Codeunit "Workflow Event Handling";
-        LoanTypeDocumentText_AFK: Label 'Employee loan';
+        ReqTypeDocumentText_AFK: Label 'Employee loan';
         DocStatusChangedMsg: Label '%1 %2 has been automatically approved. The status has been changed to %3.';
         PendingApprovalMsg: Label 'An approval request has been sent.';
         NoWorkflowEnabledErr: Label 'No approval workflow for this record type is enabled.';
-        PurchRequisitionSendForApprovalEventDescTxt_AFK: Label 'Approval of a loan document is requested.';
-        PurchRequisitionReleasedEventDescTxt_AFK: Label 'A loan document is released.';
-        PurchRequisitionApprReqCancelledEventDescTxt_AFK: Label 'An approval request for a loan document is canceled.';
+        PurchRequisitionSendForApprovalEventDescTxt_AFK: Label 'Approval of a requisition document is requested.';
+        PurchRequisitionReleasedEventDescTxt_AFK: Label 'A requisition document is released.';
+        PurchRequisitionApprReqCancelledEventDescTxt_AFK: Label 'An approval request for a requisition document is cancelled.';
 
 }

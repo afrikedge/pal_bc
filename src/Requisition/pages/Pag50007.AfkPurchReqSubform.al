@@ -6,6 +6,7 @@ page 50007 "AfkPurchaseRequisitionSubform"
     PageType = ListPart;
     LinksAllowed = false;
     MultipleNewLines = true;
+    SourceTableView = WHERE("Document Type" = FILTER(Requisition));
     SourceTable = AfkPurchaseRequisitionLine;
 
     layout

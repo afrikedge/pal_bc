@@ -6,6 +6,8 @@ page 50008 "AfkPurchRequisitionList"
     Editable = false;
     PageType = List;
     SourceTable = AfkPurchaseRequisition;
+    SourceTableView = WHERE("Document Type" = FILTER(Requisition));
+
     UsageCategory = Lists;
     PromotedActionCategories = 'New,Process,Report,Approbation,Release,Request Approval,Purchase Requisition';
 
@@ -103,7 +105,7 @@ page 50008 "AfkPurchRequisitionList"
                     var
                         EmpLoanWkflMgt: Codeunit AfkPRReqWorkflowMgt;
                     begin
-                        IF EmpLoanWkflMgt.CheckPurchRequisitionApprovalPossible_AFK(Rec) THEN;
+                        IF EmpLoanWkflMgt.CheckDocRequisitionApprovalPossible_AFK(Rec) THEN;
                         EmpLoanWkflMgt.OnSendPurchRequisitionForApproval_AFK(Rec);
                     end;
                 }

@@ -20,6 +20,10 @@ table 50005 "AfkPurchaseRequisition"
                 end;
             end;
         }
+        field(51; "Document Type"; Enum AfkRequisitionDocType)
+        {
+            Caption = 'Document Type';
+        }
         field(2; "Currency Code"; Code[10])
         {
             Caption = 'Currency Code';
@@ -170,7 +174,7 @@ table 50005 "AfkPurchaseRequisition"
         {
             AutoFormatExpression = "Currency Code";
             AutoFormatType = 1;
-            CalcFormula = Sum("AfkPurchaseRequisitionLine"."Amount (LCY)" WHERE("Document No." = FIELD("No.")));
+            CalcFormula = Sum("AfkPurchaseRequisitionLine"."Amount Including VAT (LCY)" WHERE("Document No." = FIELD("No.")));
             Caption = 'Amount (LCY)';
             Editable = false;
             FieldClass = FlowField;
@@ -205,7 +209,7 @@ table 50005 "AfkPurchaseRequisition"
 
     keys
     {
-        key(Key1; "No.")
+        key(Key1; "Document Type", "No.")
         {
             Clustered = true;
         }
@@ -287,7 +291,7 @@ table 50005 "AfkPurchaseRequisition"
         ApprovalsMgmt: Codeunit AfkPRReqWorkflowMgt;
     begin
 
-        IF ApprovalsMgmt.IsPurchRequisitionPendingApproval_AFK(Rec) THEN
+        IF ApprovalsMgmt.IsDocRequisitionPendingApproval_AFK(Rec) THEN
             ERROR(Text002);
 
         IF Status = Status::Released THEN
