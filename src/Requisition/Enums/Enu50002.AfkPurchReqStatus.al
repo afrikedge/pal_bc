@@ -1,17 +1,8 @@
 enum 50002 AfkPurchReqStatus
 {
     Extensible = true;
-
-    value(0; Open)
-    {
-
-    }
-    value(2; Released)
-    {
-
-    }
-    value(1; "Pending Approval")
-    {
-
-    }
+    AssignmentCompatibility = true;
+    value(0; "Open") { Caption = 'Open'; }
+    value(1; "Released") { Caption = 'Released'; }
+    value(2; "Pending Approval") { Caption = 'Pending Approval'; }
 }

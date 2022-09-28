@@ -166,6 +166,15 @@ table 50005 "AfkPurchaseRequisition"
             Editable = false;
             FieldClass = FlowField;
         }
+        field(59; "Amount (LCY)"; Decimal)
+        {
+            AutoFormatExpression = "Currency Code";
+            AutoFormatType = 1;
+            CalcFormula = Sum("AfkPurchaseRequisitionLine"."Amount (LCY)" WHERE("Document No." = FIELD("No.")));
+            Caption = 'Amount (LCY)';
+            Editable = false;
+            FieldClass = FlowField;
+        }
         field(27; "User ID"; Code[50])
         {
             Caption = 'User ID';
@@ -173,6 +182,7 @@ table 50005 "AfkPurchaseRequisition"
             TableRelation = User."User Name";
             ValidateTableRelation = false;
         }
+
         field(480; "Dimension Set ID"; Integer)
         {
             Caption = 'Dimension Set ID';
@@ -228,6 +238,9 @@ table 50005 "AfkPurchaseRequisition"
         PurchH: Record "Purchase Header";
         BudgetLineP: Record AfkPurchaseRequisitionBudget;
     begin
+
+        TestStatusOpen();
+
         //Supprimer les lignes
         IF NOT CONFIRM(Text001) THEN EXIT;
 
@@ -256,7 +269,11 @@ table 50005 "AfkPurchaseRequisition"
         SourceCodeSetup: Record "Source Code Setup";
         DimManagement: Codeunit DimensionManagement;
         NoSeriesMgt: Codeunit NoSeriesManagement;
+        ApprovalsMgmt: Codeunit "Approvals Mgmt.";
 
+
+        Text002: Label 'This document can only be released when the approval process is complete.';
+        Text003: Label 'The approval process must be cancelled or completed to reopen this document.';
         // Text006: Label 'The currency code for the document is the LCY Code.\\Please select a bank for which the currency code is the LCY Code.';
         // Text007: Label 'The currency code for the document is %1.\\Please select a bank for which the currency code is %1 or the LCY Code.';
         // Text008: Label 'Your bank''s currency code is %1.\\You must change the bank account code before modifying the currency code.';
@@ -264,6 +281,56 @@ table 50005 "AfkPurchaseRequisition"
         Text001: Label 'All offers associated with this request will be deleted! \\Do you want to continue ?';
         SetupHasBeenRead: Boolean;
 
+
+    procedure PerformManualRelease()
+    var
+        ApprovalsMgmt: Codeunit AfkPRReqWorkflowMgt;
+    begin
+
+        IF ApprovalsMgmt.IsPurchRequisitionPendingApproval_AFK(Rec) THEN
+            ERROR(Text002);
+
+        IF Status = Status::Released THEN
+            EXIT;
+
+        Rec.TESTFIELD(Description);
+        CalcFields("Amount Including VAT");
+        Rec.TESTFIELD("Amount Including VAT");
+        //Rec.TESTFIELD(Rec.Duration);
+        Rec.TESTFIELD("Document Date");
+        Rec.Status := Rec.Status::Released;
+        Rec.MODIFY();
+
+    end;
+
+    procedure PerformManualReOpen()
+    var
+
+    begin
+
+        IF Rec.Status = Rec.Status::"Pending Approval" THEN
+            ERROR(Text003);
+
+        IF Rec.Status = Rec.Status::Open THEN
+            EXIT;
+
+        Rec.Status := Rec.Status::Open;
+        Rec.MODIFY();
+
+    end;
+
+    procedure ReOpen()
+    var
+
+    begin
+
+        IF Rec.Status = Rec.Status::Open THEN
+            EXIT;
+
+        Rec.Status := Rec.Status::Open;
+        Rec.MODIFY();
+
+    end;
 
     procedure LookupShortcutDimCode(FieldNo: Integer; var ShortcutDimCode: Code[20])
     begin

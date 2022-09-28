@@ -348,10 +348,25 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table AfkPurchaseRequisition - NamedType Text001</note>
         </trans-unit>
+        <trans-unit id="Table 3713992565 - NamedType 3752334001" size-unit="char" translate="yes" xml:space="preserve">
+          <source>This document can only be released when the approval process is complete.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkPurchaseRequisition - NamedType Text002</note>
+        </trans-unit>
+        <trans-unit id="Table 3713992565 - NamedType 95063322" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The approval process must be cancelled or completed to reopen this document.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkPurchaseRequisition - NamedType Text003</note>
+        </trans-unit>
         <trans-unit id="Table 3713992565 - NamedType 3921243024" size-unit="char" translate="yes" xml:space="preserve">
           <source>You may have changed a dimension.\\Do you want to update the lines?</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table AfkPurchaseRequisition - NamedType Text009</note>
+        </trans-unit>
+        <trans-unit id="Table 3713992565 - Field 592951229 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Amount (LCY)</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkPurchaseRequisition - Field Amount (LCY) - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 3713992565 - Field 1650118938 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Amount Including VAT</source>
@@ -637,6 +652,11 @@
           <source>Amount</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table AfkPurchaseRequisitionLine - Field Amount - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 1182874135 - Field 592951229 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Amount (LCY)</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkPurchaseRequisitionLine - Field Amount (LCY) - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 1182874135 - Field 1650118938 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Amount Including VAT</source>
@@ -1103,6 +1123,41 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit AfkPortServInvMgtTest - NamedType ErrorText2</note>
         </trans-unit>
+        <trans-unit id="Codeunit 776948647 - NamedType 2736826369" size-unit="char" translate="yes" xml:space="preserve">
+          <source>%1 %2 has been automatically approved. The status has been changed to %3.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit AfkPRReqWorkflowMgt - NamedType DocStatusChangedMsg</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 776948647 - NamedType 2955269863" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Employee loan</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit AfkPRReqWorkflowMgt - NamedType LoanTypeDocumentText_AFK</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 776948647 - NamedType 4005917478" size-unit="char" translate="yes" xml:space="preserve">
+          <source>No approval workflow for this record type is enabled.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit AfkPRReqWorkflowMgt - NamedType NoWorkflowEnabledErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 776948647 - NamedType 1630916515" size-unit="char" translate="yes" xml:space="preserve">
+          <source>An approval request has been sent.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit AfkPRReqWorkflowMgt - NamedType PendingApprovalMsg</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 776948647 - NamedType 3478530124" size-unit="char" translate="yes" xml:space="preserve">
+          <source>An approval request for a loan document is canceled.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit AfkPRReqWorkflowMgt - NamedType PurchRequisitionApprReqCancelledEventDescTxt_AFK</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 776948647 - NamedType 2085265453" size-unit="char" translate="yes" xml:space="preserve">
+          <source>A loan document is released.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit AfkPRReqWorkflowMgt - NamedType PurchRequisitionReleasedEventDescTxt_AFK</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 776948647 - NamedType 3093073994" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Approval of a loan document is requested.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit AfkPRReqWorkflowMgt - NamedType PurchRequisitionSendForApprovalEventDescTxt_AFK</note>
+        </trans-unit>
         <trans-unit id="Codeunit 218199553 - NamedType 3752334001" size-unit="char" translate="yes" xml:space="preserve">
           <source>The document has no lines</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -1363,6 +1418,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page AfkCalcParameters - Control Value1 - Property ToolTip</note>
         </trans-unit>
+        <trans-unit id="Page 3713992565 - Property 2019332006" size-unit="char" translate="yes" xml:space="preserve">
+          <source>New,Process,Report,Approbation,Release,Request Approval,Purchase Requisition</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page AfkPurchaseRequisition - Property PromotedActionCategories</note>
+        </trans-unit>
         <trans-unit id="Page 3713992565 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Purchase Requisition</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -1423,6 +1483,111 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page AfkPurchaseRequisition - Action Dimensions - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 3713992565 - Action 3860314472 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>View a list of the records that are waiting to be approved. For example, you can see who requested the record to be approved, when it was sent, and when it is due to be approved.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page AfkPurchaseRequisition - Action Approvals - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3713992565 - Action 3860314472 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Approvals</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page AfkPurchaseRequisition - Action Approvals - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3713992565 - Action 3560983695 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Release</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page AfkPurchaseRequisition - Action Action21 - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3713992565 - Action 4032263875 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Release the document to the next stage of processing. You must reopen the document before you can make changes to it.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page AfkPurchaseRequisition - Action Release - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3713992565 - Action 4032263875 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Re&amp;lease</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page AfkPurchaseRequisition - Action Release - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3713992565 - Action 2071937805 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Reopen the document to change it after it has been approved. Approved documents have the Released status and must be opened before they can be changed.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page AfkPurchaseRequisition - Action Reopen - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3713992565 - Action 2071937805 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Re&amp;open</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page AfkPurchaseRequisition - Action Reopen - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3713992565 - Action 2678918909 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>&amp;Approval</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page AfkPurchaseRequisition - Action Approbation - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3713992565 - Action 803889193 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Approve the requested changes.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page AfkPurchaseRequisition - Action Approve - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3713992565 - Action 803889193 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Approve</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page AfkPurchaseRequisition - Action Approve - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3713992565 - Action 2790486453 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>View or add comments for the record.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page AfkPurchaseRequisition - Action Comment - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3713992565 - Action 2790486453 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Approve</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page AfkPurchaseRequisition - Action Comment - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3713992565 - Action 1013253961 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Delegate the approval to a substitute approver.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page AfkPurchaseRequisition - Action Delegate - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3713992565 - Action 1013253961 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Approve</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page AfkPurchaseRequisition - Action Delegate - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3713992565 - Action 113888489 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Reject the approval request.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page AfkPurchaseRequisition - Action Reject - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3713992565 - Action 113888489 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Approve</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page AfkPurchaseRequisition - Action Reject - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3713992565 - Action 2364670106 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Request Approval</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page AfkPurchaseRequisition - Action Request Approval - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3713992565 - Action 858296388 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Cancel the approval request.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page AfkPurchaseRequisition - Action CancelApprovalRequest - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3713992565 - Action 858296388 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Cancel Approval Re&amp;quest</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page AfkPurchaseRequisition - Action CancelApprovalRequest - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3713992565 - Action 383335270 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Request approval of the document.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page AfkPurchaseRequisition - Action SendApprovalRequest - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3713992565 - Action 383335270 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Send A&amp;pproval Request</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page AfkPurchaseRequisition - Action SendApprovalRequest - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Page 3955058971 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Lines</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -1468,10 +1633,75 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page AfkPurchaseRequisitionSubform - Action F&amp;unctions - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 1260750698 - Property 2019332006" size-unit="char" translate="yes" xml:space="preserve">
+          <source>New,Process,Report,Approbation,Release,Request Approval,Purchase Requisition</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page AfkPurchRequisitionList - Property PromotedActionCategories</note>
+        </trans-unit>
         <trans-unit id="Page 1260750698 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Purchase Requisition List</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page AfkPurchRequisitionList - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1260750698 - Action 3860314472 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>View a list of the records that are waiting to be approved. For example, you can see who requested the record to be approved, when it was sent, and when it is due to be approved.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page AfkPurchRequisitionList - Action Approvals - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 1260750698 - Action 3860314472 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Approvals</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page AfkPurchRequisitionList - Action Approvals - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1260750698 - Action 3560983695 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Release</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page AfkPurchRequisitionList - Action Action21 - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1260750698 - Action 4032263875 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Release the document to the next stage of processing. You must reopen the document before you can make changes to it.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page AfkPurchRequisitionList - Action Release - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 1260750698 - Action 4032263875 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Re&amp;lease</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page AfkPurchRequisitionList - Action Release - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1260750698 - Action 2071937805 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Reopen the document to change it after it has been approved. Approved documents have the Released status and must be opened before they can be changed.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page AfkPurchRequisitionList - Action Reopen - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 1260750698 - Action 2071937805 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Re&amp;open</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page AfkPurchRequisitionList - Action Reopen - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1260750698 - Action 2364670106 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Request Approval</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page AfkPurchRequisitionList - Action Request Approval - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1260750698 - Action 858296388 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Cancel the approval request.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page AfkPurchRequisitionList - Action CancelApprovalRequest - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 1260750698 - Action 858296388 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Cancel Approval Re&amp;quest</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page AfkPurchRequisitionList - Action CancelApprovalRequest - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1260750698 - Action 383335270 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Request approval of the document.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page AfkPurchRequisitionList - Action SendApprovalRequest - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 1260750698 - Action 383335270 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Send A&amp;pproval Request</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page AfkPurchRequisitionList - Action SendApprovalRequest - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 2735124623 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Port Services Pricing</source>
@@ -3067,6 +3297,31 @@
           <source>Purchase Requisition Type</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">TableExtension AfkUserSetup - Field Afk_PRType - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="TableExtension 2955598406 - Field 256102128 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 337631938">
+          <source>Purchase Requisition Amount Approval Limit</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension AfkUserSetup - Field PR Amount Approval Limit - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="TableExtension 2955598406 - Field 299218054 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 337631938">
+          <source>Unlimited Purchase Requisition Approval</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension AfkUserSetup - Field Unlimited PR Approval - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 3633221470 - EnumValue 4259830144 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Open</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum AfkPurchReqStatus - EnumValue Open - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 3633221470 - EnumValue 1487485508 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Pending Approval</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum AfkPurchReqStatus - EnumValue Pending Approval - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 3633221470 - EnumValue 4020758431 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Released</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum AfkPurchReqStatus - EnumValue Released - Property Caption</note>
         </trans-unit>
         <trans-unit id="EnumExtension 1103988637 - EnumValue 4056492928 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Enum 1117131368">
           <source>Requisition</source>

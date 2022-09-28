@@ -10,6 +10,16 @@ tableextension 50010 AfkUserSetup extends "User Setup"
         {
             Caption = 'Purchase Order Type';
         }
+        field(50002; "PR Amount Approval Limit"; Integer)
+        {
+            DataClassification = ToBeClassified;
+            Caption = 'Purchase Requisition Amount Approval Limit';
+        }
+        field(50003; "Unlimited PR Approval"; Boolean)
+        {
+            DataClassification = ToBeClassified;
+            Caption = 'Unlimited Purchase Requisition Approval';
+        }
     }
 
 }

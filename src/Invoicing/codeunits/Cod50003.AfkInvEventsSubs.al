@@ -1,4 +1,4 @@
-codeunit 50003 AfkEventsSubs
+codeunit 50003 AfkInvEventsSubs
 {
     SingleInstance = true;
 

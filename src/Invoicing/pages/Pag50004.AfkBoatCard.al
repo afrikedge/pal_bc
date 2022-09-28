@@ -37,6 +37,11 @@ page 50004 AfkBoatCard
                     //Importance = Promoted;
                     ToolTip = 'Specifies the vessel length in meters.';
                 }
+                field("Boat Draught"; rec."Boat Draught")
+                {
+                    ApplicationArea = Basic, Suite;
+                    ToolTip = 'Specifies the height in meters of the submerged part of the boat which varies according to the load transported.';
+                }
                 field(Width; rec.Width)
                 {
                     ApplicationArea = Basic, Suite;
@@ -45,11 +50,7 @@ page 50004 AfkBoatCard
                     //Importance = Promoted;
                     ToolTip = 'Specifies the vessel width in meters';
                 }
-                field("Boat Draught"; rec."Boat Draught")
-                {
-                    ApplicationArea = Basic, Suite;
-                    ToolTip = 'Specifies the height in meters of the submerged part of the boat which varies according to the load transported.';
-                }
+
                 field("Calculated Boat Draught"; rec."Calculated Boat Draught")
                 {
                     ApplicationArea = Basic, Suite;

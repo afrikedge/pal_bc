@@ -252,6 +252,15 @@ table 50006 AfkPurchaseRequisitionLine
             Editable = false;
 
         }
+        field(53; "Amount (LCY)"; Decimal)
+        {
+            //AutoFormatExpression = "Currency Code";
+            AutoFormatType = 1;
+            Caption = 'Amount (LCY)';
+            Editable = false;
+
+        }
+
         field(14; "VAT %"; Decimal)
         {
             Caption = 'VAT %';
@@ -437,6 +446,7 @@ table 50006 AfkPurchaseRequisitionLine
         Text001: Label 'The request can no longer be modified because it has already been validated';
         BudgetMgt: Codeunit AfkPurchaseReqMgt;
         Currency: Record Currency;
+        CurrExchRate: Record "Currency Exchange Rate";
 
     procedure ValidateShortcutDimCode(FieldNumber: Integer; var ShortcutDimCode: Code[20])
     var
@@ -581,10 +591,22 @@ table 50006 AfkPurchaseRequisitionLine
     end;
 
     local procedure CalcAmounts()
+    var
+        factor: Decimal;
     begin
         "Amount" := Round(Quantity * "Unit Price", Currency."Amount Rounding Precision");
         "VAT Amount" := Round("VAT %" * Amount / 100, Currency."Amount Rounding Precision");
         "Amount Including VAT" := "Amount" + "VAT Amount";
+
+        GetPurchHeader();
+        factor := CurrExchRate.ExchangeRate(PRHeader."Document Date", PRHeader."Currency Code");
+        IF PRHeader."Currency Code" = '' THEN
+            "Amount (LCY)" := "Amount Including VAT"
+        ELSE
+            "Amount (LCY)" := ROUND(
+                CurrExchRate.ExchangeAmtFCYToLCY(
+                  PRHeader."Document Date", PRHeader."Currency Code",
+                  "Amount (LCY)", factor));
     end;
 
 

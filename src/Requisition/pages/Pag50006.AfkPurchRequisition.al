@@ -4,6 +4,7 @@ page 50006 "AfkPurchaseRequisition"
     PageType = Document;
     RefreshOnActivate = true;
     SourceTable = AfkPurchaseRequisition;
+    PromotedActionCategories = 'New,Process,Report,Approbation,Release,Request Approval,Purchase Requisition';
 
     layout
     {
@@ -93,16 +94,23 @@ page 50006 "AfkPurchaseRequisition"
         }
         area(factboxes)
         {
-            // part("Payment Journal Errors"; "Payment Journal Errors Part")
-            // {
-            //     ApplicationArea = Basic, Suite;
-            //     Caption = 'File Export Errors';
-            //     Provider = Lines;
-            //     SubPageLink = "Document No." = FIELD("No."),
-            //                   "Journal Line No." = FIELD("Line No."),
-            //                   "Journal Template Name" = CONST(''),
-            //                   "Journal Batch Name" = CONST('10865');
-            // }
+            part(WorkflowStatus; "Workflow Status FactBox")
+            {
+                ApplicationArea = All;
+                Editable = false;
+                Enabled = false;
+                ShowFilter = false;
+                Visible = ShowWorkflowStatus;
+            }
+            systempart(Control1900383207; Links)
+            {
+                ApplicationArea = RecordLinks;
+                Visible = false;
+            }
+            systempart(Control1905767507; Notes)
+            {
+                ApplicationArea = Notes;
+            }
         }
     }
 
@@ -127,28 +135,199 @@ page 50006 "AfkPurchaseRequisition"
                         CurrPage.SaveRecord;
                     end;
                 }
-                // action("Header RIB")
-                // {
-                //     ApplicationArea = Basic, Suite;
-                //     Caption = 'Header RIB';
-                //     Image = Check;
-                //     RunObject = Page "Payment Bank";
-                //     RunPageLink = "No." = FIELD("No.");
-                //     ToolTip = 'View the RIB key that is associated with the bank account.';
-                // }
+            }
+            action(Approvals)
+            {
+                AccessByPermission = TableData "Approval Entry" = R;
+                ApplicationArea = Suite;
+                Caption = 'Approvals';
+                Image = Approvals;
+                Promoted = true;
+                PromotedCategory = Category7;
+                ToolTip = 'View a list of the records that are waiting to be approved. For example, you can see who requested the record to be approved, when it was sent, and when it is due to be approved.';
+
+                trigger OnAction()
+                var
+                    ApprovalsMgmt: Codeunit AfkPRReqWorkflowMgt;
+                begin
+                    ApprovalsMgmt.OpenApprovalsEmplLoan(Rec);
+                end;
             }
 
         }
         area(processing)
         {
+            group("Approbation")
+            {
+                Caption = '&Approval';
+                //Image = Approvals;
+                action(Approve)
+                {
+                    ApplicationArea = All;
+                    Caption = 'Approve';
+                    Image = Approve;
+                    ToolTip = 'Approve the requested changes.';
+                    Promoted = true;
+                    PromotedIsBig = true;
+                    PromotedOnly = true;
+                    PromotedCategory = Category4;
 
+                    Visible = OpenApprovalEntriesExistForCurrUser;
+                    trigger OnAction()
+                    begin
+                        ApprovalsMgmt.ApproveRecordApprovalRequest(Rec.RECORDID);
+                    end;
+                }
+                action(Reject)
+                {
+                    ApplicationArea = All;
+                    Caption = 'Approve';
+                    Image = Reject;
+                    ToolTip = 'Reject the approval request.';
+                    Promoted = true;
+                    PromotedIsBig = true;
+                    PromotedOnly = true;
+                    PromotedCategory = Category4;
+                    Visible = OpenApprovalEntriesExistForCurrUser;
+                    trigger OnAction()
+                    begin
+                        ApprovalsMgmt.RejectRecordApprovalRequest(Rec.RECORDID);
+                    end;
+                }
+                action(Delegate)
+                {
+                    ApplicationArea = All;
+                    Caption = 'Approve';
+                    Image = Delegate;
+                    ToolTip = 'Delegate the approval to a substitute approver.';
+                    Promoted = true;
+                    PromotedIsBig = true;
+                    PromotedOnly = true;
+                    PromotedCategory = Category4;
+                    Visible = OpenApprovalEntriesExistForCurrUser;
+                    trigger OnAction()
+                    begin
+                        ApprovalsMgmt.DelegateRecordApprovalRequest(Rec.RECORDID);
+                    end;
+                }
+                action(Comment)
+                {
+                    ApplicationArea = All;
+                    Caption = 'Approve';
+                    Image = ViewComments;
+                    ToolTip = 'View or add comments for the record.';
+                    Promoted = true;
+                    PromotedIsBig = false;
+                    PromotedOnly = true;
+                    PromotedCategory = Category4;
+                    Visible = OpenApprovalEntriesExistForCurrUser;
+                    trigger OnAction()
+                    begin
+                        ApprovalsMgmt.GetApprovalComment(Rec);
+                    end;
+                }
+            }
+            group("Request Approval")
+            {
+                Caption = 'Request Approval';
+                Image = SendApprovalRequest;
+                action(SendApprovalRequest)
+                {
+                    ApplicationArea = All, Suite;
+                    Caption = 'Send A&pproval Request';
+                    Image = SendApprovalRequest;
+                    ToolTip = 'Request approval of the document.';
+                    Promoted = true;
+                    PromotedIsBig = false;
+                    PromotedOnly = true;
+                    PromotedCategory = Category6;
+                    Enabled = NOT OpenApprovalEntriesExist;
+                    trigger OnAction()
+                    var
+                        EmpLoanWkflMgt: Codeunit AfkPRReqWorkflowMgt;
+                    begin
+                        IF EmpLoanWkflMgt.CheckPurchRequisitionApprovalPossible_AFK(Rec) THEN;
+                        EmpLoanWkflMgt.OnSendPurchRequisitionForApproval_AFK(Rec);
+                    end;
+                }
+                action(CancelApprovalRequest)
+                {
+                    ApplicationArea = All, Suite;
+                    Caption = 'Cancel Approval Re&quest';
+                    Image = CancelApprovalRequest;
+                    ToolTip = 'Cancel the approval request.';
+                    Promoted = true;
+                    PromotedIsBig = false;
+                    PromotedOnly = true;
+                    PromotedCategory = Category6;
+                    Enabled = CanCancelApprovalForRecord;
+                    trigger OnAction()
+                    var
+                        WorkflowWebhookMgt: Codeunit "Workflow Webhook Management";
+                        EmpLoanWkflMgt: Codeunit AfkPRReqWorkflowMgt;
+                    begin
+                        EmpLoanWkflMgt.OnCancelPurchRequisitionApprovalRequest_AFK(Rec);
+                        WorkflowWebhookMgt.FindAndCancel(Rec.RECORDID);
+                    end;
+                }
+            }
+            group(Action21)
+            {
+                Caption = 'Release';
+                Image = ReleaseDoc;
+                action(Release)
+                {
+                    ApplicationArea = Suite;
+                    Caption = 'Re&lease';
+                    Image = ReleaseDoc;
+                    Promoted = true;
+                    PromotedCategory = Category5;
+                    PromotedIsBig = true;
+                    PromotedOnly = true;
+                    ShortCutKey = 'Ctrl+F9';
+                    ToolTip = 'Release the document to the next stage of processing. You must reopen the document before you can make changes to it.';
+
+                    trigger OnAction()
+                    var
+                    begin
+                        Rec.PerformManualRelease();
+                    end;
+                }
+                action(Reopen)
+                {
+                    ApplicationArea = Basic, Suite;
+                    Caption = 'Re&open';
+                    Enabled = Rec.Status <> Rec.Status::Open;
+                    Image = ReOpen;
+                    Promoted = true;
+                    PromotedCategory = Category5;
+                    PromotedOnly = true;
+                    ToolTip = 'Reopen the document to change it after it has been approved. Approved documents have the Released status and must be opened before they can be changed.';
+
+                    trigger OnAction()
+                    var
+                    begin
+                        Rec.PerformManualReOpen();
+                    end;
+                }
+            }
         }
     }
 
     trigger OnAfterGetRecord()
     begin
         CurrPage.Lines.PAGE.Editable(true);
+        SetControlVisibility();
     end;
+
+
+    trigger OnAfterGetCurrRecord()
+    var
+    begin
+        SetControlAppearance();
+        ShowWorkflowStatus := CurrPage.WorkflowStatus.PAGE.SetFilterOnWorkflowRecord(Rec.RecordId);
+    end;
+
 
     var
         PaymentStep: Record "Payment Step";
@@ -158,6 +337,28 @@ page 50006 "AfkPurchaseRequisition"
         Text002: Label 'This payment class does not authorize customer suggestions.';
         Text003: Label 'You cannot suggest payments on a posted header.';
         Text009: Label 'Do you want to archive this document?';
+        ApprovalsMgmt: Codeunit "Approvals Mgmt.";
+
+        OpenApprovalEntriesExistForCurrUser: Boolean;
+        OpenApprovalEntriesExist: Boolean;
+        ShowWorkflowStatus: Boolean;
+        CanCancelApprovalForRecord: Boolean;
+
+    local procedure SetControlVisibility()
+    begin
+        OpenApprovalEntriesExistForCurrUser := ApprovalsMgmt.HasOpenApprovalEntriesForCurrentUser(Rec.RecordId);
+        OpenApprovalEntriesExist := ApprovalsMgmt.HasOpenApprovalEntries(Rec.RecordId);
+        CanCancelApprovalForRecord := ApprovalsMgmt.CanCancelApprovalForRecord(Rec.RecordId);
+    end;
+
+    local procedure SetControlAppearance()
+    begin
+        OpenApprovalEntriesExistForCurrUser := ApprovalsMgmt.HasOpenApprovalEntriesForCurrentUser(Rec.RecordId);
+        OpenApprovalEntriesExist := ApprovalsMgmt.HasOpenApprovalEntries(Rec.RecordId);
+        CanCancelApprovalForRecord := ApprovalsMgmt.CanCancelApprovalForRecord(Rec.RecordId);
+    end;
+
+
 
     local procedure DocumentDateOnAfterValidate()
     begin
