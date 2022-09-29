@@ -4,5 +4,7 @@
 			"path": ".."
 		}
 	],
-	"settings": {}
+	"settings": {
+		"al-xml-doc.CheckProcedureDocumentationInformationLevel": "Disabled"
+	}
 }

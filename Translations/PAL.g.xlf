@@ -398,6 +398,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table AfkPurchaseRequisition - Field Document Date - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 3713992565 - Field 2363328873 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Document Type</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkPurchaseRequisition - Field Document Type - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 3713992565 - Field 3628453960 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>External Doc. Number</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -653,15 +658,15 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table AfkPurchaseRequisitionLine - Field Amount - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Table 1182874135 - Field 592951229 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Amount (LCY)</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Table AfkPurchaseRequisitionLine - Field Amount (LCY) - Property Caption</note>
-        </trans-unit>
         <trans-unit id="Table 1182874135 - Field 1650118938 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Amount Including VAT</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table AfkPurchaseRequisitionLine - Field Amount Including VAT - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 1182874135 - Field 2348384091 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Amount (LCY)</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkPurchaseRequisitionLine - Field Amount Including VAT (LCY) - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 1182874135 - Field 2223214263 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Depreciation Book Code</source>
@@ -682,6 +687,11 @@
           <source>Document No.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table AfkPurchaseRequisitionLine - Field Document No. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 1182874135 - Field 2363328873 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Document Type</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkPurchaseRequisitionLine - Field Document Type - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 1182874135 - Field 2139693550 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Gen. Prod. Posting Group</source>
@@ -819,7 +829,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table AfkSetup - Field Day starting time - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 252127493 - Field 2545869741 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Default Budget Code</source>
+          <source>Active Budget Code</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table AfkSetup - Field Default Budget Code - Property Caption</note>
         </trans-unit>
@@ -827,6 +837,11 @@
           <source>Night starting time</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table AfkSetup - Field Night starting time - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 252127493 - Field 1757379127 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Purch Requisition Max Value</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkSetup - Field PR Max Value - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 252127493 - Field 1663593181 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Primary Key</source>
@@ -1113,6 +1128,26 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Afk_Princing - Field Unit Price - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Codeunit 2656934273 - NamedType 3283546407" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Posting groups not defined on command line %1 - %2 - (%3 - %4)</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit AfkBudgetMgt - NamedType Text008</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2656934273 - NamedType 3921243024" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Posting groups not defined on purchase requisition line %1 - %2</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit AfkBudgetMgt - NamedType Text009</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2656934273 - NamedType 1026443335" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Purchase account is invalid on line %1</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit AfkBudgetMgt - NamedType Text011</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2656934273 - NamedType 2939533186" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Budget code not filled in on line %1</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit AfkBudgetMgt - NamedType Text012</note>
+        </trans-unit>
         <trans-unit id="Codeunit 2452753826 - NamedType 3162296448" size-unit="char" translate="yes" xml:space="preserve">
           <source>The unit price was  %1 not %2 as expected</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -1128,11 +1163,6 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit AfkPRReqWorkflowMgt - NamedType DocStatusChangedMsg</note>
         </trans-unit>
-        <trans-unit id="Codeunit 776948647 - NamedType 2955269863" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Employee loan</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit AfkPRReqWorkflowMgt - NamedType LoanTypeDocumentText_AFK</note>
-        </trans-unit>
         <trans-unit id="Codeunit 776948647 - NamedType 4005917478" size-unit="char" translate="yes" xml:space="preserve">
           <source>No approval workflow for this record type is enabled.</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -1144,49 +1174,34 @@
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit AfkPRReqWorkflowMgt - NamedType PendingApprovalMsg</note>
         </trans-unit>
         <trans-unit id="Codeunit 776948647 - NamedType 3478530124" size-unit="char" translate="yes" xml:space="preserve">
-          <source>An approval request for a loan document is canceled.</source>
+          <source>An approval request for a requisition document is cancelled.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit AfkPRReqWorkflowMgt - NamedType PurchRequisitionApprReqCancelledEventDescTxt_AFK</note>
         </trans-unit>
         <trans-unit id="Codeunit 776948647 - NamedType 2085265453" size-unit="char" translate="yes" xml:space="preserve">
-          <source>A loan document is released.</source>
+          <source>A requisition document is released.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit AfkPRReqWorkflowMgt - NamedType PurchRequisitionReleasedEventDescTxt_AFK</note>
         </trans-unit>
         <trans-unit id="Codeunit 776948647 - NamedType 3093073994" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Approval of a loan document is requested.</source>
+          <source>Approval of a requisition document is requested.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit AfkPRReqWorkflowMgt - NamedType PurchRequisitionSendForApprovalEventDescTxt_AFK</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 776948647 - NamedType 1547873433" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Employee loan</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit AfkPRReqWorkflowMgt - NamedType ReqTypeDocumentText_AFK</note>
         </trans-unit>
         <trans-unit id="Codeunit 218199553 - NamedType 3752334001" size-unit="char" translate="yes" xml:space="preserve">
           <source>The document has no lines</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit AfkPurchaseReqMgt - NamedType Text002</note>
         </trans-unit>
-        <trans-unit id="Codeunit 218199553 - NamedType 3283546407" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Posting groups not defined on command line %1 - %2 - (%3 - %4)</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit AfkPurchaseReqMgt - NamedType Text008</note>
-        </trans-unit>
-        <trans-unit id="Codeunit 218199553 - NamedType 3921243024" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Posting groups not defined on purchase requisition line %1 - %2</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit AfkPurchaseReqMgt - NamedType Text009</note>
-        </trans-unit>
         <trans-unit id="Codeunit 218199553 - NamedType 1664139952" size-unit="char" translate="yes" xml:space="preserve">
           <source>Do you want to close the purchasing document?</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit AfkPurchaseReqMgt - NamedType Text010</note>
-        </trans-unit>
-        <trans-unit id="Codeunit 218199553 - NamedType 1026443335" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Purchase account is invalid on line %1</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit AfkPurchaseReqMgt - NamedType Text011</note>
-        </trans-unit>
-        <trans-unit id="Codeunit 218199553 - NamedType 2939533186" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Budget code not filled in on line %1</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit AfkPurchaseReqMgt - NamedType Text012</note>
         </trans-unit>
         <trans-unit id="Codeunit 218199553 - NamedType 2301836569" size-unit="char" translate="yes" xml:space="preserve">
           <source>You cannot close this order because the quantity received has not been fully invoiced for item %1</source>
@@ -3288,6 +3303,21 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">TableExtension AfkStandardSalesLine - Field Afk_Water_Network - Property Caption</note>
         </trans-unit>
+        <trans-unit id="TableExtension 2955598406 - Field 4178838516 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 337631938">
+          <source>Can Validate Budget Transfer</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension AfkUserSetup - Field AfkCanValidateBudgetTransfer - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="TableExtension 2955598406 - Field 3505550740 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 337631938">
+          <source>Purchase Requisition Amount Approval Limit</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension AfkUserSetup - Field AfkPRAmountApprovalLimit - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="TableExtension 2955598406 - Field 4190611890 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 337631938">
+          <source>Unlimited Purchase Requisition Approval</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension AfkUserSetup - Field AfkUnlimitedPRApproval - Property Caption</note>
+        </trans-unit>
         <trans-unit id="TableExtension 2955598406 - Field 567382192 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 337631938">
           <source>Purchase Order Type</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -3297,16 +3327,6 @@
           <source>Purchase Requisition Type</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">TableExtension AfkUserSetup - Field Afk_PRType - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="TableExtension 2955598406 - Field 256102128 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 337631938">
-          <source>Purchase Requisition Amount Approval Limit</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">TableExtension AfkUserSetup - Field PR Amount Approval Limit - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="TableExtension 2955598406 - Field 299218054 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 337631938">
-          <source>Unlimited Purchase Requisition Approval</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">TableExtension AfkUserSetup - Field Unlimited PR Approval - Property Caption</note>
         </trans-unit>
         <trans-unit id="Enum 3633221470 - EnumValue 4259830144 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Open</source>
@@ -3323,8 +3343,23 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Enum AfkPurchReqStatus - EnumValue Released - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Enum 3033406244 - EnumValue 3276313895 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Item Requisition</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum AfkRequisitionDocType - EnumValue Item - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 3033406244 - EnumValue 4056492928 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Purchase Requisition</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum AfkRequisitionDocType - EnumValue Requisition - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="EnumExtension 1103988637 - EnumValue 3276313895 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Enum 1117131368">
+          <source>Item Requisition</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">EnumExtension AfkPurchReqBudgetDocType - EnumValue Item - Property Caption</note>
+        </trans-unit>
         <trans-unit id="EnumExtension 1103988637 - EnumValue 4056492928 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Enum 1117131368">
-          <source>Requisition</source>
+          <source>Purchase Requisition</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">EnumExtension AfkPurchReqBudgetDocType - EnumValue Requisition - Property Caption</note>
         </trans-unit>
