@@ -5,6 +5,48 @@
 		}
 	],
 	"settings": {
-		"al-xml-doc.CheckProcedureDocumentationInformationLevel": "Disabled"
+		"al-xml-doc.CheckProcedureDocumentationInformationLevel": "Disabled",
+		"al-xml-doc.CheckProcedureDocumentationForType": [],
+		"al-xml-doc.AskEnableCheckDocumentationForWorkspace": false,
+		"linterCop.autoDownload": false,
+		"CRS.AlSubFolderName": "None",
+		"CRS.ObjectNamePrefix": "Afk",
+		"CRS.WebServerInstancePort": "8084",
+		"alOutline.webClientPort": 8084,
+		"al-xml-doc.InitializeALObjectCacheOnStartUp": false,
+		"ALTB.UseOldFileNamingConventions": false,
+		"ALTB.snippetTargetLanguage2": "fr-FR",
+		"ALTB.snippetTargetLanguage": "us-US",
+		"alObjectDesigner.singleObjectPerFile": true,
+		"alObjectDesigner.disableFileWatcherOnChange": true,
+		"alNavigator.translationTargetLanguage": "French",
+		"al.backgroundCodeAnalysis": false,
+		"al.codeAnalyzers": [
+			"${CodeCop}",
+			"${UICop}",
+			"${PerTenantExtensionCop}",
+			"${AppSourceCop}",
+			"${analyzerFolder}BusinessCentral.LinterCop.dll"
+		],
+		"al.enableCodeAnalysis": true,
+		"al.ruleSetPath": "././.codeAnalysis/PAL.ruleset.json",
+		"alOutline.defaultDataClassification": "CustomerContent",
+		"alOutline.enableCodeCopFixes": true,
+		"alOutline.stripNonAlphanumericCharactersFromObjectNames": true,
+		"editor.codeActionsOnSave": {
+			"source.fixAll.al": true
+		},
+		"alOutline.codeActionsOnSave": [
+			//"SortProcedures",
+			//"SortProperties",
+			//"SortReportColumns",
+			"SortVariables"
+		],
+		"alOutline.completionProviders": [
+			"VariableNamesWithType"
+		],
+		"CRS.FileNamePattern": "<ObjectNameShort>.<ObjectTypeShortPascalCase>.al",
+		"CRS.FileNamePatternExtensions": "<ObjectNameShort>.<ObjectTypeShortPascalCase>.al",
+		"CRS.FileNamePatternPageCustomizations": "<ObjectNameShort>.<ObjectTypeShortPascalCase>.al"
 	}
 }

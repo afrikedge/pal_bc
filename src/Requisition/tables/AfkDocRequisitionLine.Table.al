@@ -1,4 +1,4 @@
-table 50006 AfkPurchaseRequisitionLine
+table 50006 AfkDocRequisitionLine
 {
     Caption = 'Purchase Requisition Line';
     DataClassification = CustomerContent;
@@ -329,8 +329,8 @@ table 50006 AfkPurchaseRequisitionLine
         }
         field(21; "Shortcut Dimension 1 Code"; Code[20])
         {
-            CaptionClass = '1,2,1';
             Caption = 'Shortcut Dimension 1 Code';
+            CaptionClass = '1,2,1';
             TableRelation = "Dimension Value".Code WHERE("Global Dimension No." = CONST(1),
                                                           Blocked = CONST(false));
 
@@ -341,8 +341,8 @@ table 50006 AfkPurchaseRequisitionLine
         }
         field(22; "Shortcut Dimension 2 Code"; Code[20])
         {
-            CaptionClass = '1,2,2';
             Caption = 'Shortcut Dimension 2 Code';
+            CaptionClass = '1,2,2';
             TableRelation = "Dimension Value".Code WHERE("Global Dimension No." = CONST(2),
                                                           Blocked = CONST(false));
 
@@ -437,29 +437,40 @@ table 50006 AfkPurchaseRequisitionLine
     end;
 
     var
-        DimMgt: Codeunit DimensionManagement;
-        PRHeader: Record "AfkPurchaseRequisition";
+        PRHeader: Record "AfkDocRequisition";
+        Currency: Record Currency;
+        CurrExchRate: Record "Currency Exchange Rate";
+        FADeprBook: Record "FA Depreciation Book";
+        FAPostingGr: Record "FA Posting Group";
+        FASetup: Record "FA Setup";
+        FA: Record "Fixed Asset";
+        GLAcc: Record "G/L Account";
+        LocalGLAcc: Record "G/L Account";
         GLSetup: Record "General Ledger Setup";
         Item: Record Item;
-        GLAcc: Record "G/L Account";
         ItemCharge: Record "Item Charge";
-        FA: Record "Fixed Asset";
-        FASetup: Record "FA Setup";
-        FADeprBook: Record "FA Depreciation Book";
-        LocalGLAcc: Record "G/L Account";
-        FAPostingGr: Record "FA Posting Group";
+        BudgetMgt: Codeunit AfkBudgetControl;
+        DimMgt: Codeunit DimensionManagement;
         //ServRequest: Record AfkPurchaseRequisition;
         UOMMgt: Codeunit "Unit of Measure Management";
         Text001: Label 'The request can no longer be modified because it has already been validated';
-        BudgetMgt: Codeunit AfkBudgetMgt;
-        Currency: Record Currency;
-        CurrExchRate: Record "Currency Exchange Rate";
 
-    procedure ValidateShortcutDimCode(FieldNumber: Integer; var ShortcutDimCode: Code[20])
+    procedure CreateDim(DefaultDimSource: List of [Dictionary of [Integer, Code[20]]])
     var
+        SourceCodeSetup: Record "Source Code Setup";
+        IsHandled: Boolean;
     begin
-        DimMgt.ValidateShortcutDimValues(FieldNumber, ShortcutDimCode, "Dimension Set ID");
-        //VerifyItemLineDim;
+
+        SourceCodeSetup.Get();
+
+        "Shortcut Dimension 1 Code" := '';
+        "Shortcut Dimension 2 Code" := '';
+        GetPurchHeader();
+        "Dimension Set ID" :=
+          DimMgt.GetRecDefaultDimID(
+            Rec, CurrFieldNo, DefaultDimSource, SourceCodeSetup.Purchases,
+            "Shortcut Dimension 1 Code", "Shortcut Dimension 2 Code", PRHeader."Dimension Set ID", DATABASE::Vendor);
+        DimMgt.UpdateGlobalDimFromDimSetID("Dimension Set ID", "Shortcut Dimension 1 Code", "Shortcut Dimension 2 Code");
 
     end;
 
@@ -471,15 +482,31 @@ table 50006 AfkPurchaseRequisitionLine
         CreateDim(DefaultDimSource);
     end;
 
-    local procedure InitDefaultDimensionSources(var DefaultDimSource: List of [Dictionary of [Integer, Code[20]]]; FieldNo: Integer)
+    procedure GetItem()
     begin
-        DimMgt.AddDimSource(DefaultDimSource, DimMgt.PurchLineTypeToTableID(Rec.Type), Rec."No.", FieldNo = Rec.FieldNo("No."));
-        // DimMgt.AddDimSource(DefaultDimSource, Database::Job, Rec."Job No.", FieldNo = Rec.FieldNo("Job No."));
-        // DimMgt.AddDimSource(DefaultDimSource, Database::"Responsibility Center", Rec."Responsibility Center", FieldNo = Rec.FieldNo("Responsibility Center"));
-        // DimMgt.AddDimSource(DefaultDimSource, Database::"Work Center", Rec."Work Center No.", FieldNo = Rec.FieldNo("Work Center No."));
-        // DimMgt.AddDimSource(DefaultDimSource, Database::Location, Rec."Location Code", FieldNo = Rec.FieldNo("Location Code"));
+        IF Item."No." <> Rec."No." THEN
+            Item.GET("No.");
+    end;
 
-        // OnAfterInitDefaultDimensionSources(Rec, DefaultDimSource);
+    procedure GetPurchHeader(): Record "AfkDocRequisition"
+    begin
+        GetPurchHeader(PRHeader, Currency);
+        exit(PRHeader);
+    end;
+
+    procedure GetPurchHeader(var OutPurchHeader: Record "AfkDocRequisition"; var OutCurrency: Record Currency)
+    begin
+        TestField("Document No.");
+        if (("Document No." <> PRHeader."No.") or ("Document Type" <> PRHeader."Document Type")) then begin
+            PRHeader.Get("Document Type", "Document No.");
+            if PRHeader."Currency Code" = '' then
+                Currency.InitRoundingPrecision
+            else begin
+                //PurchHeader.TestField("Currency Factor");
+                Currency.Get(PRHeader."Currency Code");
+                Currency.TestField("Amount Rounding Precision");
+            end;
+        end;
     end;
 
     procedure ShowDimensions() IsChanged: Boolean
@@ -502,25 +529,6 @@ table 50006 AfkPurchaseRequisitionLine
         DimMgt.GetShortcutDimensions("Dimension Set ID", ShortcutDimCode);
     end;
 
-    procedure CreateDim(DefaultDimSource: List of [Dictionary of [Integer, Code[20]]])
-    var
-        SourceCodeSetup: Record "Source Code Setup";
-        IsHandled: Boolean;
-    begin
-
-        SourceCodeSetup.Get();
-
-        "Shortcut Dimension 1 Code" := '';
-        "Shortcut Dimension 2 Code" := '';
-        GetPurchHeader();
-        "Dimension Set ID" :=
-          DimMgt.GetRecDefaultDimID(
-            Rec, CurrFieldNo, DefaultDimSource, SourceCodeSetup.Purchases,
-            "Shortcut Dimension 1 Code", "Shortcut Dimension 2 Code", PRHeader."Dimension Set ID", DATABASE::Vendor);
-        DimMgt.UpdateGlobalDimFromDimSetID("Dimension Set ID", "Shortcut Dimension 1 Code", "Shortcut Dimension 2 Code");
-
-    end;
-
 
 
     procedure TestStatusOpen()
@@ -529,6 +537,39 @@ table 50006 AfkPurchaseRequisitionLine
         IF Type <> Type::" " THEN
             IF PRHeader.Status = PRHeader.Status::Released THEN
                 ERROR(Text001);
+    end;
+
+    procedure ValidateShortcutDimCode(FieldNumber: Integer; var ShortcutDimCode: Code[20])
+    var
+    begin
+        DimMgt.ValidateShortcutDimValues(FieldNumber, ShortcutDimCode, "Dimension Set ID");
+        //VerifyItemLineDim;
+
+    end;
+
+    local procedure CalcAmounts()
+    var
+        factor: Decimal;
+    begin
+        "Amount" := Round(Quantity * "Unit Price", Currency."Amount Rounding Precision");
+        "VAT Amount" := Round("VAT %" * Amount / 100, Currency."Amount Rounding Precision");
+        "Amount Including VAT" := "Amount" + "VAT Amount";
+
+        GetPurchHeader();
+        factor := CurrExchRate.ExchangeRate(PRHeader."Document Date", PRHeader."Currency Code");
+        IF PRHeader."Currency Code" = '' THEN
+            "Amount Including VAT (LCY)" := "Amount Including VAT"
+        ELSE
+            "Amount Including VAT (LCY)" := ROUND(
+                CurrExchRate.ExchangeAmtFCYToLCY(
+                  PRHeader."Document Date", PRHeader."Currency Code",
+                  "Amount Including VAT (LCY)", factor));
+    end;
+
+    local procedure CalcBaseQty(Qty: Decimal): Decimal
+    begin
+        TESTFIELD("Qty. per Unit of Measure");
+        EXIT(ROUND(Qty * "Qty. per Unit of Measure", 0.00001));
     end;
 
     local procedure GetFAPostingGroup()
@@ -564,56 +605,15 @@ table 50006 AfkPurchaseRequisitionLine
         VALIDATE("VAT Prod. Posting Group", LocalGLAcc."VAT Prod. Posting Group");
     end;
 
-    procedure GetItem()
+    local procedure InitDefaultDimensionSources(var DefaultDimSource: List of [Dictionary of [Integer, Code[20]]]; FieldNo: Integer)
     begin
-        IF Item."No." <> Rec."No." THEN
-            Item.GET("No.");
-    end;
+        DimMgt.AddDimSource(DefaultDimSource, DimMgt.PurchLineTypeToTableID(Rec.Type), Rec."No.", FieldNo = Rec.FieldNo("No."));
+        // DimMgt.AddDimSource(DefaultDimSource, Database::Job, Rec."Job No.", FieldNo = Rec.FieldNo("Job No."));
+        // DimMgt.AddDimSource(DefaultDimSource, Database::"Responsibility Center", Rec."Responsibility Center", FieldNo = Rec.FieldNo("Responsibility Center"));
+        // DimMgt.AddDimSource(DefaultDimSource, Database::"Work Center", Rec."Work Center No.", FieldNo = Rec.FieldNo("Work Center No."));
+        // DimMgt.AddDimSource(DefaultDimSource, Database::Location, Rec."Location Code", FieldNo = Rec.FieldNo("Location Code"));
 
-    local procedure CalcBaseQty(Qty: Decimal): Decimal
-    begin
-        TESTFIELD("Qty. per Unit of Measure");
-        EXIT(ROUND(Qty * "Qty. per Unit of Measure", 0.00001));
-    end;
-
-    procedure GetPurchHeader(): Record "AfkPurchaseRequisition"
-    begin
-        GetPurchHeader(PRHeader, Currency);
-        exit(PRHeader);
-    end;
-
-    procedure GetPurchHeader(var OutPurchHeader: Record "AfkPurchaseRequisition"; var OutCurrency: Record Currency)
-    begin
-        TestField("Document No.");
-        if (("Document No." <> PRHeader."No.") or ("Document Type" <> PRHeader."Document Type")) then begin
-            PRHeader.Get("Document Type", "Document No.");
-            if PRHeader."Currency Code" = '' then
-                Currency.InitRoundingPrecision
-            else begin
-                //PurchHeader.TestField("Currency Factor");
-                Currency.Get(PRHeader."Currency Code");
-                Currency.TestField("Amount Rounding Precision");
-            end;
-        end;
-    end;
-
-    local procedure CalcAmounts()
-    var
-        factor: Decimal;
-    begin
-        "Amount" := Round(Quantity * "Unit Price", Currency."Amount Rounding Precision");
-        "VAT Amount" := Round("VAT %" * Amount / 100, Currency."Amount Rounding Precision");
-        "Amount Including VAT" := "Amount" + "VAT Amount";
-
-        GetPurchHeader();
-        factor := CurrExchRate.ExchangeRate(PRHeader."Document Date", PRHeader."Currency Code");
-        IF PRHeader."Currency Code" = '' THEN
-            "Amount Including VAT (LCY)" := "Amount Including VAT"
-        ELSE
-            "Amount Including VAT (LCY)" := ROUND(
-                CurrExchRate.ExchangeAmtFCYToLCY(
-                  PRHeader."Document Date", PRHeader."Currency Code",
-                  "Amount Including VAT (LCY)", factor));
+        // OnAfterInitDefaultDimensionSources(Rec, DefaultDimSource);
     end;
 
 

@@ -4,7 +4,11 @@ pageextension 50010 AfkUserSetup extends "User Setup"
     {
         addlast(Control1)
         {
-            field("AfkCanValidateBudgetTransfer"; Rec."AfkCanValidateBudgetTransfer")
+            field("AfkCanValidateBudgetTransfer"; Rec."Afk_CanValidateBudgetTransfer")
+            {
+                ApplicationArea = Suite;
+            }
+            field("Afk_CanValidateBudgetRevision"; Rec.Afk_CanValidateBudgetRevision)
             {
                 ApplicationArea = Suite;
             }

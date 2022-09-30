@@ -4,11 +4,11 @@ pageextension 50009 AfkApprovalUserSetup extends "Approval User Setup"
     {
         addlast(Control1)
         {
-            field("PR Amount Approval Limit"; Rec."AfkPRAmountApprovalLimit")
+            field("Afk_PRAmountApprovalLimit"; Rec."Afk_PRAmountApprovalLimit")
             {
                 ApplicationArea = Suite;
             }
-            field("Unlimited PR Approval"; Rec."AfkUnlimitedPRApproval")
+            field("Afk_UnlimitedPRApproval"; Rec."Afk_UnlimitedPRApproval")
             {
                 ApplicationArea = Suite;
             }

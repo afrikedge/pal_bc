@@ -41,6 +41,12 @@ table 50004 AfkSetup
             DecimalPlaces = 0 : 5;
             MinValue = 0;
         }
+        field(8; "PO Max Value"; Decimal)
+        {
+            Caption = 'Commitment Max Value';
+            DecimalPlaces = 0 : 5;
+            MinValue = 0;
+        }
 
 
         // field(10; "Insurance Nos."; Code[20])

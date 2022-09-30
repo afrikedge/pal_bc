@@ -7,7 +7,7 @@ page 50007 "AfkPurchaseRequisitionSubform"
     LinksAllowed = false;
     MultipleNewLines = true;
     SourceTableView = WHERE("Document Type" = FILTER(Requisition));
-    SourceTable = AfkPurchaseRequisitionLine;
+    SourceTable = AfkDocRequisitionLine;
 
     layout
     {
@@ -195,15 +195,10 @@ page 50007 "AfkPurchaseRequisitionSubform"
 
 
     var
-        Text000: Label 'Assign No. ?';
         Header: Record "Payment Header";
         Status: Record "Payment Status";
-        Text001: Label 'There is no line to modify.';
-        Text002: Label 'A posted line cannot be modified.';
-        Text003: Label 'You cannot assign numbers to a posted header.';
-        Navigate: Page Navigate;
-        ShortcutDimCode: array[8] of Code[20];
         DimMgt: Codeunit DimensionManagement;
+        Navigate: Page Navigate;
         DimVisible1: Boolean;
         DimVisible2: Boolean;
         DimVisible3: Boolean;
@@ -212,6 +207,11 @@ page 50007 "AfkPurchaseRequisitionSubform"
         DimVisible6: Boolean;
         DimVisible7: Boolean;
         DimVisible8: Boolean;
+        ShortcutDimCode: array[8] of Code[20];
+        Text000: Label 'Assign No. ?';
+        Text001: Label 'There is no line to modify.';
+        Text002: Label 'A posted line cannot be modified.';
+        Text003: Label 'You cannot assign numbers to a posted header.';
 
 
     local procedure SetDimensionsVisibility()

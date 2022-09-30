@@ -47,6 +47,10 @@ page 50005 AfkSetupCard
                 {
                     ApplicationArea = Basic, Suite;
                 }
+                field("PO Max Value"; rec."PO Max Value")
+                {
+                    ApplicationArea = Basic, Suite;
+                }
             }
         }
     }

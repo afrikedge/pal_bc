@@ -17,14 +17,14 @@ codeunit 50006 AfkPREventsSubs
 
 
     [EventSubscriber(ObjectType::Codeunit, Codeunit::"AfkPRReqWorkflowMgt", 'OnSendPurchRequisitionForApproval_AFK', '', false, false)]
-    local procedure RunWorkflowOnSendEmployeeLoanForApproval(PurchRequisition: Record AfkPurchaseRequisition)
+    local procedure RunWorkflowOnSendEmployeeLoanForApproval(PurchRequisition: Record "AfkDocRequisition")
     begin
         EmplLoanWkflMgt.HandleOnSendPurchRequisitionForApproval(PurchRequisition);
     end;
 
 
     [EventSubscriber(ObjectType::Codeunit, Codeunit::"AfkPRReqWorkflowMgt", 'OnCancelPurchRequisitionApprovalRequest_AFK', '', false, false)]
-    local procedure RunWorkflowOnCanceEmployeeLoanApprovalRequest_AFK(PurchRequisition: Record AfkPurchaseRequisition)
+    local procedure RunWorkflowOnCanceEmployeeLoanApprovalRequest_AFK(PurchRequisition: Record "AfkDocRequisition")
     begin
         EmplLoanWkflMgt.HandleOnCancePurchRequisitionApprovalRequest(PurchRequisition);
     end;

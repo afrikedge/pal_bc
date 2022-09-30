@@ -1,4 +1,4 @@
-table 50008 "AfkPostedPurchaseRequisition"
+table 50008 "AfkPostedDocRequisition"
 {
     Caption = 'Posted Purchase Requisition';
     //DrillDownPageID = "Payment Slip List";
@@ -169,17 +169,17 @@ table 50008 "AfkPostedPurchaseRequisition"
 
     var
 
-        PRHeader: Record AfkPurchaseRequisition;
+        PRHeader: Record "AfkDocRequisition";
         AfkSetup: Record AfkSetup;
         SourceCodeSetup: Record "Source Code Setup";
         DimManagement: Codeunit DimensionManagement;
         NoSeriesMgt: Codeunit NoSeriesManagement;
+        Text001: Label 'All offers associated with this request will be deleted! \\Do you want to continue ?';
 
         // Text006: Label 'The currency code for the document is the LCY Code.\\Please select a bank for which the currency code is the LCY Code.';
         // Text007: Label 'The currency code for the document is %1.\\Please select a bank for which the currency code is %1 or the LCY Code.';
         // Text008: Label 'Your bank''s currency code is %1.\\You must change the bank account code before modifying the currency code.';
         Text009: Label 'You may have changed a dimension.\\Do you want to update the lines?';
-        Text001: Label 'All offers associated with this request will be deleted! \\Do you want to continue ?';
 
 
 

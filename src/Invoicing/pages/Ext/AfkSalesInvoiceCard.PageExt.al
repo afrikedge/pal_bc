@@ -11,7 +11,7 @@ pageextension 50001 AfkSalesInvoiceCard extends "Sales Invoice"
         }
         addafter(General)
         {
-            group("Boat Informations")
+            group("Afk_Boat_Informations")
             {
                 Caption = 'Boat Informations';
                 field(Afk_Invoice_Object; Rec.Afk_Invoice_Object)
@@ -24,7 +24,7 @@ pageextension 50001 AfkSalesInvoiceCard extends "Sales Invoice"
                     ApplicationArea = Suite;
                     ToolTip = 'Vessel concerned by the invoice';
                 }
-                field("Piloting sheet number"; Rec."Piloting sheet number")
+                field("Afk_PilotingSheetNumber"; Rec."Afk_PilotingSheetNumber")
                 {
                     ApplicationArea = Suite;
                     //ToolTip = 'Invoice subject';
@@ -201,8 +201,8 @@ pageextension 50001 AfkSalesInvoiceCard extends "Sales Invoice"
                 var
                     SalesFilter: Record "Sales Header";
                 begin
-                    SalesFilter.SETRANGE("No.", Rec."No.");
-                    REPORT.RUN(REPORT::AfkSalesInvoicePreview, TRUE, FALSE, SalesFilter);
+                    SalesFilter.SetRange("No.", Rec."No.");
+                    REPORT.Run(REPORT::AfkSalesInvoicePreview, true, false, SalesFilter);
                 end;
             }
         }

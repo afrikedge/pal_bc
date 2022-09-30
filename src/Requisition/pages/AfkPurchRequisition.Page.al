@@ -3,7 +3,7 @@ page 50006 "AfkPurchaseRequisition"
     Caption = 'Purchase Requisition';
     PageType = Document;
     RefreshOnActivate = true;
-    SourceTable = AfkPurchaseRequisition;
+    SourceTable = "AfkDocRequisition";
     SourceTableView = WHERE("Document Type" = FILTER(Requisition));
     UsageCategory = Documents;
     PromotedActionCategories = 'New,Process,Report,Approbation,Release,Request Approval,Purchase Requisition';
@@ -274,8 +274,8 @@ page 50006 "AfkPurchaseRequisition"
                     Enabled = CanCancelApprovalForRecord;
                     trigger OnAction()
                     var
-                        WorkflowWebhookMgt: Codeunit "Workflow Webhook Management";
                         EmpLoanWkflMgt: Codeunit AfkPRReqWorkflowMgt;
+                        WorkflowWebhookMgt: Codeunit "Workflow Webhook Management";
                     begin
                         EmpLoanWkflMgt.OnCancelPurchRequisitionApprovalRequest_AFK(Rec);
                         WorkflowWebhookMgt.FindAndCancel(Rec.RECORDID);
@@ -342,18 +342,18 @@ page 50006 "AfkPurchaseRequisition"
 
     var
         PaymentStep: Record "Payment Step";
+        ApprovalsMgmt: Codeunit "Approvals Mgmt.";
         ChangeExchangeRate: Page "Change Exchange Rate";
         Navigate: Page Navigate;
+        CanCancelApprovalForRecord: Boolean;
+        OpenApprovalEntriesExist: Boolean;
+
+        OpenApprovalEntriesExistForCurrUser: Boolean;
+        ShowWorkflowStatus: Boolean;
         Text001: Label 'This payment class does not authorize vendor suggestions.';
         Text002: Label 'This payment class does not authorize customer suggestions.';
         Text003: Label 'You cannot suggest payments on a posted header.';
         Text009: Label 'Do you want to archive this document?';
-        ApprovalsMgmt: Codeunit "Approvals Mgmt.";
-
-        OpenApprovalEntriesExistForCurrUser: Boolean;
-        OpenApprovalEntriesExist: Boolean;
-        ShowWorkflowStatus: Boolean;
-        CanCancelApprovalForRecord: Boolean;
 
     local procedure SetControlVisibility()
     begin

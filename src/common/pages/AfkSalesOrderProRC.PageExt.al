@@ -4,9 +4,9 @@ pageextension 50004 AfkSalesOrderProRC extends "Order Processor Role Center"
     {
         addafter("Posted Documents")
         {
-            group(AddOns)
+            group(Afk_AddOns)
             {
-                Caption = 'Addons';
+                Caption = 'AfkSales';
                 Image = Sales;
                 ToolTip = 'Port Services Managment';
                 action(AfkBoatTypes)
@@ -112,22 +112,62 @@ pageextension 50004 AfkSalesOrderProRC extends "Order Processor Role Center"
 
             }
         }
-        addafter(AddOns)
+        addafter(Afk_AddOns)
         {
-            group(AddOns2)
+            group(Afk_AddOns2)
             {
-                Caption = 'Addons2';
+                Caption = 'AfkPurchase';
                 Image = Sales;
                 ToolTip = 'Purchase and Budget Managment';
-                action(AfkPRList)
+                // action(AfkPRList)
+                // {
+                //     ApplicationArea = Basic, Suite;
+                //     Caption = 'Purchase Requisition List';
+                //     Image = Track;
+                //     Promoted = true;
+                //     PromotedCategory = Process;
+                //     RunObject = Page AfkPurchRequisitionList;
+                //     //ToolTip = 'View or edit detailed information for the boat types';
+                // }
+                action(AfkDimensions)
+                {
+                    ApplicationArea = Basic, Suite;
+                    Caption = 'Dimensions';
+                    Image = Dimensions;
+                    Promoted = true;
+                    PromotedCategory = Process;
+                    RunObject = Page "Dimensions";
+                    ToolTip = 'View or edit detailed information about dimensions';
+                }
+                action(AfkBudgets)
+                {
+                    ApplicationArea = Basic, Suite;
+                    Caption = 'G/L Budget Names';
+                    Image = CostBudget;
+                    Promoted = true;
+                    PromotedCategory = Process;
+                    RunObject = Page "G/L Budget Names";
+                    ToolTip = 'View or edit detailed information about budgets';
+                }
+                action(AfkPRDocs)
                 {
                     ApplicationArea = Basic, Suite;
                     Caption = 'Purchase Requisition List';
-                    Image = Track;
+                    Image = PurchaseInvoice;
                     Promoted = true;
                     PromotedCategory = Process;
-                    RunObject = Page AfkPurchRequisitionList;
-                    //ToolTip = 'View or edit detailed information for the boat types';
+                    RunObject = Page "Purchase quotes";
+                    ToolTip = 'View or edit detailed information about purchase requests';
+                }
+                action(AfkPODocs)
+                {
+                    ApplicationArea = Basic, Suite;
+                    Caption = 'Purchase commitments';
+                    Image = Purchase;
+                    Promoted = true;
+                    PromotedCategory = Process;
+                    RunObject = Page "Purchase orders";
+                    ToolTip = 'View or edit detailed information about commitments';
                 }
                 action(AfkItems2)
                 {
@@ -149,16 +189,7 @@ pageextension 50004 AfkSalesOrderProRC extends "Order Processor Role Center"
                     RunObject = Page "Vendor List";
                     ToolTip = 'View or edit detailed information about vendors';
                 }
-                action(AfkBudgets)
-                {
-                    ApplicationArea = Basic, Suite;
-                    Caption = 'Budgets';
-                    Image = Track;
-                    Promoted = true;
-                    PromotedCategory = Process;
-                    RunObject = Page "G/L Budget Names";
-                    ToolTip = 'View or edit detailed information for the budgets';
-                }
+
                 action(AfkCalcPurchOrders)
                 {
                     ApplicationArea = Basic, Suite;

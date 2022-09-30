@@ -1,4 +1,4 @@
-table 50009 AfkPostPurchaseRequisitionLine
+table 50009 AfkPostDocRequisitionLine
 {
     Caption = 'Purchase Requisition Line';
     //DrillDownPageID = "Purchase Lines";
@@ -215,22 +215,22 @@ table 50009 AfkPostPurchaseRequisitionLine
 
 
     var
-        DimMgt: Codeunit DimensionManagement;
-        PurchHeader: Record "AfkPurchaseRequisition";
+        PurchHeader: Record "AfkDocRequisition";
+        ServRequest: Record "AfkDocRequisition";
+        Currency: Record Currency;
+        FADeprBook: Record "FA Depreciation Book";
+        FAPostingGr: Record "FA Posting Group";
+        FASetup: Record "FA Setup";
+        FA: Record "Fixed Asset";
+        GLAcc: Record "G/L Account";
+        LocalGLAcc: Record "G/L Account";
         GLSetup: Record "General Ledger Setup";
         Item: Record Item;
-        GLAcc: Record "G/L Account";
         ItemCharge: Record "Item Charge";
-        FA: Record "Fixed Asset";
-        FASetup: Record "FA Setup";
-        FADeprBook: Record "FA Depreciation Book";
-        LocalGLAcc: Record "G/L Account";
-        FAPostingGr: Record "FA Posting Group";
-        ServRequest: Record AfkPurchaseRequisition;
+        VATPostingSetup: Record "VAT Posting Setup";
+        DimMgt: Codeunit DimensionManagement;
         UOMMgt: Codeunit "Unit of Measure Management";
         Text001: Label 'The request can no longer be modified because it has already been validated';
-        VATPostingSetup: Record "VAT Posting Setup";
-        Currency: Record Currency;
 
 
 

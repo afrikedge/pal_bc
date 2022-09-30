@@ -1,4 +1,4 @@
-table 50007 AfkPurchaseRequisitionBudget
+table 50007 AfkDocRequisitionBudget
 {
     Caption = 'Purchase Requisition Budget Line';
     //DrillDownPageID = "Purchase Lines";

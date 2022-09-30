@@ -1,4 +1,4 @@
-table 50005 "AfkPurchaseRequisition"
+table 50005 "AfkDocRequisition"
 {
     Caption = 'Purchase Requisition';
     //DrillDownPageID = "Payment Slip List";
@@ -147,7 +147,7 @@ table 50005 "AfkPurchaseRequisition"
 
             trigger OnValidate()
             var
-                PRLine1: record AfkPurchaseRequisitionLine;
+                PRLine1: record AfkDocRequisitionLine;
             begin
                 TestStatusOpen();
                 if //(xRec."Buy-from Vendor No." = "Buy-from Vendor No.") and
@@ -166,7 +166,7 @@ table 50005 "AfkPurchaseRequisition"
         {
             AutoFormatExpression = "Currency Code";
             AutoFormatType = 1;
-            CalcFormula = Sum("AfkPurchaseRequisitionLine"."Amount Including VAT" WHERE("Document No." = FIELD("No.")));
+            CalcFormula = Sum(AfkDocRequisitionLine."Amount Including VAT" WHERE("Document No." = FIELD("No.")));
             Caption = 'Amount Including VAT';
             Editable = false;
             FieldClass = FlowField;
@@ -175,7 +175,7 @@ table 50005 "AfkPurchaseRequisition"
         {
             AutoFormatExpression = "Currency Code";
             AutoFormatType = 1;
-            CalcFormula = Sum("AfkPurchaseRequisitionLine"."Amount Including VAT (LCY)" WHERE("Document No." = FIELD("No.")));
+            CalcFormula = Sum(AfkDocRequisitionLine."Amount Including VAT (LCY)" WHERE("Document No." = FIELD("No.")));
             Caption = 'Amount (LCY)';
             Editable = false;
             FieldClass = FlowField;
@@ -239,9 +239,9 @@ table 50005 "AfkPurchaseRequisition"
 
     trigger OnDelete()
     var
-        RegLine: Record AfkPurchaseRequisitionLine;
+        BudgetLineP: Record AfkDocRequisitionBudget;
+        RegLine: Record AfkDocRequisitionLine;
         PurchH: Record "Purchase Header";
-        BudgetLineP: Record AfkPurchaseRequisitionBudget;
     begin
 
         TestStatusOpen();
@@ -269,12 +269,14 @@ table 50005 "AfkPurchaseRequisition"
 
     var
 
-        PRHeader: Record AfkPurchaseRequisition;
+        PRHeader: Record "AfkDocRequisition";
         AfkSetup: Record AfkSetup;
         SourceCodeSetup: Record "Source Code Setup";
+        ApprovalsMgmt: Codeunit "Approvals Mgmt.";
         DimManagement: Codeunit DimensionManagement;
         NoSeriesMgt: Codeunit NoSeriesManagement;
-        ApprovalsMgmt: Codeunit "Approvals Mgmt.";
+        SetupHasBeenRead: Boolean;
+        Text001: Label 'All offers associated with this request will be deleted! \\Do you want to continue ?';
 
 
         Text002: Label 'This document can only be released when the approval process is complete.';
@@ -283,8 +285,6 @@ table 50005 "AfkPurchaseRequisition"
         // Text007: Label 'The currency code for the document is %1.\\Please select a bank for which the currency code is %1 or the LCY Code.';
         // Text008: Label 'Your bank''s currency code is %1.\\You must change the bank account code before modifying the currency code.';
         Text009: Label 'You may have changed a dimension.\\Do you want to update the lines?';
-        Text001: Label 'All offers associated with this request will be deleted! \\Do you want to continue ?';
-        SetupHasBeenRead: Boolean;
 
 
     procedure PerformManualRelease()
@@ -352,7 +352,7 @@ table 50005 "AfkPurchaseRequisition"
     end;
 
 
-    procedure AssistEdit(OldReglHeader: Record AfkPurchaseRequisition): Boolean
+    procedure AssistEdit(OldReglHeader: Record "AfkDocRequisition"): Boolean
     begin
 
         PRHeader := Rec;
@@ -393,8 +393,8 @@ table 50005 "AfkPurchaseRequisition"
     procedure CreateDim(DefaultDimSource: List of [Dictionary of [Integer, Code[20]]])
     var
         SourceCodeSetup: Record "Source Code Setup";
-        OldDimSetID: Integer;
         IsHandled: Boolean;
+        OldDimSetID: Integer;
     begin
         IsHandled := false;
 
@@ -458,7 +458,7 @@ table 50005 "AfkPurchaseRequisition"
 
     procedure PRLinesExist(): Boolean
     var
-        PrLine: Record AfkPurchaseRequisitionLine;
+        PrLine: Record AfkDocRequisitionLine;
     begin
         PrLine.Reset();
         PrLine.SetRange("Document No.", "No.");
@@ -467,7 +467,7 @@ table 50005 "AfkPurchaseRequisition"
 
     local procedure UpdateAllLineDim(NewParentDimSetID: Integer; OldParentDimSetID: Integer)
     var
-        PRLine: Record AfkPurchaseRequisitionLine;
+        PRLine: Record AfkDocRequisitionLine;
         NewDimSetID: Integer;
     begin
         // Update all lines with changed dimensions.

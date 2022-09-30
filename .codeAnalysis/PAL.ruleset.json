@@ -1,0 +1,21 @@
+{
+    "name": "Name",
+    "description": "Description",
+    "rules": [
+        {
+            "id": "AS0051",
+            "action": "None",
+            "justification": "Justification"
+        },
+        {
+            "id": "AS0084",
+            "action": "None",
+            "justification": "Justification"
+        },
+        {
+            "id": "AS0052",
+            "action": "None",
+            "justification": "Justification"
+        }
+    ]
+}

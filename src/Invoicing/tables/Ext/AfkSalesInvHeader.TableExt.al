@@ -152,7 +152,7 @@ tableextension 50011 AfkSalesInvHeader extends "Sales Invoice Header"
             Caption = 'Subject';
             DataClassification = CustomerContent;
         }
-        field(50028; "Piloting sheet number"; Text[50])
+        field(50028; "Afk_PilotingSheetNumber"; Text[50])
         {
             Caption = 'Piloting sheet number';
             DataClassification = CustomerContent;

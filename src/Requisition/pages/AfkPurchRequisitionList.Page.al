@@ -5,7 +5,7 @@ page 50008 "AfkPurchRequisitionList"
     CardPageID = AfkPurchaseRequisition;
     Editable = false;
     PageType = List;
-    SourceTable = AfkPurchaseRequisition;
+    SourceTable = "AfkDocRequisition";
     SourceTableView = WHERE("Document Type" = FILTER(Requisition));
 
     UsageCategory = Lists;
@@ -122,8 +122,8 @@ page 50008 "AfkPurchRequisitionList"
                     Enabled = CanCancelApprovalForRecord;
                     trigger OnAction()
                     var
-                        WorkflowWebhookMgt: Codeunit "Workflow Webhook Management";
                         EmpLoanWkflMgt: Codeunit AfkPRReqWorkflowMgt;
+                        WorkflowWebhookMgt: Codeunit "Workflow Webhook Management";
                     begin
                         EmpLoanWkflMgt.OnCancelPurchRequisitionApprovalRequest_AFK(Rec);
                         WorkflowWebhookMgt.FindAndCancel(Rec.RECORDID);
@@ -184,10 +184,10 @@ page 50008 "AfkPurchRequisitionList"
 
     var
         ApprovalsMgmt: Codeunit "Approvals Mgmt.";
+        CanCancelApprovalForRecord: Boolean;
+        OpenApprovalEntriesExist: Boolean;
 
         OpenApprovalEntriesExistForCurrUser: Boolean;
-        OpenApprovalEntriesExist: Boolean;
-        CanCancelApprovalForRecord: Boolean;
 
     local procedure SetControlAppearance()
     begin

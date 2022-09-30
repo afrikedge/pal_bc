@@ -72,7 +72,7 @@ tableextension 50001 AfkSalesLine extends "Sales Line"
             Caption = 'Phone Network';
             DataClassification = CustomerContent;
         }
-        field(500012; "Afk_Printed_Description"; Text[100])
+        field(50012; "Afk_Printed_Description"; Text[100])
         {
             Caption = 'Printed Description';
             DataClassification = CustomerContent;

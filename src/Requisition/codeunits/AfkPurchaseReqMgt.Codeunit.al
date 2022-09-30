@@ -6,7 +6,7 @@ codeunit 50004 AfkPurchaseReqMgt
 
     procedure CreateOpenNewOffer()
     var
-        SRLine: Record AfkPurchaseRequisitionLine;
+        SRLine: Record AfkDocRequisitionLine;
         PurchQuoteH: Record "Purchase Header";
         QuoteCard: Page "Purchase Quote";
 
@@ -26,9 +26,9 @@ codeunit 50004 AfkPurchaseReqMgt
         PurchQuoteH."Document Type" := PurchQuoteH."Document Type"::Quote;
         PurchQuoteH.Afk_RequisitionCode := SRDoc."No.";
         PurchQuoteH."Requested Receipt Date" := SRDoc."Requested Receipt Date";
-        PurchQuoteH."PR Type" := SRDoc."PR Type";
-        PurchQuoteH."PO Type" := SRDoc."PO Type";
-        PurchQuoteH."PR Description" := SRDoc.Description;
+        PurchQuoteH."Afk_PRType" := SRDoc."PR Type";
+        PurchQuoteH."Afk_POType" := SRDoc."PO Type";
+        PurchQuoteH."Afk_PRDescription" := SRDoc.Description;
         PurchQuoteH."No." := '';
         PurchQuoteH.INSERT(true);
 
@@ -40,8 +40,8 @@ codeunit 50004 AfkPurchaseReqMgt
 
     procedure CreateLinesOffer(Devis: Record "Purchase Header")
     var
-        SRDoc: Record AfkPurchaseRequisition;
-        SRLine: Record AfkPurchaseRequisitionLine;
+        SRDoc: Record "AfkDocRequisition";
+        SRLine: Record AfkDocRequisitionLine;
         PurchLine: Record "Purchase Line";
         QteRestante: Decimal;
         LineNo: Integer;
@@ -51,8 +51,8 @@ codeunit 50004 AfkPurchaseReqMgt
         if Devis.Afk_RequisitionCode = '' then exit;
 
         SRDoc.GET(SRDoc."Document Type"::Requisition, Devis.Afk_RequisitionCode);
-        Devis."Budget Code" := SRDoc."Budget Code";
-        Devis."Purchase Type" := SRDoc."Purchase Type";
+        Devis."Afk_BudgetCode" := SRDoc."Budget Code";
+        Devis."Afk_PurchaseType" := SRDoc."Purchase Type";
         //Devis."Purchaser Code" := SRDoc."Purchaser Code";
 
         //IF Devis."Purchaser Code" = '' THEN
@@ -120,13 +120,13 @@ codeunit 50004 AfkPurchaseReqMgt
 
     end;
 
-    procedure CloturerDemande(var SRequisition: Record AfkPurchaseRequisition;
+    procedure CloturerDemande(var SRequisition: Record "AfkDocRequisition";
             CodeDocCree: Code[20]; TypeDocCree: Option Commande,Contrat;
             CodeOffreRetenue: Code[20])
     var
-        PostedServiceRequisition: Record AfkPostedPurchaseRequisition;
-        PostedLineServR: Record AfkPostPurchaseRequisitionLine;
-        SRLine: Record AfkPurchaseRequisitionLine;
+        SRLine: Record AfkDocRequisitionLine;
+        PostedLineServR: Record AfkPostDocRequisitionLine;
+        PostedServiceRequisition: Record "AfkPostedDocRequisition";
         EnteteOffre: Record "Purchase Header";
         PurchQuoteLine: Record "Purchase Line";
     begin
@@ -199,9 +199,10 @@ codeunit 50004 AfkPurchaseReqMgt
     end;
 
 
-    local procedure RefreshRemainingQtyReq(var PurchReq: Record AfkPurchaseRequisition)
+
+    local procedure RefreshRemainingQtyReq(var PurchReq: Record "AfkDocRequisition")
     var
-        PurchReqLine: Record AfkPurchaseRequisitionLine;
+        PurchReqLine: Record AfkDocRequisitionLine;
         PartiallyProcess: Boolean;
         TotallyProcess: Boolean;
         QtyInOrder: Decimal;
@@ -248,7 +249,7 @@ codeunit 50004 AfkPurchaseReqMgt
 
     procedure RefreshRemainingQtyReqByCode(PurchReqCode: Code[20])
     var
-        PurchReq: Record AfkPurchaseRequisition;
+        PurchReq: Record "AfkDocRequisition";
     begin
         if PurchReq.GET(PurchReq."Document Type"::Requisition, PurchReqCode) then
             RefreshRemainingQtyReq(PurchReq);
@@ -297,23 +298,23 @@ codeunit 50004 AfkPurchaseReqMgt
 
 
 
-        PurchLine1.RESET;
+        PurchLine1.RESET();
         PurchLine1.SETRANGE("Document Type", PurchLine1."Document Type"::Order);
         PurchLine1.SETRANGE("Document No.", PurchH."No.");
-        if PurchLine1.FINDSET then
+        if PurchLine1.FINDSET() then
             repeat
 
                 if PurchLine1."Quantity Invoiced" <> PurchLine1."Quantity Received" then
                     ERROR(Text013, PurchLine1."No.");
 
                 PurchLine1.VALIDATE(PurchLine1.Quantity, PurchLine1."Quantity Received");
-                PurchLine1.MODIFY;
+                PurchLine1.MODIFY();
 
-            until PurchLine1.NEXT = 0;
+            until PurchLine1.NEXT() = 0;
 
 
         PurchH."Afk_ProcessingStatus" := PurchH.Afk_ProcessingStatus::Closed;
-        PurchH.MODIFY;
+        PurchH.MODIFY();
         ArchiveManagement.ArchPurchDocumentNoConfirm(PurchH);
 
         //PurchH.AFK_AllowDeletion(TRUE);
@@ -364,9 +365,9 @@ codeunit 50004 AfkPurchaseReqMgt
             until PurchL.NEXT = 0;
     end;
 
-    procedure CheckDim(PurchReq: Record AfkPurchaseRequisition)
+    procedure CheckDim(PurchReq: Record "AfkDocRequisition")
     var
-        PurchReqLine2: Record AfkPurchaseRequisitionLine;
+        PurchReqLine2: Record AfkDocRequisitionLine;
         Item1: Record Item;
     begin
         PurchReqLine2.SETRANGE(PurchReqLine2."Document No.", PurchReq."No.");
@@ -381,9 +382,33 @@ codeunit 50004 AfkPurchaseReqMgt
             until PurchReqLine2.NEXT = 0;
     end;
 
-    local procedure CheckDimComb(PurchReqLine: Record AfkPurchaseRequisitionLine)
+    internal procedure InitPurchLineType(var PurchLine: Record "Purchase Line"; var xPurchLine: Record "Purchase Line"; var IsHandled: Boolean)
+    begin
+        PurchLine.Type := PurchLine.Type::Item;
+        IsHandled := true;
+    end;
+
+    internal procedure OnBeforeReleasePurchaseDoc(var PurchaseHeader: Record "Purchase Header"; PreviewMode: Boolean)
+    begin
+        AddOnSetup.Get();
+        if (PurchaseHeader."Document Type" = PurchaseHeader."Document Type"::Quote) then begin
+            AddOnSetup.TestField("PR Max Value");
+            PurchaseHeader.CalcFields("Amount Including VAT");
+            if (PurchaseHeader."Amount Including VAT") > AddOnSetup."PR Max Value" then
+                Error(PRLimitAmountErr);
+        end;
+        if (PurchaseHeader."Document Type" = PurchaseHeader."Document Type"::Order) then begin
+            AddOnSetup.TestField("PO Max Value");
+            PurchaseHeader.CalcFields("Amount Including VAT");
+            if (PurchaseHeader."Amount Including VAT") > AddOnSetup."PO Max Value" then
+                Error(POLimitAmountErr);
+        end;
+
+    end;
+
+    local procedure CheckDimComb(PurchReqLine: Record AfkDocRequisitionLine)
     var
-        PurchReqLine2: Record AfkPurchaseRequisitionLine;
+        PurchReqLine2: Record AfkDocRequisitionLine;
 
     begin
         if PurchReqLine."Line No." = 0 then
@@ -399,7 +424,7 @@ codeunit 50004 AfkPurchaseReqMgt
                   'Demande', PurchReqLine."Document No.", PurchReqLine."Line No.", DimMgt.GetDimCombErr);
     end;
 
-    local procedure CheckDimValuePosting(var PurchReqLine: Record AfkPurchaseRequisitionLine; PurchReq: Record AfkPurchaseRequisition)
+    local procedure CheckDimValuePosting(var PurchReqLine: Record AfkDocRequisitionLine; PurchReq: Record "AfkDocRequisition")
     var
         NumberArr: array[10] of Code[10];
         TableIDArr: array[10] of Integer;
@@ -412,14 +437,11 @@ codeunit 50004 AfkPurchaseReqMgt
             if not DimMgt.CheckDimValuePosting(TableIDArr, NumberArr, PurchReqLine."Dimension Set ID") then
                 ERROR(
                   Text031,
-                  'Demande', PurchReqLine."Document No.", PurchReqLine."Line No.", DimMgt.GetDimValuePostingErr);
+                  'Demande', PurchReqLine."Document No.", PurchReqLine."Line No.", DimMgt.GetDimValuePostingErr());
         end;
     end;
 
     local procedure TypeToTableID3(Type: Enum "Purchase Line Type"): Integer
-    var
-        NumberArr: array[10] of Code[10];
-        TableIDArr: array[10] of Integer;
     begin
         case Type of
             Type::" ":
@@ -439,24 +461,23 @@ codeunit 50004 AfkPurchaseReqMgt
 
 
 
-    local procedure DDATotalementFacturee(var SRequisition: Record AfkPurchaseRequisition): Boolean
+    local procedure DDATotalementFacturee(var SRequisition: Record "AfkDocRequisition"): Boolean
     var
-        SRLine: Record AfkPurchaseRequisitionLine;
+        SRLine: Record AfkDocRequisitionLine;
         QteRestante: Decimal;
     begin
         RefreshRemainingQtyReq(SRequisition);
 
-        SRLine.RESET;
+        SRLine.RESET();
         SRLine.SETRANGE(SRLine."Document Type", SRequisition."Document Type");
         SRLine.SETRANGE(SRLine."Document No.", SRequisition."No.");
-        if SRLine.FINDSET then
+        if SRLine.FINDSET() then
             repeat
-                if SRLine.Type <> SRLine.Type::" " then begin
-
+                if SRLine.Type <> SRLine.Type::" " then
                     QteRestante := QteRestante + UOMMgt.CalcQtyFromBase(SRLine."Quantity (Base)" - SRLine."Ordered Quantity (Base)", SRLine."Qty. per Unit of Measure");
 
-                end;
-            until SRLine.NEXT = 0;
+
+            until SRLine.NEXT() = 0;
         exit(QteRestante = 0);
     end;
 
@@ -466,12 +487,15 @@ codeunit 50004 AfkPurchaseReqMgt
 
 
     var
-        SRDoc: Record AfkPurchaseRequisition;
+        SRDoc: Record "AfkDocRequisition";
         AddOnSetup: Record AfkSetup;
         FASetup: Record "FA Setup";
         ArchiveManagement: Codeunit ArchiveManagement;
         DimMgt: Codeunit DimensionManagement;
         UOMMgt: Codeunit "Unit of Measure Management";
+        Err029Err: Label 'The dimension combination used in %1 %2, row no. %3, is blocked. %4';
+        POLimitAmountErr: Label 'The limit amount for purchase commitments is %1';
+        PRLimitAmountErr: Label 'The limit amount for purchase requests is %1';
         Text002: Label 'The document has no lines';
         Text010: Label 'Do you want to close the purchasing document?';
         Text013: Label 'You cannot close this order because the quantity received has not been fully invoiced for item %1';
@@ -479,7 +503,6 @@ codeunit 50004 AfkPurchaseReqMgt
         Text014: Label 'Would you like to close this purchase order: %1?';
 
         Text028: Label 'The dimension combination used in %1 %2 is blocked. %3';
-        Err029Err: Label 'The dimension combination used in %1 %2, row no. %3, is blocked. %4';
         Text031: Label 'The dimensions used in %1 %2, line n° %3, are invalid. %4';
         Text032: Label 'This purchase requisition has already been completely processed.';
 
