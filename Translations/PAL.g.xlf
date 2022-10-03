@@ -1838,10 +1838,20 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report AfkBudgetLineTransfer - NamedType RevisionDefaultTxt</note>
         </trans-unit>
+        <trans-unit id="Report 1260461456 - NamedType 846588469" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Budget Line Revision</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkBudgetLineTransfer - NamedType RevisionTitle</note>
+        </trans-unit>
         <trans-unit id="Report 1260461456 - NamedType 1964893388" size-unit="char" translate="yes" xml:space="preserve">
           <source>Budget Line Transfer on %1</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report AfkBudgetLineTransfer - NamedType TransferDefaultTxt</note>
+        </trans-unit>
+        <trans-unit id="Report 1260461456 - NamedType 942121493" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Budget Line Transfer</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkBudgetLineTransfer - NamedType TransferTitle</note>
         </trans-unit>
         <trans-unit id="Report 1260461456 - Control 2718661101 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Revision</source>
@@ -2709,22 +2719,22 @@
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkCustomerCard - Control Afk_TradeRegister - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="PageExtension 678316379 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 387971303">
-          <source>Commitment sheet</source>
+          <source>Purchase Commitment</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkPurchaseOrder - Property Caption</note>
         </trans-unit>
         <trans-unit id="PageExtension 849346501 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 2882327954">
-          <source>Commitment sheets</source>
+          <source>Purchase Commitments</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkPurchaseOrderList - Property Caption</note>
         </trans-unit>
         <trans-unit id="PageExtension 2819668743 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 3321822267">
-          <source>Purchase Requisition</source>
+          <source>Purchase Request</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkPurchaseQuote - Property Caption</note>
         </trans-unit>
         <trans-unit id="PageExtension 1473240369 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 1819353702">
-          <source>Purchase Requisition List</source>
+          <source>Purchase Requests</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkPurchaseQuoteList - Property Caption</note>
         </trans-unit>
@@ -2864,7 +2874,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkSalesOrderProRC - Action Afk_AddOns - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="PageExtension 3297313626 - Action 2805533596 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 2747922353">
-          <source>Addons</source>
+          <source>AfkSales</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkSalesOrderProRC - Action Afk_AddOns - Property Caption</note>
         </trans-unit>
@@ -2964,7 +2974,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkSalesOrderProRC - Action Afk_AddOns2 - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="PageExtension 3297313626 - Action 3612684486 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 2747922353">
-          <source>Addons2</source>
+          <source>AfkPurchase</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkSalesOrderProRC - Action Afk_AddOns2 - Property Caption</note>
         </trans-unit>
@@ -2977,11 +2987,6 @@
           <source>G/L Budget Names</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkSalesOrderProRC - Action AfkBudgets - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="PageExtension 3297313626 - Action 3322381308 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 2747922353">
-          <source>Purchase orders</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkSalesOrderProRC - Action AfkCalcPurchOrders - Property Caption</note>
         </trans-unit>
         <trans-unit id="PageExtension 3297313626 - Action 1191687161 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 2747922353">
           <source>View or edit detailed information about dimensions</source>
@@ -3019,9 +3024,14 @@
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkSalesOrderProRC - Action AfkPRDocs - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="PageExtension 3297313626 - Action 152334583 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 2747922353">
-          <source>Purchase Requisition List</source>
+          <source>Purchase requests</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkSalesOrderProRC - Action AfkPRDocs - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3297313626 - Action 2955598406 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 2747922353">
+          <source>User Setup</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkSalesOrderProRC - Action AfkUserSetup - Property Caption</note>
         </trans-unit>
         <trans-unit id="PageExtension 3297313626 - Action 1270802125 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 2747922353">
           <source>View or edit detailed information about vendors</source>

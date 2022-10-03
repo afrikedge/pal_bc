@@ -152,7 +152,7 @@ pageextension 50004 AfkSalesOrderProRC extends "Order Processor Role Center"
                 action(AfkPRDocs)
                 {
                     ApplicationArea = Basic, Suite;
-                    Caption = 'Purchase Requisition List';
+                    Caption = 'Purchase requests';
                     Image = PurchaseInvoice;
                     Promoted = true;
                     PromotedCategory = Process;
@@ -166,7 +166,7 @@ pageextension 50004 AfkSalesOrderProRC extends "Order Processor Role Center"
                     Image = Purchase;
                     Promoted = true;
                     PromotedCategory = Process;
-                    RunObject = Page "Purchase orders";
+                    RunObject = Page "Purchase order list";
                     ToolTip = 'View or edit detailed information about commitments';
                 }
                 action(AfkItems2)
@@ -189,18 +189,15 @@ pageextension 50004 AfkSalesOrderProRC extends "Order Processor Role Center"
                     RunObject = Page "Vendor List";
                     ToolTip = 'View or edit detailed information about vendors';
                 }
-
-                action(AfkCalcPurchOrders)
+                action(AfkUserSetup)
                 {
                     ApplicationArea = Basic, Suite;
-                    Caption = 'Purchase orders';
-                    Image = Track;
+                    Caption = 'User Setup';
+                    Image = Setup;
                     Promoted = true;
                     PromotedCategory = Process;
-                    RunObject = Page "Purchase Order List";
-                    //ToolTip = 'View or edit detailed information for the calculation parameters';
+                    RunObject = Page "User Setup";
                 }
-
 
             }
         }

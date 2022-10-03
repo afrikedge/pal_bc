@@ -388,7 +388,7 @@ codeunit 50009 AfkBudgetControl
     end;
 
 
-    local procedure CalcValuesBudget(VAR BudgetLine: Record AfkDocRequisitionBudget; DateRef: Date; CurrOrderNo: Code[20]; GLAcc: Code[20]; CodeBudget: Code[20])
+    local procedure CalcValuesBudget(VAR BudgetLine: Record AfkDocRequisitionBudget; DateRef: Date; CurrOrderNo: Code[20]; GLAcc: Code[20]; CodeAxe1: Code[20])
     var
         DateDeb: Date;
         DateFin: Date;
@@ -399,14 +399,14 @@ codeunit 50009 AfkBudgetControl
 
         //Month
         GetPeriodDates(DateRef, 1, DateDeb, DateFin);
-        IF CodeBudget <> '' THEN
-            BudgetLine.SETFILTER("Global Dimension 1 Filter", '%1', CodeBudget);
+        IF CodeAxe1 <> '' THEN
+            BudgetLine.SETFILTER("Global Dimension 1 Filter", '%1', CodeAxe1);
         BudgetLine."Budget Filter" := AddOnSetup."Default Budget Code";
         BudgetLine.SETFILTER("Date Filter", '%1..%2', DateDeb, DateFin);
         BudgetLine.CALCFIELDS("Net Change", "Budgeted Amount");
 
         BudgetLine."Monthly Budgeted Amt" := BudgetLine."Budgeted Amount";
-        BudgetLine."Monthly Commitment" := GetPrecommitmentAmt(GLAcc, CodeBudget, CurrOrderNo, DateDeb, DateFin);
+        BudgetLine."Monthly Commitment" := GetPrecommitmentAmt(GLAcc, CodeAxe1, CurrOrderNo, DateDeb, DateFin);
         BudgetLine."Monthly Realized Amt" := BudgetLine."Net Change";
         BudgetLine."Monthly Available Amt" := (BudgetLine."Monthly Budgeted Amt") -
               (BudgetLine."Monthly Commitment" + BudgetLine."Monthly Realized Amt");
@@ -414,14 +414,14 @@ codeunit 50009 AfkBudgetControl
 
         //Acc
         GetPeriodDates(DateRef, 2, DateDeb, DateFin);
-        IF CodeBudget <> '' THEN
-            BudgetLine.SETFILTER("Global Dimension 1 Filter", '%1', CodeBudget);
+        IF CodeAxe1 <> '' THEN
+            BudgetLine.SETFILTER("Global Dimension 1 Filter", '%1', CodeAxe1);
         BudgetLine."Budget Filter" := AddOnSetup."Default Budget Code";
         BudgetLine.SETFILTER("Date Filter", '%1..%2', DateDeb, DateFin);
         BudgetLine.CALCFIELDS("Net Change", "Budgeted Amount");
 
         BudgetLine."Acc Budgeted Amt" := BudgetLine."Budgeted Amount";
-        BudgetLine."Acc Commitment" := GetPrecommitmentAmt(GLAcc, CodeBudget, CurrOrderNo, DateDeb, DateFin);
+        BudgetLine."Acc Commitment" := GetPrecommitmentAmt(GLAcc, CodeAxe1, CurrOrderNo, DateDeb, DateFin);
         BudgetLine."Acc Realized Amt" := BudgetLine."Net Change";
         BudgetLine."Acc Available Amt" := (BudgetLine."Acc Budgeted Amt") -
               (BudgetLine."Acc Commitment" + BudgetLine."Acc Realized Amt");
@@ -429,8 +429,8 @@ codeunit 50009 AfkBudgetControl
 
         //Year
         GetPeriodDates(DateRef, 3, DateDeb, DateFin);
-        IF CodeBudget <> '' THEN
-            BudgetLine.SETFILTER("Global Dimension 1 Filter", '%1', CodeBudget);
+        IF CodeAxe1 <> '' THEN
+            BudgetLine.SETFILTER("Global Dimension 1 Filter", '%1', CodeAxe1);
         BudgetLine."Budget Filter" := AddOnSetup."Default Budget Code";
         BudgetLine.SETFILTER("Date Filter", '%1..%2', DateDeb, DateFin);
         BudgetLine.CALCFIELDS("Net Change", "Budgeted Amount");

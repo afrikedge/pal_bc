@@ -395,14 +395,14 @@ codeunit 50004 AfkPurchaseReqMgt
             AddOnSetup.TestField("PR Max Value");
             PurchaseHeader.CalcFields("Amount Including VAT");
             if (PurchaseHeader."Amount Including VAT") > AddOnSetup."PR Max Value" then
-                Error(PRLimitAmountErr);
+                Error(PRLimitAmountErr, AddOnSetup."PR Max Value");
         end;
-        if (PurchaseHeader."Document Type" = PurchaseHeader."Document Type"::Order) then begin
-            AddOnSetup.TestField("PO Max Value");
-            PurchaseHeader.CalcFields("Amount Including VAT");
-            if (PurchaseHeader."Amount Including VAT") > AddOnSetup."PO Max Value" then
-                Error(POLimitAmountErr);
-        end;
+        // if (PurchaseHeader."Document Type" = PurchaseHeader."Document Type"::Order) then begin
+        //     AddOnSetup.TestField("PO Max Value");
+        //     PurchaseHeader.CalcFields("Amount Including VAT");
+        //     // if (PurchaseHeader."Amount Including VAT") > AddOnSetup."PO Max Value" then
+        //     //     Error(POLimitAmountErr,AddOnSetup."PR Max Value");
+        // end;
 
     end;
 

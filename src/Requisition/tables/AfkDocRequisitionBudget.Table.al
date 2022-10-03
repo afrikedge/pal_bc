@@ -44,6 +44,7 @@ table 50007 AfkDocRequisitionBudget
             FieldClass = FlowFilter;
         }
         field(10; "Net Change"; Decimal)
+
         {
             AutoFormatType = 1;
             CalcFormula = Sum("G/L Entry".Amount WHERE("G/L Account No." = FIELD("G/L Account No"),

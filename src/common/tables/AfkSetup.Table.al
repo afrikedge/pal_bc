@@ -41,11 +41,15 @@ table 50004 AfkSetup
             DecimalPlaces = 0 : 5;
             MinValue = 0;
         }
-        field(8; "PO Max Value"; Decimal)
+        // field(8; "PO Max Value"; Decimal)
+        // {
+        //     Caption = 'Commitment Max Value';
+        //     DecimalPlaces = 0 : 5;
+        //     MinValue = 0;
+        // }
+        field(50009; BudgetControlMode; Enum AfkBudgetControlMode)
         {
-            Caption = 'Commitment Max Value';
-            DecimalPlaces = 0 : 5;
-            MinValue = 0;
+            Caption = 'Budget Control Mode';
         }
 
 

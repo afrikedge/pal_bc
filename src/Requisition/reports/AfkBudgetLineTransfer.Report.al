@@ -65,6 +65,7 @@ report 50002 AfkBudgetLineTransfer
                         trigger OnValidate()
                         begin
                             CalcOriginAvailableAmount();
+
                         end;
 
                     }
@@ -209,20 +210,23 @@ report 50002 AfkBudgetLineTransfer
 
         trigger OnOpenPage()
         begin
-            if (IsTransfer) then
-                OperationReason := StrSubstNo(TransferDefaultTxt, Format(Today))
-            else
+            if (IsTransfer) then begin
+                OperationReason := StrSubstNo(TransferDefaultTxt, Format(Today));
+                Caption := TransferTitle;
+            end else begin
                 OperationReason := StrSubstNo(RevisionDefaultTxt, Format(Today));
+                Caption := RevisionTitle;
+            end
         end;
     }
 
     labels
     {
     }
-    procedure SetBudgetCode(BudgetCode1: Code[20]; isTransfer: Boolean)
+    procedure SetBudgetCode(BudgetCode1: Code[20]; isTransfer1: Boolean)
     begin
         BudgetCode := BudgetCode1;
-        IsTransfer := isTransfer;
+        IsTransfer := isTransfer1;
     end;
 
     local procedure CalcOriginAvailableAmount()
@@ -251,6 +255,9 @@ report 50002 AfkBudgetLineTransfer
         ConfirmRevisionQst: Label 'Do you want to validate this budgetary revision of %1';
         ConfirmTransferQst: Label 'Do you want to validate this budgetary transfer of %1';
         RevisionDefaultTxt: Label 'Budget Line Revision on %1';
+        RevisionTitle: Label 'Budget Line Revision';
         TransferDefaultTxt: Label 'Budget Line Transfer on %1';
+        TransferTitle: Label 'Budget Line Transfer';
         OperationReason: Text[100];
+        TitleCaption: Text[100];
 }
