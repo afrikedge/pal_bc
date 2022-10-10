@@ -17,6 +17,7 @@ table 50007 AfkDocRequisitionBudget
         field(3; "G/L Account No"; Code[20])
         {
             Caption = 'G/L Account No.';
+            Editable = false;
         }
         field(4; "G/L Account Name"; Text[100])
         {
@@ -24,11 +25,13 @@ table 50007 AfkDocRequisitionBudget
         }
         field(5; "Dimension Code 1"; Code[20])
         {
-            Caption = 'Dimension Code 1';
+            Caption = 'Task Code';
+            Editable = false;
         }
         field(6; "Dimension Code 2"; Code[20])
         {
             Caption = 'Dimension Code 2';
+            Editable = false;
         }
 
         field(7; "Global Dimension 1 Filter"; Code[20])
@@ -74,6 +77,7 @@ table 50007 AfkDocRequisitionBudget
                     "Budget Name" = FIELD("Budget Filter")));
             Caption = 'Budgeted Amount';
             FieldClass = FlowField;
+            Editable = false;
         }
         field(14; "Commitment Amount"; Decimal)
         {
@@ -99,16 +103,16 @@ table 50007 AfkDocRequisitionBudget
             Caption = 'Net Change Value';
             Editable = false;
         }
-        field(18; "Budgeted Amount Value"; Decimal)
+        // field(18; "Budgeted Amount Value"; Decimal)
+        // {
+        //     AutoFormatType = 1;
+        //     Caption = 'Budgeted Amount Value';
+        //     Editable = false;
+        // }
+        field(19; "Cumul Budgeted Amt"; Decimal)
         {
             AutoFormatType = 1;
-            Caption = 'Budgeted Amount Value';
-            Editable = false;
-        }
-        field(19; "Acc Budgeted Amt"; Decimal)
-        {
-            AutoFormatType = 1;
-            Caption = 'Acc Budgeted Amt';
+            Caption = 'Cumulated Budgeted Amt';
             Editable = false;
         }
         field(20; "Monthly Budgeted Amt"; Decimal)
@@ -130,10 +134,22 @@ table 50007 AfkDocRequisitionBudget
             Editable = false;
         }
 
-        field(23; "Acc Commitment"; Decimal)
+        field(23; "Cumul Commitment"; Decimal)
         {
             AutoFormatType = 1;
             Caption = 'Acc Commitment';
+            Editable = false;
+        }
+        field(44; "Yearly PreCommitment"; Decimal)
+        {
+            AutoFormatType = 1;
+            Caption = 'Yearly Pre-Commitment';
+            Editable = false;
+        }
+        field(33; "Yearly Commitment"; Decimal)
+        {
+            AutoFormatType = 1;
+            Caption = 'Yearly Commitment';
             Editable = false;
         }
         field(24; "Monthly Realized Amt"; Decimal)
@@ -142,10 +158,16 @@ table 50007 AfkDocRequisitionBudget
             Caption = 'Monthly Realized Amt';
             Editable = false;
         }
-        field(25; "Acc Realized Amt"; Decimal)
+        field(34; "Yearly Realized Amt"; Decimal)
         {
             AutoFormatType = 1;
-            Caption = 'Acc Realized Amt';
+            Caption = 'Yearly Realized Amt';
+            Editable = false;
+        }
+        field(25; "Cumul Realized Amt"; Decimal)
+        {
+            AutoFormatType = 1;
+            Caption = 'Cumulated Realized Amt';
             Editable = false;
         }
         field(26; "Monthly Available Amt"; Decimal)
@@ -154,11 +176,21 @@ table 50007 AfkDocRequisitionBudget
             Caption = 'Monthly Available Amt';
             Editable = false;
         }
-        field(27; "Acc Available Amt"; Decimal)
+        field(36; "Yearly Available Amt"; Decimal)
         {
             AutoFormatType = 1;
-            Caption = 'Acc Available Amt';
+            Caption = 'Yearly Available Amt';
             Editable = false;
+        }
+        field(27; "Cumul Available Amt"; Decimal)
+        {
+            AutoFormatType = 1;
+            Caption = 'Cumulated Available Amt';
+            Editable = false;
+        }
+        field(28; "UserID"; Code[100])
+        {
+            Caption = 'User Id';
         }
 
     }
@@ -167,6 +199,10 @@ table 50007 AfkDocRequisitionBudget
         key(Key1; "Document Type", "Document No.", "G/L Account No", "Dimension Code 1")
         {
             Clustered = true;
+        }
+        key(Key2; "Document Type", "UserID")
+        {
+
         }
     }
 

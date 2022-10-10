@@ -7,7 +7,6 @@ page 50008 "AfkPurchRequisitionList"
     PageType = List;
     SourceTable = "AfkDocRequisition";
     SourceTableView = WHERE("Document Type" = FILTER(Requisition));
-
     UsageCategory = Lists;
     PromotedActionCategories = 'New,Process,Report,Approbation,Release,Request Approval,Purchase Requisition';
 

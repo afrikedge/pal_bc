@@ -12,6 +12,24 @@ pageextension 50010 AfkUserSetup extends "User Setup"
             {
                 ApplicationArea = Suite;
             }
+
+            field("Afk_CanUpdateNotificationInfos"; Rec.Afk_CanUpdateNotificationInfos)
+            {
+                ApplicationArea = Suite;
+            }
+            field("Afk_CanSkipBudgetControl"; Rec.Afk_CanSkipBudgetControl)
+            {
+                ApplicationArea = Suite;
+            }
+            field("Afk_DefaultTask"; Rec.Afk_DefaultTask)
+            {
+                ApplicationArea = Suite;
+            }
+            field("Afk_DefaultNature"; Rec.Afk_DefaultNature)
+            {
+                ApplicationArea = Suite;
+            }
+
         }
     }
 

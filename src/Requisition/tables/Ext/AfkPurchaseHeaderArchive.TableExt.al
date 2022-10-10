@@ -1,4 +1,4 @@
-tableextension 50005 AfkPurchaseHeader extends "Purchase Header"
+tableextension 50013 AfkPurchaseHeaderArchive extends "Purchase Header Archive"
 {
     fields
     {
@@ -44,20 +44,11 @@ tableextension 50005 AfkPurchaseHeader extends "Purchase Header"
         {
             Caption = 'Vendor Notified';
             DataClassification = CustomerContent;
-            trigger OnValidate()
-            begin
-                if (not xRec.Afk_VendorNotified) then
-                    Afk_NotificationDate := Today();
-            end;
         }
         field(50008; "Afk_NotificationDate"; Date)
         {
             Caption = 'Notification Date';
             DataClassification = CustomerContent;
-            trigger OnValidate()
-            begin
-                AfkSecurityMgt.CheckCanModifyNotificationDate();
-            end;
         }
         field(50009; "Afk_CommitmentType"; Enum AfkCommitmentType)
         {
@@ -68,26 +59,18 @@ tableextension 50005 AfkPurchaseHeader extends "Purchase Header"
         {
             Caption = 'Validity Starting Date';
             DataClassification = CustomerContent;
-            trigger OnValidate()
-            begin
-                RefreshValidityEndingDate();
-            end;
         }
         field(50011; "Afk_Validity"; Integer)
         {
             Caption = 'Validity (Days)';
             DataClassification = CustomerContent;
-            trigger OnValidate()
-            begin
-                RefreshValidityEndingDate();
-            end;
         }
         field(50012; "Afk_ValidityEndingDate"; Date)
         {
             Caption = 'Validity Ending Date';
-            Editable = false;
             DataClassification = CustomerContent;
         }
+
         field(50013; "Afk_ReleaseDate"; Date)
         {
             DataClassification = CustomerContent;
@@ -101,15 +84,4 @@ tableextension 50005 AfkPurchaseHeader extends "Purchase Header"
             DataClassification = CustomerContent;
         }
     }
-    var
-        AfkSecurityMgt: Codeunit AfkSecurityMgt;
-
-    local procedure RefreshValidityEndingDate()
-    begin
-        if (Afk_ValidityStartingDate <> 0D) then
-            Validate(Afk_ValidityEndingDate, CalcDate(StrSubstNo('<%1D>', Afk_Validity), Afk_ValidityStartingDate))
-        else
-            Afk_ValidityEndingDate := 0D;
-    end;
-
 }

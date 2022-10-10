@@ -315,7 +315,40 @@ codeunit 50004 AfkPurchaseReqMgt
 
         PurchH."Afk_ProcessingStatus" := PurchH.Afk_ProcessingStatus::Closed;
         PurchH.MODIFY();
-        ArchiveManagement.ArchPurchDocumentNoConfirm(PurchH);
+        // ArchiveManagement.ArchPurchDocumentNoConfirm(PurchH);
+
+        //PurchH.AFK_AllowDeletion(TRUE);
+        PurchH.DELETE(true);
+    end;
+
+    procedure SolderDemandeAchat(var PurchH: Record "Purchase Header")
+    var
+        PurchLine1: Record "Purchase Line";
+        ReleaseMgt: Codeunit "Release Purchase Document";
+    begin
+        if not CONFIRM(STRSUBSTNO(Text014, PurchH."No.")) then exit;
+        ReleaseMgt.PerformManualReopen(PurchH);
+
+
+
+        // PurchLine1.RESET();
+        // PurchLine1.SETRANGE("Document Type", PurchLine1."Document Type"::Order);
+        // PurchLine1.SETRANGE("Document No.", PurchH."No.");
+        // if PurchLine1.FINDSET() then
+        //     repeat
+
+        //         if PurchLine1."Quantity Invoiced" <> PurchLine1."Quantity Received" then
+        //             ERROR(Text013, PurchLine1."No.");
+
+        //         PurchLine1.VALIDATE(PurchLine1.Quantity, PurchLine1."Quantity Received");
+        //         PurchLine1.MODIFY();
+
+        //     until PurchLine1.NEXT() = 0;
+
+
+        PurchH."Afk_ProcessingStatus" := PurchH.Afk_ProcessingStatus::Closed;
+        PurchH.MODIFY();
+        // ArchiveManagement.ArchPurchDocumentNoConfirm(PurchH);
 
         //PurchH.AFK_AllowDeletion(TRUE);
         PurchH.DELETE(true);
@@ -404,6 +437,76 @@ codeunit 50004 AfkPurchaseReqMgt
         //     //     Error(POLimitAmountErr,AddOnSetup."PR Max Value");
         // end;
 
+        BudgetControl.CreatePurchaseBudgetLines(PurchaseHeader, true);
+        PurchaseHeader.Afk_ReleaseDate := Today;
+
+
+    end;
+
+    internal procedure OnBeforeOnDeletePurchaseDoc(var PurchaseHeader: Record "Purchase Header"; var IsHandled: Boolean)
+    var
+        Budgetline: Record AfkDocRequisitionBudget;
+    begin
+
+        PurchSetup.Get();
+        Budgetline.Reset();
+        Budgetline.SetRange("Document Type", PurchaseHeader."Document Type");
+        Budgetline.SetRange("Document No.", PurchaseHeader."No.");
+        Budgetline.DeleteAll();
+
+        if (PurchaseHeader."Document Type" = PurchaseHeader."Document Type"::Quote) then
+            if (PurchSetup."Archive Quotes" = PurchSetup."Archive Quotes"::Never) then
+                ArchiveManagement.ArchPurchDocumentNoConfirm(PurchaseHeader);
+
+        if (PurchaseHeader."Document Type" = PurchaseHeader."Document Type"::Order) then
+            if (not PurchSetup."Archive Orders") then
+                ArchiveManagement.ArchPurchDocumentNoConfirm(PurchaseHeader);
+    end;
+
+    internal procedure OnAfterInitPurchaseDoc(var PurchaseHeader: Record "Purchase Header")
+    var
+        UserSetup: Record "User Setup";
+    begin
+        UserSetup.Get(UserId);
+        if (UserSetup.Afk_DefaultTask <> '') then
+            if (PurchaseHeader."Shortcut Dimension 1 Code" = '') then
+                PurchaseHeader."Shortcut Dimension 1 Code" := UserSetup.Afk_DefaultTask;
+    end;
+
+    internal procedure OnBeforePrintPurchaseDoc(var PurchaseHeader: Record "Purchase Header")
+    begin
+        if (PurchaseHeader."Document Type" = PurchaseHeader."Document Type"::Order) then
+            PurchaseHeader.TestField(PurchaseHeader.Status, PurchaseHeader.Status::Released);
+    end;
+
+    internal procedure OnBeforeConfirmDeletion(var PurchaseHeader: Record "Purchase Header")
+    begin
+        if (PurchaseHeader."Document Type" = PurchaseHeader."Document Type"::Order) then
+            Error(DeletionErr);
+        if (PurchaseHeader."Document Type" = PurchaseHeader."Document Type"::Quote) then
+            Error(DeletionErr);
+    end;
+
+    internal procedure OnAfterAssignFieldsForNo(var PurchLine: Record "Purchase Line"; var xPurchLine: Record "Purchase Line"; PurchHeader: Record "Purchase Header")
+    begin
+        PurchLine.Afk_PurchaseAccount := BudgetControl.GetPurchAcc(PurchLine);
+        //PurchLine.Modify();
+    end;
+
+    internal procedure OnBeforeDeletePurchQuote(var QuotePurchHeader: Record "Purchase Header"; var OrderPurchHeader: Record "Purchase Header"; var IsHandled: Boolean)
+    begin
+        QuotePurchHeader.Afk_OrderNoCreated := OrderPurchHeader."No.";
+        QuotePurchHeader.Afk_OrderCreationDate := Today;
+        ArchiveManagement.ArchPurchDocumentNoConfirm(QuotePurchHeader);
+    end;
+
+    internal procedure OnAfterInsertAllPurchOrderLines(var PurchOrderLine: Record "Purchase Line"; PurchQuoteHeader: Record "Purchase Header")
+    begin
+        // if (PurchOrderLine.FindFirst()) then begin
+        //     PurchQuoteHeader.Afk_OrderNoCreated := PurchOrderLine."Document No.";
+        //     PurchQuoteHeader.Afk_OrderCreationDate := Today;
+        //     PurchQuoteHeader.Modify();
+        // end;
     end;
 
     local procedure CheckDimComb(PurchReqLine: Record AfkDocRequisitionLine)
@@ -481,7 +584,47 @@ codeunit 50004 AfkPurchaseReqMgt
         exit(QteRestante = 0);
     end;
 
+    procedure GetDocumentDates(OrderNo: code[20];
+    var ReceiptDate: Date; var InvoiceDate: Date; var PaymentDate: Date)
+    var
+        DetailedVendorLedgEntry: Record "Detailed Vendor Ledg. Entry";
+        PurchInvHeader: Record "Purch. Inv. Header";
+        PurchRcptHeader: Record "Purch. Rcpt. Header";
+        VendorLedgerEntry: Record "Vendor Ledger Entry";
+        LastPaymentDate: Date;
+    begin
+        PurchRcptHeader.Reset();
+        PurchRcptHeader.SetRange("Order No.", OrderNo);
+        if (PurchRcptHeader.FindLast()) then
+            ReceiptDate := DT2Date(PurchRcptHeader.SystemCreatedAt);
 
+        PurchInvHeader.Reset();
+        PurchInvHeader.SetRange("Order No.", OrderNo);
+        if (PurchInvHeader.FindLast()) then
+            InvoiceDate := DT2Date(PurchInvHeader.SystemCreatedAt);
+
+        if (PurchInvHeader.FindSet()) then
+            repeat
+                VendorLedgerEntry.Reset();
+                VendorLedgerEntry.SetCurrentKey("Document No.");
+                VendorLedgerEntry.SetRange("Document No.", PurchInvHeader."No.");
+                if (VendorLedgerEntry.FindLast()) then begin
+                    DetailedVendorLedgEntry.Reset();
+                    DetailedVendorLedgEntry.SetCurrentKey("Vendor Ledger Entry No.", "Entry Type", "Posting Date");
+                    DetailedVendorLedgEntry.SetRange("Vendor Ledger Entry No.", VendorLedgerEntry."Entry No.");
+                    DetailedVendorLedgEntry.SetRange("Entry Type", DetailedVendorLedgEntry."Entry Type"::Application);
+                    if DetailedVendorLedgEntry.FindSet() then
+                        repeat
+                            if (DetailedVendorLedgEntry."Document Type" = DetailedVendorLedgEntry."Document Type"::Payment) then
+                                if (DT2Date(DetailedVendorLedgEntry.SystemCreatedAt) > LastPaymentDate) then
+                                    LastPaymentDate := DT2Date(DetailedVendorLedgEntry.SystemCreatedAt);
+                        until DetailedVendorLedgEntry.Next() = 0;
+                end;
+            until PurchInvHeader.Next() = 0;
+
+        PaymentDate := LastPaymentDate;
+
+    end;
 
 
 
@@ -490,9 +633,12 @@ codeunit 50004 AfkPurchaseReqMgt
         SRDoc: Record "AfkDocRequisition";
         AddOnSetup: Record AfkSetup;
         FASetup: Record "FA Setup";
+        PurchSetup: Record "Purchases & Payables Setup";
+        BudgetControl: Codeunit AfkBudgetControl;
         ArchiveManagement: Codeunit ArchiveManagement;
         DimMgt: Codeunit DimensionManagement;
         UOMMgt: Codeunit "Unit of Measure Management";
+        DeletionErr: Label 'You must use the "Close" feature to delete this document';
         Err029Err: Label 'The dimension combination used in %1 %2, row no. %3, is blocked. %4';
         POLimitAmountErr: Label 'The limit amount for purchase commitments is %1';
         PRLimitAmountErr: Label 'The limit amount for purchase requests is %1';

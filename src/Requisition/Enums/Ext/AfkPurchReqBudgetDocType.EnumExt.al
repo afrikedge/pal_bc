@@ -8,4 +8,8 @@ enumextension 50000 AfkPurchReqBudgetDocType extends "Purchase Document Type"
     {
         Caption = 'Item Requisition';
     }
+    value(52; BudgetTracking)
+    {
+        Caption = 'Budget Tracking';
+    }
 }

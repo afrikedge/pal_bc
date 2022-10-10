@@ -185,7 +185,7 @@ pageextension 50001 AfkSalesInvoiceCard extends "Sales Invoice"
                     PricingCalc.CalcTotalLines(Rec);
                 end;
             }
-            action(AfkPrintPeview)
+            action(AfkPrintPreview)
             {
                 ApplicationArea = All;
                 Caption = 'Print Preview';

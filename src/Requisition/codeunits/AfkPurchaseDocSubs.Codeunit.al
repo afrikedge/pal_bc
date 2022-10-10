@@ -26,5 +26,82 @@ codeunit 50008 AfkPurchaseDocEventsSubs
         PurchMgt.OnBeforeReleasePurchaseDoc(PurchaseHeader, PreviewMode);
     end;
 
+    [EventSubscriber(ObjectType::Table, Database::"Purchase Header", 'OnBeforeOnDelete', '', true, false)]
+    local procedure OnBeforeOnDelete(var PurchaseHeader: Record "Purchase Header"; var IsHandled: Boolean)
+    var
+        PurchMgt: codeunit AfkPurchaseReqMgt;
+    begin
+        PurchMgt.OnBeforeOnDeletePurchaseDoc(PurchaseHeader, IsHandled);
+    end;
+
+    [EventSubscriber(ObjectType::Table, Database::"Purchase Header", 'OnAfterInitRecord', '', true, false)]
+    local procedure OnAfterInitRecord(var PurchHeader: Record "Purchase Header")
+    var
+        PurchMgt: codeunit AfkPurchaseReqMgt;
+    begin
+        PurchMgt.OnAfterInitPurchaseDoc(PurchHeader);
+    end;
+
+    [EventSubscriber(ObjectType::Table, Database::"Purchase Header", 'OnPrintRecordsOnAfterCheckMixedDropShipment', '', true, false)]
+    local procedure OnPrintRecordsOnAfterCheckMixedDropShipment(var PurchaseHeader: Record "Purchase Header")
+    var
+        PurchMgt: codeunit AfkPurchaseReqMgt;
+    begin
+        PurchMgt.OnBeforePrintPurchaseDoc(PurchaseHeader);
+    end;
+
+    [EventSubscriber(ObjectType::Table, Database::"Purchase Header", 'OnBeforeConfirmDeletion', '', true, false)]
+    local procedure OnBeforeConfirmDeletion(var PurchaseHeader: Record "Purchase Header"; var Result: Boolean; var IsHandled: Boolean)
+    var
+        PurchMgt: codeunit AfkPurchaseReqMgt;
+    begin
+        PurchMgt.OnBeforeConfirmDeletion(PurchaseHeader);
+    end;
+
+    [EventSubscriber(ObjectType::Table, Database::"Purchase Line", 'OnAfterAssignFieldsForNo', '', true, false)]
+    local procedure OnAfterAssignFieldsForNo(var PurchLine: Record "Purchase Line"; var xPurchLine: Record "Purchase Line"; PurchHeader: Record "Purchase Header")
+    var
+        PurchMgt: codeunit AfkPurchaseReqMgt;
+    begin
+        PurchMgt.OnAfterAssignFieldsForNo(PurchLine, xPurchLine, PurchHeader);
+    end;
+
+
+
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::"Purch.-Quote to Order", 'OnBeforeDeletePurchQuote', '', true, false)]
+    local procedure OnBeforeDeletePurchQuote(var QuotePurchHeader: Record "Purchase Header"; var OrderPurchHeader: Record "Purchase Header"; var IsHandled: Boolean)
+    var
+        PurchMgt: codeunit AfkPurchaseReqMgt;
+    begin
+        PurchMgt.OnBeforeDeletePurchQuote(QuotePurchHeader, OrderPurchHeader, IsHandled);
+    end;
+
+
+    // [EventSubscriber(ObjectType::Codeunit, Codeunit::"Release Purchase Document", 'OnBeforeReleasePurchaseDoc', '', false, false)]
+    // local procedure OnBeforeReleasePurchaseDoc(var PurchaseHeader: Record "Purchase Header")
+    // var
+    //     AfkBudgetControlMgt: codeunit AfkBudgetControl;
+    // begin
+    //     // AfkBudgetControlMgt.CreatePurchaseBudgetLines(PurchaseHeader, true);
+    //     AfkBudgetControlMgt.OnBeforeReleasePurchaseDoc(PurchaseHeader);
+    // end;
+
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::"Purch.-Quote to Order", 'OnAfterInsertAllPurchOrderLines', '', true, false)]
+    local procedure OnAfterInsertAllPurchOrderLines(var PurchOrderLine: Record "Purchase Line"; PurchQuoteHeader: Record "Purchase Header")
+    var
+        PurchMgt: codeunit AfkPurchaseReqMgt;
+    begin
+        PurchMgt.OnAfterInsertAllPurchOrderLines(PurchOrderLine, PurchQuoteHeader);
+    end;
+
+
+
+
+
+
+
+
+
+
 
 }

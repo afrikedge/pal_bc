@@ -198,6 +198,25 @@ pageextension 50004 AfkSalesOrderProRC extends "Order Processor Role Center"
                     PromotedCategory = Process;
                     RunObject = Page "User Setup";
                 }
+                action(AfkBudgetTracking)
+                {
+                    ApplicationArea = Basic, Suite;
+                    Caption = 'Budget Tracking';
+                    Image = CostBudget;
+                    RunObject = Page AfkBudgetTracking;
+                }
+                action("AfkPurchaseQuoteArchive")
+                {
+                    ApplicationArea = Basic, Suite;
+                    Caption = 'Purchase Quote Archives';
+                    RunObject = page "Purchase Quote Archives";
+                }
+                action("AfkPurchaseOrderArchive")
+                {
+                    ApplicationArea = Basic, Suite;
+                    Caption = 'Purchase Order Archives';
+                    RunObject = page "Purchase Order Archives";
+                }
 
             }
         }

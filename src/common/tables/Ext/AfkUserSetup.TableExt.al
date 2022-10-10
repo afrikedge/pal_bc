@@ -32,6 +32,29 @@ tableextension 50010 AfkUserSetup extends "User Setup"
             DataClassification = CustomerContent;
             Caption = 'Can Validate Budget Revision';
         }
+        field(50006; "Afk_CanUpdateNotificationInfos"; Boolean)
+        {
+            DataClassification = CustomerContent;
+            Caption = 'Modify notification date';
+        }
+        field(50007; "Afk_CanSkipBudgetControl"; Boolean)
+        {
+            DataClassification = CustomerContent;
+            Caption = 'Skip Budget control';
+        }
+        field(50008; "Afk_DefaultTask"; Code[20])
+        {
+            DataClassification = CustomerContent;
+            Caption = 'Default Task';
+            TableRelation = "Dimension Value".Code where("Global Dimension No." = const(1));
+        }
+        field(50009; "Afk_DefaultNature"; Code[20])
+        {
+            DataClassification = CustomerContent;
+            Caption = 'Default Nature';
+            TableRelation = "G/L Account"."No." where("Direct Posting" = const(true),
+                Blocked = const(true));
+        }
     }
 
 }
