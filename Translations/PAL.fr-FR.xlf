@@ -3773,7 +3773,7 @@
         </trans-unit>
         <trans-unit id="PageExtension 3297313626 - Action 2869070637 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 2747922353">
           <source>Purchase Order Archives</source>
-          <target state="needs-translation">Archive engagements d'achat</target>
+          <target state="needs-translation">Archives engagements d'achat</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkSalesOrderProRC - Action AfkPurchaseOrderArchive - Property Caption</note>
         </trans-unit>

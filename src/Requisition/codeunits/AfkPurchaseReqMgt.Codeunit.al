@@ -493,8 +493,9 @@ codeunit 50004 AfkPurchaseReqMgt
         //PurchLine.Modify();
     end;
 
-    internal procedure OnBeforeDeletePurchQuote(var QuotePurchHeader: Record "Purchase Header"; var OrderPurchHeader: Record "Purchase Header"; var IsHandled: Boolean)
+    internal procedure OnBeforeDeletePurchQuote_CreateOrder(var QuotePurchHeader: Record "Purchase Header"; var OrderPurchHeader: Record "Purchase Header"; var IsHandled: Boolean)
     begin
+
         QuotePurchHeader.Afk_OrderNoCreated := OrderPurchHeader."No.";
         QuotePurchHeader.Afk_OrderCreationDate := Today;
         ArchiveManagement.ArchPurchDocumentNoConfirm(QuotePurchHeader);

@@ -5,7 +5,7 @@ codeunit 50011 AfkSecurityMgt
         myInt: Integer;
     begin
         UserSetup.get(UserId);
-        if (UserSetup.Afk_CanUpdateNotificationInfos) then
+        if (not UserSetup.Afk_CanUpdateNotificationInfos) then
             Error(CannotUpdateNotificationDateErr);
     end;
 

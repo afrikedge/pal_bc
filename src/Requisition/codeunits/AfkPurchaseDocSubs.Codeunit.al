@@ -73,7 +73,7 @@ codeunit 50008 AfkPurchaseDocEventsSubs
     var
         PurchMgt: codeunit AfkPurchaseReqMgt;
     begin
-        PurchMgt.OnBeforeDeletePurchQuote(QuotePurchHeader, OrderPurchHeader, IsHandled);
+        PurchMgt.OnBeforeDeletePurchQuote_CreateOrder(QuotePurchHeader, OrderPurchHeader, IsHandled);
     end;
 
 
