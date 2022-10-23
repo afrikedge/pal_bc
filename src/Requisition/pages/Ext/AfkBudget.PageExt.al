@@ -1,8 +1,15 @@
 pageextension 50012 AfkBudget extends Budget
 {
+    layout
+    {
+        modify(GLAccFilter)
+        {
+            Caption = 'Nature Filter';
+        }
+    }
+
     actions
     {
-
         addafter("Reverse Lines and Columns")
         {
             action("AfkBudgetTransfer")

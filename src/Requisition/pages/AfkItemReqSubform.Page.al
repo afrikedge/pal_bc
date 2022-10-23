@@ -1,4 +1,4 @@
-page 50007 "AfkPurchaseRequisitionSubform"
+page 50007 "AfkItemRequisitionSubform"
 {
     AutoSplitKey = true;
     Caption = 'Lines';
@@ -6,7 +6,7 @@ page 50007 "AfkPurchaseRequisitionSubform"
     PageType = ListPart;
     LinksAllowed = false;
     MultipleNewLines = true;
-    SourceTableView = WHERE("Document Type" = FILTER(Requisition));
+    SourceTableView = WHERE("Document Type" = FILTER(ItemReq));
     SourceTable = AfkDocRequisitionLine;
 
     layout
@@ -48,6 +48,16 @@ page 50007 "AfkPurchaseRequisitionSubform"
                 {
                     ApplicationArea = Basic, Suite;
                 }
+                field("Shortcut Dimension 1 Code"; Rec."Shortcut Dimension 1 Code")
+                {
+                    ApplicationArea = Dimensions;
+                    //ToolTip = 'Specifies the code for Shortcut Dimension 1, which is one of two global dimension codes that you set up in the General Ledger Setup window.';
+                    Visible = DimVisible1;
+                }
+                field("Location Code"; Rec."Location Code")
+                {
+                    ApplicationArea = Basic, Suite;
+                }
                 field("Unit Price"; Rec."Unit Price")
                 {
                     ApplicationArea = Basic, Suite;
@@ -72,12 +82,7 @@ page 50007 "AfkPurchaseRequisitionSubform"
                 {
                     ApplicationArea = Basic, Suite;
                 }
-                field("Shortcut Dimension 1 Code"; Rec."Shortcut Dimension 1 Code")
-                {
-                    ApplicationArea = Dimensions;
-                    //ToolTip = 'Specifies the code for Shortcut Dimension 1, which is one of two global dimension codes that you set up in the General Ledger Setup window.';
-                    Visible = DimVisible1;
-                }
+
                 field("Shortcut Dimension 2 Code"; Rec."Shortcut Dimension 2 Code")
                 {
                     ApplicationArea = Dimensions;

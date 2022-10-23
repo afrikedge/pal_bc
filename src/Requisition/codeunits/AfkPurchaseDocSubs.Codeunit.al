@@ -76,6 +76,16 @@ codeunit 50008 AfkPurchaseDocEventsSubs
         PurchMgt.OnBeforeDeletePurchQuote_CreateOrder(QuotePurchHeader, OrderPurchHeader, IsHandled);
     end;
 
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::"Purch.-Quote to Order", 'OnCreatePurchHeaderOnBeforeInitRecord', '', true, false)]
+    local procedure OnCreatePurchHeaderOnBeforeInitRecord(var PurchOrderHeader: Record "Purchase Header"; var PurchHeader: Record "Purchase Header")
+    var
+        PurchMgt: codeunit AfkPurchaseReqMgt;
+    begin
+        PurchMgt.OnCreatePurchHeaderOnBeforeInitRecord_CreateOrder(PurchOrderHeader, PurchHeader);
+    end;
+
+
+
 
     // [EventSubscriber(ObjectType::Codeunit, Codeunit::"Release Purchase Document", 'OnBeforeReleasePurchaseDoc', '', false, false)]
     // local procedure OnBeforeReleasePurchaseDoc(var PurchaseHeader: Record "Purchase Header")
@@ -93,6 +103,15 @@ codeunit 50008 AfkPurchaseDocEventsSubs
     begin
         PurchMgt.OnAfterInsertAllPurchOrderLines(PurchOrderLine, PurchQuoteHeader);
     end;
+
+    [EventSubscriber(ObjectType::Table, Database::"Purchase Header", 'OnAfterCopyBuyFromVendorFieldsFromVendor', '', true, false)]
+    local procedure OnAfterCopyBuyFromVendorFieldsFromVendor(var PurchaseHeader: Record "Purchase Header"; Vendor: Record Vendor; xPurchaseHeader: Record "Purchase Header")
+    var
+        PurchMgt: codeunit AfkPurchaseReqMgt;
+    begin
+        PurchMgt.OnAfterInsertVendorOnPurchase(PurchaseHeader, Vendor, xPurchaseHeader);
+    end;
+
 
 
 

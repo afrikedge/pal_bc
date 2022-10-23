@@ -1,12 +1,12 @@
-page 50008 "AfkPurchRequisitionList"
+page 50008 "AfkItemRequisitionList"
 {
     ApplicationArea = Basic, Suite;
-    Caption = 'Purchase Requisition List';
-    CardPageID = AfkPurchaseRequisition;
+    Caption = 'Item Requisition List';
+    CardPageID = "AfkItemRequisition";
     Editable = false;
     PageType = List;
     SourceTable = "AfkDocRequisition";
-    SourceTableView = WHERE("Document Type" = FILTER(Requisition));
+    SourceTableView = WHERE("Document Type" = FILTER(ItemReq));
     UsageCategory = Lists;
     PromotedActionCategories = 'New,Process,Report,Approbation,Release,Request Approval,Purchase Requisition';
 

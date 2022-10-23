@@ -175,7 +175,7 @@ table 50005 "AfkDocRequisition"
         {
             AutoFormatExpression = "Currency Code";
             AutoFormatType = 1;
-            CalcFormula = Sum(AfkDocRequisitionLine."Amount Including VAT (LCY)" WHERE("Document No." = FIELD("No.")));
+            CalcFormula = Sum(AfkDocRequisitionLine."Amount (LCY)" WHERE("Document No." = FIELD("No.")));
             Caption = 'Amount (LCY)';
             Editable = false;
             FieldClass = FlowField;
@@ -247,7 +247,7 @@ table 50005 "AfkDocRequisition"
         TestStatusOpen();
 
         //Supprimer les lignes
-        IF NOT CONFIRM(Text001) THEN EXIT;
+        //IF NOT CONFIRM(Text001) THEN EXIT;
 
         RegLine.RESET;
         RegLine.SETRANGE("Document No.", "No.");
@@ -272,12 +272,12 @@ table 50005 "AfkDocRequisition"
         PRHeader: Record "AfkDocRequisition";
         AfkSetup: Record AfkSetup;
         SourceCodeSetup: Record "Source Code Setup";
+        BudgetControl: Codeunit AfkBudgetControl;
         ApprovalsMgmt: Codeunit "Approvals Mgmt.";
         DimManagement: Codeunit DimensionManagement;
         NoSeriesMgt: Codeunit NoSeriesManagement;
         SetupHasBeenRead: Boolean;
         Text001: Label 'All offers associated with this request will be deleted! \\Do you want to continue ?';
-
 
         Text002: Label 'This document can only be released when the approval process is complete.';
         Text003: Label 'The approval process must be cancelled or completed to reopen this document.';
@@ -291,6 +291,9 @@ table 50005 "AfkDocRequisition"
     var
         ApprovalsMgmt: Codeunit AfkPRReqWorkflowMgt;
     begin
+
+        if ("Document Type" = "Document Type"::ItemReq) then
+            BudgetControl.CreatePurchaseBudgetLines_ItemReq(Rec, true);
 
         IF ApprovalsMgmt.IsDocRequisitionPendingApproval_AFK(Rec) THEN
             ERROR(Text002);

@@ -10,6 +10,10 @@ table 50009 AfkPostDocRequisitionLine
         {
             Caption = 'Document No.';
         }
+        field(51; "Document Type"; Enum AfkRequisitionDocType)
+        {
+            Caption = 'Document Type';
+        }
         field(2; "Line No."; Integer)
         {
             Caption = 'Line No.';
@@ -37,19 +41,16 @@ table 50009 AfkPostDocRequisitionLine
             if (Type = const(Resource), "No." = filter(<> '')) "Resource Unit of Measure".Code where("Resource No." = field("No."))
             else
             "Unit of Measure";
-
         }
         field(8; Quantity; Decimal)
         {
             Caption = 'Quantity';
             DecimalPlaces = 0 : 5;
-
         }
         field(9; "Unit Price"; Decimal)
         {
             AutoFormatType = 2;
             Caption = 'Unit Price';
-
         }
         field(10; "Gen. Bus. Posting Group"; Code[20])
         {
@@ -74,6 +75,14 @@ table 50009 AfkPostDocRequisitionLine
             AutoFormatType = 1;
             Caption = 'Amount Including VAT';
             Editable = false;
+        }
+        field(53; "Amount Including VAT (LCY)"; Decimal)
+        {
+            //AutoFormatExpression = "Currency Code";
+            AutoFormatType = 1;
+            Caption = 'Amount (LCY)';
+            Editable = false;
+
         }
         field(14; "VAT %"; Decimal)
         {
@@ -192,15 +201,17 @@ table 50009 AfkPostDocRequisitionLine
             Caption = 'Last Direct Cost';
             MinValue = 0;
         }
+        field(31; "Location Code"; Code[10])
+        {
+            Caption = 'Location Code';
+            TableRelation = Location WHERE("Use As In-Transit" = CONST(false));
 
-
+        }
         field(480; "Dimension Set ID"; Integer)
         {
             Caption = 'Dimension Set ID';
             Editable = false;
             TableRelation = "Dimension Set Entry";
-
-
         }
 
     }

@@ -8,6 +8,14 @@ pageextension 50014 AfkPurchaseQuote extends "Purchase Quote"
             Caption = 'Vendor Offer Ref.';
             ShowMandatory = true;
         }
+        addafter("Vendor Order No.")
+        {
+            field(Afk_Object; Rec.Afk_Object)
+            {
+                ApplicationArea = Basic, Suite;
+                MultiLine = true;
+            }
+        }
         addafter(PurchLines)
         {
             part(AfkBudgetLines; AfkBudgetLinesSubForm)

@@ -12,6 +12,10 @@ table 50008 "AfkPostedDocRequisition"
             Caption = 'No.';
             Editable = false;
         }
+        field(51; "Document Type"; Enum AfkRequisitionDocType)
+        {
+            Caption = 'Document Type';
+        }
         field(2; "Currency Code"; Code[10])
         {
             Caption = 'Currency Code';
@@ -125,6 +129,31 @@ table 50008 "AfkPostedDocRequisition"
             Editable = false;
             TableRelation = "Dimension Set Entry";
         }
+        field(58; "Amount Including VAT"; Decimal)
+        {
+            AutoFormatExpression = "Currency Code";
+            AutoFormatType = 1;
+            CalcFormula = Sum(AfkPostDocRequisitionLine."Amount Including VAT" WHERE("Document No." = FIELD("No.")));
+            Caption = 'Amount Including VAT';
+            Editable = false;
+            FieldClass = FlowField;
+        }
+        field(59; "Amount (LCY)"; Decimal)
+        {
+            AutoFormatExpression = "Currency Code";
+            AutoFormatType = 1;
+            CalcFormula = Sum(AfkPostDocRequisitionLine."Amount Including VAT (LCY)" WHERE("Document No." = FIELD("No.")));
+            Caption = 'Amount (LCY)';
+            Editable = false;
+            FieldClass = FlowField;
+        }
+        field(27; "User ID"; Code[50])
+        {
+            Caption = 'User ID';
+            DataClassification = EndUserIdentifiableInformation;
+            TableRelation = User."User Name";
+            ValidateTableRelation = false;
+        }
 
         field(481; "Created Doc Type"; Option)
         {
@@ -143,6 +172,11 @@ table 50008 "AfkPostedDocRequisition"
         field(484; "Closed By"; Code[50])
         {
             Caption = 'Closed By';
+        }
+        field(50006; "Afk_ProcessingStatus"; Enum AfkProcessingStatus)
+        {
+            Caption = 'Processing Status';
+            DataClassification = CustomerContent;
         }
 
     }

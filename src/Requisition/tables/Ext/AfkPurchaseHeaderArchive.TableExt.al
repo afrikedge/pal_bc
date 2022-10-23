@@ -83,5 +83,26 @@ tableextension 50013 AfkPurchaseHeaderArchive extends "Purchase Header Archive"
         {
             DataClassification = CustomerContent;
         }
+        field(50016; Afk_TSR_Pourcent; Decimal)
+        {
+            Caption = 'TSR %';
+            DecimalPlaces = 0 : 5;
+            MaxValue = 100;
+            MinValue = 0;
+            DataClassification = CustomerContent;
+        }
+        field(50017; Afk_IR_Pourcent; Decimal)
+        {
+            Caption = 'IR %';
+            DecimalPlaces = 0 : 5;
+            MaxValue = 100;
+            MinValue = 0;
+            DataClassification = CustomerContent;
+        }
+        field(50018; "Afk_Object"; Text[100])
+        {
+            Caption = 'Subject';
+            DataClassification = CustomerContent;
+        }
     }
 }

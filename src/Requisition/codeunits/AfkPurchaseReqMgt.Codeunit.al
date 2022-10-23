@@ -354,6 +354,8 @@ codeunit 50004 AfkPurchaseReqMgt
         PurchH.DELETE(true);
     end;
 
+
+
     procedure GetFiltreTypeDemandeAchat() Rep: Enum AfkPurchReqType
     var
         UserSetup1: Record "User Setup";
@@ -424,7 +426,8 @@ codeunit 50004 AfkPurchaseReqMgt
     internal procedure OnBeforeReleasePurchaseDoc(var PurchaseHeader: Record "Purchase Header"; PreviewMode: Boolean)
     begin
         AddOnSetup.Get();
-        if (PurchaseHeader."Document Type" = PurchaseHeader."Document Type"::Quote) then begin
+        if (PurchaseHeader."Document Type" = PurchaseHeader."Document Type"::Quote)
+                or (IsPODocument(PurchaseHeader)) then begin
             AddOnSetup.TestField("PR Max Value");
             PurchaseHeader.CalcFields("Amount Including VAT");
             if (PurchaseHeader."Amount Including VAT") > AddOnSetup."PR Max Value" then
@@ -442,6 +445,13 @@ codeunit 50004 AfkPurchaseReqMgt
 
 
     end;
+
+    local procedure IsPODocument(PurchaseHeader: Record "Purchase Header"): Boolean
+    begin
+        exit((PurchaseHeader."Document Type" = PurchaseHeader."Document Type"::Quote) and
+        (PurchaseHeader.Afk_CommitmentType = PurchaseHeader.Afk_CommitmentType::"Purchase order"));
+    end;
+
 
     internal procedure OnBeforeOnDeletePurchaseDoc(var PurchaseHeader: Record "Purchase Header"; var IsHandled: Boolean)
     var
@@ -495,7 +505,7 @@ codeunit 50004 AfkPurchaseReqMgt
 
     internal procedure OnBeforeDeletePurchQuote_CreateOrder(var QuotePurchHeader: Record "Purchase Header"; var OrderPurchHeader: Record "Purchase Header"; var IsHandled: Boolean)
     begin
-
+        QuotePurchHeader.TestField(QuotePurchHeader.Status, QuotePurchHeader.Status::Released);
         QuotePurchHeader.Afk_OrderNoCreated := OrderPurchHeader."No.";
         QuotePurchHeader.Afk_OrderCreationDate := Today;
         ArchiveManagement.ArchPurchDocumentNoConfirm(QuotePurchHeader);
@@ -508,6 +518,17 @@ codeunit 50004 AfkPurchaseReqMgt
         //     PurchQuoteHeader.Afk_OrderCreationDate := Today;
         //     PurchQuoteHeader.Modify();
         // end;
+    end;
+
+    internal procedure OnCreatePurchHeaderOnBeforeInitRecord_CreateOrder(var PurchOrderHeader: Record "Purchase Header"; var PurchHeader: Record "Purchase Header")
+    begin
+        PurchOrderHeader.Afk_CommitmentType := PurchOrderHeader.Afk_CommitmentType::"Purchase order";
+    end;
+
+    internal procedure OnAfterInsertVendorOnPurchase(var PurchaseHeader: Record "Purchase Header"; Vendor: Record Vendor; xPurchaseHeader: Record "Purchase Header")
+    begin
+        PurchaseHeader.Afk_IR_Pourcent := Vendor.Afk_IR_Pourcent;
+        PurchaseHeader.Afk_TSR_Pourcent := Vendor.Afk_TSR_Pourcent;
     end;
 
     local procedure CheckDimComb(PurchReqLine: Record AfkDocRequisitionLine)
@@ -646,11 +667,10 @@ codeunit 50004 AfkPurchaseReqMgt
         Text002: Label 'The document has no lines';
         Text010: Label 'Do you want to close the purchasing document?';
         Text013: Label 'You cannot close this order because the quantity received has not been fully invoiced for item %1';
-
         Text014: Label 'Would you like to close this purchase order: %1?';
-
         Text028: Label 'The dimension combination used in %1 %2 is blocked. %3';
         Text031: Label 'The dimensions used in %1 %2, line n° %3, are invalid. %4';
         Text032: Label 'This purchase requisition has already been completely processed.';
+
 
 }

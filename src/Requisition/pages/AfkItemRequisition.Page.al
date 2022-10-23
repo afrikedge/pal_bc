@@ -1,12 +1,12 @@
-page 50006 "AfkPurchaseRequisition"
+page 50006 "AfkItemRequisition"
 {
-    Caption = 'Purchase Requisition';
+    Caption = 'Item Requisition';
     PageType = Document;
     RefreshOnActivate = true;
     SourceTable = "AfkDocRequisition";
-    SourceTableView = WHERE("Document Type" = FILTER(Requisition));
+    SourceTableView = WHERE("Document Type" = FILTER("ItemReq"));
     UsageCategory = Documents;
-    PromotedActionCategories = 'New,Process,Report,Approbation,Release,Request Approval,Purchase Requisition';
+    PromotedActionCategories = 'New,Process,Report,Approbation,Release,Request Approval';
 
     layout
     {
@@ -19,7 +19,7 @@ page 50006 "AfkPurchaseRequisition"
                 {
                     ApplicationArea = Basic, Suite;
                     AssistEdit = false;
-                    ToolTip = 'Specifies the number of the purchase requisition.';
+                    ToolTip = 'Specifies the number of the Item requisition.';
                     Editable = false;
                     Visible = false;
 
@@ -96,10 +96,17 @@ page 50006 "AfkPurchaseRequisition"
                 }
 
             }
-            part(Lines; "AfkPurchaseRequisitionSubform")
+            part(Lines; "AfkItemRequisitionSubform")
             {
                 ApplicationArea = Basic, Suite;
-                SubPageLink = "Document No." = FIELD("No.");
+                SubPageLink = "Document Type" = field("Document Type"), "Document No." = FIELD("No.");
+            }
+            part(AfkBudgetLines; AfkBudgetLinesSubForm)
+            {
+                Caption = 'Budget summary';
+                ApplicationArea = Suite;
+                SubPageLink = "Document No." = field("No.");
+                //UpdatePropagation = Both;
             }
 
         }
@@ -322,8 +329,62 @@ page 50006 "AfkPurchaseRequisition"
                     end;
                 }
             }
+            group(Action22)
+            {
+                action(AfkCalculateBudget)
+                {
+                    ApplicationArea = Suite;
+                    Caption = 'Calculate Budget';
+                    Ellipsis = true;
+                    Enabled = Rec."No." <> '';
+                    Image = Calculate;
+                    Promoted = true;
+                    PromotedCategory = Process;
+                    //ToolTip = 'Copy document lines and header information from another purchase document to this document. You can copy a posted purchase invoice into a new purchase invoice to quickly create a similar document.';
+
+                    trigger OnAction()
+                    begin
+                        AfkBudgetControl.CreatePurchaseBudgetLines_ItemReq(Rec, false);
+                    end;
+                }
+                action(AfkCloseDocument)
+                {
+                    ApplicationArea = Suite;
+                    Caption = 'Close Document';
+                    Ellipsis = true;
+                    Enabled = Rec."No." <> '';
+                    Image = Close;
+                    Promoted = true;
+                    PromotedCategory = Process;
+                    //ToolTip = 'Copy document lines and header information from another purchase document to this document. You can copy a posted purchase invoice into a new purchase invoice to quickly create a similar document.';
+
+                    trigger OnAction()
+                    begin
+                        AfkItemReqMgt.CancelItemRequisition(Rec);
+                    end;
+                }
+                action(AfkPostDocument)
+                {
+                    ApplicationArea = Suite;
+                    Caption = 'Validate Document';
+                    Ellipsis = true;
+                    Enabled = Rec."No." <> '';
+                    Image = Post;
+                    Promoted = true;
+                    PromotedCategory = Process;
+                    //ToolTip = 'Copy document lines and header information from another purchase document to this document. You can copy a posted purchase invoice into a new purchase invoice to quickly create a similar document.';
+
+                    trigger OnAction()
+                    begin
+                        AfkItemReqMgt.PostItemRequisition(Rec);
+                    end;
+                }
+
+            }
         }
     }
+
+
 
     trigger OnAfterGetRecord()
     begin
@@ -342,6 +403,8 @@ page 50006 "AfkPurchaseRequisition"
 
     var
         PaymentStep: Record "Payment Step";
+        AfkBudgetControl: Codeunit AfkBudgetControl;
+        AfkItemReqMgt: Codeunit AfkItemReqMgt;
         ApprovalsMgmt: Codeunit "Approvals Mgmt.";
         ChangeExchangeRate: Page "Change Exchange Rate";
         Navigate: Page Navigate;

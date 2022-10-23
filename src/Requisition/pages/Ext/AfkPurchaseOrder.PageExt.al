@@ -11,9 +11,18 @@ pageextension 50016 AfkPurchaseOrder extends "Purchase Order"
         }
         addafter("Vendor Order No.")
         {
+            field(Afk_Object; Rec.Afk_Object)
+            {
+                ApplicationArea = Basic, Suite;
+                MultiLine = true;
+            }
             field("Afk_CommitmentType"; Rec.Afk_CommitmentType)
             {
                 ApplicationArea = Basic, Suite;
+                trigger OnValidate()
+                begin
+                    Rec.TestField("Quote No.", '');
+                end;
             }
             field("Afk_ValidityStartingDate"; Rec.Afk_ValidityStartingDate)
             {
@@ -35,6 +44,14 @@ pageextension 50016 AfkPurchaseOrder extends "Purchase Order"
             {
                 ApplicationArea = Basic, Suite;
             }
+            field("Afk_TSR_Pourcent"; Rec.Afk_TSR_Pourcent)
+            {
+                ApplicationArea = Basic, Suite;
+            }
+            field("Afk_IR_Pourcent"; Rec.Afk_IR_Pourcent)
+            {
+                ApplicationArea = Basic, Suite;
+            }
         }
         addafter(PurchLines)
         {
@@ -46,6 +63,17 @@ pageextension 50016 AfkPurchaseOrder extends "Purchase Order"
                 //UpdatePropagation = Both;
             }
         }
+
+
+        modify("Buy-from Vendor No.")
+        {
+            Editable = DocIsEditable;
+        }
+        modify("Buy-from Vendor Name")
+        {
+            Editable = DocIsEditable;
+        }
+
 
     }
     actions
@@ -86,7 +114,16 @@ pageextension 50016 AfkPurchaseOrder extends "Purchase Order"
             }
         }
     }
+    trigger OnOpenPage()
+    var
+        isRelease: Boolean;
+    begin
+        isRelease := Rec.Status = Rec.Status::Released;
+        DocIsEditable := (Rec.Afk_CommitmentType <> Rec.Afk_CommitmentType::"Purchase order");
+    end;
+
     var
         AfkBudgetControl: Codeunit AfkBudgetControl;
         AfkPurchaseReqMgt: Codeunit AfkPurchaseReqMgt;
+        DocIsEditable: Boolean;
 }

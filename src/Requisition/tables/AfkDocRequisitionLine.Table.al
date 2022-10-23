@@ -242,6 +242,10 @@ table 50006 AfkDocRequisitionLine
             AutoFormatType = 1;
             Caption = 'Amount';
             Editable = false;
+            trigger OnValidate()
+            begin
+                "Amount (LCY)" := Amount;
+            end;
         }
         field(72; "VAT Amount"; Decimal)
         {
@@ -266,6 +270,13 @@ table 50006 AfkDocRequisitionLine
             Caption = 'Amount (LCY)';
             Editable = false;
 
+        }
+        field(54; "Amount (LCY)"; Decimal)
+        {
+            //AutoFormatExpression = "Currency Code";
+            AutoFormatType = 1;
+            Caption = 'Amount (LCY)';
+            Editable = false;
         }
 
         field(14; "VAT %"; Decimal)
@@ -401,7 +412,12 @@ table 50006 AfkDocRequisitionLine
         //     Caption = 'System-Created Entry';
         //     Editable = false;
         // }
+        field(31; "Location Code"; Code[10])
+        {
+            Caption = 'Location Code';
+            TableRelation = Location WHERE("Use As In-Transit" = CONST(false));
 
+        }
         field(480; "Dimension Set ID"; Integer)
         {
             Caption = 'Dimension Set ID';
@@ -425,6 +441,9 @@ table 50006 AfkDocRequisitionLine
         key(Key1; "Document Type", "Document No.", "Line No.")
         {
             Clustered = true;
+        }
+        key(Key2; "Purchase Account", "Shortcut Dimension 1 Code")
+        {
         }
     }
     trigger OnInsert()

@@ -37,6 +37,7 @@ page 50010 AfkBudgetTracking
             }
             repeater(General)
             {
+                Editable = false;
                 ShowCaption = false;
                 field("Dimension Code 1"; Rec."Dimension Code 1")
                 {
@@ -91,8 +92,39 @@ page 50010 AfkBudgetTracking
                     AfkBudgetControl.CreatePurchaseBudgetLinesfromTracking(BudgetCode, TaskFilter, NatureFilter);
                 end;
             }
+            action(AfkPrintPreview)
+            {
+                ApplicationArea = All;
+                Caption = 'Print';
+                Ellipsis = true;
+                //Enabled = "No." <> '';
+                Image = PrintVoucher;
+                Promoted = true;
+                PromotedCategory = Process;
+                PromotedIsBig = true;
+                //ToolTip = 'calculate special lines based on the tax-free total of the invoice.';
+
+                trigger OnAction()
+                var
+                    BudgetLine: Record "AfkDocRequisitionBudget";
+                    AfkBudgetTracking: Report AfkBudgetTracking;
+                begin
+                    BudgetLine.SetRange(AfkUserID, UserId);
+                    AfkBudgetTracking.SetFiltersValues(BudgetCode, TaskFilter, NatureFilter);
+                    AfkBudgetTracking.SetTableView(BudgetLine);
+                    AfkBudgetTracking.Run();
+                    //REPORT.Run(REPORT::AfkBudgetTracking, true, false, BudgetLine);
+                end;
+            }
         }
     }
+    trigger OnOpenPage()
+    begin
+        Rec.FilterGroup(2);
+        Rec.SetRange(Rec."AfkUserID", UserId);
+        Rec.FilterGroup(0);
+    end;
+
     var
         AfkBudgetControl: Codeunit AfkBudgetControl;
         BudgetCode: Code[20];

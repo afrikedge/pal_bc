@@ -21,5 +21,12 @@ tableextension 50006 AfkPurchaseLine extends "Purchase Line"
             DataClassification = CustomerContent;
         }
     }
+    keys
+    {
+        key("Afk_PurchaseAccount"; "Afk_PurchaseAccount")
+        {
+
+        }
+    }
 
 }

@@ -1,8 +1,11 @@
 enum 50011 AfkCommitmentType
 {
     Extensible = true;
-    
-    value(0; "Purchase order")
+    value(0; " ")
+    {
+        Caption = ' ';
+    }
+    value(6; "Purchase order")
     {
         Caption = 'Purchase order';
     }

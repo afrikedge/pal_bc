@@ -39,6 +39,11 @@ page 50005 AfkSetupCard
                     ApplicationArea = Basic, Suite;
                     //ToolTip = 'Night starting time';
                 }
+                field("BudgetControlMode"; rec.BudgetControlMode)
+                {
+                    ApplicationArea = Basic, Suite;
+                    //ToolTip = 'Night starting time';
+                }
                 // field("Budget Period"; rec."Budget Period")
                 // {
                 //     ApplicationArea = Basic, Suite;
