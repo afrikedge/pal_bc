@@ -57,7 +57,12 @@ table 50004 AfkSetup
         {
             Caption = 'Budget Control Mode';
         }
-
+        field(50010; BudgetGLAccount; Code[20])
+        {
+            Caption = 'Budget Default Account';
+            TableRelation = "G/L Account";
+            DataClassification = CustomerContent;
+        }
 
         // field(10; "Insurance Nos."; Code[20])
         // {

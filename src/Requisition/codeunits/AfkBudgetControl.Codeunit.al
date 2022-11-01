@@ -40,9 +40,6 @@ codeunit 50009 AfkBudgetControl
         PurchLine.SETCURRENTKEY(Afk_PurchaseAccount, "Shortcut Dimension 1 Code");
         PurchLine.SETRANGE("Document Type", PurchaseH."Document Type");
         PurchLine.SETRANGE("Document No.", PurchaseH."No.");
-        IF PurchLine.FINDSET THEN
-            OldAcc := PurchLine.Afk_PurchaseAccount;
-        OldCodeBudget := PurchLine."Shortcut Dimension 1 Code";
         REPEAT
 
             NewAcc := PurchLine.Afk_PurchaseAccount;

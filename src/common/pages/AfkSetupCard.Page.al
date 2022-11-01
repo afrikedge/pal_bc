@@ -60,6 +60,10 @@ page 50005 AfkSetupCard
                 // {
                 //     ApplicationArea = Basic, Suite;
                 // }
+                field("BudgetGLAccount"; Rec.BudgetGLAccount)
+                {
+                    ApplicationArea = Suite;
+                }
             }
         }
     }

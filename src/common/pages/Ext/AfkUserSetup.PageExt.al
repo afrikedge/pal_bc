@@ -39,6 +39,7 @@ pageextension 50010 AfkUserSetup extends "User Setup"
                 ApplicationArea = Suite;
             }
 
+
         }
     }
 
