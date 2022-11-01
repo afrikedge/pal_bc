@@ -15,7 +15,7 @@ tableextension 50007 AfkDimensionValue extends "Dimension Value"
         }
         field(50001; AfkBudgetTaskType; enum AfkBudgetTask)
         {
-            Caption = 'Task';
+            Caption = 'Task Level';
             DataClassification = CustomerContent;
             trigger OnValidate()
             begin
@@ -36,6 +36,12 @@ tableextension 50007 AfkDimensionValue extends "Dimension Value"
                         Error(ReservedForTaskLineErr);
             end;
         }
+        field(50003; AfkBudgetStructureLevel; enum AfkStructureLevel)
+        {
+            Caption = 'Structure Level';
+            DataClassification = CustomerContent;
+        }
+
 
     }
     var

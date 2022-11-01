@@ -48,6 +48,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table AfkDocRequisition - Field Currency Code - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 524745324 - Field 775476300 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Delivery Status</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkDocRequisition - Field Delivery Status - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 524745324 - Field 3461834954 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Description</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -87,6 +92,11 @@
           <source>Fixed Asset,Item,Non Item,Others</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table AfkDocRequisition - Field Item Type - Property OptionCaption</note>
+        </trans-unit>
+        <trans-unit id="Table 524745324 - Field 2161572060 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Location Code</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkDocRequisition - Field Location Code - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 524745324 - Field 4200184881 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>No.</source>
@@ -159,7 +169,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table AfkDocRequisition - Field Status - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 524745324 - Field 2708250016 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>User ID</source>
+          <source>Requestor</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table AfkDocRequisition - Field User ID - Property Caption</note>
         </trans-unit>
@@ -473,15 +483,15 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table AfkDocRequisitionLine - Field Type - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 2211212626 - Field 381961415 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Unit Cost</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkDocRequisitionLine - Field Unit Cost - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 2211212626 - Field 2385270358 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Unit of Measure Code</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table AfkDocRequisitionLine - Field Unit of Measure Code - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Table 2211212626 - Field 2937233469 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Unit Price</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Table AfkDocRequisitionLine - Field Unit Price - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 2211212626 - Field 3450651614 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Variant Code</source>
@@ -503,15 +513,20 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table AfkDocRequisitionLine - Field VAT Prod. Posting Group - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 2211212626 - Field 3459446610 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Delivered Quantity</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkDocRequisitionLine - Field Whse Delivered Quantity - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2211212626 - Field 4036465560 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Quantity To Deliver</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkDocRequisitionLine - Field Whse Quantity To Deliver - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 562774626 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Purchase Requisition Line</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table AfkPostDocRequisitionLine - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Table 562774626 - NamedType 3114637384" size-unit="char" translate="yes" xml:space="preserve">
-          <source>The request can no longer be modified because it has already been validated</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Table AfkPostDocRequisitionLine - NamedType Text001</note>
         </trans-unit>
         <trans-unit id="Table 562774626 - Field 636392376 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Amount</source>
@@ -648,15 +663,15 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table AfkPostDocRequisitionLine - Field Type - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 562774626 - Field 381961415 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Unit Price</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkPostDocRequisitionLine - Field Unit Cost - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 562774626 - Field 2385270358 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Unit of Measure Code</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table AfkPostDocRequisitionLine - Field Unit of Measure Code - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Table 562774626 - Field 2937233469 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Unit Price</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Table AfkPostDocRequisitionLine - Field Unit Price - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 562774626 - Field 3450651614 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Variant Code</source>
@@ -682,6 +697,16 @@
           <source>VAT Prod. Posting Group</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table AfkPostDocRequisitionLine - Field VAT Prod. Posting Group - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 562774626 - Field 3459446610 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Delivered Quantity</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkPostDocRequisitionLine - Field Whse Delivered Quantity - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 562774626 - Field 4036465560 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Quantity To Deliver</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkPostDocRequisitionLine - Field Whse Quantity To Deliver - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 233873963 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Posted Purchase Requisition</source>
@@ -748,6 +773,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table AfkPostedDocRequisition - Field Currency Code - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 233873963 - Field 775476300 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Delivery Status</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkPostedDocRequisition - Field Delivery Status - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 233873963 - Field 3461834954 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Description</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -787,6 +817,11 @@
           <source>Fixed Asset,Item,Non Item,Others</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table AfkPostedDocRequisition - Field Item Type - Property OptionCaption</note>
+        </trans-unit>
+        <trans-unit id="Table 233873963 - Field 2161572060 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Location Code</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkPostedDocRequisition - Field Location Code - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 233873963 - Field 4200184881 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>No.</source>
@@ -924,9 +959,369 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table AfkSetup - Field Primary Key - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 252127493 - Field 1260078947 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Purchase Req Nos.</source>
+          <source>Item Requisition Nos.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table AfkSetup - Field Purchase Req Nos. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 252127493 - Field 3852360763 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Item Delivery Nos.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkSetup - Field Whse Delivery Nos. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4108253659 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Delivery Form</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkWhseDelivery - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4108253659 - Field 592951229 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Amount (LCY)</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkWhseDelivery - Field Amount (LCY) - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4108253659 - Field 1650118938 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Amount Including VAT</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkWhseDelivery - Field Amount Including VAT - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4108253659 - Field 4169368700 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Budget Code</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkWhseDelivery - Field Budget Code - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4108253659 - Field 4198939294 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Currency Code</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkWhseDelivery - Field Currency Code - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4108253659 - Field 775476300 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Delivery Status</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkWhseDelivery - Field Delivery Status - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4108253659 - Field 3461834954 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Description</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkWhseDelivery - Field Description - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4108253659 - Field 3322554545 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Dimension Set ID</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkWhseDelivery - Field Dimension Set ID - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4108253659 - Field 580412389 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Document Date</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkWhseDelivery - Field Document Date - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4108253659 - Field 2363328873 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Document Type</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkWhseDelivery - Field Document Type - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4108253659 - Field 3628453960 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>External Doc. Number</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkWhseDelivery - Field External Doc No - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4108253659 - Field 633819257 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Gen. Bus. Posting Group</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkWhseDelivery - Field Gen. Bus. Posting Group - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4108253659 - Field 1832330444 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>No.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkWhseDelivery - Field Item Requisition No - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4108253659 - Field 4093180191 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Item Type</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkWhseDelivery - Field Item Type - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4108253659 - Field 4093180191 - Property 62802879" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Fixed Asset,Item,Non Item,Others</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkWhseDelivery - Field Item Type - Property OptionCaption</note>
+        </trans-unit>
+        <trans-unit id="Table 4108253659 - Field 2161572060 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Location Code</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkWhseDelivery - Field Location Code - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4108253659 - Field 4200184881 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>No.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkWhseDelivery - Field No. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4108253659 - Field 1351594800 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>No. Series</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkWhseDelivery - Field No. Series - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4108253659 - Field 2780969945 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Purchase Order Type</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkWhseDelivery - Field PO Type - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4108253659 - Field 2780969945 - Property 62802879" size-unit="char" translate="yes" xml:space="preserve">
+          <source> </source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkWhseDelivery - Field PO Type - Property OptionCaption</note>
+        </trans-unit>
+        <trans-unit id="Table 4108253659 - Field 3710982960 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Posting Date</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkWhseDelivery - Field Posting Date - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4108253659 - Field 2294086086 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Purchase Requisition Type</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkWhseDelivery - Field PR Type - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4108253659 - Field 2294086086 - Property 62802879" size-unit="char" translate="yes" xml:space="preserve">
+          <source> </source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkWhseDelivery - Field PR Type - Property OptionCaption</note>
+        </trans-unit>
+        <trans-unit id="Table 4108253659 - Field 619119249 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Processing Status</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkWhseDelivery - Field Processing Status - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4108253659 - Field 619119249 - Property 62802879" size-unit="char" translate="yes" xml:space="preserve">
+          <source> ,Partially processed,Totally processed</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkWhseDelivery - Field Processing Status - Property OptionCaption</note>
+        </trans-unit>
+        <trans-unit id="Table 4108253659 - Field 1277608357 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Purchase Type</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkWhseDelivery - Field Purchase Type - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4108253659 - Field 1277608357 - Property 62802879" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Material/Item,Service,Intellectual service</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkWhseDelivery - Field Purchase Type - Property OptionCaption</note>
+        </trans-unit>
+        <trans-unit id="Table 4108253659 - Field 1319260908 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Reason for rejection</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkWhseDelivery - Field Reason for rejection - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4108253659 - Field 1602222300 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Requested Receipt Date</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkWhseDelivery - Field Requested Receipt Date - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4108253659 - Field 1577567912 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Shortcut Dimension 1 Code</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkWhseDelivery - Field Shortcut Dimension 1 Code - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4108253659 - Field 1003760969 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Shortcut Dimension 2 Code</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkWhseDelivery - Field Shortcut Dimension 2 Code - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4108253659 - Field 513339096 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Status</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkWhseDelivery - Field Status - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4108253659 - Field 513339096 - Property 62802879" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Open,Released,Pending Approval</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkWhseDelivery - Field Status - Property OptionCaption</note>
+        </trans-unit>
+        <trans-unit id="Table 4108253659 - Field 2708250016 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>User ID</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkWhseDelivery - Field User ID - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 388389457 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Delivery Form Line</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkWhseDeliveryLine - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 388389457 - Field 636392376 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Amount</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkWhseDeliveryLine - Field Amount - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 388389457 - Field 1650118938 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Amount Including VAT</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkWhseDeliveryLine - Field Amount Including VAT - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 388389457 - Field 2348384091 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Amount (LCY)</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkWhseDeliveryLine - Field Amount Including VAT (LCY) - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 388389457 - Field 2223214263 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Depreciation Book Code</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkWhseDeliveryLine - Field Depreciation Book Code - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 388389457 - Field 3461834954 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Description</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkWhseDeliveryLine - Field Description - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 388389457 - Field 3322554545 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Dimension Set ID</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkWhseDeliveryLine - Field Dimension Set ID - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 388389457 - Field 486908828 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Document No.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkWhseDeliveryLine - Field Document No. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 388389457 - Field 2363328873 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Document Type</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkWhseDeliveryLine - Field Document Type - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 388389457 - Field 633819257 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Gen. Bus. Posting Group</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkWhseDeliveryLine - Field Gen. Bus. Posting Group - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 388389457 - Field 2139693550 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Gen. Prod. Posting Group</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkWhseDeliveryLine - Field Gen. Prod. Posting Group - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 388389457 - Field 2842094365 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Item Description</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkWhseDeliveryLine - Field Item Description - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 388389457 - Field 1067425594 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Item Reference</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkWhseDeliveryLine - Field Item Reference - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 388389457 - Field 2885544704 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Last Direct Cost</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkWhseDeliveryLine - Field Last Direct Cost - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 388389457 - Field 3320823955 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Line No.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkWhseDeliveryLine - Field Line No. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 388389457 - Field 2161572060 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Location Code</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkWhseDeliveryLine - Field Location Code - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 388389457 - Field 4200184881 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>No.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkWhseDeliveryLine - Field No. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 388389457 - Field 3395508180 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Quantity (Base)</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkWhseDeliveryLine - Field Ordered Quantity (Base) - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 388389457 - Field 1915851633 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Posting Group</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkWhseDeliveryLine - Field Posting Group - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 388389457 - Field 3589825702 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Purchase Account</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkWhseDeliveryLine - Field Purchase Account - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 388389457 - Field 806193894 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Qty. per Unit of Measure</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkWhseDeliveryLine - Field Qty. per Unit of Measure - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 388389457 - Field 2704404533 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Quantity</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkWhseDeliveryLine - Field Quantity - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 388389457 - Field 3179217921 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Quantity (Base)</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkWhseDeliveryLine - Field Quantity (Base) - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 388389457 - Field 678654269 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Quantity (Base)</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkWhseDeliveryLine - Field Remaining Quantity (Base) - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 388389457 - Field 47037625 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Serial No.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkWhseDeliveryLine - Field Serial No. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 388389457 - Field 1577567912 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Shortcut Dimension 1 Code</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkWhseDeliveryLine - Field Shortcut Dimension 1 Code - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 388389457 - Field 1003760969 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Shortcut Dimension 2 Code</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkWhseDeliveryLine - Field Shortcut Dimension 2 Code - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 388389457 - Field 1878130204 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Type</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkWhseDeliveryLine - Field Type - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 388389457 - Field 381961415 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Unit Price</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkWhseDeliveryLine - Field Unit Cost - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 388389457 - Field 2385270358 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Unit of Measure Code</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkWhseDeliveryLine - Field Unit of Measure Code - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 388389457 - Field 3450651614 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Variant Code</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkWhseDeliveryLine - Field Variant Code - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 388389457 - Field 1246077090 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>VAT %</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkWhseDeliveryLine - Field VAT % - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 388389457 - Field 1108276017 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>VAT Amount</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkWhseDeliveryLine - Field VAT Amount - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 388389457 - Field 1844012642 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>VAT Bus. Posting Group</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkWhseDeliveryLine - Field VAT Bus. Posting Group - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 388389457 - Field 236064653 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>VAT Prod. Posting Group</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkWhseDeliveryLine - Field VAT Prod. Posting Group - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 388389457 - Field 3459446610 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Delivered Quantity</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkWhseDeliveryLine - Field Whse Delivered Quantity - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 388389457 - Field 4036465560 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Quantity To Deliver</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkWhseDeliveryLine - Field Whse Quantity To Deliver - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 1484905965 - Field 972110707 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Agent</source>
@@ -1282,6 +1677,16 @@
           <source>Would you like to post this Item requisition: %1?</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit AfkItemReqMgt - NamedType Text034</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3811505075 - NamedType 3061749613" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The quantity to be delivered in line %1 is cannot be greater than %2</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit AfkItemReqMgt - NamedType Text035</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3811505075 - NamedType 2424052996" size-unit="char" translate="yes" xml:space="preserve">
+          <source>There is nothing to post</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit AfkItemReqMgt - NamedType Text036</note>
         </trans-unit>
         <trans-unit id="Codeunit 2452753826 - NamedType 3162296448" size-unit="char" translate="yes" xml:space="preserve">
           <source>The unit price was  %1 not %2 as expected</source>
@@ -1678,11 +2083,6 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page AfkItemRequisition - Control Shortcut Dimension 1 Code - Property ToolTip</note>
         </trans-unit>
-        <trans-unit id="Page 2375237743 - Control 1003760969 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Specifies the code for Shortcut Dimension 2, which is one of two global dimension codes that you set up in the General Ledger Setup window.</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page AfkItemRequisition - Control Shortcut Dimension 2 Code - Property ToolTip</note>
-        </trans-unit>
         <trans-unit id="Page 2375237743 - Action 2947630187 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>&amp;Header</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -1733,6 +2133,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page AfkItemRequisition - Action Reopen - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 2375237743 - Action 1179106250 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Actions</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page AfkItemRequisition - Action Action22 - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Page 2375237743 - Action 3788618999 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Calculate Budget</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -1744,9 +2149,14 @@
           <note from="Xliff Generator" annotates="general" priority="3">Page AfkItemRequisition - Action AfkCloseDocument - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 2375237743 - Action 4042189541 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Validate Document</source>
+          <source>Create new delivery</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page AfkItemRequisition - Action AfkPostDocument - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2375237743 - Action 3068544363 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Delivery List</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page AfkItemRequisition - Action DeliveryForms - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 2375237743 - Action 2678918909 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>&amp;Approval</source>
@@ -1953,25 +2363,10 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page AfkPostedItemRequisition - Control No. - Property ToolTip</note>
         </trans-unit>
-        <trans-unit id="Page 2392523464 - Control 1577567912 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Specifies the code for Shortcut Dimension 1, which is one of two global dimension codes that you set up in the General Ledger Setup window.</source>
+        <trans-unit id="Page 2392523464 - Action 3068544363 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Delivery List</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page AfkPostedItemRequisition - Control Shortcut Dimension 1 Code - Property ToolTip</note>
-        </trans-unit>
-        <trans-unit id="Page 2392523464 - Control 1003760969 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Specifies the code for Shortcut Dimension 2, which is one of two global dimension codes that you set up in the General Ledger Setup window.</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page AfkPostedItemRequisition - Control Shortcut Dimension 2 Code - Property ToolTip</note>
-        </trans-unit>
-        <trans-unit id="Page 2392523464 - Action 1111476699 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>View the history of transactions that have been posted for the selected document.</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page AfkPostedItemRequisition - Action Ledger E&amp;ntries - Property ToolTip</note>
-        </trans-unit>
-        <trans-unit id="Page 2392523464 - Action 1111476699 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Ledger E&amp;ntries</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page AfkPostedItemRequisition - Action Ledger E&amp;ntries - Property Caption</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page AfkPostedItemRequisition - Action DeliveryForms - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 4197824562 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>PostedItemRequisitionList</source>
@@ -2017,6 +2412,51 @@
           <source>Night starting time</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page AfkSetupCard - Control NightStartingTime - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 982683567 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Delivery Card</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page AfkWhseDeliveryCard - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 982683567 - Control 2445482498 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>General</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page AfkWhseDeliveryCard - Control General - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 982683567 - Action 1267198481 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Print</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page AfkWhseDeliveryCard - Action AfkPrintPreview - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 982683567 - Action 1111476699 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>View the history of transactions that have been posted for the selected document.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page AfkWhseDeliveryCard - Action Ledger E&amp;ntries - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 982683567 - Action 1111476699 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Ledger E&amp;ntries</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page AfkWhseDeliveryCard - Action Ledger E&amp;ntries - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3206955077 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Delivery List</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page AfkWhseDeliveryList - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3206955077 - Action 1111476699 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>View the history of transactions that have been posted for the selected document.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page AfkWhseDeliveryList - Action Ledger E&amp;ntries - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3206955077 - Action 1111476699 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Ledger E&amp;ntries</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page AfkWhseDeliveryList - Action Ledger E&amp;ntries - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1081388021 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>WhseDeliverySubForm</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page AfkWhseDeliverySubForm - Property Caption</note>
         </trans-unit>
         <trans-unit id="Report 1260461456 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Budget Line Transfer</source>
@@ -3423,6 +3863,86 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report AfkSalesInvoicePreview - ReportDataItem Header - Property RequestFilterHeading</note>
         </trans-unit>
+        <trans-unit id="Report 4108253659 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Delivery</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkWhseDelivery - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 4108253659 - NamedType 4166982081" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Purchaser :</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkWhseDelivery - NamedType AfkAcheteurLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 4108253659 - NamedType 4231008891" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Issuer :</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkWhseDelivery - NamedType AfkEmetteurLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 4108253659 - NamedType 1082918132" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Description</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkWhseDelivery - NamedType AfkLigneDesignationLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 4108253659 - NamedType 2234477874" size-unit="char" translate="yes" xml:space="preserve">
+          <source>No</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkWhseDelivery - NamedType AfkLigneNoLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 4108253659 - NamedType 2909690406" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Unit price</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkWhseDelivery - NamedType AfkLignePULbl</note>
+        </trans-unit>
+        <trans-unit id="Report 4108253659 - NamedType 3509226609" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Qty</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkWhseDelivery - NamedType AfkLigneQteLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 4108253659 - NamedType 3226945864" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Reference</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkWhseDelivery - NamedType AfkLigneReferenceLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 4108253659 - NamedType 2839525712" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Unit</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkWhseDelivery - NamedType AfkLigneUniteLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 4108253659 - NamedType 2522063388" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Limbe on _____________________</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkWhseDelivery - NamedType AfkLimbeLeLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 4108253659 - NamedType 4178849303" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Nature Code :</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkWhseDelivery - NamedType AfkNatureBudgetaireLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 4108253659 - NamedType 3696489686" size-unit="char" translate="yes" xml:space="preserve">
+          <source>DELIVERY ORDER %1</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkWhseDelivery - NamedType AfkNumCommandeLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 4108253659 - NamedType 2782749143" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Requisition No</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkWhseDelivery - NamedType AfkNumDALbl</note>
+        </trans-unit>
+        <trans-unit id="Report 4108253659 - NamedType 3067529037" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Object :</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkWhseDelivery - NamedType AfkObjectLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 4108253659 - NamedType 4008155289" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Task Code :</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkWhseDelivery - NamedType AfkTacheBudgetaireLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 4108253659 - ReportDataItem 4108253659 - Property 1806354803" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Delivery</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkWhseDelivery - ReportDataItem AfkWhseDelivery - Property RequestFilterHeading</note>
+        </trans-unit>
         <trans-unit id="PageExtension 2188449987 - Action 1073901614 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 4030203231">
           <source>Budget line revision</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -3462,6 +3982,11 @@
           <source>Purchase Commitment</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkPurchaseOrder - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 678316379 - NamedType 3114637384" size-unit="char" translate="yes" xml:space="preserve" al-object-target="PageExtension 678316379">
+          <source>You cannot create this type of commitment directly</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkPurchaseOrder - NamedType Text001</note>
         </trans-unit>
         <trans-unit id="PageExtension 678316379 - Action 3788618999 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 387971303">
           <source>Calculate Budget</source>
@@ -4817,6 +5342,26 @@
           <source>Subscription</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Enum AfkCommitmentType - EnumValue Subscription - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 2180260290 - EnumValue 1371923692 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source> </source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum AfkPRDeliveryStatus - EnumValue   - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 2180260290 - EnumValue 283230270 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Awaiting Delivery</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum AfkPRDeliveryStatus - EnumValue Awaiting - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 2180260290 - EnumValue 3665605423 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Completely Delivery</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum AfkPRDeliveryStatus - EnumValue Completed - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 2180260290 - EnumValue 2922565690 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Partially Delivery</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum AfkPRDeliveryStatus - EnumValue Partially - Property Caption</note>
         </trans-unit>
         <trans-unit id="Enum 647136453 - EnumValue 1778072510 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Closed</source>

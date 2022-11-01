@@ -85,9 +85,12 @@ table 50006 AfkDocRequisitionLine
                             VALIDATE("Unit of Measure Code", Item."Base Unit of Measure");
 
                             "Last Direct Cost" := Item."Last Direct Cost";
+                            VALIDATE("Unit Cost", Item."Unit Cost");
                             //Item.TESTFIELD("Poste Budgétaire");
                             //IF Item."Code Nature"<>'' THEN
                             //   VALIDATE("Nature code",Item."Code Nature");
+                            GetPurchHeader();
+                            Validate("Shortcut Dimension 1 Code", PRHeader."Shortcut Dimension 1 Code");
 
 
                         END;
@@ -217,20 +220,16 @@ table 50006 AfkDocRequisitionLine
                 "Remaining Quantity (Base)" := "Quantity (Base)" - "Ordered Quantity (Base)";
             end;
         }
-        field(9; "Unit Price"; Decimal)
+        field(9; "Unit Cost"; Decimal)
         {
             AutoFormatType = 2;
-            Caption = 'Unit Price';
+            Caption = 'Unit Cost';
+            Editable = false;
             trigger OnValidate()
             begin
                 CalcAmounts();
             end;
         }
-        // field(10; "Gen. Bus. Posting Group"; Code[20])
-        // {
-        //     Caption = 'Gen. Bus. Posting Group';
-        //     TableRelation = "Gen. Business Posting Group";
-        // }
         field(11; "Gen. Prod. Posting Group"; Code[20])
         {
             Caption = 'Gen. Prod. Posting Group';
@@ -245,6 +244,8 @@ table 50006 AfkDocRequisitionLine
             trigger OnValidate()
             begin
                 "Amount (LCY)" := Amount;
+                GetPurchHeader();
+                AfkBudgetControlMgt.CreatePurchaseBudgetLines_ItemReq(PRHeader, true);
             end;
         }
         field(72; "VAT Amount"; Decimal)
@@ -289,16 +290,6 @@ table 50006 AfkDocRequisitionLine
                 CalcAmounts();
             end;
         }
-        // field(15; "VAT Bus. Posting Group"; Code[20])
-        // {
-        //     Caption = 'VAT Bus. Posting Group';
-        //     TableRelation = "VAT Business Posting Group";
-
-        //     trigger OnValidate()
-        //     begin
-        //         Validate("VAT Prod. Posting Group");
-        //     end;
-        // }
         field(16; "VAT Prod. Posting Group"; Code[20])
         {
             Caption = 'VAT Prod. Posting Group';
@@ -377,10 +368,6 @@ table 50006 AfkDocRequisitionLine
             Caption = 'Depreciation Book Code';
             TableRelation = "Depreciation Book";
 
-            // trigger OnValidate()
-            // begin
-            //     GetFAPostingGroup();
-            // end;
         }
         field(26; "Serial No."; Code[30])
         {
@@ -407,16 +394,10 @@ table 50006 AfkDocRequisitionLine
             Caption = 'Last Direct Cost';
             MinValue = 0;
         }
-        // field(30; "System-Created Entry"; Boolean)
-        // {
-        //     Caption = 'System-Created Entry';
-        //     Editable = false;
-        // }
         field(31; "Location Code"; Code[10])
         {
             Caption = 'Location Code';
             TableRelation = Location WHERE("Use As In-Transit" = CONST(false));
-
         }
         field(480; "Dimension Set ID"; Integer)
         {
@@ -435,6 +416,19 @@ table 50006 AfkDocRequisitionLine
             end;
         }
 
+        field(482; "Whse Quantity To Deliver"; Decimal)
+        {
+            Caption = 'Quantity To Deliver';
+            DecimalPlaces = 0 : 5;
+            MinValue = 0;
+        }
+        field(483; "Whse Delivered Quantity"; Decimal)
+        {
+            Caption = 'Delivered Quantity';
+            DecimalPlaces = 0 : 5;
+            Editable = false;
+        }
+
     }
     keys
     {
@@ -447,12 +441,11 @@ table 50006 AfkDocRequisitionLine
         }
     }
     trigger OnInsert()
-
     begin
         TestStatusOpen();
-
         GetPurchHeader();
-        // va := PRHeader."VAT Bus. Posting Group";
+        "Location Code" := PRHeader."Location Code";
+
     end;
 
     var
@@ -468,6 +461,7 @@ table 50006 AfkDocRequisitionLine
         GLSetup: Record "General Ledger Setup";
         Item: Record Item;
         ItemCharge: Record "Item Charge";
+        AfkBudgetControlMgt: Codeunit AfkBudgetControl;
         BudgetMgt: Codeunit AfkBudgetControl;
         DimMgt: Codeunit DimensionManagement;
         //ServRequest: Record AfkPurchaseRequisition;
@@ -570,11 +564,13 @@ table 50006 AfkDocRequisitionLine
     var
         factor: Decimal;
     begin
-        "Amount" := Round(Quantity * "Unit Price", Currency."Amount Rounding Precision");
+        "Amount" := Round(Quantity * "Unit Cost", Currency."Amount Rounding Precision");
         "VAT Amount" := Round("VAT %" * Amount / 100, Currency."Amount Rounding Precision");
         "Amount Including VAT" := "Amount" + "VAT Amount";
+        "Amount (LCY)" := "Amount";
 
         GetPurchHeader();
+        PRHeader.TestStatusOpen();
         factor := CurrExchRate.ExchangeRate(PRHeader."Document Date", PRHeader."Currency Code");
         IF PRHeader."Currency Code" = '' THEN
             "Amount Including VAT (LCY)" := "Amount Including VAT"

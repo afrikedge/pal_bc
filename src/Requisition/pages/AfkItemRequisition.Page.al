@@ -7,6 +7,7 @@ page 50006 "AfkItemRequisition"
     SourceTableView = WHERE("Document Type" = FILTER("ItemReq"));
     UsageCategory = Documents;
     PromotedActionCategories = 'New,Process,Report,Approbation,Release,Request Approval';
+    DeleteAllowed = false;
 
     layout
     {
@@ -45,6 +46,7 @@ page 50006 "AfkItemRequisition"
                 {
                     ApplicationArea = Basic, Suite;
                     MultiLine = true;
+                    Editable = CanEdit;
                 }
                 field("Status"; Rec.Status)
                 {
@@ -53,44 +55,31 @@ page 50006 "AfkItemRequisition"
                 field("Document Date"; Rec."Document Date")
                 {
                     ApplicationArea = Basic, Suite;
+                    Editable = CanEdit;
                 }
-                field("Requested Receipt Date"; Rec."Requested Receipt Date")
+                field("Posting Date"; Rec."Posting Date")
                 {
                     ApplicationArea = Basic, Suite;
                 }
+                // field("Requested Receipt Date"; Rec."Requested Receipt Date")
+                // {
+                //     ApplicationArea = Basic, Suite;
+                // }
                 field("Shortcut Dimension 1 Code"; Rec."Shortcut Dimension 1 Code")
                 {
                     ApplicationArea = Dimensions;
                     ToolTip = 'Specifies the code for Shortcut Dimension 1, which is one of two global dimension codes that you set up in the General Ledger Setup window.';
-
+                    Editable = CanEdit;
                     trigger OnValidate()
                     begin
                         ShortcutDimension1CodeOnAfterV;
                     end;
                 }
-                field("Shortcut Dimension 2 Code"; Rec."Shortcut Dimension 2 Code")
-                {
-                    ApplicationArea = Dimensions;
-                    ToolTip = 'Specifies the code for Shortcut Dimension 2, which is one of two global dimension codes that you set up in the General Ledger Setup window.';
-
-                    trigger OnValidate()
-                    begin
-                        ShortcutDimension2CodeOnAfterV;
-                    end;
-                }
-                field("External Doc No"; Rec."External Doc No")
+                field("Location Code"; Rec."Location Code")
                 {
                     ApplicationArea = Basic, Suite;
                 }
-                field("Gen. Bus. Posting Group"; Rec."Gen. Bus. Posting Group")
-                {
-                    ApplicationArea = Basic, Suite;
-                }
-                field("VAT Bus. Posting Group"; Rec."VAT Bus. Posting Group")
-                {
-                    ApplicationArea = Basic, Suite;
-                }
-                field("Amount (LCY)"; Rec."Amount (LCY)")
+                field("Delivery Status"; Rec."Delivery Status")
                 {
                     ApplicationArea = Basic, Suite;
                 }
@@ -161,7 +150,7 @@ page 50006 "AfkItemRequisition"
                 Caption = 'Approvals';
                 Image = Approvals;
                 Promoted = true;
-                PromotedCategory = Category7;
+                PromotedCategory = Category4;
                 ToolTip = 'View a list of the records that are waiting to be approved. For example, you can see who requested the record to be approved, when it was sent, and when it is due to be approved.';
 
                 trigger OnAction()
@@ -315,7 +304,7 @@ page 50006 "AfkItemRequisition"
                 {
                     ApplicationArea = Basic, Suite;
                     Caption = 'Re&open';
-                    Enabled = Rec.Status <> Rec.Status::Open;
+                    Enabled = Rec.Status = Rec.Status::"Pending Approval";
                     Image = ReOpen;
                     Promoted = true;
                     PromotedCategory = Category5;
@@ -325,12 +314,15 @@ page 50006 "AfkItemRequisition"
                     trigger OnAction()
                     var
                     begin
+                        if (Rec.Status = Rec.Status::Released) then
+                            Error('');
                         Rec.PerformManualReOpen();
                     end;
                 }
             }
             group(Action22)
             {
+                Caption = 'Actions';
                 action(AfkCalculateBudget)
                 {
                     ApplicationArea = Suite;
@@ -366,9 +358,9 @@ page 50006 "AfkItemRequisition"
                 action(AfkPostDocument)
                 {
                     ApplicationArea = Suite;
-                    Caption = 'Validate Document';
+                    Caption = 'Create new delivery';
                     Ellipsis = true;
-                    Enabled = Rec."No." <> '';
+                    Enabled = IsRelease;
                     Image = Post;
                     Promoted = true;
                     PromotedCategory = Process;
@@ -376,8 +368,22 @@ page 50006 "AfkItemRequisition"
 
                     trigger OnAction()
                     begin
-                        AfkItemReqMgt.PostItemRequisition(Rec);
+                        AfkItemReqMgt.PostNewItemDelivery(Rec);
                     end;
+                }
+                action("DeliveryForms")
+                {
+                    ApplicationArea = Basic, Suite;
+                    Caption = 'Delivery List';
+                    Image = ItemLedger;
+                    RunObject = Page "AfkWhseDeliveryList";
+                    RunPageLink = "External Doc No" = FIELD("No.");
+                    Promoted = true;
+                    PromotedCategory = Process;
+                    //RunPageView = SORTING("Item No.")
+                    //                      ORDER(Descending);
+                    ShortCutKey = 'Ctrl+F7';
+                    //ToolTip = 'View the history of transactions that have been posted for the selected document.';
                 }
 
             }
@@ -388,16 +394,22 @@ page 50006 "AfkItemRequisition"
 
     trigger OnAfterGetRecord()
     begin
+        CanEdit := Rec.Status = Rec.Status::Open;
+        IsRelease := Rec.Status = Rec.Status::Released;
         CurrPage.Lines.PAGE.Editable(true);
         SetControlVisibility();
+
     end;
 
 
     trigger OnAfterGetCurrRecord()
     var
     begin
+        CanEdit := Rec.Status = Rec.Status::Open;
+        IsRelease := Rec.Status = Rec.Status::Released;
         SetControlAppearance();
         ShowWorkflowStatus := CurrPage.WorkflowStatus.PAGE.SetFilterOnWorkflowRecord(Rec.RecordId);
+
     end;
 
 
@@ -409,6 +421,8 @@ page 50006 "AfkItemRequisition"
         ChangeExchangeRate: Page "Change Exchange Rate";
         Navigate: Page Navigate;
         CanCancelApprovalForRecord: Boolean;
+        CanEdit: Boolean;
+        IsRelease: Boolean;
         OpenApprovalEntriesExist: Boolean;
 
         OpenApprovalEntriesExistForCurrUser: Boolean;

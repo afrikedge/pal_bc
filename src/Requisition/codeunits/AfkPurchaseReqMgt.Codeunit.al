@@ -500,6 +500,8 @@ codeunit 50004 AfkPurchaseReqMgt
     internal procedure OnAfterAssignFieldsForNo(var PurchLine: Record "Purchase Line"; var xPurchLine: Record "Purchase Line"; PurchHeader: Record "Purchase Header")
     begin
         PurchLine.Afk_PurchaseAccount := BudgetControl.GetPurchAcc(PurchLine);
+        //if (PurchLine."Shortcut Dimension 1 Code" = '') then
+        //PurchLine.Validate("Shortcut Dimension 1 Code", PurchHeader."Shortcut Dimension 1 Code");
         //PurchLine.Modify();
     end;
 
@@ -529,6 +531,14 @@ codeunit 50004 AfkPurchaseReqMgt
     begin
         PurchaseHeader.Afk_IR_Pourcent := Vendor.Afk_IR_Pourcent;
         PurchaseHeader.Afk_TSR_Pourcent := Vendor.Afk_TSR_Pourcent;
+    end;
+
+    internal procedure CheckBudgetOnLineUpdate(var PurchaseLine: Record "Purchase Line")
+    var
+        Header: Record "Purchase Header";
+    begin
+        Header := PurchaseLine.GetPurchHeader();
+        BudgetControl.CreatePurchaseBudgetLines(Header, true);
     end;
 
     local procedure CheckDimComb(PurchReqLine: Record AfkDocRequisitionLine)
@@ -615,6 +625,7 @@ codeunit 50004 AfkPurchaseReqMgt
         VendorLedgerEntry: Record "Vendor Ledger Entry";
         LastPaymentDate: Date;
     begin
+        LastPaymentDate := 0D;
         PurchRcptHeader.Reset();
         PurchRcptHeader.SetRange("Order No.", OrderNo);
         if (PurchRcptHeader.FindLast()) then

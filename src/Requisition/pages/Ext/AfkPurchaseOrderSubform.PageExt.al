@@ -55,7 +55,7 @@ pageextension 50018 AfkPurchaseOrderSubform extends "Purchase Order Subform"
         Header.get(Rec."Document Type"::Order, Rec."Document No.");
         isRelease := Header.Status = Header.Status::Released;
         DocIsEditable := (Header.Afk_CommitmentType <> Header.Afk_CommitmentType::"Purchase order");
-        ;
+
     end;
 
 

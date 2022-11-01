@@ -58,7 +58,16 @@ codeunit 50006 AfkPREventsSubs
     end;
 
 
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::"Workflow Response Handling", 'OnReleaseDocument', '', false, false)]
+    local procedure OnReleaseDocument(RecRef: RecordRef; var Handled: Boolean)
+    begin
+        EmplLoanWkflMgt.ReleaseRequisitionDoc(RecRef, Handled);
+    end;
 
+    // [IntegrationEvent(false, false)]
+    //     local procedure OnReleaseDocument(RecRef: RecordRef; var Handled: Boolean)
+    //     begin
+    //     end;
 
 
 

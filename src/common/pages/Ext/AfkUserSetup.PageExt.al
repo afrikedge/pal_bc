@@ -30,6 +30,15 @@ pageextension 50010 AfkUserSetup extends "User Setup"
                 ApplicationArea = Suite;
             }
 
+            field("Afk_PRAmountApprovalLimit"; Rec.Afk_PRAmountApprovalLimit)
+            {
+                ApplicationArea = Suite;
+            }
+            field("Afk_UnlimitedPRApproval"; Rec.Afk_UnlimitedPRApproval)
+            {
+                ApplicationArea = Suite;
+            }
+
         }
     }
 

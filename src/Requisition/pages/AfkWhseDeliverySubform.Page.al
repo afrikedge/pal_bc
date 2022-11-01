@@ -1,16 +1,12 @@
-page 50012 AfkPostedItemReqSubform
+page 50015 AfkWhseDeliverySubForm
 {
-    AutoSplitKey = true;
-    Caption = 'Lines';
-    DelayedInsert = true;
+    Caption = 'WhseDeliverySubForm';
     PageType = ListPart;
-    LinksAllowed = false;
-    //MultipleNewLines = true;
-    SourceTableView = WHERE("Document Type" = FILTER(ItemReq));
-    SourceTable = AfkPostDocRequisitionLine;
+    SourceTable = AfkWhseDeliveryLine;
 
     layout
     {
+
         area(content)
         {
             repeater(Control1)
@@ -24,10 +20,13 @@ page 50012 AfkPostedItemReqSubform
                 field("No."; Rec."No.")
                 {
                     ApplicationArea = Basic, Suite;
-                    //ShowMandatory = true;
-
+                    ShowMandatory = true;
                 }
                 field("Description"; Rec.Description)
+                {
+                    ApplicationArea = Basic, Suite;
+                }
+                field("Location Code"; Rec."Location Code")
                 {
                     ApplicationArea = Basic, Suite;
                 }
@@ -39,26 +38,15 @@ page 50012 AfkPostedItemReqSubform
                 {
                     ApplicationArea = Basic, Suite;
                 }
-                field("Shortcut Dimension 1 Code"; Rec."Shortcut Dimension 1 Code")
-                {
-                    ApplicationArea = Dimensions;
-                    //ToolTip = 'Specifies the code for Shortcut Dimension 1, which is one of two global dimension codes that you set up in the General Ledger Setup window.';
-                    //Visible = DimVisible1;
-                }
-                field("Location Code"; Rec."Location Code")
-                {
-                    ApplicationArea = Basic, Suite;
-                }
-                field("Unit Price"; Rec."Unit Cost")
-                {
-                    ApplicationArea = Basic, Suite;
-                    Editable = false;
-                }
-                // field("Amount"; Rec.Amount)
-                // {
-                //     ApplicationArea = Basic, Suite;
-                // }
 
+                field("Unit Cost"; Rec."Unit Cost")
+                {
+                    ApplicationArea = Basic, Suite;
+                }
+                field("Amount"; Rec.Amount)
+                {
+                    ApplicationArea = Basic, Suite;
+                }
                 field("Purchase Account"; Rec."Purchase Account")
                 {
                     ApplicationArea = Basic, Suite;
@@ -74,9 +62,6 @@ page 50012 AfkPostedItemReqSubform
                     ApplicationArea = Basic, Suite;
                     Visible = false;
                 }
-
-
-
             }
         }
     }

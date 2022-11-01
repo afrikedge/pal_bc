@@ -14,6 +14,11 @@ pageextension 50011 AfkDimensionValues extends "Dimension Values"
                 ApplicationArea = All;
                 //ToolTip = 'Specifies the value of the Task field.';
             }
+            field(AfkBudgetStructureLevel; Rec.AfkBudgetStructureLevel)
+            {
+                ApplicationArea = All;
+                //ToolTip = 'Specifies the value of the Task field.';
+            }
             field(AfkBudgetStructure; Rec.AfkBudgetStructure)
             {
                 ApplicationArea = All;

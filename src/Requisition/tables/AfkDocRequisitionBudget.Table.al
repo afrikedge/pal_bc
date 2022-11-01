@@ -188,7 +188,7 @@ table 50007 AfkDocRequisitionBudget
             Caption = 'Cumulated Available Amt';
             Editable = false;
         }
-        field(28; "AfkUserID"; Code[100])
+        field(28; "AfkUserID"; Code[50])
         {
             Caption = 'User Id';
         }
@@ -196,7 +196,7 @@ table 50007 AfkDocRequisitionBudget
     }
     keys
     {
-        key(Key1; "Document Type", "Document No.", "G/L Account No", "Dimension Code 1")
+        key(Key1; "Document Type", "Document No.", "G/L Account No", "Dimension Code 1", AfkUserID)
         {
             Clustered = true;
         }

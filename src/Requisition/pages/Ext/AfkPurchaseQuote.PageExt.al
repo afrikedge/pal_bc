@@ -16,6 +16,8 @@ pageextension 50014 AfkPurchaseQuote extends "Purchase Quote"
                 MultiLine = true;
             }
         }
+        moveafter("Vendor Order No."; "Shortcut Dimension 1 Code")
+
         addafter(PurchLines)
         {
             part(AfkBudgetLines; AfkBudgetLinesSubForm)

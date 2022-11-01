@@ -1,8 +1,6 @@
 table 50008 "AfkPostedDocRequisition"
 {
     Caption = 'Posted Purchase Requisition';
-    //DrillDownPageID = "Payment Slip List";
-    //LookupPageID = "Payment Slip List";
     DataClassification = CustomerContent;
 
     fields
@@ -41,8 +39,8 @@ table 50008 "AfkPostedDocRequisition"
         }
         field(9; "Shortcut Dimension 1 Code"; Code[20])
         {
-            CaptionClass = '1,2,1';
             Caption = 'Shortcut Dimension 1 Code';
+            CaptionClass = '1,2,1';
 
             trigger OnLookup()
             begin
@@ -53,8 +51,8 @@ table 50008 "AfkPostedDocRequisition"
         }
         field(10; "Shortcut Dimension 2 Code"; Code[20])
         {
-            CaptionClass = '1,2,2';
             Caption = 'Shortcut Dimension 2 Code';
+            CaptionClass = '1,2,2';
 
             trigger OnLookup()
             begin
@@ -88,40 +86,40 @@ table 50008 "AfkPostedDocRequisition"
         field(17; "Purchase Type"; Option)
         {
             Caption = 'Purchase Type';
-            OptionMembers = Item,Service,Intellectual;
             OptionCaption = 'Material/Item,Service,Intellectual service';
+            OptionMembers = Item,Service,Intellectual;
         }
         field(18; "Item Type"; Option)
         {
             Caption = 'Item Type';
-            OptionMembers = FA,Item,NonItem,Others;
             OptionCaption = 'Fixed Asset,Item,Non Item,Others';
+            OptionMembers = FA,Item,NonItem,Others;
         }
         field(19; "Processing Status"; Option)
         {
             Caption = 'Processing Status';
-            OptionMembers = " ","Partially processed","Totally processed";
-            OptionCaption = ' ,Partially processed,Totally processed';
             Editable = false;
+            OptionCaption = ' ,Partially processed,Totally processed';
+            OptionMembers = " ","Partially processed","Totally processed";
         }
         field(30; "Status"; Option)
         {
             Caption = 'Status';
-            OptionMembers = Open,Released,"Pending Approval";
-            OptionCaption = 'Open,Released,Pending Approval';
             Editable = false;
+            OptionCaption = 'Open,Released,Pending Approval';
+            OptionMembers = Open,Released,"Pending Approval";
         }
         field(31; "PR Type"; Option)
         {
             Caption = 'Purchase Requisition Type';
-            OptionMembers = " ";
             OptionCaption = ' ';
+            OptionMembers = " ";
         }
         field(32; "PO Type"; Option)
         {
             Caption = 'Purchase Order Type';
-            OptionMembers = " ";
             OptionCaption = ' ';
+            OptionMembers = " ";
         }
         field(480; "Dimension Set ID"; Integer)
         {
@@ -155,21 +153,21 @@ table 50008 "AfkPostedDocRequisition"
             ValidateTableRelation = false;
         }
 
-        field(481; "Created Doc Type"; Option)
+        field(50000; "Created Doc Type"; Option)
         {
             Caption = 'Created Doc Type';
-            OptionMembers = "Commande","Contrat";
             OptionCaption = 'Purchase order,Contract';
+            OptionMembers = "Commande","Contrat";
         }
-        field(482; "Created Doc Code"; Code[20])
+        field(50001; "Created Doc Code"; Code[20])
         {
             Caption = 'Created Doc Code';
         }
-        field(483; "Closed Date"; Date)
+        field(50002; "Closed Date"; Date)
         {
             Caption = '"Closed Date"';
         }
-        field(484; "Closed By"; Code[50])
+        field(50003; "Closed By"; Code[50])
         {
             Caption = 'Closed By';
         }
@@ -177,6 +175,16 @@ table 50008 "AfkPostedDocRequisition"
         {
             Caption = 'Processing Status';
             DataClassification = CustomerContent;
+        }
+        field(60; "Delivery Status"; Enum AfkPRDeliveryStatus)
+        {
+            Caption = 'Delivery Status';
+            Editable = false;
+        }
+        field(481; "Location Code"; Code[10])
+        {
+            Caption = 'Location Code';
+            TableRelation = Location WHERE("Use As In-Transit" = CONST(false));
         }
 
     }
@@ -187,16 +195,10 @@ table 50008 "AfkPostedDocRequisition"
         {
             Clustered = true;
         }
-        // key(Key2; "Posting Date")
-        // {
-        // }
     }
 
     fieldgroups
     {
-        // fieldgroup(DropDown; "No.")
-        // {
-        // }
     }
 
 

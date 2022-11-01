@@ -32,7 +32,11 @@ page 50005 AfkSetupCard
                 field("Purchase Req Nos."; rec."Purchase Req Nos.")
                 {
                     ApplicationArea = Basic, Suite;
+                }
 
+                field("Whse Delivery Nos."; rec."Whse Delivery Nos.")
+                {
+                    ApplicationArea = Basic, Suite;
                 }
                 field("Default Budget Code"; rec."Default Budget Code")
                 {

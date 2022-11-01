@@ -10,97 +10,6 @@
       <rd:DataSourceID>af35f477-479a-4018-ba43-8582c7b7adab</rd:DataSourceID>
     </DataSource>
   </DataSources>
-  <DataSets>
-    <DataSet Name="DataSet_Result">
-      <Query>
-        <DataSourceName>DataSource</DataSourceName>
-        <CommandText />
-      </Query>
-      <Fields>
-        <Field Name="BudgetFilter">
-          <DataField>BudgetFilter</DataField>
-        </Field>
-        <Field Name="TaskFilter">
-          <DataField>TaskFilter</DataField>
-        </Field>
-        <Field Name="NatureFilter">
-          <DataField>NatureFilter</DataField>
-        </Field>
-        <Field Name="NatureFilterLbl">
-          <DataField>NatureFilterLbl</DataField>
-        </Field>
-        <Field Name="BudgetFilterLbl">
-          <DataField>BudgetFilterLbl</DataField>
-        </Field>
-        <Field Name="ReportTitleLbl">
-          <DataField>ReportTitleLbl</DataField>
-        </Field>
-        <Field Name="TaskFilterLbl">
-          <DataField>TaskFilterLbl</DataField>
-        </Field>
-        <Field Name="DimensionCode1">
-          <DataField>DimensionCode1</DataField>
-        </Field>
-        <Field Name="GLAccountNo">
-          <DataField>GLAccountNo</DataField>
-        </Field>
-        <Field Name="YearlyBudgetedAmt">
-          <DataField>YearlyBudgetedAmt</DataField>
-        </Field>
-        <Field Name="YearlyBudgetedAmtFormat">
-          <DataField>YearlyBudgetedAmtFormat</DataField>
-        </Field>
-        <Field Name="YearlyPreCommitment">
-          <DataField>YearlyPreCommitment</DataField>
-        </Field>
-        <Field Name="YearlyPreCommitmentFormat">
-          <DataField>YearlyPreCommitmentFormat</DataField>
-        </Field>
-        <Field Name="YearlyCommitment">
-          <DataField>YearlyCommitment</DataField>
-        </Field>
-        <Field Name="YearlyCommitmentFormat">
-          <DataField>YearlyCommitmentFormat</DataField>
-        </Field>
-        <Field Name="YearlyRealizedAmt">
-          <DataField>YearlyRealizedAmt</DataField>
-        </Field>
-        <Field Name="YearlyRealizedAmtFormat">
-          <DataField>YearlyRealizedAmtFormat</DataField>
-        </Field>
-        <Field Name="YearlyAvailableAmt">
-          <DataField>YearlyAvailableAmt</DataField>
-        </Field>
-        <Field Name="YearlyAvailableAmtFormat">
-          <DataField>YearlyAvailableAmtFormat</DataField>
-        </Field>
-        <Field Name="TaskCodeLbl">
-          <DataField>TaskCodeLbl</DataField>
-        </Field>
-        <Field Name="NatureCodeLbl">
-          <DataField>NatureCodeLbl</DataField>
-        </Field>
-        <Field Name="BudgetedLbl">
-          <DataField>BudgetedLbl</DataField>
-        </Field>
-        <Field Name="PreCommitmentLbl">
-          <DataField>PreCommitmentLbl</DataField>
-        </Field>
-        <Field Name="CommitmentLbl">
-          <DataField>CommitmentLbl</DataField>
-        </Field>
-        <Field Name="RealizedLbl">
-          <DataField>RealizedLbl</DataField>
-        </Field>
-        <Field Name="AvailableLbl">
-          <DataField>AvailableLbl</DataField>
-        </Field>
-        <Field Name="AfkCompanyPicture">
-          <DataField>AfkCompanyPicture</DataField>
-        </Field>
-      </Fields>
-    </DataSet>
-  </DataSets>
   <ReportSections>
     <ReportSection>
       <Body>
@@ -1531,12 +1440,6 @@
       </Page>
     </ReportSection>
   </ReportSections>
-  <ReportParametersLayout>
-    <GridLayoutDefinition>
-      <NumberOfColumns>4</NumberOfColumns>
-      <NumberOfRows>2</NumberOfRows>
-    </GridLayoutDefinition>
-  </ReportParametersLayout>
   <Code>Public Function BlankZero(ByVal Value As Decimal)
     if Value = 0 then
         Return ""
@@ -1576,4 +1479,95 @@ End Function
   <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
   <rd:ReportUnitType>Cm</rd:ReportUnitType>
   <rd:ReportID>0eeb6585-38ae-40f1-885b-8d50088d51b4</rd:ReportID>
+  <DataSets>
+    <DataSet Name="DataSet_Result">
+      <Fields>
+        <Field Name="BudgetFilter">
+          <DataField>BudgetFilter</DataField>
+        </Field>
+        <Field Name="TaskFilter">
+          <DataField>TaskFilter</DataField>
+        </Field>
+        <Field Name="NatureFilter">
+          <DataField>NatureFilter</DataField>
+        </Field>
+        <Field Name="NatureFilterLbl">
+          <DataField>NatureFilterLbl</DataField>
+        </Field>
+        <Field Name="BudgetFilterLbl">
+          <DataField>BudgetFilterLbl</DataField>
+        </Field>
+        <Field Name="ReportTitleLbl">
+          <DataField>ReportTitleLbl</DataField>
+        </Field>
+        <Field Name="TaskFilterLbl">
+          <DataField>TaskFilterLbl</DataField>
+        </Field>
+        <Field Name="DimensionCode1">
+          <DataField>DimensionCode1</DataField>
+        </Field>
+        <Field Name="GLAccountNo">
+          <DataField>GLAccountNo</DataField>
+        </Field>
+        <Field Name="YearlyBudgetedAmt">
+          <DataField>YearlyBudgetedAmt</DataField>
+        </Field>
+        <Field Name="YearlyBudgetedAmtFormat">
+          <DataField>YearlyBudgetedAmtFormat</DataField>
+        </Field>
+        <Field Name="YearlyPreCommitment">
+          <DataField>YearlyPreCommitment</DataField>
+        </Field>
+        <Field Name="YearlyPreCommitmentFormat">
+          <DataField>YearlyPreCommitmentFormat</DataField>
+        </Field>
+        <Field Name="YearlyCommitment">
+          <DataField>YearlyCommitment</DataField>
+        </Field>
+        <Field Name="YearlyCommitmentFormat">
+          <DataField>YearlyCommitmentFormat</DataField>
+        </Field>
+        <Field Name="YearlyRealizedAmt">
+          <DataField>YearlyRealizedAmt</DataField>
+        </Field>
+        <Field Name="YearlyRealizedAmtFormat">
+          <DataField>YearlyRealizedAmtFormat</DataField>
+        </Field>
+        <Field Name="YearlyAvailableAmt">
+          <DataField>YearlyAvailableAmt</DataField>
+        </Field>
+        <Field Name="YearlyAvailableAmtFormat">
+          <DataField>YearlyAvailableAmtFormat</DataField>
+        </Field>
+        <Field Name="TaskCodeLbl">
+          <DataField>TaskCodeLbl</DataField>
+        </Field>
+        <Field Name="NatureCodeLbl">
+          <DataField>NatureCodeLbl</DataField>
+        </Field>
+        <Field Name="BudgetedLbl">
+          <DataField>BudgetedLbl</DataField>
+        </Field>
+        <Field Name="PreCommitmentLbl">
+          <DataField>PreCommitmentLbl</DataField>
+        </Field>
+        <Field Name="CommitmentLbl">
+          <DataField>CommitmentLbl</DataField>
+        </Field>
+        <Field Name="RealizedLbl">
+          <DataField>RealizedLbl</DataField>
+        </Field>
+        <Field Name="AvailableLbl">
+          <DataField>AvailableLbl</DataField>
+        </Field>
+        <Field Name="AfkCompanyPicture">
+          <DataField>AfkCompanyPicture</DataField>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>DataSource</DataSourceName>
+        <CommandText />
+      </Query>
+    </DataSet>
+  </DataSets>
 </Report>

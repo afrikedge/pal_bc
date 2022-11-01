@@ -1800,7 +1800,6 @@
                                               <PaddingRight>2pt</PaddingRight>
                                             </Style>
                                           </Textbox>
-                                          <rd:Selected>true</rd:Selected>
                                         </CellContents>
                                       </TablixCell>
                                     </TablixCells>
@@ -2215,6 +2214,39 @@
                                 </Border>
                               </Style>
                             </Tablix>
+                            <Textbox Name="QRCode">
+                              <CanGrow>true</CanGrow>
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value>=Fields!QRCode.Value</Value>
+                                      <Style>
+                                        <FontFamily>IDAutomation2D</FontFamily>
+                                        <FontSize>12pt</FontSize>
+                                      </Style>
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style />
+                                </Paragraph>
+                              </Paragraphs>
+                              <rd:DefaultName>QRCode</rd:DefaultName>
+                              <Top>10.36198cm</Top>
+                              <Left>0.72498cm</Left>
+                              <Height>2.80405cm</Height>
+                              <Width>3.44778cm</Width>
+                              <ZIndex>10</ZIndex>
+                              <Style>
+                                <Border>
+                                  <Style>None</Style>
+                                </Border>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <PaddingBottom>2pt</PaddingBottom>
+                              </Style>
+                            </Textbox>
                           </ReportItems>
                           <KeepTogether>true</KeepTogether>
                           <Style>
@@ -3010,6 +3042,9 @@ End Function
         </Field>
         <Field Name="AfkLigneUniteLbl">
           <DataField>AfkLigneUniteLbl</DataField>
+        </Field>
+        <Field Name="QRCode">
+          <DataField>QRCode</DataField>
         </Field>
         <Field Name="AfkCompanyPicture">
           <DataField>AfkCompanyPicture</DataField>

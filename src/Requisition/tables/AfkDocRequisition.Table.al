@@ -62,7 +62,13 @@ table 50005 "AfkDocRequisition"
             end;
 
             trigger OnValidate()
+            var
+                DimVal: Record "Dimension Value";
             begin
+                GLSetup.get;
+                if (DimVal.Get(GLSetup."Global Dimension 1 Code", "Shortcut Dimension 1 Code")) then
+                    DimVal.TestField(DimVal.AfkBudgetTaskType, DimVal.AfkBudgetTaskType::Operating);
+
                 ValidateShortcutDimCode(1, "Shortcut Dimension 1 Code");
                 Modify;
             end;
@@ -182,11 +188,18 @@ table 50005 "AfkDocRequisition"
         }
         field(27; "User ID"; Code[50])
         {
-            Caption = 'User ID';
+            Caption = 'Requestor';
             DataClassification = EndUserIdentifiableInformation;
             TableRelation = User."User Name";
             ValidateTableRelation = false;
         }
+
+        field(60; "Delivery Status"; Enum AfkPRDeliveryStatus)
+        {
+            Caption = 'Delivery Status';
+            Editable = false;
+        }
+
 
         field(480; "Dimension Set ID"; Integer)
         {
@@ -206,6 +219,14 @@ table 50005 "AfkDocRequisition"
                 DimMgt.UpdateGlobalDimFromDimSetID("Dimension Set ID", "Shortcut Dimension 1 Code", "Shortcut Dimension 2 Code");
             end;
         }
+        field(481; "Location Code"; Code[10])
+        {
+            Caption = 'Location Code';
+            TableRelation = Location WHERE("Use As In-Transit" = CONST(false));
+        }
+
+
+
     }
 
     keys
@@ -271,6 +292,7 @@ table 50005 "AfkDocRequisition"
 
         PRHeader: Record "AfkDocRequisition";
         AfkSetup: Record AfkSetup;
+        GLSetup: Record "General Ledger Setup";
         SourceCodeSetup: Record "Source Code Setup";
         BudgetControl: Codeunit AfkBudgetControl;
         ApprovalsMgmt: Codeunit "Approvals Mgmt.";
@@ -307,6 +329,7 @@ table 50005 "AfkDocRequisition"
         //Rec.TESTFIELD(Rec.Duration);
         Rec.TESTFIELD("Document Date");
         Rec.Status := Rec.Status::Released;
+        Rec."Delivery Status" := Rec."Delivery Status"::Awaiting;
         Rec.MODIFY();
 
     end;

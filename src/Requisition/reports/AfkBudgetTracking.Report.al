@@ -82,14 +82,6 @@ report 50005 AfkBudgetTracking
 
 
 
-
-
-
-
-
-
-
-
             trigger OnPreDataItem()
             begin
                 CompanyInformation.Get();

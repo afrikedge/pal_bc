@@ -9,6 +9,9 @@ pageextension 50016 AfkPurchaseOrder extends "Purchase Order"
             Caption = 'Vendor Offer Ref.';
             ShowMandatory = true;
         }
+
+        moveafter("Vendor Order No."; "Shortcut Dimension 1 Code")
+
         addafter("Vendor Order No.")
         {
             field(Afk_Object; Rec.Afk_Object)
@@ -22,6 +25,11 @@ pageextension 50016 AfkPurchaseOrder extends "Purchase Order"
                 trigger OnValidate()
                 begin
                     Rec.TestField("Quote No.", '');
+                    if (Rec.Afk_CommitmentType = Rec.Afk_CommitmentType::"Purchase order") then
+                        Error(Text001);
+
+                    DocIsEditable := (Rec.Afk_CommitmentType <> Rec.Afk_CommitmentType::"Purchase order");
+                    //CurrPage.PurchLines.Page.;(true);
                 end;
             }
             field("Afk_ValidityStartingDate"; Rec.Afk_ValidityStartingDate)
@@ -116,9 +124,15 @@ pageextension 50016 AfkPurchaseOrder extends "Purchase Order"
     }
     trigger OnOpenPage()
     var
-        isRelease: Boolean;
+    //isRelease: Boolean;
     begin
-        isRelease := Rec.Status = Rec.Status::Released;
+        //isRelease := Rec.Status = Rec.Status::Released;
+        DocIsEditable := (Rec.Afk_CommitmentType <> Rec.Afk_CommitmentType::"Purchase order");
+    end;
+
+    trigger OnAfterGetRecord()
+    var
+    begin
         DocIsEditable := (Rec.Afk_CommitmentType <> Rec.Afk_CommitmentType::"Purchase order");
     end;
 
@@ -126,4 +140,5 @@ pageextension 50016 AfkPurchaseOrder extends "Purchase Order"
         AfkBudgetControl: Codeunit AfkBudgetControl;
         AfkPurchaseReqMgt: Codeunit AfkPurchaseReqMgt;
         DocIsEditable: Boolean;
+        Text001: Label 'You cannot create this type of commitment directly';
 }

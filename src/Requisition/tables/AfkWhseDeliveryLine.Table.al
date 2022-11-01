@@ -1,7 +1,8 @@
-table 50009 AfkPostDocRequisitionLine
+table 50011 AfkWhseDeliveryLine
 {
-    Caption = 'Purchase Requisition Line';
+    Caption = 'Delivery Form Line';
     DataClassification = CustomerContent;
+
     fields
     {
         field(1; "Document No."; Code[20])
@@ -80,12 +81,15 @@ table 50009 AfkPostDocRequisitionLine
             AutoFormatType = 1;
             Caption = 'Amount (LCY)';
             Editable = false;
+
         }
         field(14; "VAT %"; Decimal)
         {
             Caption = 'VAT %';
             DecimalPlaces = 0 : 5;
             Editable = false;
+
+
         }
         field(74; "VAT Amount"; Decimal)
         {
@@ -97,11 +101,18 @@ table 50009 AfkPostDocRequisitionLine
         {
             Caption = 'VAT Bus. Posting Group';
             TableRelation = "VAT Business Posting Group";
+
+            trigger OnValidate()
+            begin
+                Validate("VAT Prod. Posting Group");
+            end;
         }
         field(16; "VAT Prod. Posting Group"; Code[20])
         {
             Caption = 'VAT Prod. Posting Group';
             TableRelation = "VAT Product Posting Group";
+
+
         }
         field(17; "Quantity (Base)"; Decimal)
         {
@@ -135,6 +146,7 @@ table 50009 AfkPostDocRequisitionLine
             Caption = 'Shortcut Dimension 1 Code';
             TableRelation = "Dimension Value".Code WHERE("Global Dimension No." = CONST(1),
                                                           Blocked = CONST(false));
+
         }
         field(22; "Shortcut Dimension 2 Code"; Code[20])
         {
@@ -157,6 +169,11 @@ table 50009 AfkPostDocRequisitionLine
         {
             Caption = 'Depreciation Book Code';
             TableRelation = "Depreciation Book";
+
+            // trigger OnValidate()
+            // begin
+            //     GetFAPostingGroup();
+            // end;
         }
         field(26; "Serial No."; Code[30])
         {
@@ -216,28 +233,4 @@ table 50009 AfkPostDocRequisitionLine
             Clustered = true;
         }
     }
-
-
-
-    var
-    // PurchHeader: Record "AfkDocRequisition";
-    // ServRequest: Record "AfkDocRequisition";
-    // Currency: Record Currency;
-    // FADeprBook: Record "FA Depreciation Book";
-    // FAPostingGr: Record "FA Posting Group";
-    // FASetup: Record "FA Setup";
-    // FA: Record "Fixed Asset";
-    // GLAcc: Record "G/L Account";
-    // LocalGLAcc: Record "G/L Account";
-    // GLSetup: Record "General Ledger Setup";
-    // Item: Record Item;
-    // ItemCharge: Record "Item Charge";
-    // VATPostingSetup: Record "VAT Posting Setup";
-    // DimMgt: Codeunit DimensionManagement;
-    // UOMMgt: Codeunit "Unit of Measure Management";
-    // Text001: Label 'The request can no longer be modified because it has already been validated';
-
-
-
-
 }

@@ -21,9 +21,10 @@ table 50004 AfkSetup
         field(4; "Purchase Req Nos."; Code[20])
         {
             //AccessByPermission = TableData Insurance = R;
-            Caption = 'Purchase Req Nos.';
+            Caption = 'Item Requisition Nos.';
             TableRelation = "No. Series";
         }
+
         field(5; "Default Budget Code"; Code[10])
         {
             Caption = 'Active Budget Code';
@@ -47,6 +48,11 @@ table 50004 AfkSetup
         //     DecimalPlaces = 0 : 5;
         //     MinValue = 0;
         // }
+        field(9; "Whse Delivery Nos."; Code[20])
+        {
+            Caption = 'Item Delivery Nos.';
+            TableRelation = "No. Series";
+        }
         field(50009; BudgetControlMode; Enum AfkBudgetControlMode)
         {
             Caption = 'Budget Control Mode';

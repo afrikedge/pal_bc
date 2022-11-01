@@ -1,12 +1,12 @@
-page 50013 AfkPostedItemRequisition
+page 50016 AfkWhseDeliveryCard
 {
-    Caption = 'Posted Item Requisition';
+    Caption = 'Delivery Card';
+    SourceTable = AfkWhseDelivery;
     PageType = Document;
-    RefreshOnActivate = true;
-    SourceTable = "AfkPostedDocRequisition";
     SourceTableView = WHERE("Document Type" = FILTER("ItemReq"));
     UsageCategory = Documents;
     Editable = false;
+    //PromotedActionCategories = 'New,Process,Report,Approbation,Release,Request Approval';
 
     layout
     {
@@ -19,7 +19,7 @@ page 50013 AfkPostedItemRequisition
                 {
                     ApplicationArea = Basic, Suite;
                     AssistEdit = false;
-                    ToolTip = 'Specifies the number of the Item requisition.';
+                    //ToolTip = 'Specifies the number of the Item requisition.';
                     Editable = false;
                     Visible = false;
                 }
@@ -40,15 +40,11 @@ page 50013 AfkPostedItemRequisition
                     ApplicationArea = Basic, Suite;
                     MultiLine = true;
                 }
-                field("Status"; Rec.Status)
-                {
-                    ApplicationArea = Basic, Suite;
-                }
+                // field("Status"; Rec.Status)
+                // {
+                //     ApplicationArea = Basic, Suite;
+                // }
                 field("Document Date"; Rec."Document Date")
-                {
-                    ApplicationArea = Basic, Suite;
-                }
-                field("Requested Receipt Date"; Rec."Requested Receipt Date")
                 {
                     ApplicationArea = Basic, Suite;
                 }
@@ -56,22 +52,23 @@ page 50013 AfkPostedItemRequisition
                 {
                     ApplicationArea = Dimensions;
                     //ToolTip = 'Specifies the code for Shortcut Dimension 1, which is one of two global dimension codes that you set up in the General Ledger Setup window.';
+
                 }
                 field("Location Code"; Rec."Location Code")
                 {
                     ApplicationArea = Basic, Suite;
                 }
-                field("Delivery Status"; Rec."Delivery Status")
-                {
-                    ApplicationArea = Basic, Suite;
-                }
+                // field("Delivery Status"; Rec."Delivery Status")
+                // {
+                //     ApplicationArea = Basic, Suite;
+                // }
+
             }
-            part(Lines; AfkPostedItemReqSubform)
+            part(Lines; "AfkWhseDeliverySubform")
             {
                 ApplicationArea = Basic, Suite;
                 SubPageLink = "Document Type" = field("Document Type"), "Document No." = FIELD("No.");
             }
-
         }
         area(factboxes)
         {
@@ -90,19 +87,40 @@ page 50013 AfkPostedItemRequisition
     {
         area(Processing)
         {
-            action("DeliveryForms")
+            action("Ledger E&ntries")
             {
                 ApplicationArea = Basic, Suite;
-                Caption = 'Delivery List';
+                Caption = 'Ledger E&ntries';
                 Image = ItemLedger;
-                RunObject = Page "AfkWhseDeliveryList";
-                RunPageLink = "External Doc No" = FIELD("No.");
+                RunObject = Page "Item Ledger Entries";
+                RunPageLink = "Document No." = FIELD("No.");
+                RunPageView = SORTING("Item No.")
+                                      ORDER(Descending);
+                ShortCutKey = 'Ctrl+F7';
+                ToolTip = 'View the history of transactions that have been posted for the selected document.';
+            }
+            action(AfkPrintPreview)
+            {
+                ApplicationArea = All;
+                Caption = 'Print';
+                Ellipsis = true;
+                //Enabled = "No." <> '';
+                Image = PrintVoucher;
                 Promoted = true;
                 PromotedCategory = Process;
-                //RunPageView = SORTING("Item No.")
-                //                      ORDER(Descending);
-                ShortCutKey = 'Ctrl+F7';
-                //ToolTip = 'View the history of transactions that have been posted for the selected document.';
+                PromotedIsBig = true;
+                //ToolTip = 'calculate special lines based on the tax-free total of the invoice.';
+
+                trigger OnAction()
+                var
+                    DeliveryH: Record "AfkWhseDelivery";
+                    AfkBudgetTracking: Report AfkWhseDelivery;
+                begin
+                    DeliveryH.SetRange("No.", Rec."No.");
+                    AfkBudgetTracking.SetTableView(DeliveryH);
+                    AfkBudgetTracking.Run();
+                    //REPORT.Run(REPORT::AfkBudgetTracking, true, false, BudgetLine);
+                end;
             }
         }
     }

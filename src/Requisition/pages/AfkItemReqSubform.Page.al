@@ -19,12 +19,13 @@ page 50007 "AfkItemRequisitionSubform"
                 field("Type"; Rec.Type)
                 {
                     ApplicationArea = Basic, Suite;
-                    //Visible = false;
+                    Editable = CanEdit;
                 }
                 field("No."; Rec."No.")
                 {
                     ApplicationArea = Basic, Suite;
                     ShowMandatory = true;
+                    Editable = CanEdit;
                     trigger OnValidate()
                     begin
                         Rec.ShowShortcutDimCode(ShortcutDimCode);
@@ -39,42 +40,36 @@ page 50007 "AfkItemRequisitionSubform"
                 field("Description"; Rec.Description)
                 {
                     ApplicationArea = Basic, Suite;
-                }
-                field("Quantity"; Rec.Quantity)
-                {
-                    ApplicationArea = Basic, Suite;
-                }
-                field("Unit of Measure Code"; Rec."Unit of Measure Code")
-                {
-                    ApplicationArea = Basic, Suite;
-                }
-                field("Shortcut Dimension 1 Code"; Rec."Shortcut Dimension 1 Code")
-                {
-                    ApplicationArea = Dimensions;
-                    //ToolTip = 'Specifies the code for Shortcut Dimension 1, which is one of two global dimension codes that you set up in the General Ledger Setup window.';
-                    Visible = DimVisible1;
+                    Editable = CanEdit;
                 }
                 field("Location Code"; Rec."Location Code")
                 {
                     ApplicationArea = Basic, Suite;
                 }
-                field("Unit Price"; Rec."Unit Price")
+                field("Quantity"; Rec.Quantity)
+                {
+                    ApplicationArea = Basic, Suite;
+                    Editable = CanEdit;
+                }
+                field("Unit of Measure Code"; Rec."Unit of Measure Code")
+                {
+                    ApplicationArea = Basic, Suite;
+                    Editable = CanEdit;
+                }
+
+                field("Unit Cost"; Rec."Unit Cost")
+                {
+                    ApplicationArea = Basic, Suite;
+                }
+                field("Whse Quantity To Deliver"; Rec."Whse Quantity To Deliver")
+                {
+                    ApplicationArea = Basic, Suite;
+                }
+                field("Whse Delivered Quantity"; Rec."Whse Delivered Quantity")
                 {
                     ApplicationArea = Basic, Suite;
                 }
                 field("Amount"; Rec.Amount)
-                {
-                    ApplicationArea = Basic, Suite;
-                }
-                field("VAT Amount"; Rec."VAT Amount")
-                {
-                    ApplicationArea = Basic, Suite;
-                }
-                field("Amount Including VAT"; Rec."Amount Including VAT")
-                {
-                    ApplicationArea = Basic, Suite;
-                }
-                field("VAT Prod. Posting Group"; Rec."VAT Prod. Posting Group")
                 {
                     ApplicationArea = Basic, Suite;
                 }
@@ -83,36 +78,7 @@ page 50007 "AfkItemRequisitionSubform"
                     ApplicationArea = Basic, Suite;
                 }
 
-                field("Shortcut Dimension 2 Code"; Rec."Shortcut Dimension 2 Code")
-                {
-                    ApplicationArea = Dimensions;
-                    //ToolTip = 'Specifies the code for Shortcut Dimension 2, which is one of two global dimension codes that you set up in the General Ledger Setup window.';
-                    Visible = DimVisible2;
-                }
-                // field(ShortcutDimCode3; ShortcutDimCode[3])
-                // {
-                //     ApplicationArea = Dimensions;
-                //     CaptionClass = '1,2,3';
-                //     TableRelation = "Dimension Value".Code WHERE("Global Dimension No." = CONST(3),
-                //                                                   "Dimension Value Type" = CONST(Standard),
-                //                                                   Blocked = CONST(false));
-                //     Visible = DimVisible3;
 
-                //     trigger OnValidate()
-                //     begin
-                //         Rec.ValidateShortcutDimCode(3, ShortcutDimCode[3]);
-
-                //         //OnAfterValidateShortcutDimCode(Rec, ShortcutDimCode, 3);
-                //     end;
-                // }
-
-
-
-                // field("Document No."; Rec."Item Reference")
-                // {
-                //     ApplicationArea = Basic, Suite;
-                //     ToolTip = 'Specifies a document number for the payment line.';
-                // }
 
             }
         }
@@ -166,8 +132,12 @@ page 50007 "AfkItemRequisitionSubform"
     }
 
     trigger OnAfterGetRecord()
+    var
+        Header: Record AfkDocRequisition;
     begin
         Rec.ShowShortcutDimCode(ShortcutDimCode);
+        Header := Rec.GetPurchHeader();
+        CanEdit := Header.Status = Header.Status::Open;
     end;
 
     trigger OnInit()
@@ -194,6 +164,7 @@ page 50007 "AfkItemRequisitionSubform"
 
     trigger OnOpenPage()
     begin
+        CanEdit := true;
         SetDimensionsVisibility();
     end;
 
@@ -204,6 +175,7 @@ page 50007 "AfkItemRequisitionSubform"
         Status: Record "Payment Status";
         DimMgt: Codeunit DimensionManagement;
         Navigate: Page Navigate;
+        CanEdit: Boolean;
         DimVisible1: Boolean;
         DimVisible2: Boolean;
         DimVisible3: Boolean;

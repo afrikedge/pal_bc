@@ -101,6 +101,9 @@ report 50004 "AfkPurchaseOrder"
             column(AfkLigneUniteLbl; AfkLigneUniteLbl)
             {
             }
+            column(QRCode; QRCode)
+            {
+            }
 
 
             //***********************LABELS**********************************
@@ -1126,6 +1129,8 @@ report 50004 "AfkPurchaseOrder"
                 AfkCurrencyCode := "Purchase Header"."Currency Code";
                 if ("Purchase Header"."Currency Code" = '') then
                     AfkCurrencyCode := 'XAF';
+
+                GenerateQRCode("Purchase Header"."No.");
                 //************************
                 CurrReport.Language := Language.GetLanguageIdOrDefault("Language Code");
 
@@ -1388,6 +1393,7 @@ report 50004 "AfkPurchaseOrder"
         VATDiscountAmountCaptionLbl: Label 'Payment Discount on VAT';
         VATIdentifierCaptionLbl: Label 'VAT Identifier';
         VendNoCaptionLbl: Label 'Vendor No.';
+        QRCode: Text;
         AfkCurrencyCode: Text[20];
         AllowInvDisctxt: Text[30];
         CopyText: Text[30];
@@ -1420,6 +1426,19 @@ report 50004 "AfkPurchaseOrder"
         ShowInternalInfo := NewShowInternalInfo;
         ArchiveDocument := NewArchiveDocument;
         LogInteraction := NewLogInteraction;
+    end;
+
+    local procedure GenerateQRCode(TextData: Text)
+    var
+        BarcodeSymbology2D: Enum "Barcode Symbology 2D";
+        BarcodeFontProvider2D: Interface "Barcode Font Provider 2D";
+        BarcodeString: Text;
+    begin
+        BarcodeFontProvider2D := Enum::"Barcode Font Provider 2D"::IDAutomation2D;
+        BarcodeSymbology2D := Enum::"Barcode Symbology 2D"::"QR-Code";
+        BarcodeString := TextData;
+        
+        QRCode := BarcodeFontProvider2D.EncodeFont(BarcodeString, BarcodeSymbology2D);
     end;
 
     local procedure IsReportInPreviewMode(): Boolean

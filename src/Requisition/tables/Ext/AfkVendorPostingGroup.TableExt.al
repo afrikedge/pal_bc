@@ -21,14 +21,12 @@ tableextension 50014 AfkVendorPostingGroup extends "Vendor Posting Group"
         field(50002; Afk_TSR_Account; Code[20])
         {
             Caption = 'TSR Account';
-            Editable = false;
             DataClassification = CustomerContent;
             TableRelation = "G/L Account";
         }
         field(50003; Afk_IR_Account; Code[20])
         {
             Caption = 'IR Account';
-            Editable = false;
             DataClassification = CustomerContent;
             TableRelation = "G/L Account";
         }
