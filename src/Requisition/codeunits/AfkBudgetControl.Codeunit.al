@@ -13,6 +13,61 @@ codeunit 50009 AfkBudgetControl
     procedure CreatePurchaseBudgetLines(PurchaseH: Record "Purchase Header"; CheckOnly: boolean)
     var
         BudgetLine: Record AfkDocRequisitionBudget;
+        DimValue: Record "Dimension Value";
+        GLAcc: Record "G/L Account";
+        PurchLine: Record "Purchase Line";
+        HaveLines: Boolean;
+        NewAcc: Code[20];
+        NewDimValue1: Code[20];
+        OldAcc: Code[20];
+        OldCodeBudget: Code[20];
+        DateDeb: Date;
+        DateFin: Date;
+        OldAccAmt: Decimal;
+    begin
+
+        GLSetup.GetRecordOnce();
+        AddOnSetup.Get();
+        GetPeriod(PurchaseH."Document Date", DateDeb, DateFin);
+
+
+        if not CheckOnly then begin
+            CLEAR(BudgetLine);
+            BudgetLine.SETRANGE("Document Type", PurchaseH."Document Type");
+            BudgetLine.SETRANGE("Document No.", PurchaseH."No.");
+            BudgetLine.DELETEALL;
+        end;
+
+        AddOnSetup.TestField(BudgetGLAccount);
+        PurchaseH.TestField("Shortcut Dimension 1 Code");
+        PurchaseH.TestField("Shortcut Dimension 2 Code");
+
+        BudgetLine.Init();
+        BudgetLine."Document Type" := PurchaseH."Document Type";
+        BudgetLine."Document No." := PurchaseH."No.";
+        BudgetLine."G/L Account No" := AddOnSetup.BudgetGLAccount;
+        BudgetLine."Dimension Code 1" := PurchaseH."Shortcut Dimension 1 Code";
+        BudgetLine."Dimension Code 2" := PurchaseH."Shortcut Dimension 2 Code";
+        BudgetLine.AfkUserID := UserId;
+        BudgetLine."Document Amount" := GetPurchaseDocAmount(PurchaseH);
+        IF DimValue.GET(GLSetup."Global Dimension 2 Code", PurchaseH."Shortcut Dimension 2 Code") then
+            BudgetLine."Description" := DimValue.Name;
+
+        CalcValuesBudget(BudgetLine, PurchaseH."Document Date", PurchaseH."No.",
+            PurchaseH."Shortcut Dimension 2 Code", PurchaseH."Shortcut Dimension 1 Code",
+            BudgetLine."Document Amount");
+
+
+        if not CheckOnly then
+            BudgetLine.INSERT;
+
+
+    end;
+
+
+    procedure CreatePurchaseBudgetLinesxxx(PurchaseH: Record "Purchase Header"; CheckOnly: boolean)
+    var
+        BudgetLine: Record AfkDocRequisitionBudget;
         GLAcc: Record "G/L Account";
         PurchLine: Record "Purchase Line";
         HaveLines: Boolean;
@@ -54,10 +109,10 @@ codeunit 50009 AfkBudgetControl
                 BudgetLine."Dimension Code 1" := OldCodeBudget;
                 BudgetLine.AfkUserID := UserId;
                 BudgetLine."Document Amount" := OldAccAmt;
-                IF GLAcc.GET(OldAcc) THEN BudgetLine."G/L Account Name" := GLAcc.Name;
+                IF GLAcc.GET(OldAcc) THEN BudgetLine."Description" := GLAcc.Name;
 
                 CalcValuesBudget(BudgetLine, PurchaseH."Document Date", PurchaseH."No.",
-                    OldAcc, OldCodeBudget, OldAccAmt, false);
+                    OldAcc, OldCodeBudget, OldAccAmt);
 
 
 
@@ -80,11 +135,11 @@ codeunit 50009 AfkBudgetControl
             BudgetLine."Document No." := PurchaseH."No.";
             BudgetLine."G/L Account No" := OldAcc;
 
-            IF GLAcc.GET(OldAcc) THEN BudgetLine."G/L Account Name" := GLAcc.Name;
+            IF GLAcc.GET(OldAcc) THEN BudgetLine."Description" := GLAcc.Name;
             BudgetLine."Dimension Code 1" := OldCodeBudget;
             BudgetLine."Document Amount" := OldAccAmt;
 
-            CalcValuesBudget(BudgetLine, PurchaseH."Document Date", PurchaseH."No.", OldAcc, OldCodeBudget, OldAccAmt, false);
+            CalcValuesBudget(BudgetLine, PurchaseH."Document Date", PurchaseH."No.", OldAcc, OldCodeBudget, OldAccAmt);
 
             //IF (BudgetLine."Remaining Amount"<0) THEN BudgetLine."Remaining Amount":=0;
             if not CheckOnly then
@@ -96,6 +151,7 @@ codeunit 50009 AfkBudgetControl
     var
         BudgetLine: Record AfkDocRequisitionBudget;
         ReqLine: Record AfkDocRequisitionLine;
+        DimValue: Record "Dimension Value";
         GLAcc: Record "G/L Account";
         HaveLines: Boolean;
         NewAcc: Code[20];
@@ -107,9 +163,9 @@ codeunit 50009 AfkBudgetControl
         OldAccAmt: Decimal;
     begin
 
+        GLSetup.GetRecordOnce();
+        AddOnSetup.Get();
         GetPeriod(RequisitionH."Document Date", DateDeb, DateFin);
-        //PurchaseH.TestField("Vendor Order No.");
-        //MESSAGE('%1 - %2',DateDeb,DateFin);
 
         if not CheckOnly then begin
             CLEAR(BudgetLine);
@@ -118,70 +174,39 @@ codeunit 50009 AfkBudgetControl
             BudgetLine.DELETEALL;
         end;
 
-        ReqLine.RESET;
-        ReqLine.SETCURRENTKEY("Purchase Account", "Shortcut Dimension 1 Code");
-        ReqLine.SETRANGE("Document Type", RequisitionH."Document Type");
-        ReqLine.SETRANGE("Document No.", RequisitionH."No.");
-        IF ReqLine.FINDSET THEN
-            OldAcc := ReqLine."Purchase Account";
-        OldCodeBudget := ReqLine."Shortcut Dimension 1 Code";
-        REPEAT
-
-            NewAcc := ReqLine."Purchase Account";
-            NewDimValue1 := ReqLine."Shortcut Dimension 1 Code";
-            CheckData(NewAcc, NewDimValue1, ReqLine."Line No.");
-
-            IF ((OldAcc <> NewAcc) OR (OldCodeBudget <> NewDimValue1)) THEN BEGIN
-                CLEAR(BudgetLine);
-                BudgetLine."Document Type" := RequisitionH."Document Type";
-                BudgetLine."Document No." := RequisitionH."No.";
-                BudgetLine."G/L Account No" := OldAcc;
-                BudgetLine."Dimension Code 1" := OldCodeBudget;
-                BudgetLine."Document Amount" := OldAccAmt;
-                BudgetLine.AfkUserID := UserId;
-                IF GLAcc.GET(OldAcc) THEN BudgetLine."G/L Account Name" := GLAcc.Name;
-
-                CalcValuesBudget(BudgetLine, RequisitionH."Document Date", RequisitionH."No.",
-                    OldAcc, OldCodeBudget, OldAccAmt, true);
+        AddOnSetup.TestField(BudgetGLAccount);
+        RequisitionH.TestField("Shortcut Dimension 1 Code");
+        RequisitionH.TestField("Shortcut Dimension 2 Code");
 
 
+        BudgetLine.Init();
+        BudgetLine."Document Type" := RequisitionH."Document Type";
+        BudgetLine."Document No." := RequisitionH."No.";
+        BudgetLine."G/L Account No" := AddOnSetup.BudgetGLAccount;
+        BudgetLine."Dimension Code 1" := RequisitionH."Shortcut Dimension 1 Code";
+        BudgetLine."Dimension Code 2" := RequisitionH."Shortcut Dimension 2 Code";
+        BudgetLine."Document Amount" := GetDocItemReqAmount(RequisitionH);
+        BudgetLine.AfkUserID := UserId;
+        IF DimValue.GET(GLSetup."Global Dimension 2 Code", RequisitionH."Shortcut Dimension 2 Code") then
+            BudgetLine."Description" := DimValue.Name;
 
-                if not CheckOnly then
-                    IF OldAcc <> '' then BudgetLine.INSERT;
 
-                OldAcc := ReqLine."Purchase Account";
-                OldCodeBudget := ReqLine."Shortcut Dimension 1 Code";
-                OldAccAmt := ConvertAmtLCY(RequisitionH."Document Date", ReqLine."Amount", RequisitionH."Currency Code");
-            END ELSE BEGIN
-                OldAccAmt := OldAccAmt + ConvertAmtLCY(RequisitionH."Document Date", ReqLine."Amount", RequisitionH."Currency Code");
-            END;
-            HaveLines := TRUE;
-        UNTIL ReqLine.NEXT = 0;
+        CalcValuesBudget(BudgetLine, RequisitionH."Document Date", RequisitionH."No.",
+            RequisitionH."Shortcut Dimension 2 Code", RequisitionH."Shortcut Dimension 1 Code",
+            BudgetLine."Document Amount");
 
-        //Derniere ligne
-        IF HaveLines THEN BEGIN
-            CLEAR(BudgetLine);
-            BudgetLine."Document Type" := RequisitionH."Document Type";
-            BudgetLine."Document No." := RequisitionH."No.";
-            BudgetLine."G/L Account No" := OldAcc;
 
-            IF GLAcc.GET(OldAcc) THEN BudgetLine."G/L Account Name" := GLAcc.Name;
-            BudgetLine."Dimension Code 1" := OldCodeBudget;
-            BudgetLine."Document Amount" := OldAccAmt;
+        if not CheckOnly then
+            BudgetLine.INSERT;
 
-            CalcValuesBudget(BudgetLine, RequisitionH."Document Date", RequisitionH."No.", OldAcc, OldCodeBudget, OldAccAmt, true);
-
-            //IF (BudgetLine."Remaining Amount"<0) THEN BudgetLine."Remaining Amount":=0;
-            if not CheckOnly then
-                IF OldAcc <> '' THEN BudgetLine.INSERT;
-        END;
     end;
 
-    procedure CreatePurchaseBudgetLinesfromTracking(BudgetCode: Code[20]; TaskFilter: text[250]; NatureFilter: Text[250])
+    procedure CreatePurchaseBudgetLinesfromTracking(BudgetCode: Code[20]; TaskFilter: text[250]; NatureFilter: Text[250]
+    ; StructureFilter: Text[250])
     var
         BudgetLine: Record AfkDocRequisitionBudget;
-        DimValue: Record "Dimension Value";
-        GLAcc: Record "G/L Account";
+        DimValNature: Record "Dimension Value";
+        DimValTask: Record "Dimension Value";
         PurchLine: Record "Purchase Line";
         HaveLines: Boolean;
         NewAcc: Code[20];
@@ -193,6 +218,8 @@ codeunit 50009 AfkBudgetControl
         OldAccAmt: Decimal;
     begin
 
+        AddOnSetup.Get();
+        AddOnSetup.TestField(BudgetGLAccount);
         GetPeriod(Today, DateDeb, DateFin);
 
         CLEAR(BudgetLine);
@@ -201,16 +228,19 @@ codeunit 50009 AfkBudgetControl
         BudgetLine.SETRANGE("AfkUserID", UserId);
         BudgetLine.DELETEALL;
 
-        GLAcc.SetRange("Account Type", GLAcc."Account Type"::Posting);
+        DimValNature.SetRange("Global Dimension No.", 2);
+        DimValNature.SetRange("Dimension Value Type", DimValNature."Dimension Value Type"::Standard);
         if (NatureFilter <> '') then
-            GLAcc.SetFilter("No.", NatureFilter);
-        if (GLAcc.FindSet()) then
+            DimValNature.SetFilter(Code, NatureFilter);
+        if (DimValNature.FindSet()) then
             repeat
-                DimValue.SetRange("Global Dimension No.", 1);
-                DimValue.SetRange(DimValue."Dimension Value Type", DimValue."Dimension Value Type"::Standard);
+                DimValTask.SetRange("Global Dimension No.", 1);
+                DimValTask.SetRange(DimValTask."Dimension Value Type", DimValTask."Dimension Value Type"::Standard);
                 if (TaskFilter <> '') then
-                    DimValue.SetFilter(Code, TaskFilter);
-                if (DimValue.FindSet()) then
+                    DimValTask.SetFilter(Code, TaskFilter);
+                if (StructureFilter <> '') then
+                    DimValTask.SetFilter(DimValTask.AfkBudgetStructure, StructureFilter);
+                if (DimValTask.FindSet()) then
                     repeat
 
                         CLEAR(BudgetLine);
@@ -218,21 +248,21 @@ codeunit 50009 AfkBudgetControl
                         BudgetLine."AfkUserID" := UserId;
 
 
-                        BudgetLine."G/L Account No" := GLAcc."No.";
-                        BudgetLine."Dimension Code 1" := DimValue.Code;
+                        BudgetLine."G/L Account No" := AddOnSetup.BudgetGLAccount;
+                        BudgetLine."Dimension Code 1" := DimValTask.Code;
+                        BudgetLine."Dimension Code 2" := DimValNature.Code;
 
-                        BudgetLine."G/L Account Name" := GLAcc.Name;
+                        BudgetLine."Description" := DimValNature.Name;
 
-                        BudgetLine.SETFILTER("Global Dimension 1 Filter", '%1', DimValue.Code);
+                        BudgetLine.SETFILTER("Global Dimension 1 Filter", '%1', DimValTask.Code);
+                        BudgetLine.SETFILTER("Global Dimension 2 Filter", '%1', DimValNature.Code);
                         BudgetLine."Budget Filter" := BudgetCode;
                         BudgetLine.SETFILTER("Date Filter", '%1..%2', DateDeb, DateFin);
                         BudgetLine.CALCFIELDS("Net Change", "Budgeted Amount");
 
                         BudgetLine."Yearly Budgeted Amt" := BudgetLine."Budgeted Amount";
-                        BudgetLine."Yearly PreCommitment" := GetPrecommitmentAmt(GLAcc."No.", DimValue.Code, '', DateDeb, DateFin, false)
-                            + GetPrecommitmentAmt(GLAcc."No.", DimValue.Code, '', DateDeb, DateFin, true);
-                        BudgetLine."Yearly Commitment" := GetCommitmentAmt(GLAcc."No.", DimValue.Code, '', DateDeb, DateFin, true)
-                            + GetCommitmentAmt(GLAcc."No.", DimValue.Code, '', DateDeb, DateFin, false);
+                        BudgetLine."Yearly PreCommitment" := GetPrecommitmentAmt(DimValNature.Code, DimValTask.Code, DateDeb, DateFin);
+                        BudgetLine."Yearly Commitment" := GetCommitmentAmt(DimValNature.Code, DimValTask.Code, DateDeb, DateFin);
                         BudgetLine."Yearly Realized Amt" := BudgetLine."Net Change";
                         BudgetLine."Yearly Available Amt" := (BudgetLine."Yearly Budgeted Amt") -
                               (BudgetLine."Yearly PreCommitment" + BudgetLine."Yearly Commitment" + BudgetLine."Yearly Realized Amt");
@@ -244,17 +274,20 @@ codeunit 50009 AfkBudgetControl
                             BudgetLine.Insert();
 
 
-                    until DimValue.Next() = 0;
-            until GLAcc.Next() = 0;
+                    until DimValTask.Next() = 0;
+            until DimValNature.Next() = 0;
 
     end;
 
-    procedure GetBudgetAmount(BudgetCode: Code[20]; TaskCode: Code[20]; GLAccountCode: Code[20]): Decimal
+    procedure GetBudgetAmount(BudgetCode: Code[20]; TaskCode: Code[20]; NatureCode: Code[20]): Decimal
     var
         GLAccount: Record "G/L Account";
     begin
-        if (GLAccount.Get(GLAccountCode)) then begin
-            GLAccount.SetFilter(GLAccount."Global Dimension 1 Code", TaskCode);
+        AddOnSetup.Get();
+        AddOnSetup.TestField(BudgetGLAccount);
+        if (GLAccount.Get(AddOnSetup.BudgetGLAccount)) then begin
+            GLAccount.SetFilter(GLAccount."Global Dimension 1 Filter", TaskCode);
+            GLAccount.SetFilter(GLAccount."Global Dimension 2 Filter", NatureCode);
             GLAccount.SetFilter(GLAccount."Budget Filter", BudgetCode);
             GLAccount.SetFilter(GLAccount."Date Filter", '%1..%2', GetStartOfYear(Today), GetEndOfYear(Today));
             GLAccount.CalcFields("Budgeted Amount");
@@ -262,95 +295,31 @@ codeunit 50009 AfkBudgetControl
         end;
     end;
 
-    // procedure CreatePurchaseBudgetLinesFromReq(PurchaseH: Record "AfkDocRequisition")
-    // var
-    //     BudgetLine: Record AfkDocRequisitionBudget;
-    //     GLAcc: Record "G/L Account";
-    //     PurchLine: Record "Purchase Line";
-    //     HaveLines: Boolean;
-    //     NewAcc: Code[20];
-    //     NewCodeBudget: Code[20];
-    //     OldAcc: Code[20];
-    //     OldCodeBudget: Code[20];
-    //     CreationDate: Date;
-    //     DateDeb: Date;
-    //     DateFin: Date;
-    //     OldAccAmt: Decimal;
-    // begin
 
-    //     CreationDate := DT2Date(PurchaseH.SystemCreatedAt);
+    local procedure GetPrecommitmentAmt(CodeNature: Code[20];
+        CodeTache: Code[20]; DateDeb: Date; DateFin: Date) ReturnAmt: Decimal
+    var
+        amt1: Decimal;
+        amt2: Decimal;
+    begin
+        amt1 := GetPrecommitmentAmt(CodeNature, CodeTache, '', DateDeb, DateFin, true);
+        amt2 := GetPrecommitmentAmt(CodeNature, CodeTache, '', DateDeb, DateFin, false);
+        exit(amt1 + amt2);
+    end;
 
-    //     GetPeriod(CreationDate, DateDeb, DateFin);
-    //     //MESSAGE('%1 - %2',DateDeb,DateFin);
+    local procedure GetCommitmentAmt(CodeNature: Code[20];
+        CodeTache: Code[20]; DateDeb: Date; DateFin: Date) ReturnAmt: Decimal
+    var
+        amt1: Decimal;
+        amt2: Decimal;
+    begin
+        amt1 := GetcommitmentAmt(CodeNature, CodeTache, '', DateDeb, DateFin, true);
+        amt2 := GetcommitmentAmt(CodeNature, CodeTache, '', DateDeb, DateFin, false);
+        exit(amt1 + amt2);
+    end;
 
-    //     AddOnSetup.GET;
-    //     AddOnSetup.TESTFIELD(AddOnSetup."Default Budget Code");
-
-    //     CLEAR(BudgetLine);
-    //     BudgetLine.SETRANGE("Document Type", BudgetLine."Document Type"::Requisition);
-    //     BudgetLine.SETRANGE("Document No.", PurchaseH."No.");
-    //     BudgetLine.DELETEALL;
-
-    //     PurchLine.RESET;
-    //     PurchLine.SETCURRENTKEY("Afk_PurchaseAccount", "Shortcut Dimension 1 Code");
-    //     //PurchLine.SETRANGE("Document Type",BudgetLine."Document Type"::Requisition);
-    //     PurchLine.SETRANGE("Document No.", PurchaseH."No.");
-    //     IF PurchLine.FINDSET THEN
-    //         OldAcc := PurchLine."Afk_PurchaseAccount";
-    //     OldCodeBudget := PurchLine."Shortcut Dimension 1 Code";
-    //     REPEAT
-    //         NewAcc := PurchLine."Afk_PurchaseAccount";
-    //         NewCodeBudget := PurchLine."Shortcut Dimension 1 Code";
-    //         CheckData(NewAcc, NewCodeBudget, PurchLine."Line No.");
-
-    //         IF ((OldAcc <> NewAcc) OR (OldCodeBudget <> NewCodeBudget)) THEN BEGIN
-    //             CLEAR(BudgetLine);
-    //             BudgetLine."Document Type" := BudgetLine."Document Type"::Requisition;
-    //             BudgetLine."Document No." := PurchaseH."No.";
-    //             BudgetLine."G/L Account No" := OldAcc;
-    //             BudgetLine."Dimension Code 1" := OldCodeBudget;
-    //             BudgetLine."Document Amount" := OldAccAmt;
-    //             IF GLAcc.GET(OldAcc) THEN BudgetLine."G/L Account Name" := GLAcc.Name;
-
-    //             BudgetLine."Document Amount" := OldAccAmt;
-
-    //             CalcValuesBudget(BudgetLine, CreationDate, PurchaseH."No.", OldAcc, OldCodeBudget, OldAccAmt);
-
-    //             IF OldAcc <> '' THEN BudgetLine.INSERT;
-    //             OldAcc := PurchLine."Afk_PurchaseAccount";
-    //             OldCodeBudget := PurchLine."Shortcut Dimension 1 Code";
-    //             //OldAccAmt:=ConvertAmtLCY(PurchaseH."Creation Date",PurchLine."Line Amount",PurchaseH."Currency Code");
-    //         END ELSE BEGIN
-    //             //OldAccAmt := OldAccAmt + ConvertAmtLCY(PurchaseH."Document Date",PurchLine."Line Amount",PurchaseH."Currency Code");
-    //         END;
-
-    //         HaveLines := TRUE;
-    //     UNTIL PurchLine.NEXT = 0;
-
-
-    //     //Derniere ligne
-    //     IF HaveLines THEN BEGIN
-    //         CLEAR(BudgetLine);
-    //         BudgetLine."Document Type" := BudgetLine."Document Type"::Requisition;
-    //         BudgetLine."Document No." := PurchaseH."No.";
-    //         BudgetLine."G/L Account No" := OldAcc;
-
-    //         IF GLAcc.GET(OldAcc) THEN BudgetLine."G/L Account Name" := GLAcc.Name;
-    //         BudgetLine."Dimension Code 1" := OldCodeBudget;
-    //         BudgetLine."Commitment Amount" := GetPrecommitmentAmt(OldAcc, OldCodeBudget, PurchaseH."No.", DateDeb, DateFin);
-    //         BudgetLine."Document Amount" := OldAccAmt;
-
-    //         CalcValuesBudget(BudgetLine, CreationDate, PurchaseH."No.", OldAcc, OldCodeBudget, OldAccAmt);
-
-    //         IF OldAcc <> '' THEN BudgetLine.INSERT;
-    //     END;
-
-    // end;
-
-
-
-    procedure GetPrecommitmentAmt(GLAccNo: Code[20];
-    CodeBudget: Code[20];
+    local procedure GetPrecommitmentAmt(CodeNature: Code[20];
+    CodeTache: Code[20];
     CodeDocToExclude: Code[20];
     DateDeb: Date; DateFin: Date; IsItem: Boolean) ReturnAmt: Decimal
     var
@@ -362,6 +331,8 @@ codeunit 50009 AfkBudgetControl
 
             ItemReqHeader.RESET;
             ItemReqHeader.SetRange(ItemReqHeader."Document Type", ItemReqHeader."Document Type"::ItemReq);
+            ItemReqHeader.SetRange(ItemReqHeader."Shortcut Dimension 1 Code", CodeTache);
+            ItemReqHeader.SetRange(ItemReqHeader."Shortcut Dimension 2 Code", CodeNature);
             ItemReqHeader.SETFILTER(ItemReqHeader.Status, '%1|%2', ItemReqHeader.Status::Open, ItemReqHeader.Status::"Pending Approval");
             IF DateDeb <> 0D then
                 ItemReqHeader.SETRANGE("Document Date", DateDeb, DateFin);
@@ -380,6 +351,8 @@ codeunit 50009 AfkBudgetControl
 
             PurchHeader.RESET;
             PurchHeader.SetRange(PurchHeader."Document Type", PurchHeader."Document Type"::Quote);
+            PurchHeader.SetRange(PurchHeader."Shortcut Dimension 1 Code", CodeTache);
+            PurchHeader.SetRange(PurchHeader."Shortcut Dimension 2 Code", CodeNature);
             //PurchHeader.SETFILTER(PurchHeader.Status, '%1|%2', PurchHeader.Status::Released, PurchHeader.Status::"Pending Prepayment");
             IF DateDeb <> 0D then
                 PurchHeader.SETRANGE("Document Date", DateDeb, DateFin);
@@ -387,9 +360,9 @@ codeunit 50009 AfkBudgetControl
                 REPEAT
                     IF CodeDocToExclude <> '' THEN BEGIN
                         IF PurchHeader."No." <> CodeDocToExclude THEN
-                            ReturnAmt := ReturnAmt + GetDocPurchaseNotInvAmount(GLAccNo, CodeBudget, PurchHeader);
+                            ReturnAmt := ReturnAmt + GetDocPurchaseNotInvAmount(PurchHeader);
                     END ELSE BEGIN
-                        ReturnAmt := ReturnAmt + GetDocPurchaseNotInvAmount(GLAccNo, CodeBudget, PurchHeader);
+                        ReturnAmt := ReturnAmt + GetDocPurchaseNotInvAmount(PurchHeader);
                     END;
                 UNTIL PurchHeader.NEXT = 0;
 
@@ -401,7 +374,7 @@ codeunit 50009 AfkBudgetControl
 
     end;
 
-    procedure GetCommitmentAmt(GLAccNo: Code[20]; CodeBudget: Code[20];
+    procedure GetCommitmentAmt(CodeNature: Code[20]; CodeTache: Code[20];
     CodeDocToExclude: Code[20]; DateDeb: Date; DateFin: Date; IsItem: Boolean) ReturnAmt: Decimal
     var
         AfkDocItem: Record AfkDocRequisition;
@@ -411,6 +384,8 @@ codeunit 50009 AfkBudgetControl
         if (IsItem) then begin
             AfkDocItem.RESET;
             AfkDocItem.SetRange(AfkDocItem.Status, AfkDocItem.Status::Released);
+            AfkDocItem.SetRange("Shortcut Dimension 1 Code", CodeTache);
+            AfkDocItem.SetRange("Shortcut Dimension 2 Code", CodeNature);
             AfkDocItem.SetRange(AfkDocItem."Document Type", AfkDocItem."Document Type"::ItemReq);
             IF DateDeb <> 0D then
                 AfkDocItem.SETRANGE("Document Date", DateDeb, DateFin);
@@ -418,9 +393,9 @@ codeunit 50009 AfkBudgetControl
                 REPEAT
                     IF CodeDocToExclude <> '' THEN BEGIN
                         IF AfkDocItem."No." <> CodeDocToExclude THEN
-                            ReturnAmt := ReturnAmt + GetDocReleaseNotDeliveredAmount(GLAccNo, CodeBudget, AfkDocItem);
+                            ReturnAmt := ReturnAmt + GetDocReleaseNotDeliveredAmount(AfkDocItem);
                     END ELSE BEGIN
-                        ReturnAmt := ReturnAmt + GetDocReleaseNotDeliveredAmount(GLAccNo, CodeBudget, AfkDocItem);
+                        ReturnAmt := ReturnAmt + GetDocReleaseNotDeliveredAmount(AfkDocItem);
                     END;
                 UNTIL AfkDocItem.NEXT = 0;
 
@@ -428,6 +403,8 @@ codeunit 50009 AfkBudgetControl
 
             PurchHeader.RESET;
             PurchHeader.SetRange(PurchHeader."Document Type", PurchHeader."Document Type"::Order);
+            PurchHeader.SetRange(PurchHeader."Shortcut Dimension 1 Code", CodeTache);
+            PurchHeader.SetRange(PurchHeader."Shortcut Dimension 2 Code", CodeNature);
             //PurchHeader.SETFILTER(PurchHeader.Status, '%1|%2', PurchHeader.Status::Released, PurchHeader.Status::"Pending Prepayment");
             IF DateDeb <> 0D then
                 PurchHeader.SETRANGE("Document Date", DateDeb, DateFin);
@@ -435,9 +412,9 @@ codeunit 50009 AfkBudgetControl
                 REPEAT
                     IF CodeDocToExclude <> '' THEN BEGIN
                         IF PurchHeader."No." <> CodeDocToExclude THEN
-                            ReturnAmt := ReturnAmt + GetDocPurchaseNotInvAmount(GLAccNo, CodeBudget, PurchHeader);
+                            ReturnAmt := ReturnAmt + GetDocPurchaseNotInvAmount(PurchHeader);
                     END ELSE BEGIN
-                        ReturnAmt := ReturnAmt + GetDocPurchaseNotInvAmount(GLAccNo, CodeBudget, PurchHeader);
+                        ReturnAmt := ReturnAmt + GetDocPurchaseNotInvAmount(PurchHeader);
                     END;
                 UNTIL PurchHeader.NEXT = 0;
         end;
@@ -650,8 +627,8 @@ codeunit 50009 AfkBudgetControl
 
 
     local procedure CalcValuesBudget(VAR BudgetLine: Record AfkDocRequisitionBudget;
-            DateRef: Date; CurrOrderNo: Code[20]; GLAcc: Code[20]; CodeAxe1: Code[20];
-            DocumentAmount: decimal; IsItem: Boolean)
+            DateRef: Date; CurrOrderNo: Code[20]; CodeAxe2: Code[20]; CodeAxe1: Code[20];
+            DocumentAmount: decimal)
     var
         DateDeb: Date;
         DateFin: Date;
@@ -660,53 +637,20 @@ codeunit 50009 AfkBudgetControl
         AddOnSetup.GET;
         AddOnSetup.TESTFIELD(AddOnSetup."Default Budget Code");
 
-        //Month
-        /*
-        GetPeriodDates(DateRef, AfkBudgetPeriodType::Month, DateDeb, DateFin);
-        IF CodeAxe1 <> '' THEN
-            BudgetLine.SETFILTER("Global Dimension 1 Filter", '%1', CodeAxe1);
-        BudgetLine."Budget Filter" := AddOnSetup."Default Budget Code";
-        BudgetLine.SETFILTER("Date Filter", '%1..%2', DateDeb, DateFin);
-        BudgetLine.CALCFIELDS("Net Change", "Budgeted Amount");
-
-        BudgetLine."Monthly Budgeted Amt" := BudgetLine."Budgeted Amount";
-        BudgetLine."Monthly Commitment" := GetPrecommitmentAmt(GLAcc, CodeAxe1, CurrOrderNo, DateDeb, DateFin);
-        BudgetLine."Monthly Realized Amt" := BudgetLine."Net Change";
-        BudgetLine."Monthly Available Amt" := (BudgetLine."Monthly Budgeted Amt") -
-              (BudgetLine."Monthly Commitment" + BudgetLine."Monthly Realized Amt");
-        */
-
-
-
-
-
-        //Acc
-        /*
-        GetPeriodDates(DateRef, AfkBudgetPeriodType::Cumulative, DateDeb, DateFin);
-        IF CodeAxe1 <> '' THEN
-            BudgetLine.SETFILTER("Global Dimension 1 Filter", '%1', CodeAxe1);
-        BudgetLine."Budget Filter" := AddOnSetup."Default Budget Code";
-        BudgetLine.SETFILTER("Date Filter", '%1..%2', DateDeb, DateFin);
-        BudgetLine.CALCFIELDS("Net Change", "Budgeted Amount");
-
-        BudgetLine."Cumul Budgeted Amt" := BudgetLine."Budgeted Amount";
-        BudgetLine."Cumul Commitment" := GetPrecommitmentAmt(GLAcc, CodeAxe1, CurrOrderNo, DateDeb, DateFin,IsItem);
-        BudgetLine."Cumul Realized Amt" := BudgetLine."Net Change";
-        BudgetLine."Cumul Available Amt" := (BudgetLine."Cumul Budgeted Amt") -
-              (BudgetLine."Cumul Commitment" + BudgetLine."Cumul Realized Amt");
-        */
 
         //Year
         GetPeriodDates(DateRef, AfkBudgetPeriodType::Yearly, DateDeb, DateFin);
         IF CodeAxe1 <> '' THEN
             BudgetLine.SETFILTER("Global Dimension 1 Filter", '%1', CodeAxe1);
+        IF CodeAxe2 <> '' THEN
+            BudgetLine.SETFILTER("Global Dimension 2 Filter", '%1', CodeAxe2);
         BudgetLine."Budget Filter" := AddOnSetup."Default Budget Code";
         BudgetLine.SETFILTER("Date Filter", '%1..%2', DateDeb, DateFin);
         BudgetLine.CALCFIELDS("Net Change", "Budgeted Amount");
 
         BudgetLine."Yearly Budgeted Amt" := BudgetLine."Budgeted Amount";
-        BudgetLine."Yearly PreCommitment" := GetPrecommitmentAmt(GLAcc, CodeAxe1, CurrOrderNo, DateDeb, DateFin, IsItem);
-        BudgetLine."Yearly Commitment" := GetCommitmentAmt(GLAcc, CodeAxe1, CurrOrderNo, DateDeb, DateFin, IsItem);
+        BudgetLine."Yearly PreCommitment" := GetPrecommitmentAmt(CodeAxe2, CodeAxe1, DateDeb, DateFin);
+        BudgetLine."Yearly Commitment" := GetCommitmentAmt(CodeAxe2, CodeAxe1, DateDeb, DateFin);
         BudgetLine."Yearly Realized Amt" := BudgetLine."Net Change";
         BudgetLine."Yearly Available Amt" := (BudgetLine."Yearly Budgeted Amt") -
               (BudgetLine."Yearly PreCommitment" + BudgetLine."Yearly Commitment" + BudgetLine."Yearly Realized Amt");
@@ -714,12 +658,12 @@ codeunit 50009 AfkBudgetControl
 
         UserSetup.Get(UserId);
         //if (AddOnSetup."Budget Period" = AddOnSetup."Budget Period"::Year) then
-        if (DocumentAmount > BudgetLine."Yearly Available Amt") then begin
+        if (BudgetLine."Yearly Available Amt" < 0) then begin
             if (not UserSetup.Afk_CanSkipBudgetControl) then begin
                 if (AddOnSetup.BudgetControlMode = AddOnSetup.BudgetControlMode::Warning) then
                     Message(BudgetNotAvailbleMsg,
                         BudgetLine."Dimension Code 1",
-                        BudgetLine."G/L Account No",
+                        BudgetLine."Dimension Code 2",
                         BudgetLine."Budgeted Amount",
                         BudgetLine."Yearly PreCommitment",
                         BudgetLine."Yearly Commitment",
@@ -729,7 +673,7 @@ codeunit 50009 AfkBudgetControl
                 if (AddOnSetup.BudgetControlMode = AddOnSetup.BudgetControlMode::Block) then
                     Error(BudgetNotAvailbleMsg,
                         BudgetLine."Dimension Code 1",
-                        BudgetLine."G/L Account No",
+                        BudgetLine."Dimension Code 2",
                         BudgetLine."Budgeted Amount",
                         BudgetLine."Yearly PreCommitment",
                         BudgetLine."Yearly Commitment",
@@ -769,60 +713,81 @@ codeunit 50009 AfkBudgetControl
     end;
 
 
-
-    local procedure GetDocPurchaseNotInvAmount(GLAccNo: Code[20]; CodeAxe1: Code[20]; PurchHeader: Record "Purchase Header") ReturnAmt: Decimal
+    local procedure GetPurchaseDocAmount(PurchHeader: Record "Purchase Header") ReturnAmt: Decimal
     var
         PurchLine: Record "Purchase Line";
         LineAmt: Decimal;
     begin
+
         PurchLine.RESET;
         PurchLine.SETRANGE("Document Type", PurchHeader."Document Type");
         PurchLine.SETRANGE("Document No.", PurchHeader."No.");
         IF PurchLine.FINDSET THEN
             REPEAT
-                IF ((PurchLine.Afk_PurchaseAccount = GLAccNo) AND (PurchLine."Shortcut Dimension 1 Code" = CodeAxe1)) THEN BEGIN
-                    LineAmt := PurchLine."Direct Unit Cost" * (PurchLine.Quantity - PurchLine."Quantity Invoiced");
-                    ReturnAmt := ReturnAmt + ConvertAmtLCY(PurchHeader."Document Date", LineAmt, PurchHeader."Currency Code");
-                END;
+                //IF ((PurchLine."Shortcut Dimension 2 Code" = CodeAxe2) AND (PurchLine."Shortcut Dimension 1 Code" = CodeAxe1)) THEN BEGIN
+                LineAmt := PurchLine."Direct Unit Cost" * (PurchLine.Quantity);
+                ReturnAmt := ReturnAmt + ConvertAmtLCY(PurchHeader."Document Date", LineAmt, PurchHeader."Currency Code");
+            //END;
             UNTIL PurchLine.NEXT = 0;
     end;
 
-    local procedure GetDocReleaseNotDeliveredAmount(GLAccNo: Code[20]; CodeAxe1: Code[20];
-    PurchHeader: Record AfkDocRequisition) ReturnAmt: Decimal
-    var
-        PurchLine: Record AfkDocRequisitionLine;
-        LineAmt: Decimal;
-
-    begin
-        PurchLine.RESET;
-        PurchLine.SETRANGE("Document Type", PurchHeader."Document Type");
-        PurchLine.SETRANGE("Document No.", PurchHeader."No.");
-        IF PurchLine.FINDSET THEN
-            REPEAT
-                IF ((PurchLine."Purchase Account" = GLAccNo)
-                AND (PurchLine."Shortcut Dimension 1 Code" = CodeAxe1)) THEN BEGIN
-                    LineAmt := PurchLine."Unit Cost" * (PurchLine.Quantity - PurchLine."Whse Delivered Quantity");
-                    ReturnAmt := ReturnAmt + LineAmt;
-                END;
-            UNTIL PurchLine.NEXT = 0;
-    end;
-
-    local procedure GetDocItemRequisition(GLAccNo: Code[20]; CodeAxe1: Code[20]; PurchHeader: Record AfkDocRequisition) ReturnAmt: Decimal
+    local procedure GetDocItemReqAmount(PurchHeader: Record AfkDocRequisition) ReturnAmt: Decimal
     var
         PurchLine: Record AfkDocRequisitionLine;
         LineAmt: Decimal;
     begin
+
         PurchLine.RESET;
         PurchLine.SETRANGE("Document Type", PurchHeader."Document Type");
         PurchLine.SETRANGE("Document No.", PurchHeader."No.");
         IF PurchLine.FINDSET THEN
             REPEAT
-                IF ((PurchLine."Purchase Account" = GLAccNo) AND (PurchLine."Shortcut Dimension 1 Code" = CodeAxe1)) THEN BEGIN
-                    LineAmt := PurchLine.Amount;
-                    ReturnAmt := ReturnAmt + LineAmt;//ConvertAmtLCY(PurchHeader."Document Date", LineAmt, PurchHeader."Currency Code");
-                END;
+                //IF ((PurchLine."Shortcut Dimension 2 Code" = CodeAxe2) AND (PurchLine."Shortcut Dimension 1 Code" = CodeAxe1)) THEN BEGIN
+                LineAmt := PurchLine."Amount (LCY)";
+                ReturnAmt := ReturnAmt + LineAmt;
+            //END;
             UNTIL PurchLine.NEXT = 0;
     end;
+
+    local procedure GetDocPurchaseNotInvAmount(PurchHeader: Record "Purchase Header") ReturnAmt: Decimal
+    var
+        PurchLine: Record "Purchase Line";
+        LineAmt: Decimal;
+    begin
+
+        PurchLine.RESET;
+        PurchLine.SETRANGE("Document Type", PurchHeader."Document Type");
+        PurchLine.SETRANGE("Document No.", PurchHeader."No.");
+        IF PurchLine.FINDSET THEN
+            REPEAT
+                //IF ((PurchLine."Shortcut Dimension 2 Code" = CodeAxe2) AND (PurchLine."Shortcut Dimension 1 Code" = CodeAxe1)) THEN BEGIN
+                LineAmt := PurchLine."Direct Unit Cost" * (PurchLine.Quantity - PurchLine."Quantity Invoiced");
+                ReturnAmt := ReturnAmt + ConvertAmtLCY(PurchHeader."Document Date", LineAmt, PurchHeader."Currency Code");
+            //END;
+            UNTIL PurchLine.NEXT = 0;
+    end;
+
+    local procedure GetDocReleaseNotDeliveredAmount(ReqHeader: Record AfkDocRequisition) ReturnAmt: Decimal
+    var
+        ReqLine: Record AfkDocRequisitionLine;
+        LineAmt: Decimal;
+
+    begin
+
+        ReqLine.RESET;
+        ReqLine.SETRANGE("Document Type", ReqHeader."Document Type");
+        ReqLine.SETRANGE("Document No.", ReqHeader."No.");
+        IF ReqLine.FINDSET THEN
+            REPEAT
+                //IF ((ReqLine."Shortcut Dimension 2 Code" = CodeAxe2)
+                //AND (ReqLine."Shortcut Dimension 1 Code" = CodeAxe1)) THEN BEGIN
+                LineAmt := ReqLine."Unit Cost" * (ReqLine.Quantity - ReqLine."Whse Delivered Quantity");
+                ReturnAmt := ReturnAmt + LineAmt;
+            //END;
+            UNTIL ReqLine.NEXT = 0;
+    end;
+
+
 
     procedure GetStartOfYear(DateRef: Date): Date
     begin
@@ -887,6 +852,7 @@ codeunit 50009 AfkBudgetControl
         SRDoc: Record "AfkDocRequisition";
         AddOnSetup: Record AfkSetup;
         FASetup: Record "FA Setup";
+        GLSetup: Record "General Ledger Setup";
         UserSetup: Record "User Setup";
         ArchiveManagement: Codeunit ArchiveManagement;
         DimMgt: Codeunit DimensionManagement;

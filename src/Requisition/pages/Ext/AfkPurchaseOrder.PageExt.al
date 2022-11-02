@@ -10,7 +10,9 @@ pageextension 50016 AfkPurchaseOrder extends "Purchase Order"
             ShowMandatory = true;
         }
 
+        moveafter("Vendor Order No."; "Shortcut Dimension 2 Code")
         moveafter("Vendor Order No."; "Shortcut Dimension 1 Code")
+
 
         addafter("Vendor Order No.")
         {

@@ -499,7 +499,7 @@ codeunit 50004 AfkPurchaseReqMgt
 
     internal procedure OnAfterAssignFieldsForNo(var PurchLine: Record "Purchase Line"; var xPurchLine: Record "Purchase Line"; PurchHeader: Record "Purchase Header")
     begin
-        PurchLine.Afk_PurchaseAccount := BudgetControl.GetPurchAcc(PurchLine);
+        //PurchLine.Afk_PurchaseAccount := BudgetControl.GetPurchAcc(PurchLine);
         //if (PurchLine."Shortcut Dimension 1 Code" = '') then
         //PurchLine.Validate("Shortcut Dimension 1 Code", PurchHeader."Shortcut Dimension 1 Code");
         //PurchLine.Modify();

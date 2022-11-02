@@ -19,7 +19,7 @@ table 50007 AfkDocRequisitionBudget
             Caption = 'Nature';
             Editable = false;
         }
-        field(4; "G/L Account Name"; Text[100])
+        field(4; "Description"; Text[100])
         {
             Caption = 'G/L Account Name';
         }
@@ -50,7 +50,7 @@ table 50007 AfkDocRequisitionBudget
 
         {
             AutoFormatType = 1;
-            CalcFormula = Sum("G/L Entry".Amount WHERE("G/L Account No." = FIELD("G/L Account No"),
+            CalcFormula = Sum("G/L Entry".Amount WHERE(
                     "Global Dimension 1 Code" = FIELD("Global Dimension 1 Filter"),
                     "Global Dimension 2 Code" = FIELD("Global Dimension 2 Filter"),
                     "Posting Date" = FIELD("Date Filter")
@@ -70,11 +70,11 @@ table 50007 AfkDocRequisitionBudget
         field(13; "Budgeted Amount"; Decimal)
         {
             AutoFormatType = 1;
-            CalcFormula = Sum("G/L Budget Entry".Amount WHERE("G/L Account No." = FIELD("G/L Account No"),
+            CalcFormula = Sum("G/L Budget Entry".Amount WHERE(
                     "Global Dimension 1 Code" = FIELD("Global Dimension 1 Filter"),
                     "Global Dimension 2 Code" = FIELD("Global Dimension 2 Filter"),
                     Date = FIELD("Date Filter"),
-                    "Budget Name" = FIELD("Budget Filter")));
+                    "Budget Name" = field("Budget Filter")));
             Caption = 'Budgeted Amount';
             FieldClass = FlowField;
             Editable = false;

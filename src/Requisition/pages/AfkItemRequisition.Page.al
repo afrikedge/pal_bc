@@ -75,6 +75,16 @@ page 50006 "AfkItemRequisition"
                         ShortcutDimension1CodeOnAfterV;
                     end;
                 }
+                field("Shortcut Dimension 2 Code"; Rec."Shortcut Dimension 2 Code")
+                {
+                    ApplicationArea = Dimensions;
+                    ToolTip = 'Specifies the code for Shortcut Dimension 2, which is one of two global dimension codes that you set up in the General Ledger Setup window.';
+                    Editable = CanEdit;
+                    trigger OnValidate()
+                    begin
+                        ShortcutDimension2CodeOnAfterV;
+                    end;
+                }
                 field("Location Code"; Rec."Location Code")
                 {
                     ApplicationArea = Basic, Suite;

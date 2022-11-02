@@ -83,11 +83,13 @@ codeunit 50007 AfkBudgetRevision
 
         AfkSetup.Get();
         AfkSetup.TestField("Default Budget Code");
+        AfkSetup.TestField(BudgetGLAccount);
 
         GLBudgetEntry.Init();
         GLBudgetEntry."Entry No." := 0;
         GLBudgetEntry.Validate("Global Dimension 1 Code", OriginTaskCode);
-        GLBudgetEntry.Validate("G/L Account No.", OriginNatureCode);
+        GLBudgetEntry.Validate("Global Dimension 2 Code", OriginNatureCode);
+        GLBudgetEntry.Validate("G/L Account No.", AfkSetup.BudgetGLAccount);
 
         if ((RevisionType = RevisionType::Initial) or (RevisionType = RevisionType::Increase)) then
             GLBudgetEntry.Validate(Amount, AmountToProcess)
@@ -125,11 +127,13 @@ codeunit 50007 AfkBudgetRevision
 
         AfkSetup.Get();
         AfkSetup.TestField("Default Budget Code");
+        AfkSetup.TestField(BudgetGLAccount);
 
         GLBudgetEntry.Init();
         GLBudgetEntry."Entry No." := 0;
         GLBudgetEntry.Validate("Global Dimension 1 Code", OriginTaskCode);
-        GLBudgetEntry.Validate("G/L Account No.", OriginNatureCode);
+        GLBudgetEntry.Validate("Global Dimension 2 Code", OriginNatureCode);
+        GLBudgetEntry.Validate("G/L Account No.", AfkSetup.BudgetGLAccount);
         GLBudgetEntry.Validate(Amount, -AmountToTransfer);
         GLBudgetEntry."Budget Name" := BudgetCode;
         GLBudgetEntry.Description := TransferReason;
@@ -144,7 +148,8 @@ codeunit 50007 AfkBudgetRevision
         GLBudgetEntry.Init();
         GLBudgetEntry."Entry No." := 0;
         GLBudgetEntry.Validate("Global Dimension 1 Code", DestinationTaskCode);
-        GLBudgetEntry.Validate("G/L Account No.", DestinationNatureCode);
+        GLBudgetEntry.Validate("Global Dimension 2 Code", DestinationNatureCode);
+        GLBudgetEntry.Validate("G/L Account No.", AfkSetup.BudgetGLAccount);
         GLBudgetEntry.Validate(Amount, AmountToTransfer);
         GLBudgetEntry."Budget Name" := BudgetCode;
         GLBudgetEntry.Description := TransferReason;

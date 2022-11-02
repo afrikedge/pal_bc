@@ -168,13 +168,13 @@ table 50006 AfkDocRequisitionLine
                 END;
 
 
-                GetPurchHeader();
+                //GetPurchHeader();
                 //VALIDATE("Gen. Bus. Posting Group", PRHeader."Gen. Bus. Posting Group");
                 //VALIDATE("VAT Bus. Posting Group", ServRequest.v);
 
 
 
-                "Purchase Account" := BudgetMgt.GetPurchAccFromReq(Rec, PRHeader);
+                //"Purchase Account" := BudgetMgt.GetPurchAccFromReq(Rec, PRHeader);
 
             end;
         }

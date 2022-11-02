@@ -17,6 +17,11 @@ report 50002 AfkBudgetLineTransfer
             var
                 BudgetRevision: Codeunit AfkBudgetRevision;
             begin
+
+                if (IsTransfer) then
+                    if (AmountToProcess > OriginAvailableAmount) then
+                        Error(TransferAmtErr, OriginAvailableAmount);
+
                 if (IsTransfer) then begin
                     if Confirm(StrSubstNo(ConfirmTransferQst, Format(AmountToProcess))) then
                         BudgetRevision.TransferBudgetLine(BudgetCode, OriginTaskCode, OriginNatureCode,
@@ -74,7 +79,7 @@ report 50002 AfkBudgetLineTransfer
                         ApplicationArea = All;
                         Caption = 'Origin nature';
                         ToolTip = 'Code of the Nature from which you want to perform the transfer';
-                        TableRelation = "G/L Account"."No." WHERE("Direct Posting" = CONST(true),
+                        TableRelation = "Dimension Value".Code WHERE("Global Dimension No." = CONST(2),
                                                           Blocked = CONST(false));
                         trigger OnValidate()
                         begin
@@ -106,7 +111,7 @@ report 50002 AfkBudgetLineTransfer
                         ApplicationArea = All;
                         Caption = 'Destination nature';
                         ToolTip = 'Code of the nature to which you want to transfer';
-                        TableRelation = "G/L Account"."No." WHERE("Direct Posting" = CONST(true),
+                        TableRelation = "Dimension Value".Code WHERE("Global Dimension No." = CONST(2),
                                                           Blocked = CONST(false));
                         trigger OnValidate()
                         begin
@@ -168,7 +173,7 @@ report 50002 AfkBudgetLineTransfer
                         ApplicationArea = All;
                         Caption = 'Nature';
                         ToolTip = 'Code of the Nature from which you want to perform the transfer';
-                        TableRelation = "G/L Account"."No." WHERE("Direct Posting" = CONST(true),
+                        TableRelation = "Dimension Value".Code WHERE("Global Dimension No." = CONST(2),
                                                           Blocked = CONST(false));
                         trigger OnValidate()
                         begin
@@ -256,6 +261,7 @@ report 50002 AfkBudgetLineTransfer
         ConfirmTransferQst: Label 'Do you want to validate this budgetary transfer of %1';
         RevisionDefaultTxt: Label 'Budget Line Revision on %1';
         RevisionTitle: Label 'Budget Line Revision';
+        TransferAmtErr: Label 'You cannot transfer more than %1';
         TransferDefaultTxt: Label 'Budget Line Transfer on %1';
         TransferTitle: Label 'Budget Line Transfer';
         OperationReason: Text[100];

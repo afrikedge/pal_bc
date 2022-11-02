@@ -4,10 +4,10 @@ pageextension 50013 AfkBudgetEntries extends "G/L Budget Entries"
 
     layout
     {
-        modify("G/L Account No.")
-        {
-            Caption = 'Nature';
-        }
+        // modify("G/L Account No.")
+        // {
+        //     Caption = 'Nature';
+        // }
         addlast(Control1)
         {
             field("Afk_Operation_Type"; Rec.Afk_Operation_Type)

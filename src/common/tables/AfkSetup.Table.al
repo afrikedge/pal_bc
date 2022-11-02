@@ -60,7 +60,7 @@ table 50004 AfkSetup
         field(50010; BudgetGLAccount; Code[20])
         {
             Caption = 'Budget Default Account';
-            TableRelation = "G/L Account";
+            TableRelation = "G/L Account" where("Direct Posting" = const(true));
             DataClassification = CustomerContent;
         }
 

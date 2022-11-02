@@ -15,7 +15,7 @@ page 50009 AfkBudgetLinesSubForm
                 {
                     ApplicationArea = Basic, Suite;
                 }
-                field("G/L Account No"; Rec."G/L Account No")
+                field("Dimension Code 2"; Rec."Dimension Code 2")
                 {
                     ApplicationArea = Basic, Suite;
                 }

@@ -33,7 +33,13 @@ page 50010 AfkBudgetTracking
             {
                 Caption = 'Nature filter';
                 ApplicationArea = Basic, Suite;
-                TableRelation = "G/L Account"."No." where("Direct Posting" = const(true));
+                TableRelation = "Dimension Value".Code where("Global Dimension No." = const(2));
+            }
+            field(StructureFilter; StructureFilter)
+            {
+                Caption = 'Structure filter';
+                ApplicationArea = Basic, Suite;
+                TableRelation = "Dimension Value".Code where("Dimension Code" = const('STRUCTURE'));
             }
             repeater(General)
             {
@@ -44,7 +50,7 @@ page 50010 AfkBudgetTracking
                     ApplicationArea = Basic, Suite;
                     Editable = false;
                 }
-                field("G/L Account No"; Rec."G/L Account No")
+                field("Dimension Code 2"; Rec."Dimension Code 2")
                 {
                     ApplicationArea = Basic, Suite;
                     Editable = false;
@@ -89,7 +95,7 @@ page 50010 AfkBudgetTracking
                 trigger OnAction()
                 begin
 
-                    AfkBudgetControl.CreatePurchaseBudgetLinesfromTracking(BudgetCode, TaskFilter, NatureFilter);
+                    AfkBudgetControl.CreatePurchaseBudgetLinesfromTracking(BudgetCode, TaskFilter, NatureFilter, StructureFilter);
                 end;
             }
             action(AfkPrintPreview)
@@ -129,5 +135,6 @@ page 50010 AfkBudgetTracking
         AfkBudgetControl: Codeunit AfkBudgetControl;
         BudgetCode: Code[20];
         NatureFilter: Text[250];
+        StructureFilter: Text[250];
         TaskFilter: Text[250];
 }

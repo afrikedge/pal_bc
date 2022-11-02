@@ -4,10 +4,10 @@ pageextension 50021 AfkBudgetMatrix extends "Budget Matrix"
 
     layout
     {
-        modify(Code)
-        {
-            Caption = 'Nature';
-        }
+        // modify(Code)
+        // {
+        //     Caption = 'Nature';
+        // }
 
     }
 }

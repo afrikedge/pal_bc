@@ -233,6 +233,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table AfkDocRequisitionBudget - Field Date Filter - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 2681448935 - Field 3461834954 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>G/L Account Name</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkDocRequisitionBudget - Field Description - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 2681448935 - Field 835141888 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Task Code</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -257,11 +262,6 @@
           <source>Document Type</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table AfkDocRequisitionBudget - Field Document Type - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Table 2681448935 - Field 63418190 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>G/L Account Name</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Table AfkDocRequisitionBudget - Field G/L Account Name - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 2681448935 - Field 2889023104 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Nature</source>
@@ -932,6 +932,11 @@
           <source>Budget Control Mode</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table AfkSetup - Field BudgetControlMode - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 252127493 - Field 1531850921 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Budget Default Account</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkSetup - Field BudgetGLAccount - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 252127493 - Field 3148429643 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Day starting time</source>
@@ -1988,6 +1993,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page AfkBudgetTracking - Control NatureFilter - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 1341386882 - Control 3758706959 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Structure filter</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page AfkBudgetTracking - Control StructureFilter - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Page 1341386882 - Control 3374814623 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Task filter</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -2082,6 +2092,11 @@
           <source>Specifies the code for Shortcut Dimension 1, which is one of two global dimension codes that you set up in the General Ledger Setup window.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page AfkItemRequisition - Control Shortcut Dimension 1 Code - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 2375237743 - Control 1003760969 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the code for Shortcut Dimension 2, which is one of two global dimension codes that you set up in the General Ledger Setup window.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page AfkItemRequisition - Control Shortcut Dimension 2 Code - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 2375237743 - Action 2947630187 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>&amp;Header</source>
@@ -2482,6 +2497,11 @@
           <source>Budget Line Revision</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report AfkBudgetLineTransfer - NamedType RevisionTitle</note>
+        </trans-unit>
+        <trans-unit id="Report 1260461456 - NamedType 302859186" size-unit="char" translate="yes" xml:space="preserve">
+          <source>You cannot transfer more than %1</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkBudgetLineTransfer - NamedType TransferAmtErr</note>
         </trans-unit>
         <trans-unit id="Report 1260461456 - NamedType 1964893388" size-unit="char" translate="yes" xml:space="preserve">
           <source>Budget Line Transfer on %1</source>
@@ -3958,16 +3978,6 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkBudget - Change GLAccFilter - Property Caption</note>
         </trans-unit>
-        <trans-unit id="PageExtension 2875192701 - Change 3852983238 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 4052886773">
-          <source>Nature</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkBudgetEntries - Change G/L Account No. - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="PageExtension 3450959798 - Change 3004954119 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 3434183730">
-          <source>Nature</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkBudgetMatrix - Change Code - Property Caption</note>
-        </trans-unit>
         <trans-unit id="PageExtension 1967294696 - Control 528949462 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 523354100">
           <source>Taxpayer Number</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -4413,8 +4423,13 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">TableExtension AfkDimensionValue - Field AfkBudgetStructure - Property Caption</note>
         </trans-unit>
+        <trans-unit id="TableExtension 982874849 - Field 2914942126 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 1468132285">
+          <source>Structure Level</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension AfkDimensionValue - Field AfkBudgetStructureLevel - Property Caption</note>
+        </trans-unit>
         <trans-unit id="TableExtension 982874849 - Field 2744439936 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 1468132285">
-          <source>Task</source>
+          <source>Task Level</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">TableExtension AfkDimensionValue - Field AfkBudgetTaskType - Property Caption</note>
         </trans-unit>
@@ -5392,6 +5407,31 @@
           <source>Purchase Requisition</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Enum AfkRequisitionDocType - EnumValue Requisition - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 2606996713 - EnumValue 1371923692 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source> </source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum AfkStructureLevel - EnumValue   - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 2606996713 - EnumValue 39585143 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Direction</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum AfkStructureLevel - EnumValue Direction - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 2606996713 - EnumValue 870312932 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Office</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum AfkStructureLevel - EnumValue Office - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 2606996713 - EnumValue 2187938695 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Service</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum AfkStructureLevel - EnumValue Service - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 2606996713 - EnumValue 2157783563 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>SubDirection</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum AfkStructureLevel - EnumValue SubDirection - Property Caption</note>
         </trans-unit>
         <trans-unit id="EnumExtension 1103988637 - EnumValue 1150315814 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Enum 1117131368">
           <source>Budget Tracking</source>

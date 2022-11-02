@@ -73,10 +73,6 @@ page 50007 "AfkItemRequisitionSubform"
                 {
                     ApplicationArea = Basic, Suite;
                 }
-                field("Purchase Account"; Rec."Purchase Account")
-                {
-                    ApplicationArea = Basic, Suite;
-                }
 
 
 
