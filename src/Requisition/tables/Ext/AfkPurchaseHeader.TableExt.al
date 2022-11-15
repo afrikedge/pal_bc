@@ -57,6 +57,7 @@ tableextension 50005 AfkPurchaseHeader extends "Purchase Header"
             trigger OnValidate()
             begin
                 AfkSecurityMgt.CheckCanModifyNotificationDate();
+                RefreshValidityEndingDate();
             end;
         }
         field(50009; "Afk_CommitmentType"; Enum AfkCommitmentType)
@@ -64,15 +65,15 @@ tableextension 50005 AfkPurchaseHeader extends "Purchase Header"
             Caption = 'Commitment Type';
             DataClassification = CustomerContent;
         }
-        field(50010; "Afk_ValidityStartingDate"; Date)
-        {
-            Caption = 'Validity Starting Date';
-            DataClassification = CustomerContent;
-            trigger OnValidate()
-            begin
-                RefreshValidityEndingDate();
-            end;
-        }
+        // field(50010; "Afk_ValidityStartingDate"; Date)
+        // {
+        //     Caption = 'Validity Starting Date';
+        //     DataClassification = CustomerContent;
+        //     trigger OnValidate()
+        //     begin
+        //         RefreshValidityEndingDate();
+        //     end;
+        // }
         field(50011; "Afk_Validity"; Integer)
         {
             Caption = 'Validity (Days)';
@@ -127,8 +128,8 @@ tableextension 50005 AfkPurchaseHeader extends "Purchase Header"
 
     local procedure RefreshValidityEndingDate()
     begin
-        if (Afk_ValidityStartingDate <> 0D) then
-            Validate(Afk_ValidityEndingDate, CalcDate(StrSubstNo('<%1D>', Afk_Validity), Afk_ValidityStartingDate))
+        if (Afk_NotificationDate <> 0D) then
+            Validate(Afk_ValidityEndingDate, CalcDate(StrSubstNo('<%1D>', Afk_Validity), Afk_NotificationDate))
         else
             Afk_ValidityEndingDate := 0D;
     end;

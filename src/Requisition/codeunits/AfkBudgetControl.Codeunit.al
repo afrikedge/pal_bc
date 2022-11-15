@@ -266,6 +266,9 @@ codeunit 50009 AfkBudgetControl
                         BudgetLine."Yearly Realized Amt" := BudgetLine."Net Change";
                         BudgetLine."Yearly Available Amt" := (BudgetLine."Yearly Budgeted Amt") -
                               (BudgetLine."Yearly PreCommitment" + BudgetLine."Yearly Commitment" + BudgetLine."Yearly Realized Amt");
+                        if (BudgetLine."Yearly Budgeted Amt" <> 0) then
+                            BudgetLine."Budget Execution" := (BudgetLine."Yearly Budgeted Amt" - BudgetLine."Yearly Available Amt") / BudgetLine."Yearly Budgeted Amt";
+                        BudgetLine."Budget Execution" := Round(BudgetLine."Budget Execution" * 100);
 
                         if ((BudgetLine."Yearly Budgeted Amt" <> 0) or
                         (BudgetLine."Yearly PreCommitment" <> 0) or
@@ -654,6 +657,9 @@ codeunit 50009 AfkBudgetControl
         BudgetLine."Yearly Realized Amt" := BudgetLine."Net Change";
         BudgetLine."Yearly Available Amt" := (BudgetLine."Yearly Budgeted Amt") -
               (BudgetLine."Yearly PreCommitment" + BudgetLine."Yearly Commitment" + BudgetLine."Yearly Realized Amt");
+        if (BudgetLine."Yearly Budgeted Amt" <> 0) then
+            BudgetLine."Budget Execution" := (BudgetLine."Yearly Budgeted Amt" - BudgetLine."Yearly Available Amt") / BudgetLine."Yearly Budgeted Amt";
+        BudgetLine."Budget Execution" := Round(BudgetLine."Budget Execution" * 100);
 
 
         UserSetup.Get(UserId);
@@ -846,6 +852,11 @@ codeunit 50009 AfkBudgetControl
             DateDeb := DMY2DATE(1, 1, DATE2DMY(DateRef, 3));
             DateFin := DMY2DATE(31, 12, DATE2DMY(DateRef, 3));
         END;
+    end;
+
+
+
+
     end;
 
     var

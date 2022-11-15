@@ -15,6 +15,11 @@ codeunit 50010 AfkBudgetControlEventsSubs
         AfkBudgetControlMgt.CreatePurchaseBudgetLines(PurchaseHeader, true);
     end;
 
+
+
+
+
+
     var
         AfkBudgetControlMgt: Codeunit AfkBudgetControl;
 

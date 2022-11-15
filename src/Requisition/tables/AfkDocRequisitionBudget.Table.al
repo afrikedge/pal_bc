@@ -192,6 +192,12 @@ table 50007 AfkDocRequisitionBudget
         {
             Caption = 'User Id';
         }
+        field(29; "Budget Execution"; Decimal)
+        {
+            AutoFormatType = 1;
+            Caption = 'Execution %';
+            Editable = false;
+        }
 
     }
     keys

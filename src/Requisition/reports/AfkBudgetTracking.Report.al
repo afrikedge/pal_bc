@@ -18,6 +18,9 @@ report 50005 AfkBudgetTracking
             column(TaskFilter; TaskFilter)
             {
             }
+            column(StructureFilter; StructureFilter)
+            {
+            }
             column(NatureFilter; NatureFilter)
             {
             }
@@ -33,8 +36,18 @@ report 50005 AfkBudgetTracking
             column(TaskFilterLbl; TaskFilterLbl)
             {
             }
+            column(StructureFilterLbl; StructureFilterLbl)
+            {
+            }
+            column(ExecutionCodeLbl; ExecutionCodeLbl)
+            {
+            }
+
 
             column(DimensionCode1; "Dimension Code 1")
+            {
+            }
+            column(DimensionCode2; "Dimension Code 2")
             {
             }
             column(GLAccountNo; "G/L Account No")
@@ -53,6 +66,9 @@ report 50005 AfkBudgetTracking
             {
             }
             column(YearlyAvailableAmt; "Yearly Available Amt")
+            {
+            }
+            column(BudgetExecution; "Budget Execution")
             {
             }
             column(TaskCodeLbl; TaskCodeLbl)
@@ -120,22 +136,27 @@ report 50005 AfkBudgetTracking
         BudgetedLbl: Label 'Yearly Budgeted Amt';
         BudgetFilterLbl: Label 'Budget filter';
         CommitmentLbl: Label 'Yearly Commitment';
+        ExecutionCodeLbl: Label 'Execution %';
         NatureCodeLbl: Label 'Nature';
 
         NatureFilterLbl: Label 'Nature filter';
         PreCommitmentLbl: Label 'Yearly Pre-Commitment';
         RealizedLbl: Label 'Yearly Realized Amt';
         ReportTitleLbl: Label 'Budget Tracking';
+        StructureFilterLbl: Label 'Structure filter';
         TaskCodeLbl: Label 'Task Code';
         TaskFilterLbl: Label 'Task filter';
         BudgetFilter: Text[100];
         NatureFilter: Text[100];
+        StructureFilter: Text[100];
         TaskFilter: Text[100];
 
-    procedure SetFiltersValues(BudgetFilter1: Text[100]; TaskFilter1: Text[100]; NatureFilter1: Text[100])
+    procedure SetFiltersValues(BudgetFilter1: Text[100]; TaskFilter1: Text[100]; NatureFilter1: Text[100]
+    ; StructureFilter1: Text[100])
     begin
         BudgetFilter := BudgetFilter1;
         TaskFilter := TaskFilter1;
         NatureFilter := NatureFilter1;
+        StructureFilter := StructureFilter1;
     end;
 }

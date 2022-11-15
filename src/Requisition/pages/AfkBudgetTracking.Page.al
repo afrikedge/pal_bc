@@ -75,6 +75,10 @@ page 50010 AfkBudgetTracking
                 {
                     ApplicationArea = Basic, Suite;
                 }
+                field("Budget Execution"; Rec."Budget Execution")
+                {
+                    ApplicationArea = Basic, Suite;
+                }
             }
         }
     }
@@ -116,7 +120,8 @@ page 50010 AfkBudgetTracking
                     AfkBudgetTracking: Report AfkBudgetTracking;
                 begin
                     BudgetLine.SetRange(AfkUserID, UserId);
-                    AfkBudgetTracking.SetFiltersValues(BudgetCode, TaskFilter, NatureFilter);
+                    BudgetLine.SetRange(BudgetLine."Document Type", BudgetLine."Document Type"::BudgetTracking);
+                    AfkBudgetTracking.SetFiltersValues(BudgetCode, TaskFilter, NatureFilter, StructureFilter);
                     AfkBudgetTracking.SetTableView(BudgetLine);
                     AfkBudgetTracking.Run();
                     //REPORT.Run(REPORT::AfkBudgetTracking, true, false, BudgetLine);

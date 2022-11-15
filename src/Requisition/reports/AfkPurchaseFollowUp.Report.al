@@ -7,25 +7,27 @@ report 50003 AfkPurchaseFollowUp
     AllowScheduling = false;
 
     DefaultLayout = RDLC;
-
-
     PreviewMode = PrintLayout;
 
 
 
     dataset
     {
-        dataitem(Integer; "Integer")
+        dataitem(QuoteHeader; "Purchase Header Archive")
         {
-            DataItemTableView = SORTING(Number) WHERE(Number = FILTER(1 .. 1));
+            DataItemTableView = sorting("No.") where("Document Type" = const("Quote"));
+            //RequestFilterFields = "No.";
 
-            column(PRDate; PRDate)
+            column(PRNumber; QuoteHeader."No.")
             {
             }
-            column(PRValidationDate; PRValidationDate)
+            column(PRDate; QuoteHeader."Document Date")
             {
             }
-            column(OrderCreationDate; OrderCreationDate)
+            column(PRValidationDate; QuoteHeader.Afk_ReleaseDate)
+            {
+            }
+            column(OrderCreationDate; QuoteHeader.Afk_OrderCreationDate)
             {
             }
             column(ReceptionDate; ReceptionDate)
@@ -64,17 +66,27 @@ report 50003 AfkPurchaseFollowUp
             column(TitleText; TitleText)
             {
             }
+            column(PRNoLabel; PRNoLabel)
+            {
+            }
 
-
+            trigger OnPreDataItem()
+            begin
+                if (NoFilter <> '') then
+                    QuoteHeader.SetFilter("No.", '%1', NoFilter);
+            end;
 
             trigger OnAfterGetRecord()
             var
                 AfkPurchaseReqMgt: Codeunit AfkPurchaseReqMgt;
             begin
-                TitleText := StrSubstNo(TitleLabel, PRNumber);
+                TitleText := StrSubstNo(TitleLabel, QuoteHeader."No.");
 
-                if (OrderNo <> '') then
-                    AfkPurchaseReqMgt.GetDocumentDates(OrderNo, ReceptionDate, InvoiceDate, PaymentDate);
+                ReceptionDate := 0D;
+                InvoiceDate := 0D;
+                PaymentDate := 0D;
+                if (QuoteHeader.Afk_OrderNoCreated <> '') then
+                    AfkPurchaseReqMgt.GetDocumentDates(QuoteHeader.Afk_OrderNoCreated, ReceptionDate, InvoiceDate, PaymentDate);
 
             end;
         }
@@ -87,6 +99,14 @@ report 50003 AfkPurchaseFollowUp
             {
                 group(GroupName)
                 {
+                    Caption = 'Options';
+                    field(NoFilter; NoFilter)
+                    {
+                        Caption = 'No filter';
+                        ApplicationArea = Basic, Suite;
+                        TableRelation = "Purchase Header Archive"."No." where("Document Type" = const(Quote));
+
+                    }
                 }
             }
         }
@@ -127,8 +147,10 @@ report 50003 AfkPurchaseFollowUp
         PRLastInvoiceDateLabel: Label 'Last Invoice Date';
         PRLastPaymentDateLabel: Label 'Last Payment Date';
         PRLastReceptionDateLabel: Label 'Last Reception Date';
+        PRNoLabel: Label 'No';
         PROrderCreationDateLabel: Label 'Purchase Order Creation Date';
         PRValidationDateLabel: Label 'Purchase Validation Date';
         TitleLabel: Label 'Purchase Requisition %1';
         TitleText: Text[50];
+        NoFilter: Text[100];
 }

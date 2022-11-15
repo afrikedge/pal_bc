@@ -42,12 +42,7 @@ table 50004 AfkSetup
             DecimalPlaces = 0 : 5;
             MinValue = 0;
         }
-        // field(8; "PO Max Value"; Decimal)
-        // {
-        //     Caption = 'Commitment Max Value';
-        //     DecimalPlaces = 0 : 5;
-        //     MinValue = 0;
-        // }
+
         field(9; "Whse Delivery Nos."; Code[20])
         {
             Caption = 'Item Delivery Nos.';
@@ -62,6 +57,12 @@ table 50004 AfkSetup
             Caption = 'Budget Default Account';
             TableRelation = "G/L Account" where("Direct Posting" = const(true));
             DataClassification = CustomerContent;
+        }
+        field(50011; "OrderLetter Max Value"; Decimal)
+        {
+            Caption = 'Order Letter';
+            DecimalPlaces = 0 : 5;
+            MinValue = 0;
         }
 
         // field(10; "Insurance Nos."; Code[20])

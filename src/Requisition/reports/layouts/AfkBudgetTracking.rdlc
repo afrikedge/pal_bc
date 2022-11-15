@@ -57,19 +57,22 @@
                   <Width>2.65716cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>2.79194cm</Width>
+                  <Width>2.47444cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>2.57323cm</Width>
+                  <Width>2.22927cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>2.48537cm</Width>
+                  <Width>2.2737cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>2.72619cm</Width>
+                  <Width>2.18409cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>2.55021cm</Width>
+                  <Width>2.23272cm</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>2.03669cm</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -300,6 +303,38 @@
                         </Textbox>
                       </CellContents>
                     </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox2">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!ExecutionCodeLbl.Value</Value>
+                                  <Style>
+                                    <FontFamily>Calibri</FontFamily>
+                                    <FontSize>9pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox2</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>LightGreen</BackgroundColor>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
                   </TablixCells>
                 </TablixRow>
                 <TablixRow>
@@ -341,14 +376,14 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="GLAccountNo">
+                        <Textbox Name="DimensionCode2">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!GLAccountNo.Value</Value>
+                                  <Value>=Fields!DimensionCode2.Value</Value>
                                   <Style>
                                     <FontFamily>Calibri</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -360,7 +395,7 @@
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>GLAccountNo</rd:DefaultName>
+                          <rd:DefaultName>DimensionCode2</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -478,7 +513,6 @@
                             <PaddingRight>2pt</PaddingRight>
                           </Style>
                         </Textbox>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -551,12 +585,47 @@
                         </Textbox>
                       </CellContents>
                     </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="BudgetExecution">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!BudgetExecution.Value</Value>
+                                  <Style>
+                                    <FontFamily>Calibri</FontFamily>
+                                    <FontSize>9pt</FontSize>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>BudgetExecution</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <TopBorder>
+                              <Style>None</Style>
+                            </TopBorder>
+                            <PaddingRight>2pt</PaddingRight>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
                   </TablixCells>
                 </TablixRow>
               </TablixRows>
             </TablixBody>
             <TablixColumnHierarchy>
               <TablixMembers>
+                <TablixMember />
                 <TablixMember />
                 <TablixMember />
                 <TablixMember />
@@ -580,7 +649,7 @@
             <Top>5.61338cm</Top>
             <Left>0.06726cm</Left>
             <Height>1cm</Height>
-            <Width>18.44259cm</Width>
+            <Width>18.74656cm</Width>
             <ZIndex>1</ZIndex>
             <Style>
               <Border>
@@ -785,6 +854,68 @@
                     </TablixCell>
                   </TablixCells>
                 </TablixRow>
+                <TablixRow>
+                  <Height>0.6cm</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="StructureFilterLbl">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!StructureFilterLbl.Value</Value>
+                                  <Style>
+                                    <FontFamily>Calibri</FontFamily>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>StructureFilterLbl</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>None</Style>
+                            </Border>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="StructureFilter">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!StructureFilter.Value</Value>
+                                  <Style>
+                                    <FontFamily>Calibri</FontFamily>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>StructureFilter</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>None</Style>
+                            </Border>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
               </TablixRows>
             </TablixBody>
             <TablixColumnHierarchy>
@@ -798,12 +929,13 @@
                 <TablixMember />
                 <TablixMember />
                 <TablixMember />
+                <TablixMember />
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>DataSet_Result</DataSetName>
-            <Top>2.72641cm</Top>
+            <Top>2.37716cm</Top>
             <Left>4.12412cm</Left>
-            <Height>1.69395cm</Height>
+            <Height>2.29395cm</Height>
             <Width>9.88058cm</Width>
             <ZIndex>2</ZIndex>
             <Style>
@@ -816,7 +948,7 @@
         <Height>6.61338cm</Height>
         <Style />
       </Body>
-      <Width>18.65799cm</Width>
+      <Width>18.81382cm</Width>
       <Page>
         <PageHeader>
           <Height>5.02055cm</Height>
@@ -1488,6 +1620,9 @@ End Function
         <Field Name="TaskFilter">
           <DataField>TaskFilter</DataField>
         </Field>
+        <Field Name="StructureFilter">
+          <DataField>StructureFilter</DataField>
+        </Field>
         <Field Name="NatureFilter">
           <DataField>NatureFilter</DataField>
         </Field>
@@ -1503,8 +1638,17 @@ End Function
         <Field Name="TaskFilterLbl">
           <DataField>TaskFilterLbl</DataField>
         </Field>
+        <Field Name="StructureFilterLbl">
+          <DataField>StructureFilterLbl</DataField>
+        </Field>
+        <Field Name="ExecutionCodeLbl">
+          <DataField>ExecutionCodeLbl</DataField>
+        </Field>
         <Field Name="DimensionCode1">
           <DataField>DimensionCode1</DataField>
+        </Field>
+        <Field Name="DimensionCode2">
+          <DataField>DimensionCode2</DataField>
         </Field>
         <Field Name="GLAccountNo">
           <DataField>GLAccountNo</DataField>
@@ -1538,6 +1682,12 @@ End Function
         </Field>
         <Field Name="YearlyAvailableAmtFormat">
           <DataField>YearlyAvailableAmtFormat</DataField>
+        </Field>
+        <Field Name="BudgetExecution">
+          <DataField>BudgetExecution</DataField>
+        </Field>
+        <Field Name="BudgetExecutionFormat">
+          <DataField>BudgetExecutionFormat</DataField>
         </Field>
         <Field Name="TaskCodeLbl">
           <DataField>TaskCodeLbl</DataField>

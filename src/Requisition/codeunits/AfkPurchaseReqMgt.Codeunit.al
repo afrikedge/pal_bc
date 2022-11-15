@@ -433,12 +433,13 @@ codeunit 50004 AfkPurchaseReqMgt
             if (PurchaseHeader."Amount Including VAT") > AddOnSetup."PR Max Value" then
                 Error(PRLimitAmountErr, AddOnSetup."PR Max Value");
         end;
-        // if (PurchaseHeader."Document Type" = PurchaseHeader."Document Type"::Order) then begin
-        //     AddOnSetup.TestField("PO Max Value");
-        //     PurchaseHeader.CalcFields("Amount Including VAT");
-        //     // if (PurchaseHeader."Amount Including VAT") > AddOnSetup."PO Max Value" then
-        //     //     Error(POLimitAmountErr,AddOnSetup."PR Max Value");
-        // end;
+        if ((PurchaseHeader."Document Type" = PurchaseHeader."Document Type"::Order)
+         and (PurchaseHeader.Afk_CommitmentType = PurchaseHeader.Afk_CommitmentType::"Order letter")) then begin
+            AddOnSetup.TestField("OrderLetter Max Value");
+            PurchaseHeader.CalcFields("Amount Including VAT");
+            if (PurchaseHeader."Amount Including VAT") > AddOnSetup."OrderLetter Max Value" then
+                Error(ORderLetterLimitAmountErr, AddOnSetup."OrderLetter Max Value");
+        end;
 
         BudgetControl.CreatePurchaseBudgetLines(PurchaseHeader, true);
         PurchaseHeader.Afk_ReleaseDate := Today;
@@ -673,6 +674,7 @@ codeunit 50004 AfkPurchaseReqMgt
         UOMMgt: Codeunit "Unit of Measure Management";
         DeletionErr: Label 'You must use the "Close" feature to delete this document';
         Err029Err: Label 'The dimension combination used in %1 %2, row no. %3, is blocked. %4';
+        ORderLetterLimitAmountErr: Label 'The limit amount for Order Letter is %1';
         POLimitAmountErr: Label 'The limit amount for purchase commitments is %1';
         PRLimitAmountErr: Label 'The limit amount for purchase requests is %1';
         Text002: Label 'The document has no lines';

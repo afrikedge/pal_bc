@@ -104,6 +104,15 @@ report 50004 "AfkPurchaseOrder"
             column(QRCode; QRCode)
             {
             }
+            column(FooterLabel01; FooterLabel01)
+            {
+            }
+            column(FooterLabel02Text; FooterLabel02Text)
+            {
+            }
+            column(FooterLabel03; FooterLabel03)
+            {
+            }
 
 
             //***********************LABELS**********************************
@@ -1121,6 +1130,8 @@ report 50004 "AfkPurchaseOrder"
 
             }
             trigger OnAfterGetRecord()
+            var
+                QRCodeText: Text[80];
             begin
 
                 //************************
@@ -1130,9 +1141,17 @@ report 50004 "AfkPurchaseOrder"
                 if ("Purchase Header"."Currency Code" = '') then
                     AfkCurrencyCode := 'XAF';
 
-                GenerateQRCode("Purchase Header"."No.");
+
+                "Purchase Header".CalcFields("Purchase Header"."Amount Including VAT");
+                QRCodeText := StrSubstNo(QRCodeLbl, "Purchase Header"."No.", "Purchase Header"."Order Date", "Purchase Header"."Amount Including VAT");
+                GenerateQRCode(QRCodeText);
                 //************************
                 CurrReport.Language := Language.GetLanguageIdOrDefault("Language Code");
+
+                //'Société Anonyme à Capital Public | Capital social : %1 | N° Contribuable : %2 | RCCM : %3 | NACAM : %4';
+                FooterLabel02Text := StrSubstNo(FooterLabel02,
+                    CompanyInfo."Stock Capital", CompanyInfo."Registration No."
+                    , CompanyInfo."Trade Register", CompanyInfo."APE Code");
 
                 FormatAddressFields("Purchase Header");
                 FormatDocumentFields("Purchase Header");
@@ -1359,6 +1378,10 @@ report 50004 "AfkPurchaseOrder"
         DirectUniCostCaptionLbl: Label 'Direct Unit Cost';
         DocumentDateCaptionLbl: Label 'Document Date';
         EmailIDCaptionLbl: Label 'Email';
+        FooterLabel01: Label 'Pôle de Référence au cœur du golfe de Guinée | Pole of Reference at the Heart of the Gulf of Guinea';
+        FooterLabel02: Label 'Société Anonyme à Capital Public | Capital social : %1 | N° Contribuable : %2 | RCCM : %3 | NACAM : %4';
+        FooterLabel03: Label 'Port Authority of Limbe Transitional Administration P.O Box 456 Limbe';
+
         HdrDimCaptionLbl: Label 'Header Dimensions';
         HomePageCaptionLbl: Label 'Home Page';
         LineDimCaptionLbl: Label 'Line Dimensions';
@@ -1376,6 +1399,7 @@ report 50004 "AfkPurchaseOrder"
         PrepymtVATAmtSpecCaptionLbl: Label 'Prepayment VAT Amount Specification';
         PurchLineInvDiscAmtCaptionLbl: Label 'Invoice Discount Amount';
         PurchLineLineDiscCaptionLbl: Label 'Discount %';
+        QRCodeLbl: Label 'Order No : %1 Date : %2 Total Amount Incl VAT : %3';
         ShipmentMethodDescCaptionLbl: Label 'Shipment Method';
         ShiptoAddressCaptionLbl: Label 'Ship-to Address';
         SubtotalCaptionLbl: Label 'Subtotal';
@@ -1393,6 +1417,7 @@ report 50004 "AfkPurchaseOrder"
         VATDiscountAmountCaptionLbl: Label 'Payment Discount on VAT';
         VATIdentifierCaptionLbl: Label 'VAT Identifier';
         VendNoCaptionLbl: Label 'Vendor No.';
+
         QRCode: Text;
         AfkCurrencyCode: Text[20];
         AllowInvDisctxt: Text[30];
@@ -1419,6 +1444,7 @@ report 50004 "AfkPurchaseOrder"
         ShipToAddr: array[8] of Text[100];
         VendAddr: array[8] of Text[100];
         DimText: Text[120];
+        FooterLabel02Text: Text[250];
 
     procedure InitializeRequest(NewNoOfCopies: Integer; NewShowInternalInfo: Boolean; NewArchiveDocument: Boolean; NewLogInteraction: Boolean)
     begin
@@ -1437,7 +1463,7 @@ report 50004 "AfkPurchaseOrder"
         BarcodeFontProvider2D := Enum::"Barcode Font Provider 2D"::IDAutomation2D;
         BarcodeSymbology2D := Enum::"Barcode Symbology 2D"::"QR-Code";
         BarcodeString := TextData;
-        
+
         QRCode := BarcodeFontProvider2D.EncodeFont(BarcodeString, BarcodeSymbology2D);
     end;
 
@@ -1464,16 +1490,16 @@ report 50004 "AfkPurchaseOrder"
 
     local procedure FormatDocumentFields(PurchaseHeader: Record "Purchase Header")
     begin
-        with PurchaseHeader do begin
-            FormatDocument.SetTotalLabels("Currency Code", TotalText, TotalInclVATText, TotalExclVATText);
-            FormatDocument.SetPurchaser(SalesPurchPerson, "Purchaser Code", PurchaserText);
-            FormatDocument.SetPaymentTerms(PaymentTerms, "Payment Terms Code", "Language Code");
-            FormatDocument.SetPaymentTerms(PrepmtPaymentTerms, "Prepmt. Payment Terms Code", "Language Code");
-            FormatDocument.SetShipmentMethod(ShipmentMethod, "Shipment Method Code", "Language Code");
+        //with PurchaseHeader do begin
+        FormatDocument.SetTotalLabels(PurchaseHeader."Currency Code", TotalText, TotalInclVATText, TotalExclVATText);
+        FormatDocument.SetPurchaser(SalesPurchPerson, PurchaseHeader."Purchaser Code", PurchaserText);
+        FormatDocument.SetPaymentTerms(PaymentTerms, PurchaseHeader."Payment Terms Code", PurchaseHeader."Language Code");
+        FormatDocument.SetPaymentTerms(PrepmtPaymentTerms, PurchaseHeader."Prepmt. Payment Terms Code", PurchaseHeader."Language Code");
+        FormatDocument.SetShipmentMethod(ShipmentMethod, PurchaseHeader."Shipment Method Code", PurchaseHeader."Language Code");
 
-            ReferenceText := FormatDocument.SetText("Your Reference" <> '', FieldCaption("Your Reference"));
-            VATNoText := FormatDocument.SetText("VAT Registration No." <> '', FieldCaption("VAT Registration No."));
-        end;
+        ReferenceText := FormatDocument.SetText(PurchaseHeader."Your Reference" <> '', PurchaseHeader.FieldCaption("Your Reference"));
+        VATNoText := FormatDocument.SetText(PurchaseHeader."VAT Registration No." <> '', PurchaseHeader.FieldCaption("VAT Registration No."));
+        //end;
     end;
 
     [IntegrationEvent(TRUE, false)]
@@ -1486,4 +1512,3 @@ report 50004 "AfkPurchaseOrder"
     begin
     end;
 }
-

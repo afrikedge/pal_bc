@@ -190,6 +190,14 @@ pageextension 50004 AfkSalesOrderProRC extends "Order Processor Role Center"
                     RunObject = Page "AfkPostedItemRequisitionList";
                     //ToolTip = 'View or edit detailed information for the boat types';
                 }
+                action(AfkFicheSuiveuse)
+                {
+                    ApplicationArea = Basic, Suite;
+                    Caption = 'Requisition Follow Up';
+                    Image = Report;
+                    RunObject = Report "AfkPurchaseFollowUp";
+                    //ToolTip = 'View or edit detailed information for the boat types';
+                }
             }
         }
     }

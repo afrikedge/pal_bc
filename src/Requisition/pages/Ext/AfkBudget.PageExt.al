@@ -2,10 +2,10 @@ pageextension 50012 AfkBudget extends Budget
 {
     layout
     {
-        modify(GLAccFilter)
-        {
-            Caption = 'Nature Filter';
-        }
+        // modify(GLAccFilter)
+        // {
+        //     Caption = 'Nature Filter';
+        // }
     }
 
     actions
@@ -52,4 +52,6 @@ pageextension 50012 AfkBudget extends Budget
             }
         }
     }
+
+
 }

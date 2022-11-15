@@ -7,12 +7,16 @@ pageextension 50016 AfkPurchaseOrder extends "Purchase Order"
         modify("Vendor Order No.")
         {
             Caption = 'Vendor Offer Ref.';
-            ShowMandatory = true;
+            //ShowMandatory = true;
         }
 
         moveafter("Vendor Order No."; "Shortcut Dimension 2 Code")
         moveafter("Vendor Order No."; "Shortcut Dimension 1 Code")
 
+        modify("Vendor Shipment No.")
+        {
+            Visible = false;
+        }
 
         addafter("Vendor Order No.")
         {
@@ -34,10 +38,10 @@ pageextension 50016 AfkPurchaseOrder extends "Purchase Order"
                     //CurrPage.PurchLines.Page.;(true);
                 end;
             }
-            field("Afk_ValidityStartingDate"; Rec.Afk_ValidityStartingDate)
-            {
-                ApplicationArea = Basic, Suite;
-            }
+            // field("Afk_ValidityStartingDate"; Rec.Afk_ValidityStartingDate)
+            // {
+            //     ApplicationArea = Basic, Suite;
+            // }
             field("Afk_Validity"; Rec.Afk_Validity)
             {
                 ApplicationArea = Basic, Suite;

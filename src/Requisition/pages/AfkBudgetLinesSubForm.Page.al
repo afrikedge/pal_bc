@@ -39,6 +39,10 @@ page 50009 AfkBudgetLinesSubForm
                 {
                     ApplicationArea = Basic, Suite;
                 }
+                field("Budget Execution"; Rec."Budget Execution")
+                {
+                    ApplicationArea = Basic, Suite;
+                }
                 field("Document Amount"; Rec."Document Amount")
                 {
                     ApplicationArea = Basic, Suite;

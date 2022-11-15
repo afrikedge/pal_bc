@@ -6,8 +6,12 @@ pageextension 50014 AfkPurchaseQuote extends "Purchase Quote"
         modify("Vendor Order No.")
         {
             Caption = 'Vendor Offer Ref.';
-            ShowMandatory = true;
         }
+        modify("Vendor Shipment No.")
+        {
+            Visible = false;
+        }
+
         addafter("Vendor Order No.")
         {
             field(Afk_Object; Rec.Afk_Object)
@@ -19,7 +23,6 @@ pageextension 50014 AfkPurchaseQuote extends "Purchase Quote"
 
         moveafter("Vendor Order No."; "Shortcut Dimension 2 Code")
         moveafter("Vendor Order No."; "Shortcut Dimension 1 Code")
-
 
         addafter(PurchLines)
         {
