@@ -177,6 +177,7 @@ codeunit 50009 AfkBudgetControl
         AddOnSetup.TestField(BudgetGLAccount);
         RequisitionH.TestField("Shortcut Dimension 1 Code");
         RequisitionH.TestField("Shortcut Dimension 2 Code");
+        RequisitionH.TestField(Description);
 
 
         BudgetLine.Init();
@@ -857,7 +858,7 @@ codeunit 50009 AfkBudgetControl
 
 
 
-    end;
+
 
     var
         SRDoc: Record "AfkDocRequisition";

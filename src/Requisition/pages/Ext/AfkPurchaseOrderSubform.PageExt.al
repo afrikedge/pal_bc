@@ -49,16 +49,33 @@ pageextension 50018 AfkPurchaseOrderSubform extends "Purchase Order Subform"
 
     trigger OnAfterGetRecord()
     var
-        Header: Record "Purchase Header";
         isRelease: Boolean;
     begin
-        Header.get(Rec."Document Type"::Order, Rec."Document No.");
+        //Header.get(Rec."Document Type"::Order, Rec."Document No.");
+        GetHeader();
         isRelease := Header.Status = Header.Status::Released;
         DocIsEditable := (Header.Afk_CommitmentType <> Header.Afk_CommitmentType::"Purchase order");
 
     end;
 
+    trigger OnNewRecord(BelowxRec: Boolean)
+    var
+
+    begin
+        //Header.get(Rec."Document Type"::Order, Rec."Document No.");
+        GetHeader();
+        DocIsEditable := (Header.Afk_CommitmentType <> Header.Afk_CommitmentType::"Purchase order");
+    end;
+
+    local procedure GetHeader()
+    begin
+        if (Header."No." <> Rec."Document No.") then
+            Header.get(Rec."Document Type"::Order, Rec."Document No.");
+
+    end;
+
 
     var
+        Header: Record "Purchase Header";
         DocIsEditable: Boolean;
 }

@@ -112,16 +112,22 @@ codeunit 50008 AfkPurchaseDocEventsSubs
         PurchMgt.OnAfterInsertVendorOnPurchase(PurchaseHeader, Vendor, xPurchaseHeader);
     end;
 
-    [EventSubscriber(ObjectType::Table, Database::"Purchase Line", 'OnBeforeCheckDirectUnitCost', '', true, false)]
-    local procedure OnBeforeCheckDirectUnitCost(var PurchaseLine: Record "Purchase Line"; var IsHandled: Boolean)
+    // [EventSubscriber(ObjectType::Table, Database::"Purchase Line", 'OnBeforeCheckDirectUnitCost', '', true, false)]
+    // local procedure OnBeforeCheckDirectUnitCost(var PurchaseLine: Record "Purchase Line"; var IsHandled: Boolean)
+    // var
+    //     PurchMgt: codeunit AfkPurchaseReqMgt;
+    // begin
+    //     PurchMgt.CheckBudgetOnLineUpdate(PurchaseLine);
+    // end;
+
+
+    [EventSubscriber(ObjectType::Table, Database::"Purchase Line", 'OnAfterCalcLineAmount', '', true, false)]
+    local procedure OnAfterCalcLineAmount(var PurchaseLine: Record "Purchase Line"; var LineAmount: Decimal)
     var
         PurchMgt: codeunit AfkPurchaseReqMgt;
     begin
         PurchMgt.CheckBudgetOnLineUpdate(PurchaseLine);
     end;
-
-
-
 
 
 

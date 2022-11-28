@@ -69,6 +69,19 @@ codeunit 50006 AfkPREventsSubs
     //     begin
     //     end;
 
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::"Workflow Response Handling", 'OnOpenDocument', '', false, false)]
+    local procedure OnOpenDocument(RecRef: RecordRef; var Handled: Boolean)
+    begin
+        EmplLoanWkflMgt.ReOpenRequisitionDoc(RecRef, Handled);
+    end;
+
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::"Page Management", 'OnBeforeGetConditionalCardPageID', '', false, false)]
+    local procedure OnBeforeGetConditionalCardPageID(RecRef: RecordRef; var CardPageID: Integer; var IsHandled: Boolean)
+    begin
+        EmplLoanWkflMgt.OnBeforeGetConditionalCardPageID(RecRef, CardPageID, IsHandled);
+    end;
+
+
 
 
 

@@ -958,6 +958,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table AfkSetup - Field Night starting time - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 252127493 - Field 1810852881 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Order Letter</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkSetup - Field OrderLetter Max Value - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 252127493 - Field 1757379127 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Purch Requisition Max Value</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -1753,6 +1758,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit AfkPurchaseReqMgt - NamedType Err029Err</note>
         </trans-unit>
+        <trans-unit id="Codeunit 218199553 - NamedType 1019708056" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The limit amount for Order Letter is %1</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit AfkPurchaseReqMgt - NamedType ORderLetterLimitAmountErr</note>
+        </trans-unit>
         <trans-unit id="Codeunit 218199553 - NamedType 3243600357" size-unit="char" translate="yes" xml:space="preserve">
           <source>The limit amount for purchase commitments is %1</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -1782,6 +1792,11 @@
           <source>Would you like to close this purchase order: %1?</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit AfkPurchaseReqMgt - NamedType Text014</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 218199553 - NamedType 3577229803" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Would you like to close this purchase requisition: %1?</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit AfkPurchaseReqMgt - NamedType Text015</note>
         </trans-unit>
         <trans-unit id="Codeunit 218199553 - NamedType 2747277865" size-unit="char" translate="yes" xml:space="preserve">
           <source>The dimension combination used in %1 %2 is blocked. %3</source>

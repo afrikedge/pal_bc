@@ -6610,7 +6610,18 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">EnumExtension AfkPurchReqBudgetDocType - EnumValue Requisition - Property Caption</note>
         </trans-unit>
+
+<trans-unit id="Codeunit 4284804636 - NamedType 2683274754" maxwidth="0" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Do you want to convert the quote to an order?</source>
+          <target state="translated">Do you want to convert the quote to an order? ++</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Purch.-Quote to Order (Yes/No</note>
+        </trans-unit>
+                
+
       </group>
     </body>
   </file>
+
+
 </xliff>

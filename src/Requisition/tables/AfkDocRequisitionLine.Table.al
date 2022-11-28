@@ -579,6 +579,8 @@ table 50006 AfkDocRequisitionLine
                 CurrExchRate.ExchangeAmtFCYToLCY(
                   PRHeader."Document Date", PRHeader."Currency Code",
                   "Amount Including VAT (LCY)", factor));
+
+        BudgetMgt.CreatePurchaseBudgetLines_ItemReq(PRHeader, true);
     end;
 
     local procedure CalcBaseQty(Qty: Decimal): Decimal

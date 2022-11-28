@@ -84,6 +84,33 @@ codeunit 50005 AfkPRReqWorkflowMgt
         end;
     end;
 
+    procedure ReOpenRequisitionDoc(RecRef: RecordRef; VAR Handled: Boolean)
+    var
+        PurchRequisition: Record "AfkDocRequisition";
+    begin
+        CASE RecRef.NUMBER OF
+            DATABASE::"AfkDocRequisition":
+                begin
+                    RecRef.SETTABLE(PurchRequisition);
+                    PurchRequisition.ReOpen();
+                    Handled := true;
+                end;
+        end;
+    end;
+
+    procedure OnBeforeGetConditionalCardPageID(RecRef: RecordRef; var CardPageID: Integer; var IsHandled: Boolean)
+    var
+        PurchRequisition: Record "AfkDocRequisition";
+    begin
+        CASE RecRef.NUMBER OF
+            DATABASE::"AfkDocRequisition":
+                begin
+                    CardPageID := PAGE::"AfkItemRequisition";
+                    IsHandled := true;
+                end;
+        end;
+    end;
+
     procedure ShowRequisitionApprovalStatus_AFK(PurchRequisition: Record "AfkDocRequisition")
     begin
         PurchRequisition.FIND;

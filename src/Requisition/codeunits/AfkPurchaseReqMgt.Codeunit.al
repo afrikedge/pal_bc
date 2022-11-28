@@ -326,7 +326,7 @@ codeunit 50004 AfkPurchaseReqMgt
         PurchLine1: Record "Purchase Line";
         ReleaseMgt: Codeunit "Release Purchase Document";
     begin
-        if not CONFIRM(STRSUBSTNO(Text014, PurchH."No.")) then exit;
+        if not CONFIRM(STRSUBSTNO(Text015, PurchH."No.")) then exit;
         ReleaseMgt.PerformManualReopen(PurchH);
 
 
@@ -681,6 +681,7 @@ codeunit 50004 AfkPurchaseReqMgt
         Text010: Label 'Do you want to close the purchasing document?';
         Text013: Label 'You cannot close this order because the quantity received has not been fully invoiced for item %1';
         Text014: Label 'Would you like to close this purchase order: %1?';
+        Text015: Label 'Would you like to close this purchase requisition: %1?';
         Text028: Label 'The dimension combination used in %1 %2 is blocked. %3';
         Text031: Label 'The dimensions used in %1 %2, line n° %3, are invalid. %4';
         Text032: Label 'This purchase requisition has already been completely processed.';

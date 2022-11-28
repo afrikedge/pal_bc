@@ -314,7 +314,7 @@ page 50006 "AfkItemRequisition"
                 {
                     ApplicationArea = Basic, Suite;
                     Caption = 'Re&open';
-                    Enabled = Rec.Status = Rec.Status::"Pending Approval";
+                    //Enabled = Rec.Status = Rec.Status::"Pending Approval";
                     Image = ReOpen;
                     Promoted = true;
                     PromotedCategory = Category5;
@@ -324,8 +324,8 @@ page 50006 "AfkItemRequisition"
                     trigger OnAction()
                     var
                     begin
-                        if (Rec.Status = Rec.Status::Released) then
-                            Error('');
+                        //if (Rec.Status = Rec.Status::Released) then
+                        //    Error('');
                         Rec.PerformManualReOpen();
                     end;
                 }
