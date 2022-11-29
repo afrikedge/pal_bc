@@ -23,7 +23,7 @@
               </TablixColumns>
               <TablixRows>
                 <TablixRow>
-                  <Height>14.5687cm</Height>
+                  <Height>17.44032cm</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -1695,10 +1695,10 @@
                               <TablixBody>
                                 <TablixColumns>
                                   <TablixColumn>
-                                    <Width>4.28625cm</Width>
+                                    <Width>4.08781cm</Width>
                                   </TablixColumn>
                                   <TablixColumn>
-                                    <Width>3.24633cm</Width>
+                                    <Width>3.04789cm</Width>
                                   </TablixColumn>
                                 </TablixColumns>
                                 <TablixRows>
@@ -1996,9 +1996,9 @@
                               </TablixRowHierarchy>
                               <DataSetName>DataSet_Result</DataSetName>
                               <Top>8.36809cm</Top>
-                              <Left>11.10393cm</Left>
+                              <Left>11.50081cm</Left>
                               <Height>2cm</Height>
-                              <Width>7.53258cm</Width>
+                              <Width>7.1357cm</Width>
                               <ZIndex>8</ZIndex>
                               <Style>
                                 <Border>
@@ -2010,10 +2010,10 @@
                               <TablixBody>
                                 <TablixColumns>
                                   <TablixColumn>
-                                    <Width>4.28625cm</Width>
+                                    <Width>4.08781cm</Width>
                                   </TablixColumn>
                                   <TablixColumn>
-                                    <Width>3.24633cm</Width>
+                                    <Width>3.04789cm</Width>
                                   </TablixColumn>
                                 </TablixColumns>
                                 <TablixRows>
@@ -2257,7 +2257,6 @@
                                               <PaddingRight>1pt</PaddingRight>
                                             </Style>
                                           </Textbox>
-                                          <rd:Selected>true</rd:Selected>
                                         </CellContents>
                                       </TablixCell>
                                       <TablixCell>
@@ -2312,9 +2311,9 @@
                               </TablixRowHierarchy>
                               <DataSetName>DataSet_Result</DataSetName>
                               <Top>11.02561cm</Top>
-                              <Left>11.10393cm</Left>
+                              <Left>11.50081cm</Left>
                               <Height>2cm</Height>
-                              <Width>7.53258cm</Width>
+                              <Width>7.1357cm</Width>
                               <ZIndex>9</ZIndex>
                               <Style>
                                 <Border>
@@ -2499,7 +2498,7 @@
                               <TablixBody>
                                 <TablixColumns>
                                   <TablixColumn>
-                                    <Width>7.8837cm</Width>
+                                    <Width>8.91511cm</Width>
                                   </TablixColumn>
                                 </TablixColumns>
                                 <TablixRows>
@@ -2587,9 +2586,9 @@
                               </TablixRowHierarchy>
                               <DataSetName>DataSet_Result</DataSetName>
                               <Top>11.02561cm</Top>
-                              <Left>3.15784cm</Left>
+                              <Left>2.12643cm</Left>
                               <Height>2.64042cm</Height>
-                              <Width>7.8837cm</Width>
+                              <Width>8.91511cm</Width>
                               <ZIndex>11</ZIndex>
                               <Style>
                                 <Border>
@@ -2630,6 +2629,39 @@
                                 <PaddingRight>1pt</PaddingRight>
                               </Style>
                             </Textbox>
+                            <Textbox Name="QRCode">
+                              <CanGrow>true</CanGrow>
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value>=Last(Fields!QRCode.Value)</Value>
+                                      <Style>
+                                        <FontFamily>IDAutomation2D</FontFamily>
+                                        <FontSize>12pt</FontSize>
+                                      </Style>
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style />
+                                </Paragraph>
+                              </Paragraphs>
+                              <rd:DefaultName>QRCode</rd:DefaultName>
+                              <Top>13.92896cm</Top>
+                              <Left>0.09525cm</Left>
+                              <Height>3.51136cm</Height>
+                              <Width>4.21664cm</Width>
+                              <ZIndex>13</ZIndex>
+                              <Style>
+                                <Border>
+                                  <Style>None</Style>
+                                </Border>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <PaddingBottom>2pt</PaddingBottom>
+                              </Style>
+                            </Textbox>
                           </ReportItems>
                           <KeepTogether>true</KeepTogether>
                           <Style>
@@ -2665,7 +2697,7 @@
             </TablixRowHierarchy>
             <DataSetName>DataSet_Result</DataSetName>
             <Top>0.07281cm</Top>
-            <Height>14.5687cm</Height>
+            <Height>17.44032cm</Height>
             <Width>18.65799cm</Width>
             <Style>
               <Border>
@@ -2674,7 +2706,7 @@
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>14.64152cm</Height>
+        <Height>17.51313cm</Height>
         <Style />
       </Body>
       <Width>18.65799cm</Width>
@@ -3286,6 +3318,122 @@
             </Border>
           </Style>
         </PageHeader>
+        <PageFooter>
+          <Height>1.23368cm</Height>
+          <PrintOnFirstPage>true</PrintOnFirstPage>
+          <PrintOnLastPage>true</PrintOnLastPage>
+          <ReportItems>
+            <Textbox Name="Textbox16">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>=First(Fields!FooterLabel01.Value, "DataSet_Result")</Value>
+                      <Style>
+                        <FontFamily>Calibri</FontFamily>
+                        <FontSize>7pt</FontSize>
+                        <FontWeight>Bold</FontWeight>
+                        <Color>CornflowerBlue</Color>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style>
+                    <TextAlign>Center</TextAlign>
+                  </Style>
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox14</rd:DefaultName>
+              <Top>0.08931in</Top>
+              <Left>0.04223in</Left>
+              <Height>0.12in</Height>
+              <Width>7.2612in</Width>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <PaddingLeft>1pt</PaddingLeft>
+                <PaddingRight>1pt</PaddingRight>
+              </Style>
+            </Textbox>
+            <Textbox Name="Textbox19">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>=First(Fields!FooterLabel02Text.Value, "DataSet_Result")</Value>
+                      <Style>
+                        <FontFamily>Calibri</FontFamily>
+                        <FontSize>7pt</FontSize>
+                        <FontWeight>Bold</FontWeight>
+                        <Color>CornflowerBlue</Color>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style>
+                    <TextAlign>Center</TextAlign>
+                  </Style>
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox14</rd:DefaultName>
+              <Top>0.2282in</Top>
+              <Left>0.04223in</Left>
+              <Height>0.12in</Height>
+              <Width>7.2612in</Width>
+              <ZIndex>1</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <PaddingLeft>1pt</PaddingLeft>
+                <PaddingRight>1pt</PaddingRight>
+              </Style>
+            </Textbox>
+            <Textbox Name="Textbox28">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>=First(Fields!FooterLabel03.Value, "DataSet_Result")</Value>
+                      <Style>
+                        <FontFamily>Calibri</FontFamily>
+                        <FontSize>7pt</FontSize>
+                        <FontWeight>Bold</FontWeight>
+                        <Color>CornflowerBlue</Color>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style>
+                    <TextAlign>Center</TextAlign>
+                  </Style>
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox14</rd:DefaultName>
+              <Top>0.3657in</Top>
+              <Left>0.04223in</Left>
+              <Height>0.12in</Height>
+              <Width>7.2612in</Width>
+              <ZIndex>2</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <PaddingLeft>1pt</PaddingLeft>
+                <PaddingRight>1pt</PaddingRight>
+              </Style>
+            </Textbox>
+          </ReportItems>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+          </Style>
+        </PageFooter>
         <PageHeight>29.7cm</PageHeight>
         <PageWidth>21cm</PageWidth>
         <LeftMargin>1cm</LeftMargin>
@@ -3458,6 +3606,18 @@ End Function
         </Field>
         <Field Name="AfkObjectLbl">
           <DataField>AfkObjectLbl</DataField>
+        </Field>
+        <Field Name="QRCode">
+          <DataField>QRCode</DataField>
+        </Field>
+        <Field Name="FooterLabel01">
+          <DataField>FooterLabel01</DataField>
+        </Field>
+        <Field Name="FooterLabel02Text">
+          <DataField>FooterLabel02Text</DataField>
+        </Field>
+        <Field Name="FooterLabel03">
+          <DataField>FooterLabel03</DataField>
         </Field>
         <Field Name="CompanyAddress1">
           <DataField>CompanyAddress1</DataField>

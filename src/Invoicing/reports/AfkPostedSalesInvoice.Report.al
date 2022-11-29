@@ -147,7 +147,18 @@ report 50001 "AfkPostedSalesInvoice"
             column(AfkObjectLbl; AfkObjectLbl)
             {
             }
-
+            column(QRCode; QRCode)
+            {
+            }
+            column(FooterLabel01; FooterLabel01)
+            {
+            }
+            column(FooterLabel02Text; FooterLabel02Text)
+            {
+            }
+            column(FooterLabel03; FooterLabel03)
+            {
+            }
 
 
 
@@ -1331,6 +1342,8 @@ report 50001 "AfkPostedSalesInvoice"
                 //**************************************************************************
 
                 trigger OnPreDataItem()
+                var
+                    QRCodeText: Text;
                 begin
                     if Header."Prices Including VAT" then begin
                         TotalAmountExclInclVATTextValue := TotalExclVATText;
@@ -1391,9 +1404,12 @@ report 50001 "AfkPostedSalesInvoice"
 
                     RepCheck.InitTextVariable();
                     //RepCheck.FormatNoText(NoText, AfkTotalAmountInclVAT_LCY, Header."Currency Code");
-                    RepCheck.FormatNoText(NoText, ROUND(AfkTotalAmountInclVAT_LCY), '');
+                    RepCheck.FormatNoText(NoText, ROUND(AfkTotalAmountInclVAT_LCY), AfkSetup."XAF Currency Code");
                     //RepCheck.FormatNoTextFR(NoText, AfkTotalAmountInclVAT_LCY, '');
                     Afk_AmountInWords := NoText[1];
+
+                    QRCodeText := StrSubstNo(QRCodeLbl, "Header"."No.", "Header"."Document Date", AfkTotalAmountInclVAT_LCY);
+                    QRCode := QRCodeMgt.GenerateQRCode(QRCodeText);
                     //******************************************************************************************
 
                 end;
@@ -1418,6 +1434,9 @@ report 50001 "AfkPostedSalesInvoice"
                 if not IsReportInPreviewMode then
                     CODEUNIT.Run(CODEUNIT::"Sales Inv.-Printed", Header);
 
+                AfkSetup.Get();
+                AfkSetup.TestField("XAF Currency Code");
+
                 AfkCurrCode := Header."Currency Code";
                 if (AfkCurrCode = '') then
                     AfkCurrCode := GLSetup."LCY Code";
@@ -1431,6 +1450,9 @@ report 50001 "AfkPostedSalesInvoice"
 
                 //************************************************************************************
 
+                FooterLabel02Text := StrSubstNo(FooterLabel02,
+                    CompanyInfo."Stock Capital", CompanyInfo."Registration No."
+                    , CompanyInfo."Trade Register", CompanyInfo."APE Code");
 
                 ChecksPayableText := StrSubstNo(ChecksPayableLbl, CompanyInfo.Name);
 
@@ -1588,62 +1610,110 @@ report 50001 "AfkPostedSalesInvoice"
     end;
 
     var
-        NumLigne: Integer;
         AfkBoat: Record Afk_Boat;
-        AfkObjectLbl: Label 'Object :';
-        AfkTerminalLbl: Label 'Terminal :';
-        AfkTypeNavireLbl: Label 'Type of ship :';
-        AfkNomNavireLbl: Label 'Ship''s name :';
-        AfkDateLieuFacturationLbl: Label 'Limbe on %1', Comment = '%1 is invoice date';
-        AfkAgentFacturationLbl: Label 'Agent :';
-        AfkAddresseFacturationLbl: Label 'Invoice Address';
+        AfkSetup: Record AfkSetup;
+        CompanyBankAccount: Record "Bank Account";
+        CompanyInfo: Record "Company Information";
+        DummyCompanyInfo: Record "Company Information";
+        BillToContact: Record Contact;
+        SellToContact: Record Contact;
+        CurrencyExchangeRate: Record "Currency Exchange Rate";
+        Cust: Record Customer;
+        // VATIdentifierLbl: Label 'VAT Identifier';
+        // VATPercentageLbl: Label 'VAT %';
+        // SellToContactPhoneNoLbl: Label 'Sell-to Contact Phone No.';
+        // SellToContactMobilePhoneNoLbl: Label 'Sell-to Contact Mobile Phone No.';
+        // SellToContactEmailLbl: Label 'Sell-to Contact E-Mail';
+        // BillToContactPhoneNoLbl: Label 'Bill-to Contact Phone No.';
+        // BillToContactMobilePhoneNoLbl: Label 'Bill-to Contact Mobile Phone No.';
+        // BillToContactEmailLbl: Label 'Bill-to Contact E-Mail';
+        GLSetup: Record "General Ledger Setup";
+        TempLineFeeNoteOnReportHist: Record "Line Fee Note on Report Hist." temporary;
+        PaymentMethod: Record "Payment Method";
+        PaymentTerms: Record "Payment Terms";
+        RespCenter: Record "Responsibility Center";
+        SalesSetup: Record "Sales & Receivables Setup";
+        SalespersonPurchaser: Record "Salesperson/Purchaser";
+        ShipmentMethod: Record "Shipment Method";
+        VATClause: Record "VAT Clause";
+        RepCheck: Report "Check";
+        QRCodeMgt: Codeunit AfkQRCodeMgt;
+        AutoFormat: Codeunit "Auto Format";
+        FormatAddr: Codeunit "Format Address";
+        FormatDocument: Codeunit "Format Document";
+        Language: Codeunit Language;
+        SegManagement: Codeunit SegManagement;
+        DisplayAdditionalFeeNote: Boolean;
+        DisplayAssemblyInformation: Boolean;
+        DisplayShipmentInformation: Boolean;
+        FirstLineHasBeenOutput: Boolean;
+        LogInteraction: Boolean;
+        [InDataSet]
+        LogInteractionEnable: Boolean;
+        MoreLines: Boolean;
+        ShowShippingAddr: Boolean;
+        ShowWorkDescription: Boolean;
+        NumLigneText: Code[2];
+        AfkCurrCode: code[20];
+        JobNo: Code[20];
+        JobTaskNo: Code[20];
+        AfkTotalAmount_LCY: Decimal;
+        AfkTotalAmountInclVAT_LCY: Decimal;
+        AfkTotalVAT_LCY: Decimal;
+        CalculatedExchRate: Decimal;
+        PrevLineAmount: Decimal;
+        RemainingAmount: Decimal;
+        TotalAmount: Decimal;
+        TotalAmountExclInclVATValue: Decimal;
+        TotalAmountInclVAT: Decimal;
+        TotalAmountVAT: Decimal;
+        TotalInvDiscAmount: Decimal;
+        TotalPaymentDiscOnVAT: Decimal;
+        TotalSubTotal: Decimal;
+        TotalVATAmountLCY: Decimal;
+        TotalVATBaseLCY: Decimal;
+        TransHeaderAmount: Decimal;
+        VATAmountLCY: Decimal;
+        VATBaseLCY: Decimal;
+        WorkDescriptionInstream: InStream;
+        AfkIsLine: Integer;
+        CompanyLogoPosition: Integer;
+        NumLigne: Integer;
         AfkAddresseFacturationClientLbl: Label 'Customer Address';
+        AfkAddresseFacturationLbl: Label 'Invoice Address';
+        AfkAgentFacturationLbl: Label 'Agent :';
+        AfkArreteMontantLbl: Label 'Fixed and certifies this invoice for the sum of :';
+        AfkBaseCaptionLbl: Label 'BASE';
         AfkCodeClientLbl: Label 'Customer No :';
-        AfkNomClientLbl: Label 'Customer Name :';
-        AfkNumContribuableLbl: Label 'Taxpayer Number :';
-        AfkRCCMLbl: Label 'Trade Register :';
+        AfkCompteAfrilandLbl: Label 'Afriland First Bank Account';
+        AfkCondPaiementLbl: Label 'Payment terms :';
+        AfkDateLieuFacturationLbl: Label 'Limbe on %1', Comment = '%1 is invoice date';
+        AfkDeviseLbl: Label 'Currency :';
+        AfkExClientLbl: Label 'Ex Client';
         AfkLigneNoLbl: Label 'No';
-        AfkLigneQteLbl: Label 'QTY';
+        AfkLignePrestationsLbl: Label 'SERVICES';
         AfkLignePULbl: Label 'UNIT PRICE';
-        AfkLigneTVALbl: Label 'VAT';
+        AfkLigneQteLbl: Label 'QTY';
         AfkLigneTotalHTLbl: Label 'TOTAL Excl. VAT';
         AfkLigneTotalTTCLbl: Label 'TOTAL Incl. VAT';
-        AfkLignePrestationsLbl: Label 'SERVICES';
-        AfkCondPaiementLbl: Label 'Payment terms :';
-        AfkCompteAfrilandLbl: Label 'Afriland First Bank Account';
-        AfkVAT1925Lbl: Label 'VAT 19.25% :';
-        AfkTotalTTCDeviseLbl: Label 'Total Incl. VAT :';
-        AfkDeviseLbl: Label 'Currency :';
+        AfkLigneTVALbl: Label 'VAT';
+        AfkNomClientLbl: Label 'Customer Name :';
+        AfkNomNavireLbl: Label 'Ship''s name :';
+        AfkNumContribuableLbl: Label 'Taxpayer Number :';
+        AfkObjectLbl: Label 'Object :';
+        AfkRCCMLbl: Label 'Trade Register :';
+        AfkTerminalLbl: Label 'Terminal :';
+        AfkTotalHTCFALbl: Label 'Total Excl. VAT CFAF :';
         AfkTotalHTDeviseLbl: Label 'Total Excl. VAT :';
         AfkTotalTTCCFALbl: Label 'Total Incl. VAT CFAF :';
-        AfkTotalHTCFALbl: Label 'Total Excl. VAT CFAF :';
-        AfkExClientLbl: Label 'Ex Client';
-        AfkArreteMontantLbl: Label 'Fixed and certifies this invoice for the sum of :';
-        AfkLieuAdresseFacturation: Text[50];
-        NumLigneText: Code[2];
-        RepCheck: Report "Check";
-        NoText: array[2] of Text;
-        Afk_AmountInWords: Text;
-        CurrencyExchangeRate: Record "Currency Exchange Rate";
-        AfkTotalAmountInclVAT_LCY: Decimal;
-        AfkTotalAmount_LCY: Decimal;
-        AfkTotalVAT_LCY: Decimal;
-        AfkTotalAmountInclVAT_LCYText: Text[50];
-        AfkTotalAmount_LCYText: Text[50];
-        AfkTotalVAT_LCYText: Text[50];
-        AfkLocalCurrencyText: Text[10];
-        AfkLocalCurrencyCaption: Text[50];
-        AfkTotalVAT_LCYCaption: Text[50];
-        AfkTotalAmount_LCYCaption: Text[50];
-        AfkTotalAmountInclVAT_LCYCaption: Text[50];
-        AfkBaseCaptionLbl: Label 'BASE';
-        AfkFormattedBase: Text[50];
-        AfkFormattedNumber: Text[50];
-        AfkFormattedVAT: Text[50];
-        AfkFormattedTotalVAT: Text[50];
-        AfkFormattedTotalHT: Text[50];
-        AfkFormattedTotalTTC: Text[50];
-
+        AfkTotalTTCDeviseLbl: Label 'Total Incl. VAT :';
+        AfkTypeNavireLbl: Label 'Type of ship :';
+        AfkVAT1925Lbl: Label 'VAT 19.25% :';
+        AlreadyPaidLbl: Label 'The invoice has been paid.';
+        BilledToLbl: Label 'Billed to';
+        BodyLbl: Label 'Thank you for your business. Your invoice is attached to this message.';
+        ChecksPayableLbl: Label 'Please make checks payable to %1', Comment = '%1 = company name';
+        ClosingLbl: Label 'Sincerely';
 
 
 
@@ -1664,17 +1734,35 @@ report 50001 "AfkPostedSalesInvoice"
         CompanyInfoBankNameLbl: Label 'Bank';
         CompanyInfoGiroNoLbl: Label 'Giro No.';
         CompanyInfoPhoneNoLbl: Label 'Phone No.';
+        DuplicataLbl: Label 'DUPLICATA';
         // CopyLbl: Label 'Copy';
         EMailLbl: Label 'Email';
+        ExchangeRateTxt: Label 'Exchange rate: %1/%2', Comment = '%1 and %2 are both amounts.';
+        FooterLabel01: Label 'Pôle de Référence au cœur du golfe de Guinée | Pole of Reference at the Heart of the Gulf of Guinea';
+        FooterLabel02: Label 'Société Anonyme à Capital Public | Capital social : %1 | N° Contribuable : %2 | RCCM : %3 | NACAM : %4';
+        FooterLabel03: Label 'Port Authority of Limbe Transitional Administration P.O Box 456 Limbe';
+        FromLbl: Label 'From';
+        GreetingLbl: Label 'Hello';
         HomePageLbl: Label 'Home Page';
         // InvDiscBaseAmtLbl: Label 'Invoice Discount Base Amount';
         InvDiscountAmtLbl: Label 'Invoice Discount';
         InvNoLbl: Label 'Invoice No';
+        JobNoLbl2: Label 'Job No.';
+        JobTaskDescLbl: Label 'Job Task Description';
+        JobTaskNoLbl2: Label 'Job Task No.';
+        NoFilterSetErr: Label 'You must specify one or more filters to avoid accidently printing all documents.';
+        PartiallyPaidLbl: Label 'The invoice has been partially paid. The remaining amount is %1', Comment = '%1=an amount';
+        PaymentMethodDescLbl: Label 'Payment Method :';
         // LineAmtAfterInvDiscLbl: Label 'Payment Discount on VAT';
         // LocalCurrencyLbl: Label 'Local Currency';
         // PageLbl: Label 'Page';
         PaymentTermsDescLbl: Label 'Payment Terms :';
-        PaymentMethodDescLbl: Label 'Payment Method :';
+        PmtDiscTxt: Label 'If we receive the payment before %1, you are eligible for a %2% payment discount.', Comment = '%1 Discount Due Date %2 = value of Payment Discount % ';
+        PriceLbl: Label 'Price';
+        PricePerLbl: Label 'Price per';
+        QRCodeLbl: Label 'Invoice No : %1 Date : %2 Total Amount Incl VAT : %3';
+        QtyLbl: Label 'Qty', Comment = 'Short form of Quantity';
+        QuestionsLbl: Label 'Questions?';
         // PostedShipmentDateLbl: Label 'Shipment Date';
         // SalesInvLineDiscLbl: Label 'Discount %';
         SalesInvoiceLbl: Label 'Invoice';
@@ -1683,118 +1771,59 @@ report 50001 "AfkPostedSalesInvoice"
         // ShiptoAddrLbl: Label 'Ship-to Address';
         ShptMethodDescLbl: Label 'Shipment Method';
         SubtotalLbl: Label 'Subtotal';
+        ThanksLbl: Label 'Thank You!';
         TotalLbl: Label 'Total';
+        UnitLbl: Label 'Unit';
+        VATAmountLCYLbl: Label 'VAT Amount (LCY)';
         // VATAmtSpecificationLbl: Label 'VAT Amount Specification';
         VATAmtLbl: Label 'VAT Amount';
-        VATAmountLCYLbl: Label 'VAT Amount (LCY)';
         VATBaseLbl: Label 'VAT Base';
         // VATBaseLCYLbl: Label 'VAT Base (LCY)';
         VATClausesLbl: Label 'VAT Clause';
-        // VATIdentifierLbl: Label 'VAT Identifier';
-        // VATPercentageLbl: Label 'VAT %';
-        // SellToContactPhoneNoLbl: Label 'Sell-to Contact Phone No.';
-        // SellToContactMobilePhoneNoLbl: Label 'Sell-to Contact Mobile Phone No.';
-        // SellToContactEmailLbl: Label 'Sell-to Contact E-Mail';
-        // BillToContactPhoneNoLbl: Label 'Bill-to Contact Phone No.';
-        // BillToContactMobilePhoneNoLbl: Label 'Bill-to Contact Mobile Phone No.';
-        // BillToContactEmailLbl: Label 'Bill-to Contact E-Mail';
-        GLSetup: Record "General Ledger Setup";
-        ShipmentMethod: Record "Shipment Method";
-        PaymentTerms: Record "Payment Terms";
-        PaymentMethod: Record "Payment Method";
-        SalespersonPurchaser: Record "Salesperson/Purchaser";
-        CompanyBankAccount: Record "Bank Account";
-        CompanyInfo: Record "Company Information";
-        DummyCompanyInfo: Record "Company Information";
-        SalesSetup: Record "Sales & Receivables Setup";
-        Cust: Record Customer;
-        RespCenter: Record "Responsibility Center";
-        VATClause: Record "VAT Clause";
-        TempLineFeeNoteOnReportHist: Record "Line Fee Note on Report Hist." temporary;
-        SellToContact: Record Contact;
-        BillToContact: Record Contact;
-        Language: Codeunit Language;
-        FormatAddr: Codeunit "Format Address";
-        FormatDocument: Codeunit "Format Document";
-        SegManagement: Codeunit SegManagement;
-        AutoFormat: Codeunit "Auto Format";
-        WorkDescriptionInstream: InStream;
-        JobNo: Code[20];
-        JobTaskNo: Code[20];
-        WorkDescriptionLine: Text;
-        CustAddr: array[8] of Text[100];
+        Afk_AmountInWords: Text;
         ChecksPayableText: Text;
-        ShipToAddr: array[8] of Text[100];
-        CompanyAddr: array[8] of Text[100];
-        SalesPersonText: Text[30];
-        TotalText: Text[50];
-        TotalExclVATText: Text[50];
-        TotalInclVATText: Text[50];
-        LineDiscountPctText: Text;
-        PmtDiscText: Text;
-        RemainingAmountTxt: Text;
-        JobNoLbl: Text;
-        JobTaskNoLbl: Text;
-        FormattedVATPct: Text;
-        FormattedUnitPrice: Text;
-        FormattedQuantity: Text;
+        ExchangeRateText: Text;
         FormattedLineAmount: Text;
         FormattedLineAmountTTC: Text;
-        TotalAmountExclInclVATTextValue: Text;
-        MoreLines: Boolean;
-        ShowWorkDescription: Boolean;
-        ShowShippingAddr: Boolean;
-        LogInteraction: Boolean;
-        TotalSubTotal: Decimal;
-        TotalAmount: Decimal;
-        TotalAmountInclVAT: Decimal;
-        TotalAmountVAT: Decimal;
-        TotalInvDiscAmount: Decimal;
-        TotalPaymentDiscOnVAT: Decimal;
-        RemainingAmount: Decimal;
-        TransHeaderAmount: Decimal;
-        [InDataSet]
-        LogInteractionEnable: Boolean;
-        DisplayAssemblyInformation: Boolean;
-        DisplayShipmentInformation: Boolean;
-        CompanyLogoPosition: Integer;
-        FirstLineHasBeenOutput: Boolean;
-        CalculatedExchRate: Decimal;
+        FormattedQuantity: Text;
+        FormattedUnitPrice: Text;
+        FormattedVATPct: Text;
+        JobNoLbl: Text;
+        JobTaskNoLbl: Text;
+        LineDiscountPctText: Text;
+        NoText: array[2] of Text;
         PaymentInstructionsTxt: Text;
-        ExchangeRateText: Text;
-        ExchangeRateTxt: Label 'Exchange rate: %1/%2', Comment = '%1 and %2 are both amounts.';
-        VATBaseLCY: Decimal;
-        VATAmountLCY: Decimal;
-        TotalVATBaseLCY: Decimal;
-        TotalVATAmountLCY: Decimal;
-        TextDuplicata: Text[20];
-        PrevLineAmount: Decimal;
-        NoFilterSetErr: Label 'You must specify one or more filters to avoid accidently printing all documents.';
-        TotalAmountExclInclVATValue: Decimal;
-        DisplayAdditionalFeeNote: Boolean;
-        GreetingLbl: Label 'Hello';
-        ClosingLbl: Label 'Sincerely';
-        PmtDiscTxt: Label 'If we receive the payment before %1, you are eligible for a %2% payment discount.', Comment = '%1 Discount Due Date %2 = value of Payment Discount % ';
-        BodyLbl: Label 'Thank you for your business. Your invoice is attached to this message.';
-        AlreadyPaidLbl: Label 'The invoice has been paid.';
-        PartiallyPaidLbl: Label 'The invoice has been partially paid. The remaining amount is %1', Comment = '%1=an amount';
-        FromLbl: Label 'From';
-        BilledToLbl: Label 'Billed to';
-        ChecksPayableLbl: Label 'Please make checks payable to %1', Comment = '%1 = company name';
-        QuestionsLbl: Label 'Questions?';
-        ThanksLbl: Label 'Thank You!';
-        JobNoLbl2: Label 'Job No.';
-        JobTaskNoLbl2: Label 'Job Task No.';
-        JobTaskDescription: Text[100];
-        JobTaskDescLbl: Label 'Job Task Description';
-        UnitLbl: Label 'Unit';
-        DuplicataLbl: Label 'DUPLICATA';
+        PmtDiscText: Text;
+        QRCode: Text;
+        RemainingAmountTxt: Text;
+        TotalAmountExclInclVATTextValue: Text;
         VATClausesText: Text;
-        QtyLbl: Label 'Qty', Comment = 'Short form of Quantity';
-        PriceLbl: Label 'Price';
-        PricePerLbl: Label 'Price per';
-        AfkIsLine: Integer;
-        AfkCurrCode: code[20];
+        WorkDescriptionLine: Text;
+        AfkLocalCurrencyText: Text[10];
+        TextDuplicata: Text[20];
+        SalesPersonText: Text[30];
+        AfkFormattedBase: Text[50];
+        AfkFormattedNumber: Text[50];
+        AfkFormattedTotalHT: Text[50];
+        AfkFormattedTotalTTC: Text[50];
+        AfkFormattedTotalVAT: Text[50];
+        AfkFormattedVAT: Text[50];
+        AfkLieuAdresseFacturation: Text[50];
+        AfkLocalCurrencyCaption: Text[50];
+        AfkTotalAmount_LCYCaption: Text[50];
+        AfkTotalAmount_LCYText: Text[50];
+        AfkTotalAmountInclVAT_LCYCaption: Text[50];
+        AfkTotalAmountInclVAT_LCYText: Text[50];
+        AfkTotalVAT_LCYCaption: Text[50];
+        AfkTotalVAT_LCYText: Text[50];
+        TotalExclVATText: Text[50];
+        TotalInclVATText: Text[50];
+        TotalText: Text[50];
+        CompanyAddr: array[8] of Text[100];
+        CustAddr: array[8] of Text[100];
+        JobTaskDescription: Text[100];
+        ShipToAddr: array[8] of Text[100];
+        FooterLabel02Text: Text[250];
 
     local procedure InitLogInteraction()
     begin
@@ -1803,8 +1832,8 @@ report 50001 "AfkPostedSalesInvoice"
 
     local procedure InitializeShipmentLine()
     var
-        SalesShipmentHeader: Record "Sales Shipment Header";
         SalesShipmentBuffer2: Record "Sales Shipment Buffer";
+        SalesShipmentHeader: Record "Sales Shipment Header";
     begin
         if Line.Type = Line.Type::" " then
             exit;
@@ -1884,9 +1913,9 @@ report 50001 "AfkPostedSalesInvoice"
 
     local procedure GetLineFeeNoteOnReportHist(SalesInvoiceHeaderNo: Code[20])
     var
-        LineFeeNoteOnReportHist: Record "Line Fee Note on Report Hist.";
         CustLedgerEntry: Record "Cust. Ledger Entry";
         Customer: Record Customer;
+        LineFeeNoteOnReportHist: Record "Line Fee Note on Report Hist.";
     begin
         TempLineFeeNoteOnReportHist.DeleteAll();
         CustLedgerEntry.SetRange("Document Type", CustLedgerEntry."Document Type"::Invoice);

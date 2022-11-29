@@ -264,7 +264,7 @@ codeunit 50009 AfkBudgetControl
                         BudgetLine."Yearly Budgeted Amt" := BudgetLine."Budgeted Amount";
                         BudgetLine."Yearly PreCommitment" := GetPrecommitmentAmt(DimValNature.Code, DimValTask.Code, DateDeb, DateFin);
                         BudgetLine."Yearly Commitment" := GetCommitmentAmt(DimValNature.Code, DimValTask.Code, DateDeb, DateFin);
-                        BudgetLine."Yearly Realized Amt" := BudgetLine."Net Change";
+                        BudgetLine."Yearly Realized Amt" := GetRealizedAmt(DimValNature.Code, DimValTask.Code, DateDeb, DateFin);
                         BudgetLine."Yearly Available Amt" := (BudgetLine."Yearly Budgeted Amt") -
                               (BudgetLine."Yearly PreCommitment" + BudgetLine."Yearly Commitment" + BudgetLine."Yearly Realized Amt");
                         if (BudgetLine."Yearly Budgeted Amt" <> 0) then
@@ -301,7 +301,7 @@ codeunit 50009 AfkBudgetControl
 
 
     local procedure GetPrecommitmentAmt(CodeNature: Code[20];
-        CodeTache: Code[20]; DateDeb: Date; DateFin: Date) ReturnAmt: Decimal
+            CodeTache: Code[20]; DateDeb: Date; DateFin: Date) ReturnAmt: Decimal
     var
         amt1: Decimal;
         amt2: Decimal;
@@ -312,13 +312,24 @@ codeunit 50009 AfkBudgetControl
     end;
 
     local procedure GetCommitmentAmt(CodeNature: Code[20];
-        CodeTache: Code[20]; DateDeb: Date; DateFin: Date) ReturnAmt: Decimal
+            CodeTache: Code[20]; DateDeb: Date; DateFin: Date) ReturnAmt: Decimal
     var
         amt1: Decimal;
         amt2: Decimal;
     begin
         amt1 := GetcommitmentAmt(CodeNature, CodeTache, '', DateDeb, DateFin, true);
         amt2 := GetcommitmentAmt(CodeNature, CodeTache, '', DateDeb, DateFin, false);
+        exit(amt1 + amt2);
+    end;
+
+    local procedure GetRealizedAmt(CodeNature: Code[20];
+            CodeTache: Code[20]; DateDeb: Date; DateFin: Date) ReturnAmt: Decimal
+    var
+        amt1: Decimal;
+        amt2: Decimal;
+    begin
+        amt1 := GetRealizedAmt(CodeNature, CodeTache, DateDeb, DateFin, true);
+        amt2 := GetRealizedAmt(CodeNature, CodeTache, DateDeb, DateFin, false);
         exit(amt1 + amt2);
     end;
 
@@ -424,81 +435,46 @@ codeunit 50009 AfkBudgetControl
         end;
     end;
 
+    procedure GetRealizedAmt(CodeNature: Code[20]; CodeTache: Code[20];
+         DateDeb: Date; DateFin: Date; IsItem: Boolean) ReturnAmt: Decimal
+    var
+        AfkDocItem: Record AfkWhseDelivery;
+        PostedPurchHeader: Record "Purch. Inv. Header";
+    begin
 
-    // procedure GetPrecommitmentAmt(PurchaseH: Record "Purchase Header")
-    // var
-    //     BudgetLine: Record AfkDocRequisitionBudget;
-    //     GLAcc: Record "G/L Account";
-    //     PurchLine: Record "Purchase Line";
-    //     HaveLines: Boolean;
-    //     NewAcc: Code[20];
-    //     NewCodeAxe1: Code[20];
-    //     OldAcc: Code[20];
-    //     OldCodeBudget: Code[20];
-    //     DateDeb: Date;
-    //     DateFin: Date;
-    //     OldAccAmt: Decimal;
-    // begin
+        if (IsItem) then begin
+            AfkDocItem.RESET;
+            //AfkDocItem.SetRange(AfkDocItem.Status, AfkDocItem.Status::Released);
+            AfkDocItem.SetRange("Shortcut Dimension 1 Code", CodeTache);
+            AfkDocItem.SetRange("Shortcut Dimension 2 Code", CodeNature);
+            //AfkDocItem.SetRange(AfkDocItem."Document Type", AfkDocItem."Document Type"::ItemReq);
+            IF DateDeb <> 0D then
+                AfkDocItem.SETRANGE("Document Date", DateDeb, DateFin);
+            IF AfkDocItem.FINDSET THEN
+                REPEAT
 
-    //     GetPeriod(PurchaseH."Document Date", DateDeb, DateFin);
+                    ReturnAmt := ReturnAmt + GetDocRealizedDeliveredAmount(AfkDocItem);
 
-    //     CLEAR(BudgetLine);
-    //     BudgetLine.SETRANGE("Document Type", PurchaseH."Document Type");
-    //     BudgetLine.SETRANGE("Document No.", PurchaseH."No.");
-    //     BudgetLine.DELETEALL;
+                UNTIL AfkDocItem.NEXT = 0;
 
-    //     PurchLine.RESET;
-    //     // PurchLine.SETCURRENTKEY(Afk_PurchaseAccount, "Shortcut Dimension 1 Code");
-    //     PurchLine.SETRANGE("Document Type", PurchaseH."Document Type");
-    //     PurchLine.SETRANGE("Document No.", PurchaseH."No.");
-    //     IF PurchLine.FINDSET THEN
-    //         OldAcc := PurchLine.Afk_PurchaseAccount;
-    //     OldCodeBudget := PurchLine."Shortcut Dimension 1 Code";
-    //     REPEAT
+        end else begin
 
-    //         NewAcc := PurchLine.Afk_PurchaseAccount;
-    //         NewCodeAxe1 := PurchLine."Shortcut Dimension 1 Code";
-    //         CheckData(NewAcc, NewCodeAxe1, PurchLine."Line No.");
+            PostedPurchHeader.RESET;
+            //PostedPurchHeader.SetRange(PostedPurchHeader."Document Type", PostedPurchHeader."Document Type"::Order);
+            PostedPurchHeader.SetRange(PostedPurchHeader."Shortcut Dimension 1 Code", CodeTache);
+            PostedPurchHeader.SetRange(PostedPurchHeader."Shortcut Dimension 2 Code", CodeNature);
+            //PurchHeader.SETFILTER(PurchHeader.Status, '%1|%2', PurchHeader.Status::Released, PurchHeader.Status::"Pending Prepayment");
+            IF DateDeb <> 0D then
+                PostedPurchHeader.SETRANGE("Document Date", DateDeb, DateFin);
+            IF PostedPurchHeader.FINDSET THEN
+                REPEAT
 
-    //         IF ((OldAcc <> NewAcc) OR (OldCodeBudget <> NewCodeAxe1)) THEN BEGIN
-    //             CLEAR(BudgetLine);
-    //             BudgetLine."Document Type" := PurchaseH."Document Type";
-    //             BudgetLine."Document No." := PurchaseH."No.";
-    //             BudgetLine."G/L Account No" := OldAcc;
-    //             BudgetLine."Dimension Code 1" := OldCodeBudget;
-    //             IF GLAcc.GET(OldAcc) THEN BudgetLine."G/L Account Name" := GLAcc.Name;
+                    ReturnAmt := ReturnAmt + GetDocPurchaseInvoicedAmount(PostedPurchHeader);
 
-    //             CalcValuesBudget(BudgetLine, PurchaseH."Document Date", PurchaseH."No.", OldAcc, OldCodeBudget);
+                UNTIL PostedPurchHeader.NEXT = 0;
+        end;
+    end;
 
-    //             IF OldAcc <> '' THEN BudgetLine.INSERT;
-    //             OldAcc := PurchLine.Afk_PurchaseAccount;
-    //             OldCodeBudget := PurchLine."Shortcut Dimension 1 Code";
-    //             OldAccAmt := ConvertAmtLCY(PurchaseH."Document Date", PurchLine."Line Amount", PurchaseH."Currency Code");
-    //         END ELSE BEGIN
-    //             OldAccAmt := OldAccAmt + ConvertAmtLCY(PurchaseH."Document Date", PurchLine."Line Amount", PurchaseH."Currency Code");
-    //         END;
-    //         HaveLines := TRUE;
-    //     UNTIL PurchLine.NEXT = 0;
-
-    //     //Derniere ligne
-    //     IF HaveLines THEN BEGIN
-    //         CLEAR(BudgetLine);
-    //         BudgetLine."Document Type" := PurchaseH."Document Type";
-    //         BudgetLine."Document No." := PurchaseH."No.";
-    //         BudgetLine."G/L Account No" := OldAcc;
-
-    //         IF GLAcc.GET(OldAcc) THEN BudgetLine."G/L Account Name" := GLAcc.Name;
-    //         BudgetLine."Dimension Code 1" := OldCodeBudget;
-    //         BudgetLine."Document Amount" := OldAccAmt;
-
-    //         CalcValuesBudget(BudgetLine, PurchaseH."Document Date", PurchaseH."No.", OldAcc, OldCodeBudget);
-
-    //         //IF (BudgetLine."Remaining Amount"<0) THEN BudgetLine."Remaining Amount":=0;
-
-    //         IF OldAcc <> '' THEN BudgetLine.INSERT;
-    //     END;
-
-    // end;
 
     procedure GetPurchAcc(PurchLine: Record "Purchase Line"): Code[20]
     var
@@ -655,7 +631,7 @@ codeunit 50009 AfkBudgetControl
         BudgetLine."Yearly Budgeted Amt" := BudgetLine."Budgeted Amount";
         BudgetLine."Yearly PreCommitment" := GetPrecommitmentAmt(CodeAxe2, CodeAxe1, DateDeb, DateFin);
         BudgetLine."Yearly Commitment" := GetCommitmentAmt(CodeAxe2, CodeAxe1, DateDeb, DateFin);
-        BudgetLine."Yearly Realized Amt" := BudgetLine."Net Change";
+        BudgetLine."Yearly Realized Amt" := GetRealizedAmt(CodeAxe2, CodeAxe1, DateDeb, DateFin);
         BudgetLine."Yearly Available Amt" := (BudgetLine."Yearly Budgeted Amt") -
               (BudgetLine."Yearly PreCommitment" + BudgetLine."Yearly Commitment" + BudgetLine."Yearly Realized Amt");
         if (BudgetLine."Yearly Budgeted Amt" <> 0) then
@@ -774,6 +750,24 @@ codeunit 50009 AfkBudgetControl
             UNTIL PurchLine.NEXT = 0;
     end;
 
+    local procedure GetDocPurchaseInvoicedAmount(PurchHeader: Record "Purch. Inv. Header") ReturnAmt: Decimal
+    var
+        PurchLine: Record "Purch. Inv. Line";
+        LineAmt: Decimal;
+    begin
+
+        PurchLine.RESET;
+        //PurchLine.SETRANGE("Document Type", PurchHeader."Document Type");
+        PurchLine.SETRANGE("Document No.", PurchHeader."No.");
+        IF PurchLine.FINDSET THEN
+            REPEAT
+                //IF ((PurchLine."Shortcut Dimension 2 Code" = CodeAxe2) AND (PurchLine."Shortcut Dimension 1 Code" = CodeAxe1)) THEN BEGIN
+                LineAmt := PurchLine."Direct Unit Cost" * (PurchLine.Quantity);
+                ReturnAmt := ReturnAmt + ConvertAmtLCY(PurchHeader."Document Date", LineAmt, PurchHeader."Currency Code");
+            //END;
+            UNTIL PurchLine.NEXT = 0;
+    end;
+
     local procedure GetDocReleaseNotDeliveredAmount(ReqHeader: Record AfkDocRequisition) ReturnAmt: Decimal
     var
         ReqLine: Record AfkDocRequisitionLine;
@@ -791,6 +785,25 @@ codeunit 50009 AfkBudgetControl
                 LineAmt := ReqLine."Unit Cost" * (ReqLine.Quantity - ReqLine."Whse Delivered Quantity");
                 ReturnAmt := ReturnAmt + LineAmt;
             //END;
+            UNTIL ReqLine.NEXT = 0;
+    end;
+
+    local procedure GetDocRealizedDeliveredAmount(ReqHeader: Record AfkWhseDelivery) ReturnAmt: Decimal
+    var
+        ReqLine: Record AfkWhseDeliveryLine;
+        LineAmt: Decimal;
+
+    begin
+
+        ReqLine.RESET;
+        //ReqLine.SETRANGE("Document Type", ReqHeader."Document Type");
+        ReqLine.SETRANGE("Document No.", ReqHeader."No.");
+        IF ReqLine.FINDSET THEN
+            REPEAT
+
+                LineAmt := ReqLine."Unit Cost" * (ReqLine.Quantity);
+                ReturnAmt := ReturnAmt + LineAmt;
+
             UNTIL ReqLine.NEXT = 0;
     end;
 

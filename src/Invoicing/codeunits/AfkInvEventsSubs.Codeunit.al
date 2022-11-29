@@ -2,16 +2,6 @@ codeunit 50003 AfkInvEventsSubs
 {
     SingleInstance = true;
 
-    // [IntegrationEvent(TRUE, false)]
-    // local procedure OnAfterNoOnAfterValidate(var SalesLine: Record "Sales Line"; xSalesLine: Record "Sales Line")
-
-    // [EventSubscriber(ObjectType::Table, Database::"Sales Line", 'OnAfterAssignItemValues', '', false, false)]
-    // local procedure UpdateSalesLineFromItem(var SalesLine: Record "Sales Line"; Item: Record Item)
-    // var
-    //     AfkPricingMgt: codeunit AfkPortServiceInvMgt;
-    // begin
-    //     AfkPricingMgt.SetSalesLineDefValues(SalesLine, SalesLine.GetSalesHeader());
-    // end;
 
     [EventSubscriber(ObjectType::Page, Page::"Sales invoice Subform", 'OnAfterNoOnAfterValidate', '', true, false)]
     local procedure UpdateSalesLineFromItem(var SalesLine: Record "Sales Line"; xSalesLine: Record "Sales Line")
@@ -22,12 +12,28 @@ codeunit 50003 AfkInvEventsSubs
     end;
 
 
-    [EventSubscriber(ObjectType::Table, Database::"Sales Header", 'OnBeforeInitInsert', '', true, false)]
-    local procedure UpdateSalesInvoiceNosSeries(var SalesHeader: Record "Sales Header"; xSalesHeader: Record "Sales Header"; var IsHandled: Boolean)
+    // [EventSubscriber(ObjectType::Table, Database::"Sales Header", 'OnBeforeInitInsert', '', true, false)]
+    // local procedure UpdateSalesInvoiceNosSeries(var SalesHeader: Record "Sales Header"; xSalesHeader: Record "Sales Header"; var IsHandled: Boolean)
+    // var
+    //     AfkPricingMgt: codeunit AfkPortServiceInvMgt;
+    // begin
+    //     AfkPricingMgt.LoadSalesInvoiceNosSeries(SalesHeader, xSalesHeader, IsHandled);
+    // end;
+
+    [EventSubscriber(ObjectType::Table, Database::"Sales Header", 'OnAfterInitPostingNoSeries', '', true, false)]
+    local procedure OnAfterInitPostingNoSeries(var SalesHeader: Record "Sales Header"; xSalesHeader: Record "Sales Header")
     var
         AfkPricingMgt: codeunit AfkPortServiceInvMgt;
     begin
-        AfkPricingMgt.LoadSalesInvoiceNosSeries(SalesHeader, xSalesHeader, IsHandled);
+        AfkPricingMgt.LoadSalesInvoicePostingNosSeries(SalesHeader, xSalesHeader);
+    end;
+
+    [EventSubscriber(ObjectType::Table, Database::"Sales Header", 'OnAfterValidateEvent', 'Responsibility Center', true, false)]
+    local procedure OnAfterValidateEventRespCenter(var Rec: Record "Sales Header"; var xRec: Record "Sales Header"; CurrFieldNo: Integer)
+    var
+        AfkPricingMgt: codeunit AfkPortServiceInvMgt;
+    begin
+        AfkPricingMgt.OnAfterValidate_RespCenter(Rec, xRec, CurrFieldNo);
     end;
 
 
@@ -49,10 +55,6 @@ codeunit 50003 AfkInvEventsSubs
         AfkPricingMgt.InitSalesLineFromStandartLine(SalesLine, StdSalesLine);
     end;
 
-    // [IntegrationEvent(false, false)]
-    // local procedure OnBeforeApplyStdCodesToSalesLines(var SalesLine: Record "Sales Line"; StdSalesLine: Record "Standard Sales Line")
-    // begin
-    // end;
 
 
 }

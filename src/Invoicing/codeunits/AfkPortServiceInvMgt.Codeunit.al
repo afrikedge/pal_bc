@@ -10,8 +10,8 @@ codeunit 50000 AfkPortServiceInvMgt
     var
         linePrice: Record Afk_Princing;
         priceFound: Boolean;
-        priceInInvoiceCurr: Decimal;
         calcVal: Decimal;
+        priceInInvoiceCurr: Decimal;
     begin
 
         if (sLine."No." = '') then exit;
@@ -81,9 +81,9 @@ codeunit 50000 AfkPortServiceInvMgt
 
     procedure CalcAllLines(sHeader: Record "Sales Header")
     var
+        Item2: Record Item;
         salesL: Record "Sales Line";
         totalHT: Decimal;
-        Item2: Record Item;
     begin
         //Calcul lignes simples
         salesL.Reset();
@@ -107,9 +107,9 @@ codeunit 50000 AfkPortServiceInvMgt
 
     procedure CalcTotalLines(sHeader: Record "Sales Header")
     var
+        Item2: Record Item;
         salesL: Record "Sales Line";
         totalHT: Decimal;
-        Item2: Record Item;
     begin
         salesL.Reset();
         salesL.SetRange("Document Type", sHeader."Document Type");
@@ -150,9 +150,9 @@ codeunit 50000 AfkPortServiceInvMgt
     var
         RespCenter: Record "Responsibility Center";
         UserSetup1: Record "User Setup";
+        NoSeriesMgt: Codeunit NoSeriesManagement;
         UserSetupMgt: Codeunit "User Setup Management";
         respCenterCode: Code[20];
-        NoSeriesMgt: Codeunit NoSeriesManagement;
     begin
         if (SalesH."Document Type" <> SalesH."Document Type"::Invoice) then
             exit;
@@ -168,6 +168,51 @@ codeunit 50000 AfkPortServiceInvMgt
         end;
     end;
 
+    procedure LoadSalesInvoicePostingNosSeries(var SalesH: Record "Sales Header"; var xSalesH: Record "Sales Header")
+    var
+        RespCenter: Record "Responsibility Center";
+        UserSetup1: Record "User Setup";
+        NoSeriesMgt: Codeunit NoSeriesManagement;
+        UserSetupMgt: Codeunit "User Setup Management";
+        respCenterCode: Code[20];
+    begin
+        if (SalesH."Document Type" <> SalesH."Document Type"::Invoice) then
+            exit;
+        UserSetup1.get(UserId);
+        //UserSetup1.TestField("Sales Resp. Ctr. Filter");
+        respCenterCode := UserSetupMgt.GetRespCenter(0, SalesH."Responsibility Center");
+        if (RespCenter.get(RespCentercode)) then begin
+            RespCenter.TestField(RespCenter.AfkSalesInvoiceNos);
+            SalesH."Posting No. Series" := RespCenter.AfkSalesInvoiceNos;
+            /*
+                if SalesH."No." = '' then begin
+                //SalesH.TestNoSeries;
+                NoSeriesMgt.InitSeries(RespCenter.AfkSalesInvoiceNos, xSalesH."No. Series", SalesH."Posting Date", SalesH."No.", SalesH."No. Series");
+                IsHandled := true;
+                end;
+            */
+        end;
+    end;
+
+    procedure OnAfterValidate_RespCenter(var "Rec": Record "Sales Header"; var xRec: Record "Sales Header"; CurrFieldNo: Integer)
+    var
+        RespCenter: Record "Responsibility Center";
+        UserSetup1: Record "User Setup";
+        NoSeriesMgt: Codeunit NoSeriesManagement;
+        UserSetupMgt: Codeunit "User Setup Management";
+        respCenterCode: Code[20];
+    begin
+        if (Rec."Responsibility Center" = xRec."Responsibility Center") then
+            exit;
+
+        respCenterCode := Rec."Responsibility Center";
+        if (RespCenter.get(RespCentercode)) then begin
+            RespCenter.TestField(RespCenter.AfkSalesInvoiceNos);
+            Rec."Posting No. Series" := RespCenter.AfkSalesInvoiceNos;
+            Rec."Posting No." := '';
+        end;
+    end;
+
     procedure InitSalesLineType(var SalesLine: Record "Sales Line"; var xSalesLine: Record "Sales Line"; var IsHandled: Boolean)
     begin
         SalesLine.Type := SalesLine.Type::Item;
@@ -177,6 +222,7 @@ codeunit 50000 AfkPortServiceInvMgt
     procedure InitSalesLineFromStandartLine(var SalesLine: Record "Sales Line"; StdSalesLine: Record "Standard Sales Line")
     begin
 
+        SalesLine.Afk_Printed_Description := StdSalesLine.Afk_Printed_Description;
         SalesLine.Afk_Unit_of_Measure_Code_1 := StdSalesLine.Afk_Unit_of_Measure_Code_1;
         SalesLine.Afk_Unit_of_Measure_Code_2 := StdSalesLine.Afk_Unit_of_Measure_Code_2;
 
@@ -245,8 +291,8 @@ codeunit 50000 AfkPortServiceInvMgt
         sLine: Record "Sales Line";
         sHeader: Record "Sales Header"): Integer
     var
-        num: Integer;
         boat: Record afk_Boat;
+        num: Integer;
     begin
 
         if (sLine."No." <> upLine."Item No.") then
@@ -353,8 +399,8 @@ codeunit 50000 AfkPortServiceInvMgt
     end;
 
     var
+        CurrExchRate: Record "Currency Exchange Rate";
         Item1: Record Item;
         CalcParamValues: Codeunit AfkCalcValueParams;
-        CurrExchRate: Record "Currency Exchange Rate";
         PortServMgt: Codeunit AfkPortServiceInvMgt;
 }

@@ -983,6 +983,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table AfkSetup - Field Whse Delivery Nos. - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 252127493 - Field 33567791 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>XAF Currency Code</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkSetup - Field XAF Currency Code - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 4108253659 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Delivery Form</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -2953,6 +2958,21 @@
           <note from="Developer" annotates="general" priority="2">%1 and %2 are both amounts.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Report AfkPostedSalesInvoice - NamedType ExchangeRateTxt</note>
         </trans-unit>
+        <trans-unit id="Report 3198086736 - NamedType 2569633030" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Pôle de Référence au cœur du golfe de Guinée | Pole of Reference at the Heart of the Gulf of Guinea</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkPostedSalesInvoice - NamedType FooterLabel01</note>
+        </trans-unit>
+        <trans-unit id="Report 3198086736 - NamedType 656543179" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Société Anonyme à Capital Public | Capital social : %1 | N° Contribuable : %2 | RCCM : %3 | NACAM : %4</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkPostedSalesInvoice - NamedType FooterLabel02</note>
+        </trans-unit>
+        <trans-unit id="Report 3198086736 - NamedType 1294239796" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Port Authority of Limbe Transitional Administration P.O Box 456 Limbe</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkPostedSalesInvoice - NamedType FooterLabel03</note>
+        </trans-unit>
         <trans-unit id="Report 3198086736 - NamedType 901740384" size-unit="char" translate="yes" xml:space="preserve">
           <source>From</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -3027,6 +3047,11 @@
           <source>Price per</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report AfkPostedSalesInvoice - NamedType PricePerLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 3198086736 - NamedType 2648456304" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Invoice No : %1 Date : %2 Total Amount Incl VAT : %3</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkPostedSalesInvoice - NamedType QRCodeLbl</note>
         </trans-unit>
         <trans-unit id="Report 3198086736 - NamedType 3259830970" size-unit="char" translate="yes" xml:space="preserve">
           <source>Qty</source>
@@ -3754,7 +3779,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Report AfkSalesInvoicePreview - NamedType AlreadyPaidLbl</note>
         </trans-unit>
         <trans-unit id="Report 882492609 - NamedType 3988516694" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Preview</source>
+          <source>PROFORMA</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report AfkSalesInvoicePreview - NamedType ApercuLbl</note>
         </trans-unit>
@@ -3807,6 +3832,21 @@
           <source>Exchange rate: %1/%2</source>
           <note from="Developer" annotates="general" priority="2">%1 and %2 are both amounts.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Report AfkSalesInvoicePreview - NamedType ExchangeRateTxt</note>
+        </trans-unit>
+        <trans-unit id="Report 882492609 - NamedType 2569633030" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Pôle de Référence au cœur du golfe de Guinée | Pole of Reference at the Heart of the Gulf of Guinea</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkSalesInvoicePreview - NamedType FooterLabel01</note>
+        </trans-unit>
+        <trans-unit id="Report 882492609 - NamedType 656543179" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Société Anonyme à Capital Public | Capital social : %1 | N° Contribuable : %2 | RCCM : %3 | NACAM : %4</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkSalesInvoicePreview - NamedType FooterLabel02</note>
+        </trans-unit>
+        <trans-unit id="Report 882492609 - NamedType 1294239796" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Port Authority of Limbe Transitional Administration P.O Box 456 Limbe</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkSalesInvoicePreview - NamedType FooterLabel03</note>
         </trans-unit>
         <trans-unit id="Report 882492609 - NamedType 901740384" size-unit="char" translate="yes" xml:space="preserve">
           <source>From</source>
@@ -3882,6 +3922,11 @@
           <source>Price per</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report AfkSalesInvoicePreview - NamedType PricePerLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 882492609 - NamedType 2648456304" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Invoice No : %1 Date : %2 Total Amount Incl VAT : %3</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkSalesInvoicePreview - NamedType QRCodeLbl</note>
         </trans-unit>
         <trans-unit id="Report 882492609 - NamedType 3259830970" size-unit="char" translate="yes" xml:space="preserve">
           <source>Qty</source>
@@ -4088,15 +4133,25 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkPurchaseOrder - Control AfkBudgetLines - Property Caption</note>
         </trans-unit>
+        <trans-unit id="PageExtension 678316379 - Change 1786097247 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 387971303">
+          <source>Purchase Req No.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkPurchaseOrder - Change Quote No. - Property Caption</note>
+        </trans-unit>
         <trans-unit id="PageExtension 678316379 - Change 3126877759 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 387971303">
           <source>Vendor Offer Ref.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkPurchaseOrder - Change Vendor Order No. - Property Caption</note>
         </trans-unit>
-        <trans-unit id="PageExtension 849346501 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 2882327954">
+        <trans-unit id="PageExtension 849346501 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 3195034673">
           <source>Purchase Commitments</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkPurchaseOrderList - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 849346501 - Control 652731875 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 3195034673">
+          <source>Purchase Req No.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkPurchaseOrderList - Control AfkQuote No. - Property Caption</note>
         </trans-unit>
         <trans-unit id="PageExtension 2819668743 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 3321822267">
           <source>Purchase Request</source>
@@ -5157,6 +5212,11 @@
           <source>Phone Network</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">TableExtension AfkStandardSalesLine - Field Afk_Phone_Network - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="TableExtension 424802883 - Field 798308798 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 399911519">
+          <source>Printed Description</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension AfkStandardSalesLine - Field Afk_Printed_Description - Property Caption</note>
         </trans-unit>
         <trans-unit id="TableExtension 424802883 - Field 1298251163 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 399911519">
           <source>Base</source>

@@ -4,6 +4,10 @@ pageextension 50008 AfkSalesStandCodeSubForm extends "Standard Sales Code Subfor
     {
         addafter("Quantity")
         {
+            field("Afk_Printed_Description"; Rec.Afk_Printed_Description)
+            {
+                ApplicationArea = Suite;
+            }
             field("Afk_Quantity1"; Rec.Afk_Quantity1)
             {
                 ApplicationArea = Suite;

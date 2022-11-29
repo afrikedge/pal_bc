@@ -55,6 +55,7 @@ tableextension 50010 AfkUserSetup extends "User Setup"
             TableRelation = "G/L Account"."No." where("Direct Posting" = const(true),
                 Blocked = const(true));
         }
+
     }
 
 }

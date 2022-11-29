@@ -9,6 +9,10 @@ pageextension 50016 AfkPurchaseOrder extends "Purchase Order"
             Caption = 'Vendor Offer Ref.';
             //ShowMandatory = true;
         }
+        modify("Quote No.")
+        {
+            Caption = 'Purchase Req No.';
+        }
 
         moveafter("Vendor Order No."; "Shortcut Dimension 2 Code")
         moveafter("Vendor Order No."; "Shortcut Dimension 1 Code")

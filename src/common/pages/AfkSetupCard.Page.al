@@ -64,6 +64,10 @@ page 50005 AfkSetupCard
                 {
                     ApplicationArea = Suite;
                 }
+                field("XAF Currency Code"; Rec."XAF Currency Code")
+                {
+                    ApplicationArea = Suite;
+                }
             }
         }
     }

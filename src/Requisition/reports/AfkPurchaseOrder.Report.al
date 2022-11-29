@@ -1131,7 +1131,7 @@ report 50004 "AfkPurchaseOrder"
             }
             trigger OnAfterGetRecord()
             var
-                QRCodeText: Text[80];
+                QRCodeText: Text;
             begin
 
                 //************************
@@ -1144,7 +1144,7 @@ report 50004 "AfkPurchaseOrder"
 
                 "Purchase Header".CalcFields("Purchase Header"."Amount Including VAT");
                 QRCodeText := StrSubstNo(QRCodeLbl, "Purchase Header"."No.", "Purchase Header"."Order Date", "Purchase Header"."Amount Including VAT");
-                GenerateQRCode(QRCodeText);
+                QRCode := QRCodeMgt.GenerateQRCode(QRCodeText);
                 //************************
                 CurrReport.Language := Language.GetLanguageIdOrDefault("Language Code");
 
@@ -1297,6 +1297,7 @@ report 50004 "AfkPurchaseOrder"
         PrepmtVATAmountLine: Record "VAT Amount Line" temporary;
         PrePmtVATAmountLineDeduct: Record "VAT Amount Line" temporary;
         VATAmountLine: Record "VAT Amount Line" temporary;
+        QRCodeMgt: Codeunit AfkQRCodeMgt;
         ArchiveManagement: Codeunit ArchiveManagement;
         FormatAddr: Codeunit "Format Address";
         FormatDocument: Codeunit "Format Document";
@@ -1454,18 +1455,7 @@ report 50004 "AfkPurchaseOrder"
         LogInteraction := NewLogInteraction;
     end;
 
-    local procedure GenerateQRCode(TextData: Text)
-    var
-        BarcodeSymbology2D: Enum "Barcode Symbology 2D";
-        BarcodeFontProvider2D: Interface "Barcode Font Provider 2D";
-        BarcodeString: Text;
-    begin
-        BarcodeFontProvider2D := Enum::"Barcode Font Provider 2D"::IDAutomation2D;
-        BarcodeSymbology2D := Enum::"Barcode Symbology 2D"::"QR-Code";
-        BarcodeString := TextData;
 
-        QRCode := BarcodeFontProvider2D.EncodeFont(BarcodeString, BarcodeSymbology2D);
-    end;
 
     local procedure IsReportInPreviewMode(): Boolean
     var

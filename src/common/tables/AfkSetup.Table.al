@@ -64,6 +64,12 @@ table 50004 AfkSetup
             DecimalPlaces = 0 : 5;
             MinValue = 0;
         }
+        field(50012; "XAF Currency Code"; Code[10])
+        {
+            Caption = 'XAF Currency Code';
+            TableRelation = Currency;
+            // CreateDimFromDefaultDim(Rec.FieldNo("Location Code"));
+        }
 
         // field(10; "Insurance Nos."; Code[20])
         // {
