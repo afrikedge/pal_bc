@@ -23,7 +23,7 @@
               </TablixColumns>
               <TablixRows>
                 <TablixRow>
-                  <Height>17.32149cm</Height>
+                  <Height>13.66603cm</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -2498,7 +2498,7 @@
                               <TablixBody>
                                 <TablixColumns>
                                   <TablixColumn>
-                                    <Width>8.38641cm</Width>
+                                    <Width>8.17406cm</Width>
                                   </TablixColumn>
                                 </TablixColumns>
                                 <TablixRows>
@@ -2586,9 +2586,9 @@
                               </TablixRowHierarchy>
                               <DataSetName>DataSet_Result</DataSetName>
                               <Top>11.02561cm</Top>
-                              <Left>2.65513cm</Left>
+                              <Left>2.86748cm</Left>
                               <Height>2.64042cm</Height>
-                              <Width>8.38641cm</Width>
+                              <Width>8.17406cm</Width>
                               <ZIndex>11</ZIndex>
                               <Style>
                                 <Border>
@@ -2596,39 +2596,6 @@
                                 </Border>
                               </Style>
                             </Tablix>
-                            <Textbox Name="Textbox36">
-                              <CanGrow>true</CanGrow>
-                              <KeepTogether>true</KeepTogether>
-                              <Paragraphs>
-                                <Paragraph>
-                                  <TextRuns>
-                                    <TextRun>
-                                      <Value EvaluationMode="Constant">Ex Client</Value>
-                                      <Style>
-                                        <FontFamily>Calibri</FontFamily>
-                                        <FontSize>9pt</FontSize>
-                                      </Style>
-                                    </TextRun>
-                                  </TextRuns>
-                                  <Style>
-                                    <TextAlign>Center</TextAlign>
-                                  </Style>
-                                </Paragraph>
-                              </Paragraphs>
-                              <rd:DefaultName>Textbox14</rd:DefaultName>
-                              <Top>5.53571in</Top>
-                              <Left>5.50016in</Left>
-                              <Height>0.2in</Height>
-                              <Width>1.80562in</Width>
-                              <ZIndex>12</ZIndex>
-                              <Style>
-                                <Border>
-                                  <Style>None</Style>
-                                </Border>
-                                <PaddingLeft>1pt</PaddingLeft>
-                                <PaddingRight>1pt</PaddingRight>
-                              </Style>
-                            </Textbox>
                             <Textbox Name="QRCode">
                               <CanGrow>true</CanGrow>
                               <KeepTogether>true</KeepTogether>
@@ -2639,7 +2606,7 @@
                                       <Value>=Last(Fields!QRCode.Value)</Value>
                                       <Style>
                                         <FontFamily>IDAutomation2D</FontFamily>
-                                        <FontSize>12pt</FontSize>
+                                        <FontSize>8pt</FontSize>
                                       </Style>
                                     </TextRun>
                                   </TextRuns>
@@ -2647,11 +2614,11 @@
                                 </Paragraph>
                               </Paragraphs>
                               <rd:DefaultName>QRCode</rd:DefaultName>
-                              <Top>13.81013cm</Top>
+                              <Top>10.98438cm</Top>
                               <Left>0.077cm</Left>
-                              <Height>3.51136cm</Height>
-                              <Width>4.21664cm</Width>
-                              <ZIndex>13</ZIndex>
+                              <Height>2.31123cm</Height>
+                              <Width>2.61409cm</Width>
+                              <ZIndex>12</ZIndex>
                               <Style>
                                 <Border>
                                   <Style>None</Style>
@@ -2670,7 +2637,6 @@
                             </Border>
                           </Style>
                         </Rectangle>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>
@@ -2698,7 +2664,7 @@
             </TablixRowHierarchy>
             <DataSetName>DataSet_Result</DataSetName>
             <Top>0.07281cm</Top>
-            <Height>17.32149cm</Height>
+            <Height>13.66603cm</Height>
             <Width>18.65799cm</Width>
             <Style>
               <Border>
@@ -2707,7 +2673,7 @@
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>17.3943cm</Height>
+        <Height>13.73884cm</Height>
         <Style />
       </Body>
       <Width>18.65799cm</Width>
