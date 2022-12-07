@@ -19,6 +19,32 @@ report 50001 "AfkPostedSalesInvoice"
             RequestFilterHeading = 'Sales Invoice';
 
             //*************************************ENtete*************************************************************
+
+            column(AfkCompanyAddress1; AfkCompanyAddress1)
+            {
+            }
+            column(AfkCompanyAddress2; AfkCompanyAddress2)
+            {
+            }
+            column(AfkCompanyAddress3; AfkCompanyAddress3)
+            {
+            }
+            column(AfkCustomerAddress1; AfkCustomerAddress1)
+            {
+            }
+            column(AfkCustomerAddress2; AfkCustomerAddress2)
+            {
+            }
+            column(AfkCustomerAddress3; AfkCustomerAddress3)
+            {
+            }
+            column(BankAccount1; BankAccount1)
+            {
+            }
+            column(BankAccount2; BankAccount2)
+            {
+            }
+
             column(Afk_LieuDateFacturation; AfkLieuAdresseFacturation)
             {
             }
@@ -159,6 +185,24 @@ report 50001 "AfkPostedSalesInvoice"
             column(FooterLabel03; FooterLabel03)
             {
             }
+            column(AfkCurrencyName; AfkCurrencyName)
+            {
+            }
+            column(AfkLocalCurrencyName; AfkLocalCurrencyName)
+            {
+            }
+            column(AfkCompanyBanqueLbl; AfkCompanyBanqueLbl)
+            {
+            }
+            column(AfkCompanyAccountLbl; AfkCompanyAccountLbl)
+            {
+            }
+            column(BankAccountLbl; BankAccountLbl)
+            {
+            }
+
+
+
 
 
 
@@ -867,8 +911,8 @@ report 50001 "AfkPostedSalesInvoice"
                         AfkFormattedNumber := '';
                         AfkFormattedVAT := '';
                     end else begin
-                        AfkFormattedBase := Format(Line.Afk_Quantity1);
-                        AfkFormattedNumber := Format(Line.Afk_Quantity2);
+                        AfkFormattedBase := Format(Round(Line.Afk_Quantity1, 2));
+                        AfkFormattedNumber := Format(Round(Line.Quantity, 2));
                         AfkFormattedVAT := Format("Amount Including VAT" - "Line Amount", 0, AutoFormat.ResolveAutoFormat("Auto Format"::AmountFormat, Header."Currency Code"));
                         FormattedLineAmountTTC := Format("Amount Including VAT", 0, AutoFormat.ResolveAutoFormat("Auto Format"::AmountFormat, Header."Currency Code"));
                     end;
@@ -946,17 +990,41 @@ report 50001 "AfkPostedSalesInvoice"
                     SetRange("Line No.", 0, "Line No.");
                     TransHeaderAmount := 0;
                     PrevLineAmount := 0;
+                    AfkLinesNumber := Count();
                     FirstLineHasBeenOutput := false;
                     DummyCompanyInfo.Picture := CompanyInfo.Picture;
 
                     OnAfterLineOnPreDataItem(Header, Line);
                 end;
 
-                trigger OnPostDataItem()
-                var
 
+            }
+            dataitem(AfkFooterline; "Integer")
+            {
+                DataItemTableView = SORTING(Number);
+                column(AfkNumLigne2; NumLigneText)
+                {
+                }
+                column(AfkIsLine2; AfkIsLine)
+                {
+                }
+
+                trigger OnAfterGetRecord()
                 begin
+                    AfkIsLine := 1;
+                    NumLigne := NumLigne + 1;
+                    if (NumLigne < 10) then
+                        NumLigneText := '0' + Format(NumLigne)
+                    else
+                        NumLigneText := Format(NumLigne);
+                end;
 
+                trigger OnPreDataItem()
+                begin
+                    // if (AfkLinesNumber < 10) then
+                    //     SetRange(Number, 1, 10 - AfkLinesNumber)
+                    // else
+                    SetRange(Number, 1, 14 - AfkLinesNumber);
                 end;
             }
             dataitem(WorkDescriptionLines; "Integer")
@@ -1343,6 +1411,7 @@ report 50001 "AfkPostedSalesInvoice"
 
                 trigger OnPreDataItem()
                 var
+                    AmountToConvertInLetters: decimal;
                     QRCodeText: Text;
                 begin
                     if Header."Prices Including VAT" then begin
@@ -1375,6 +1444,10 @@ report 50001 "AfkPostedSalesInvoice"
                     AfkTotalVAT_LCY := CurrencyExchangeRate.ExchangeAmtFCYToLCY(Header."Posting Date",
                         Header."Currency Code", TotalAmountVAT, Header."Currency Factor");
 
+                    AfkTotalAmountInclVAT_LCY := ROUND(AfkTotalAmountInclVAT_LCY, AfkLocalCurrency."Amount Rounding Precision");
+                    AfkTotalAmount_LCY := ROUND(AfkTotalAmount_LCY, AfkLocalCurrency."Amount Rounding Precision");
+                    AfkTotalVAT_LCY := ROUND(AfkTotalVAT_LCY, AfkLocalCurrency."Amount Rounding Precision");
+
                     if ((Header."Currency Factor" = 1) or (Header."Currency Factor" = 0)) then begin
                         AfkTotalAmountInclVAT_LCYText := '';
                         AfkLocalCurrencyText := '';
@@ -1404,7 +1477,8 @@ report 50001 "AfkPostedSalesInvoice"
 
                     RepCheck.InitTextVariable();
                     //RepCheck.FormatNoText(NoText, AfkTotalAmountInclVAT_LCY, Header."Currency Code");
-                    RepCheck.FormatNoText(NoText, ROUND(AfkTotalAmountInclVAT_LCY), AfkSetup."XAF Currency Code");
+                    //AmountToConvertInLetters := ROUND(AfkTotalAmountInclVAT_LCY, AfkLocalCurrency."Amount Rounding Precision");
+                    RepCheck.FormatNoText(NoText, AfkTotalAmountInclVAT_LCY, AfkSetup."XAF Currency Code");
                     //RepCheck.FormatNoTextFR(NoText, AfkTotalAmountInclVAT_LCY, '');
                     Afk_AmountInWords := NoText[1];
 
@@ -1419,6 +1493,8 @@ report 50001 "AfkPostedSalesInvoice"
 
                 end;
             }
+
+
 
             trigger OnAfterGetRecord()
             var
@@ -1437,17 +1513,37 @@ report 50001 "AfkPostedSalesInvoice"
                 AfkSetup.Get();
                 AfkSetup.TestField("XAF Currency Code");
 
+                if not Cust.Get("Bill-to Customer No.") then
+                    Clear(Cust);
+
                 AfkCurrCode := Header."Currency Code";
                 if (AfkCurrCode = '') then
                     AfkCurrCode := GLSetup."LCY Code";
 
+                AfkCurrencyName := AfkCurrCode;
+                if AfkCurrency.Get(AfkCurrCode) then
+                    AfkCurrencyName := AfkCurrency.Description;
+
+                if (AfkLocalCurrency.Get(GLSetup."LCY Code")) then
+                    AfkLocalCurrencyName := AfkLocalCurrency.Description;
                 //CalcFields("Work Description");
                 //ShowWorkDescription := "Work Description".HasValue;
+                //Format header
                 //*************************************************************SALES HEADER***********************
                 AfkLieuAdresseFacturation := StrSubstNo(AfkDateLieuFacturationLbl, Format(Header."Document Date", 0, 4));
                 if AfkBoat.Get(Header.Afk_Boat_Number) then;
                 NumLigne := 0;
 
+                if Country.get(Cust."Country/Region Code") then;
+                AfkCompanyAddress1 := CompanyInfo.Name;
+                AfkCompanyAddress2 := CompanyInfo.Address;
+                AfkCompanyAddress3 := CompanyInfo.City;
+                AfkCustomerAddress1 := Cust.Address;
+                AfkCustomerAddress2 := Cust."Address 2" + ' ' + Cust."Post Code" + ' ' + Cust.City + ' ' + Country.Name;
+                AfkCustomerAddress3 := Cust."E-Mail" + ' ' + Cust."Phone No.";
+
+                BankAccount1 := CompanyInfo."Bank Name";
+                BankAccount1 := CompanyInfo."Bank Branch No." + ' ' + CompanyInfo."Bank Account No.";
                 //************************************************************************************
 
                 FooterLabel02Text := StrSubstNo(FooterLabel02,
@@ -1467,8 +1563,7 @@ report 50001 "AfkPostedSalesInvoice"
                 FillLeftHeader;
                 FillRightHeader;
 
-                if not Cust.Get("Bill-to Customer No.") then
-                    Clear(Cust);
+
 
                 if "Currency Code" <> '' then begin
                     CurrencyExchangeRate.FindCurrency("Posting Date", "Currency Code", 1);
@@ -1617,6 +1712,9 @@ report 50001 "AfkPostedSalesInvoice"
         DummyCompanyInfo: Record "Company Information";
         BillToContact: Record Contact;
         SellToContact: Record Contact;
+        Country: Record "Country/Region";
+        AfkCurrency: Record currency;
+        AfkLocalCurrency: Record currency;
         CurrencyExchangeRate: Record "Currency Exchange Rate";
         Cust: Record Customer;
         // VATIdentifierLbl: Label 'VAT Identifier';
@@ -1677,6 +1775,8 @@ report 50001 "AfkPostedSalesInvoice"
         VATBaseLCY: Decimal;
         WorkDescriptionInstream: InStream;
         AfkIsLine: Integer;
+        //ClosingLbl: Label 'Sincerely';
+        AfkLinesNumber: Integer;
         CompanyLogoPosition: Integer;
         NumLigne: Integer;
         AfkAddresseFacturationClientLbl: Label 'Customer Address';
@@ -1685,6 +1785,9 @@ report 50001 "AfkPostedSalesInvoice"
         AfkArreteMontantLbl: Label 'Fixed and certifies this invoice for the sum of :';
         AfkBaseCaptionLbl: Label 'BASE';
         AfkCodeClientLbl: Label 'Customer No :';
+        AfkCompanyAccountLbl: Label 'Account No:';
+        AfkCompanyBanqueLbl: Label 'Bank :';
+
         AfkCompteAfrilandLbl: Label 'Afriland First Bank Account';
         AfkCondPaiementLbl: Label 'Payment terms :';
         AfkDateLieuFacturationLbl: Label 'Limbe on %1', Comment = '%1 is invoice date';
@@ -1710,12 +1813,11 @@ report 50001 "AfkPostedSalesInvoice"
         AfkTypeNavireLbl: Label 'Type of ship :';
         AfkVAT1925Lbl: Label 'VAT 19.25% :';
         AlreadyPaidLbl: Label 'The invoice has been paid.';
+        BankAccountLbl: Label 'Bank Account';
         BilledToLbl: Label 'Billed to';
         BodyLbl: Label 'Thank you for your business. Your invoice is attached to this message.';
         ChecksPayableLbl: Label 'Please make checks payable to %1', Comment = '%1 = company name';
         ClosingLbl: Label 'Sincerely';
-
-
 
 
 
@@ -1781,6 +1883,16 @@ report 50001 "AfkPostedSalesInvoice"
         // VATBaseLCYLbl: Label 'VAT Base (LCY)';
         VATClausesLbl: Label 'VAT Clause';
         Afk_AmountInWords: Text;
+        AfkCompanyAddress1: Text;
+        AfkCompanyAddress2: Text;
+        AfkCompanyAddress3: Text;
+        AfkCurrencyName: Text;
+        AfkCustomerAddress1: Text;
+        AfkCustomerAddress2: Text;
+        AfkCustomerAddress3: Text;
+        AfkLocalCurrencyName: Text;
+        BankAccount1: Text;
+        BankAccount2: Text;
         ChecksPayableText: Text;
         ExchangeRateText: Text;
         FormattedLineAmount: Text;
@@ -1799,7 +1911,6 @@ report 50001 "AfkPostedSalesInvoice"
         TotalAmountExclInclVATTextValue: Text;
         VATClausesText: Text;
         WorkDescriptionLine: Text;
-        AfkLocalCurrencyText: Text[10];
         TextDuplicata: Text[20];
         SalesPersonText: Text[30];
         AfkFormattedBase: Text[50];
@@ -1819,6 +1930,7 @@ report 50001 "AfkPostedSalesInvoice"
         TotalExclVATText: Text[50];
         TotalInclVATText: Text[50];
         TotalText: Text[50];
+        AfkLocalCurrencyText: Text[100];
         CompanyAddr: array[8] of Text[100];
         CustAddr: array[8] of Text[100];
         JobTaskDescription: Text[100];

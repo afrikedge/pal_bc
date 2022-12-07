@@ -9,16 +9,20 @@ pageextension 50001 AfkSalesInvoiceCard extends "Sales Invoice"
                 ApplicationArea = Suite;
             }
         }
+        addafter("Sell-to Customer Name")
+        {
+            field(Afk_Invoice_Object; Rec.Afk_Invoice_Object)
+            {
+                ApplicationArea = Suite;
+                ToolTip = 'Invoice subject';
+            }
+        }
         addafter(General)
         {
             group("Afk_Boat_Informations")
             {
                 Caption = 'Boat Informations';
-                field(Afk_Invoice_Object; Rec.Afk_Invoice_Object)
-                {
-                    ApplicationArea = Suite;
-                    ToolTip = 'Invoice subject';
-                }
+
                 field(Afk_Boat_Number; Rec.Afk_Boat_Number)
                 {
                     ApplicationArea = Suite;
@@ -146,6 +150,10 @@ pageextension 50001 AfkSalesInvoiceCard extends "Sales Invoice"
                     ApplicationArea = Suite;
                 }
                 field("Afk_Nb_Foreign_Passengers"; Rec.Afk_Nb_Foreign_Passengers)
+                {
+                    ApplicationArea = Suite;
+                }
+                field("Afk_CrewMembersNumber"; Rec.Afk_CrewMembersNumber)
                 {
                     ApplicationArea = Suite;
                 }

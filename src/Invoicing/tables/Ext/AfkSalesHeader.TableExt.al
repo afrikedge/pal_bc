@@ -157,5 +157,10 @@ tableextension 50000 AfkSalesHeader extends "Sales Header"
             Caption = 'Piloting sheet number';
             DataClassification = CustomerContent;
         }
+        field(50029; "Afk_CrewMembersNumber"; Integer)
+        {
+            Caption = 'Number of crew members';
+            DataClassification = CustomerContent;
+        }
     }
 }

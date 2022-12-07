@@ -21,6 +21,13 @@ pageextension 50000 AfkItemCard extends "Item Card"
                 ApplicationArea = Suite;
             }
         }
+        addafter("Description")
+        {
+            field("Afk_Description_2"; Rec."Description 2")
+            {
+                ApplicationArea = Suite;
+            }
+        }
     }
 
     actions

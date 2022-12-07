@@ -2778,6 +2778,16 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report AfkPostedSalesInvoice - NamedType AfkCodeClientLbl</note>
         </trans-unit>
+        <trans-unit id="Report 3198086736 - NamedType 2930841612" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Account No:</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkPostedSalesInvoice - NamedType AfkCompanyAccountLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 3198086736 - NamedType 740458455" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bank :</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkPostedSalesInvoice - NamedType AfkCompanyBanqueLbl</note>
+        </trans-unit>
         <trans-unit id="Report 3198086736 - NamedType 1493539719" size-unit="char" translate="yes" xml:space="preserve">
           <source>Afriland First Bank Account</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -2902,6 +2912,11 @@
           <source>The invoice has been paid.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report AfkPostedSalesInvoice - NamedType AlreadyPaidLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 3198086736 - NamedType 2158780623" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bank Account</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkPostedSalesInvoice - NamedType BankAccountLbl</note>
         </trans-unit>
         <trans-unit id="Report 3198086736 - NamedType 1694087509" size-unit="char" translate="yes" xml:space="preserve">
           <source>Billed to</source>
@@ -3653,6 +3668,16 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report AfkSalesInvoicePreview - NamedType AfkCodeClientLbl</note>
         </trans-unit>
+        <trans-unit id="Report 882492609 - NamedType 2930841612" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Account No:</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkSalesInvoicePreview - NamedType AfkCompanyAccountLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 882492609 - NamedType 740458455" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bank :</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkSalesInvoicePreview - NamedType AfkCompanyBanqueLbl</note>
+        </trans-unit>
         <trans-unit id="Report 882492609 - NamedType 1493539719" size-unit="char" translate="yes" xml:space="preserve">
           <source>Afriland First Bank Account</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -3782,6 +3807,11 @@
           <source>PROFORMA</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report AfkSalesInvoicePreview - NamedType ApercuLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 882492609 - NamedType 2158780623" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bank Account</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkSalesInvoicePreview - NamedType BankAccountLbl</note>
         </trans-unit>
         <trans-unit id="Report 882492609 - NamedType 1694087509" size-unit="char" translate="yes" xml:space="preserve">
           <source>Billed to</source>
@@ -4218,6 +4248,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkSalesInvoiceCard - Action AfkPrintPreview - Property Caption</note>
         </trans-unit>
+        <trans-unit id="PageExtension 3041876875 - Control 1281376180 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 4034894651">
+          <source>Invoice subject</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkSalesInvoiceCard - Control Afk_Invoice_Object - Property ToolTip</note>
+        </trans-unit>
         <trans-unit id="PageExtension 3041876875 - Control 3811124389 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 4034894651">
           <source>Boat Informations</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -4292,11 +4327,6 @@
           <source>Time of return of the pilot to the station</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkSalesInvoiceCard - Control Afk_Depart_Pilot_Return_Time - Property ToolTip</note>
-        </trans-unit>
-        <trans-unit id="PageExtension 3041876875 - Control 1281376180 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 4034894651">
-          <source>Invoice subject</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkSalesInvoiceCard - Control Afk_Invoice_Object - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="PageExtension 3041876875 - Change 2247850105 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 4034894651">
           <source>Terminal</source>
@@ -4872,6 +4902,11 @@
           <source>Boat Number</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">TableExtension AfkSalesHeader - Field Afk_Boat_Number - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="TableExtension 2748884565 - Field 2227504260 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 1192395785">
+          <source>Number of crew members</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension AfkSalesHeader - Field Afk_CrewMembersNumber - Property Caption</note>
         </trans-unit>
         <trans-unit id="TableExtension 2748884565 - Field 763492626 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 1192395785">
           <source>Departure: Name of Pilot</source>

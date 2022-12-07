@@ -32,9 +32,9 @@ codeunit 50002 AfkCalcValueParams
     local procedure GetCalcParamValue(sHeader: Record "Sales Header"; sLine: Record "Sales Line"; paramCode: Code[30]): Decimal
     var
         actualDate: DateTime;
+        endDate: DateTime;
         startDate: DateTime;
         nb: Integer;
-        endDate: DateTime;
     begin
 
         if (paramCode = 'BOAT_VOLUME') then begin
@@ -81,6 +81,10 @@ codeunit 50002 AfkCalcValueParams
 
         if (paramCode = 'NB_FOREIGN_PASSENGER') then begin
             exit(sHeader.Afk_Nb_Foreign_Passengers);
+        end;
+
+        if (paramCode = 'NBRE_EQUIPAGE') then begin
+            exit(sHeader.Afk_CrewMembersNumber);
         end;
 
         if (paramCode = 'NBH_PILOT_ARR_DAY') then begin
@@ -231,9 +235,9 @@ codeunit 50002 AfkCalcValueParams
 
     local procedure IsDuringDay(t: Time): Boolean
     var
-        startDate: DateTime;
-        endDate: DateTime;
         actual: DateTime;
+        endDate: DateTime;
+        startDate: DateTime;
     begin
         AfkSetup.Get();
         AfkSetup.TestField("Day starting time");
@@ -250,10 +254,10 @@ codeunit 50002 AfkCalcValueParams
 
     local procedure IsDuringNight(t: Time): Boolean
     var
-        startDate: DateTime;
-        endDate: DateTime;
-        actual: DateTime;
         nextDay: Date;
+        actual: DateTime;
+        endDate: DateTime;
+        startDate: DateTime;
     begin
         AfkSetup.Get();
         AfkSetup.TestField("Day starting time");
@@ -275,10 +279,10 @@ codeunit 50002 AfkCalcValueParams
 
     local procedure IsHoliDayDate(d: Date): Boolean
     var
-        CalendarMgmt: Codeunit "Calendar Management";
         CalChange: Record "Customized Calendar Change";
-        actual: DateTime;
+        CalendarMgmt: Codeunit "Calendar Management";
         nextDay: Date;
+        actual: DateTime;
     begin
         CompanyInfo.Get();
         CompanyInfo.TestField("Base Calendar Code");
@@ -287,7 +291,7 @@ codeunit 50002 AfkCalcValueParams
     end;
 
     var
-        Boat: Record Afk_Boat;
         AfkSetup: Record 50004;
+        Boat: Record Afk_Boat;
         CompanyInfo: Record "Company Information";
 }
