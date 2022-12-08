@@ -12,7 +12,7 @@ codeunit 50010 AfkBudgetControlEventsSubs
     [EventSubscriber(ObjectType::Codeunit, Codeunit::"Approvals Mgmt.", 'OnSendPurchaseDocForApproval', '', false, false)]
     local procedure OnSendPurchaseDocForApproval(var PurchaseHeader: Record "Purchase Header")
     begin
-        AfkBudgetControlMgt.CreatePurchaseBudgetLines(PurchaseHeader, true);
+        AfkPurchMgt.OnBeforeSendPurchaseDocForApproval(PurchaseHeader);
     end;
 
 
@@ -22,6 +22,7 @@ codeunit 50010 AfkBudgetControlEventsSubs
 
     var
         AfkBudgetControlMgt: Codeunit AfkBudgetControl;
+        AfkPurchMgt: Codeunit AfkPurchaseReqMgt;
 
 
 }

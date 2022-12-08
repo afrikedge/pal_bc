@@ -423,28 +423,17 @@ codeunit 50004 AfkPurchaseReqMgt
         IsHandled := true;
     end;
 
-    internal procedure OnBeforeReleasePurchaseDoc(var PurchaseHeader: Record "Purchase Header"; PreviewMode: Boolean)
+    internal procedure OnBeforeReleasePurchaseDoc(var PurchaseHeader: Record "Purchase Header")
     begin
-        AddOnSetup.Get();
-        if (PurchaseHeader."Document Type" = PurchaseHeader."Document Type"::Quote)
-                or (IsPODocument(PurchaseHeader)) then begin
-            AddOnSetup.TestField("PR Max Value");
-            PurchaseHeader.CalcFields("Amount Including VAT");
-            if (PurchaseHeader."Amount Including VAT") > AddOnSetup."PR Max Value" then
-                Error(PRLimitAmountErr, AddOnSetup."PR Max Value");
-        end;
-        if ((PurchaseHeader."Document Type" = PurchaseHeader."Document Type"::Order)
-         and (PurchaseHeader.Afk_CommitmentType = PurchaseHeader.Afk_CommitmentType::"Order letter")) then begin
-            AddOnSetup.TestField("OrderLetter Max Value");
-            PurchaseHeader.CalcFields("Amount Including VAT");
-            if (PurchaseHeader."Amount Including VAT") > AddOnSetup."OrderLetter Max Value" then
-                Error(ORderLetterLimitAmountErr, AddOnSetup."OrderLetter Max Value");
-        end;
-
+        CheckPurchAmountsLimit(PurchaseHeader);
         BudgetControl.CreatePurchaseBudgetLines(PurchaseHeader, true);
         PurchaseHeader.Afk_ReleaseDate := Today;
+    end;
 
-
+    internal procedure OnBeforeSendPurchaseDocForApproval(var PurchaseHeader: Record "Purchase Header")
+    begin
+        CheckPurchAmountsLimit(PurchaseHeader);
+        BudgetControl.CreatePurchaseBudgetLines(PurchaseHeader, true);
     end;
 
     local procedure IsPODocument(PurchaseHeader: Record "Purchase Header"): Boolean
@@ -615,6 +604,25 @@ codeunit 50004 AfkPurchaseReqMgt
 
             until SRLine.NEXT() = 0;
         exit(QteRestante = 0);
+    end;
+
+    procedure CheckPurchAmountsLimit(var PurchaseHeader: Record "Purchase Header")
+    begin
+        AddOnSetup.Get();
+        if (PurchaseHeader."Document Type" = PurchaseHeader."Document Type"::Quote)
+                or (IsPODocument(PurchaseHeader)) then begin
+            AddOnSetup.TestField("PR Max Value");
+            PurchaseHeader.CalcFields("Amount Including VAT");
+            if (PurchaseHeader."Amount Including VAT") > AddOnSetup."PR Max Value" then
+                Error(PRLimitAmountErr, AddOnSetup."PR Max Value");
+        end;
+        if ((PurchaseHeader."Document Type" = PurchaseHeader."Document Type"::Order)
+         and (PurchaseHeader.Afk_CommitmentType = PurchaseHeader.Afk_CommitmentType::"Order letter")) then begin
+            AddOnSetup.TestField("OrderLetter Max Value");
+            PurchaseHeader.CalcFields("Amount Including VAT");
+            if (PurchaseHeader."Amount Including VAT") > AddOnSetup."OrderLetter Max Value" then
+                Error(ORderLetterLimitAmountErr, AddOnSetup."OrderLetter Max Value");
+        end;
     end;
 
     procedure GetDocumentDates(OrderNo: code[20];

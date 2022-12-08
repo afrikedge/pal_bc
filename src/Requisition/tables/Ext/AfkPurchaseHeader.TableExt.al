@@ -122,6 +122,12 @@ tableextension 50005 AfkPurchaseHeader extends "Purchase Header"
             Caption = 'Subject';
             DataClassification = CustomerContent;
         }
+        field(50019; "Afk_IssuerCode"; Code[20])
+        {
+            Caption = 'Issuer Code';
+            DataClassification = CustomerContent;
+            TableRelation = Afk_Service;
+        }
     }
     var
         AfkSecurityMgt: Codeunit AfkSecurityMgt;

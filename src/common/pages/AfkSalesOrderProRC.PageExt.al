@@ -198,6 +198,13 @@ pageextension 50004 AfkSalesOrderProRC extends "Order Processor Role Center"
                     RunObject = Report "AfkPurchaseFollowUp";
                     //ToolTip = 'View or edit detailed information for the boat types';
                 }
+                action(AfkServiceList)
+                {
+                    ApplicationArea = Basic, Suite;
+                    Caption = 'Service List';
+                    Image = Track;
+                    RunObject = Page "AfkServiceList";
+                }
             }
         }
     }

@@ -8,8 +8,9 @@ tableextension 50015 AfkVendor extends Vendor
             DecimalPlaces = 0 : 5;
             MaxValue = 100;
             MinValue = 0;
+            Editable = false;
             FieldClass = FlowField;
-            CalcFormula = lookup("Vendor Posting Group".Afk_IR_Pourcent where(Code = field("Vendor Posting Group")));
+            CalcFormula = lookup("Vendor Posting Group".Afk_TSR_Pourcent where(Code = field("Vendor Posting Group")));
         }
         field(50001; Afk_IR_Pourcent; Decimal)
         {
@@ -17,6 +18,7 @@ tableextension 50015 AfkVendor extends Vendor
             DecimalPlaces = 0 : 5;
             MaxValue = 100;
             MinValue = 0;
+            Editable = false;
             FieldClass = FlowField;
             CalcFormula = lookup("Vendor Posting Group".Afk_IR_Pourcent where(Code = field("Vendor Posting Group")));
         }

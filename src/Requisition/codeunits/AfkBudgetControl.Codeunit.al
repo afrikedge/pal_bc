@@ -417,7 +417,9 @@ codeunit 50009 AfkBudgetControl
         end else begin
 
             PurchHeader.RESET;
-            PurchHeader.SetRange(PurchHeader."Document Type", PurchHeader."Document Type"::Order);
+            //PurchHeader.SetRange(PurchHeader."Document Type", PurchHeader."Document Type"::Order);
+            PurchHeader.SetFilter(PurchHeader."Document Type", '%1|%2',
+                PurchHeader."Document Type"::Order, PurchHeader."Document Type"::Invoice);
             PurchHeader.SetRange(PurchHeader."Shortcut Dimension 1 Code", CodeTache);
             PurchHeader.SetRange(PurchHeader."Shortcut Dimension 2 Code", CodeNature);
             //PurchHeader.SETFILTER(PurchHeader.Status, '%1|%2', PurchHeader.Status::Released, PurchHeader.Status::"Pending Prepayment");

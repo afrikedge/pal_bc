@@ -113,6 +113,10 @@ report 50004 "AfkPurchaseOrder"
             column(FooterLabel03; FooterLabel03)
             {
             }
+            column(AfkLimbeLeText; AfkLimbeLeText)
+            {
+            }
+
 
 
             //***********************LABELS**********************************
@@ -144,6 +148,9 @@ report 50004 "AfkPurchaseOrder"
             column(Afk_TaskCode; "Purchase Header"."Shortcut Dimension 1 Code")
             {
             }
+            column(Afk_NatureCode; "Purchase Header"."Shortcut Dimension 2 Code")
+            {
+            }
             column(Afk_CurrencyCode; AfkCurrencyCode)
             {
             }
@@ -153,12 +160,28 @@ report 50004 "AfkPurchaseOrder"
             column(Afk_QuoteNumber; "Purchase Header"."Quote No.")
             {
             }
+            column(AfkIssuerText; AfkIssuerText)
+            {
+            }
+
             //***********************data**********************************
             //*********************************************************************************************************
 
 
 
 
+            column(TaxeAmount; "TaxeAmount")
+            {
+            }
+            column(NetToPayAmount; "NetToPayAmount")
+            {
+            }
+            column(TaxeTextLabel; "TaxeTextLabel")
+            {
+            }
+            column(NetToPayLbl; "NetToPayLbl")
+            {
+            }
             column(DocType_PurchHeader; "Document Type")
             {
             }
@@ -690,7 +713,37 @@ report 50004 "AfkPurchaseOrder"
                             PurchLine.SetRange("Line No.", 0, PurchLine."Line No.");
                             SetRange(Number, 1, PurchLine.Count);
 
+                            AfkLinesNumber := PurchLine.Count;
+
                             AfkNumLigne := 0;
+                        end;
+                    }
+                    dataitem(AfkFooterline; "Integer")
+                    {
+                        DataItemTableView = SORTING(Number);
+                        column(AfkNumLigne2; AfkNumLigneText)
+                        {
+                        }
+                        column(AfkIsLine2; AfkIsLine)
+                        {
+                        }
+
+                        trigger OnAfterGetRecord()
+                        begin
+                            AfkNumLigne := AfkNumLigne + 1;
+                            AfkIsLine := 1;
+                            // if (AfkNumLigne > 9) then
+                            //     AfkNumLigneText := Format(AfkNumLigne)
+                            // else
+                            //     AfkNumLigneText := '0' + Format(AfkNumLigne);
+                        end;
+
+                        trigger OnPreDataItem()
+                        begin
+                            // if (AfkLinesNumber < 10) then
+                            //     SetRange(Number, 1, 10 - AfkLinesNumber)
+                            // else
+                            SetRange(Number, 1, 10 - AfkLinesNumber);
                         end;
                     }
                     dataitem(VATCounter; "Integer")
@@ -1048,6 +1101,8 @@ report 50004 "AfkPurchaseOrder"
                 var
                     PrepmtPurchLine: Record "Purchase Line" temporary;
                     TempPurchLine: Record "Purchase Line" temporary;
+                    Vend1: Record "Vendor";
+                    VendPostingGroup: Record "Vendor Posting Group";
                 begin
                     Clear(PurchLine);
                     Clear(PurchPost);
@@ -1061,6 +1116,27 @@ report 50004 "AfkPurchaseOrder"
                     VATDiscountAmount :=
                       VATAmountLine.GetTotalVATDiscount("Purchase Header"."Currency Code", "Purchase Header"."Prices Including VAT");
                     TotalAmountInclVAT := VATAmountLine.GetTotalAmountInclVAT;
+
+
+                    //****************************
+                    //Calc tax
+                    //----------------------------
+                    Vend1.get("Purchase Header"."Buy-from Vendor No.");
+                    VendPostingGroup.get(Vend1."Vendor Posting Group");
+                    if (VendPostingGroup.Afk_IR_Pourcent > 0) then begin
+                        TaxeAmount := TotalAmount * VendPostingGroup.Afk_IR_Pourcent / 100;
+                        TaxeTextLabel := StrSubstNo(IRLbl, Format(VendPostingGroup.Afk_IR_Pourcent));
+                    end else begin
+                        TaxeAmount := TotalAmount * VendPostingGroup.Afk_TSR_Pourcent / 100;
+                        TaxeTextLabel := StrSubstNo(TSRLbl, Format(VendPostingGroup.Afk_TSR_Pourcent));
+                    end;
+                    NetToPayAmount := TotalAmount - TaxeAmount;
+
+                    TaxeAmount := Round(TaxeAmount, AfkCurrency."Amount Rounding Precision");
+                    NetToPayAmount := Round(TaxeAmount, AfkCurrency."Amount Rounding Precision");
+                    //****************************
+
+
 
                     PrepmtInvBuf.DeleteAll();
                     PurchPostPrepmt.GetPurchLines("Purchase Header", 0, PrepmtPurchLine);
@@ -1131,16 +1207,24 @@ report 50004 "AfkPurchaseOrder"
             }
             trigger OnAfterGetRecord()
             var
+                AfkService: Record Afk_Service;
                 QRCodeText: Text;
             begin
 
                 //************************
+                AfkSetup.get;
+                AfkSetup.TestField(AfkSetup."XAF Currency Code");
                 "Purchase Header".TestField("Purchase Header".Status, "Purchase Header".Status::Released);
                 AfkNumCommande := StrSubstNo(AfkNumCommandeLbl, "Purchase Header"."No.");
                 AfkCurrencyCode := "Purchase Header"."Currency Code";
                 if ("Purchase Header"."Currency Code" = '') then
-                    AfkCurrencyCode := 'XAF';
+                    AfkCurrencyCode := AfkSetup."XAF Currency Code";
 
+                AfkCurrency.Get(AfkCurrencyCode);
+                if (AfkService.get("Purchase Header".Afk_IssuerCode)) then
+                    AfkIssuerText := AfkService.Name;
+
+                AfkLimbeLeText := StrSubstNo(AfkLimbeLeLbl, "Purchase Header"."Order Date");
 
                 "Purchase Header".CalcFields("Purchase Header"."Amount Including VAT");
                 QRCodeText := StrSubstNo(QRCodeLbl, "Purchase Header"."No.", "Purchase Header"."Order Date", "Purchase Header"."Amount Including VAT");
@@ -1276,11 +1360,13 @@ report 50004 "AfkPurchaseOrder"
     end;
 
     var
+        AfkSetup: record AfkSetup;
         //************************************************************************************************************
 
         CompanyInfo: Record "Company Information";
         BuyFromContact: Record Contact;
         PayToContact: Record Contact;
+        AfkCurrency: Record "Currency";
         CurrExchRate: Record "Currency Exchange Rate";
         DimSetEntry1: Record "Dimension Set Entry";
         DimSetEntry2: Record "Dimension Set Entry";
@@ -1315,10 +1401,12 @@ report 50004 "AfkPurchaseOrder"
         MoreLines: Boolean;
         ShowInternalInfo: Boolean;
         AfkNumLigneText: Code[2];
+        NetToPayAmount: Decimal;
         PrepmtLineAmount: Decimal;
         PrepmtTotalAmountInclVAT: Decimal;
         PrepmtVATAmount: Decimal;
         PrepmtVATBaseAmount: Decimal;
+        TaxeAmount: Decimal;
         TotalAmount: Decimal;
         TotalAmountInclVAT: Decimal;
         TotalInvoiceDiscountAmount: Decimal;
@@ -1330,6 +1418,7 @@ report 50004 "AfkPurchaseOrder"
         VATBaseAmount: Decimal;
         VATDiscountAmount: Decimal;
         AfkIsLine: Integer;
+        AfkLinesNumber: Integer;
         //************************************************************************************************************
         AfkNumLigne: Integer;
         NoOfCopies: Integer;
@@ -1352,7 +1441,7 @@ report 50004 "AfkPurchaseOrder"
         AfkLigneTotalTTCLbl: Label 'TOTAL Incl. VAT';
         AfkLigneTVALbl: Label 'VAT';
         AfkLigneUniteLbl: Label 'Unit';
-        AfkLimbeLeLbl: Label 'Limbe on _____________________';
+        AfkLimbeLeLbl: Label 'Limbe on %1';
         AfkNatureBudgetaireLbl: Label 'Nature Code :';
         AfkNomFournisseurLbl: Label 'Vendor name :';
         AfkNumCommandeLbl: Label 'PURCHASE ORDER %1';
@@ -1385,7 +1474,9 @@ report 50004 "AfkPurchaseOrder"
 
         HdrDimCaptionLbl: Label 'Header Dimensions';
         HomePageCaptionLbl: Label 'Home Page';
+        IRLbl: Label 'AIR %1 %:';
         LineDimCaptionLbl: Label 'Line Dimensions';
+        NetToPayLbl: Label 'Net to pay:';
         OrderNoCaptionLbl: Label 'Order No.';
         PageCaptionLbl: Label 'Page';
         PaymentDetailsCaptionLbl: Label 'Payment Details';
@@ -1409,6 +1500,7 @@ report 50004 "AfkPurchaseOrder"
         Text008: Label 'Local Currency';
         Text009: Label 'Exchange rate: %1/%2';
         TotalCaptionLbl: Label 'Total';
+        TSRLbl: Label 'TSR %1 %:';
         VALVATBaseLCYCaptionLbl: Label 'VAT Base';
         VATAmtLineInvDiscBaseAmtCaptionLbl: Label 'Invoice Discount Base Amount';
         VATAmtLineLineAmtCaptionLbl: Label 'Line Amount';
@@ -1429,9 +1521,12 @@ report 50004 "AfkPurchaseOrder"
         AfkFormattedTotalTTC: Text[50];
 
         AfkFormattedTotalVAT: Text[50];
+        AfkIssuerText: Text[50];
         AfkLieuAdresseFacturation: Text[50];
+        AfkLimbeLeText: Text[50];
 
         AfkNumCommande: Text[50];
+        TaxeTextLabel: Text[50];
         TotalExclVATText: Text[50];
         TotalInclVATText: Text[50];
         TotalText: Text[50];

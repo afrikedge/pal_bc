@@ -24,6 +24,10 @@ pageextension 50016 AfkPurchaseOrder extends "Purchase Order"
 
         addafter("Vendor Order No.")
         {
+            field(Afk_IssuerCode; Rec.Afk_IssuerCode)
+            {
+                ApplicationArea = Basic, Suite;
+            }
             field(Afk_Object; Rec.Afk_Object)
             {
                 ApplicationArea = Basic, Suite;

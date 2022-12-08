@@ -23,7 +23,7 @@ codeunit 50008 AfkPurchaseDocEventsSubs
     var
         PurchMgt: codeunit AfkPurchaseReqMgt;
     begin
-        PurchMgt.OnBeforeReleasePurchaseDoc(PurchaseHeader, PreviewMode);
+        PurchMgt.OnBeforeReleasePurchaseDoc(PurchaseHeader);
     end;
 
     [EventSubscriber(ObjectType::Table, Database::"Purchase Header", 'OnBeforeOnDelete', '', true, false)]
