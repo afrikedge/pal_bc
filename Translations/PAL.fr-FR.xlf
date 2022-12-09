@@ -3341,7 +3341,7 @@
         </trans-unit>
         <trans-unit id="Report 3198086736 - NamedType 3174500876" size-unit="char" translate="yes" xml:space="preserve">
           <source>Fixed and certifies this invoice for the sum of :</source>
-          <target state="needs-translation">Arrete et certifie cette facture à la somme de %1</target>
+          <target state="needs-translation">Arrete et certifie cette facture à la somme de :</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report AfkPostedSalesInvoice - NamedType AfkArreteMontantLbl</note>
         </trans-unit>
@@ -4614,7 +4614,7 @@
         </trans-unit>
         <trans-unit id="Report 882492609 - NamedType 2158780623" size-unit="char" translate="yes" xml:space="preserve">
           <source>Bank Account</source>
-          <target state="needs-translation">Compte bancaire</target>
+          <target state="needs-translation">Compte bancaire :</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report AfkSalesInvoicePreview - NamedType BankAccountLbl</note>
         </trans-unit>

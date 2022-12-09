@@ -1517,7 +1517,8 @@ report 50000 "AfkSalesInvoicePreview"
                 if AfkCurrency.Get(AfkCurrCode) then
                     AfkCurrencyName := AfkCurrency.Description;
 
-                if (AfkLocalCurrency.Get(GLSetup."LCY Code")) then
+
+                if (AfkLocalCurrency.Get(GLSetup."LCY Code") and (AfkCurrCode <> GLSetup."LCY Code")) then
                     AfkLocalCurrencyName := AfkLocalCurrency.Description;
 
 
@@ -1815,7 +1816,7 @@ report 50000 "AfkSalesInvoicePreview"
         AfkVAT1925Lbl: Label 'VAT 19.25% :';
         AlreadyPaidLbl: Label 'The invoice has been paid.';
         ApercuLbl: Label 'PROFORMA';
-        BankAccountLbl: Label 'Bank Account';
+        BankAccountLbl: Label 'Bank Account :';
         BilledToLbl: Label 'Billed to';
         BodyLbl: Label 'Thank you for your business. Your invoice is attached to this message.';
         ChecksPayableLbl: Label 'Please make checks payable to %1', Comment = '%1 = company name';

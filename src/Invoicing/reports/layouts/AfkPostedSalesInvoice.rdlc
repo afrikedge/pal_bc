@@ -1395,7 +1395,6 @@
                                               <PaddingRight>1pt</PaddingRight>
                                             </Style>
                                           </Textbox>
-                                          <rd:Selected>true</rd:Selected>
                                         </CellContents>
                                       </TablixCell>
                                       <TablixCell>
@@ -2630,7 +2629,7 @@
                               <TablixBody>
                                 <TablixColumns>
                                   <TablixColumn>
-                                    <Width>8.59739cm</Width>
+                                    <Width>8.38572cm</Width>
                                   </TablixColumn>
                                 </TablixColumns>
                                 <TablixRows>
@@ -2718,9 +2717,9 @@
                               </TablixRowHierarchy>
                               <DataSetName>DataSet_Result</DataSetName>
                               <Top>9.95449cm</Top>
-                              <Left>2.47126cm</Left>
+                              <Left>2.68293cm</Left>
                               <Height>2.64042cm</Height>
-                              <Width>8.59739cm</Width>
+                              <Width>8.38572cm</Width>
                               <ZIndex>11</ZIndex>
                               <Style>
                                 <Border>
@@ -2738,7 +2737,7 @@
                                       <Value>=Last(Fields!QRCode.Value)</Value>
                                       <Style>
                                         <FontFamily>IDAutomation2D</FontFamily>
-                                        <FontSize>7pt</FontSize>
+                                        <FontSize>6pt</FontSize>
                                       </Style>
                                     </TextRun>
                                   </TextRuns>
@@ -2748,8 +2747,8 @@
                               <rd:DefaultName>QRCode</rd:DefaultName>
                               <Top>9.91326cm</Top>
                               <Left>0.10411cm</Left>
-                              <Height>2cm</Height>
-                              <Width>2.19076cm</Width>
+                              <Height>2.26458cm</Height>
+                              <Width>2.40243cm</Width>
                               <ZIndex>12</ZIndex>
                               <Style>
                                 <Border>

@@ -4173,6 +4173,16 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkCustomerCard - Control Afk_TradeRegister - Property ToolTip</note>
         </trans-unit>
+        <trans-unit id="PageExtension 787257282 - Action 3788618999 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 2437096118">
+          <source>Calculate Budget</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkPurchaseInvoice - Action AfkCalculateBudget - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 787257282 - Control 1242598336 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 2437096118">
+          <source>Budget summary</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkPurchaseInvoice - Control AfkBudgetLines - Property Caption</note>
+        </trans-unit>
         <trans-unit id="PageExtension 678316379 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 387971303">
           <source>Purchase Commitment</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -4637,6 +4647,11 @@
           <source>Task Level</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">TableExtension AfkDimensionValue - Field AfkBudgetTaskType - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="TableExtension 389579315 - Field 3613664535 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 3016508349">
+          <source>Default Account Type</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension AfkGenJournalTemplate - Field AfkAccountType - Property Caption</note>
         </trans-unit>
         <trans-unit id="TableExtension 1216657483 - Field 1298251163 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 3276313895">
           <source>Base</source>

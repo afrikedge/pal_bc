@@ -1524,7 +1524,7 @@ report 50001 "AfkPostedSalesInvoice"
                 if AfkCurrency.Get(AfkCurrCode) then
                     AfkCurrencyName := AfkCurrency.Description;
 
-                if (AfkLocalCurrency.Get(GLSetup."LCY Code")) then
+                if (AfkLocalCurrency.Get(GLSetup."LCY Code") and (AfkCurrCode <> GLSetup."LCY Code")) then
                     AfkLocalCurrencyName := AfkLocalCurrency.Description;
                 //CalcFields("Work Description");
                 //ShowWorkDescription := "Work Description".HasValue;
