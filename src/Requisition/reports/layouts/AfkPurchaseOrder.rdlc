@@ -23,7 +23,7 @@
               </TablixColumns>
               <TablixRows>
                 <TablixRow>
-                  <Height>14.01411cm</Height>
+                  <Height>13.00869cm</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -711,7 +711,7 @@
                                                   <Paragraph>
                                                     <TextRuns>
                                                       <TextRun>
-                                                        <Value>=Fields!CompanyAddr2.Value</Value>
+                                                        <Value>=Fields!AfkCompanyAddress1.Value</Value>
                                                         <Style>
                                                           <FontFamily>Calibri</FontFamily>
                                                         </Style>
@@ -746,7 +746,7 @@
                                                   <Paragraph>
                                                     <TextRuns>
                                                       <TextRun>
-                                                        <Value>=Fields!CompanyAddr3.Value</Value>
+                                                        <Value>=Fields!AfkCompanyAddress2.Value</Value>
                                                         <Style>
                                                           <FontFamily>Calibri</FontFamily>
                                                         </Style>
@@ -756,41 +756,6 @@
                                                   </Paragraph>
                                                 </Paragraphs>
                                                 <rd:DefaultName>Textbox47</rd:DefaultName>
-                                                <Style>
-                                                  <Border>
-                                                    <Color>LightGrey</Color>
-                                                    <Style>None</Style>
-                                                  </Border>
-                                                  <PaddingTop>1pt</PaddingTop>
-                                                  <PaddingBottom>1pt</PaddingBottom>
-                                                </Style>
-                                              </Textbox>
-                                            </CellContents>
-                                          </TablixCell>
-                                        </TablixCells>
-                                      </TablixRow>
-                                      <TablixRow>
-                                        <Height>0.5cm</Height>
-                                        <TablixCells>
-                                          <TablixCell>
-                                            <CellContents>
-                                              <Textbox Name="Textbox64">
-                                                <CanGrow>true</CanGrow>
-                                                <KeepTogether>true</KeepTogether>
-                                                <Paragraphs>
-                                                  <Paragraph>
-                                                    <TextRuns>
-                                                      <TextRun>
-                                                        <Value>=Fields!CompanyAddr4.Value</Value>
-                                                        <Style>
-                                                          <FontFamily>Calibri</FontFamily>
-                                                        </Style>
-                                                      </TextRun>
-                                                    </TextRuns>
-                                                    <Style />
-                                                  </Paragraph>
-                                                </Paragraphs>
-                                                <rd:DefaultName>Textbox51</rd:DefaultName>
                                                 <Style>
                                                   <Border>
                                                     <Color>LightGrey</Color>
@@ -816,13 +781,12 @@
                                       <TablixMember />
                                       <TablixMember />
                                       <TablixMember />
-                                      <TablixMember />
                                     </TablixMembers>
                                   </TablixRowHierarchy>
                                   <DataSetName>DataSet_Result</DataSetName>
                                   <Top>0.127cm</Top>
                                   <Left>0.13224cm</Left>
-                                  <Height>2cm</Height>
+                                  <Height>1.5cm</Height>
                                   <Width>8.20146cm</Width>
                                   <Style>
                                     <Border>
@@ -834,7 +798,7 @@
                               <KeepTogether>true</KeepTogether>
                               <Top>3.64275cm</Top>
                               <Left>0.0332cm</Left>
-                              <Height>2.3cm</Height>
+                              <Height>1.87667cm</Height>
                               <Width>8.59287cm</Width>
                               <ZIndex>4</ZIndex>
                               <Style>
@@ -850,7 +814,7 @@
                                   <TablixBody>
                                     <TablixColumns>
                                       <TablixColumn>
-                                        <Width>8.76088cm</Width>
+                                        <Width>9.44767cm</Width>
                                       </TablixColumn>
                                     </TablixColumns>
                                     <TablixRows>
@@ -903,7 +867,7 @@
                                                   <Paragraph>
                                                     <TextRuns>
                                                       <TextRun>
-                                                        <Value>=Fields!BuyFromAddr2.Value</Value>
+                                                        <Value>=Fields!AfkVendorAddress1.Value</Value>
                                                         <Style>
                                                           <FontFamily>Calibri</FontFamily>
                                                         </Style>
@@ -938,7 +902,7 @@
                                                   <Paragraph>
                                                     <TextRuns>
                                                       <TextRun>
-                                                        <Value>=Fields!BuyFromAddr3.Value</Value>
+                                                        <Value>=Fields!AfkVendorAddress2.Value</Value>
                                                         <Style>
                                                           <FontFamily>Calibri</FontFamily>
                                                         </Style>
@@ -948,41 +912,6 @@
                                                   </Paragraph>
                                                 </Paragraphs>
                                                 <rd:DefaultName>Textbox47</rd:DefaultName>
-                                                <Style>
-                                                  <Border>
-                                                    <Color>LightGrey</Color>
-                                                    <Style>None</Style>
-                                                  </Border>
-                                                  <PaddingTop>1pt</PaddingTop>
-                                                  <PaddingBottom>1pt</PaddingBottom>
-                                                </Style>
-                                              </Textbox>
-                                            </CellContents>
-                                          </TablixCell>
-                                        </TablixCells>
-                                      </TablixRow>
-                                      <TablixRow>
-                                        <Height>0.5cm</Height>
-                                        <TablixCells>
-                                          <TablixCell>
-                                            <CellContents>
-                                              <Textbox Name="Textbox65">
-                                                <CanGrow>true</CanGrow>
-                                                <KeepTogether>true</KeepTogether>
-                                                <Paragraphs>
-                                                  <Paragraph>
-                                                    <TextRuns>
-                                                      <TextRun>
-                                                        <Value>=Fields!BuyFromAddr4.Value</Value>
-                                                        <Style>
-                                                          <FontFamily>Calibri</FontFamily>
-                                                        </Style>
-                                                      </TextRun>
-                                                    </TextRuns>
-                                                    <Style />
-                                                  </Paragraph>
-                                                </Paragraphs>
-                                                <rd:DefaultName>Textbox51</rd:DefaultName>
                                                 <Style>
                                                   <Border>
                                                     <Color>LightGrey</Color>
@@ -1008,14 +937,13 @@
                                       <TablixMember />
                                       <TablixMember />
                                       <TablixMember />
-                                      <TablixMember />
                                     </TablixMembers>
                                   </TablixRowHierarchy>
                                   <DataSetName>DataSet_Result</DataSetName>
                                   <Top>0.127cm</Top>
-                                  <Left>0.15875cm</Left>
-                                  <Height>2cm</Height>
-                                  <Width>8.76088cm</Width>
+                                  <Left>0.15cm</Left>
+                                  <Height>1.5cm</Height>
+                                  <Width>9.44767cm</Width>
                                   <Style>
                                     <Border>
                                       <Style>None</Style>
@@ -1025,9 +953,9 @@
                               </ReportItems>
                               <KeepTogether>true</KeepTogether>
                               <Top>3.64275cm</Top>
-                              <Left>9.59021cm</Left>
-                              <Height>2.3cm</Height>
-                              <Width>9.0463cm</Width>
+                              <Left>8.86217cm</Left>
+                              <Height>1.87667cm</Height>
+                              <Width>9.79582cm</Width>
                               <ZIndex>5</ZIndex>
                               <Style>
                                 <Border>
@@ -1556,7 +1484,7 @@
                                     <Group Name="Détails">
                                       <Filters>
                                         <Filter>
-                                          <FilterExpression>=Fields!AfkIsLigne.Value</FilterExpression>
+                                          <FilterExpression>=Fields!AfkIsLigne.Value+Fields!AfkIsLine2.Value</FilterExpression>
                                           <Operator>Equal</Operator>
                                           <FilterValues>
                                             <FilterValue DataType="Integer">1</FilterValue>
@@ -1568,7 +1496,7 @@
                                 </TablixMembers>
                               </TablixRowHierarchy>
                               <DataSetName>DataSet_Result</DataSetName>
-                              <Top>6.20392cm</Top>
+                              <Top>5.66417cm</Top>
                               <Left>0.0332cm</Left>
                               <Height>1cm</Height>
                               <Width>18.52348cm</Width>
@@ -1638,6 +1566,7 @@
                                                     <Style>
                                                       <FontFamily>Calibri</FontFamily>
                                                       <FontWeight>Bold</FontWeight>
+                                                      <Format>#,0.00</Format>
                                                     </Style>
                                                   </TextRun>
                                                 </TextRuns>
@@ -1707,6 +1636,7 @@
                                                     <Style>
                                                       <FontFamily>Calibri</FontFamily>
                                                       <FontWeight>Bold</FontWeight>
+                                                      <Format>#,0.00</Format>
                                                     </Style>
                                                   </TextRun>
                                                 </TextRuns>
@@ -1776,6 +1706,7 @@
                                                     <Style>
                                                       <FontFamily>Calibri</FontFamily>
                                                       <FontWeight>Bold</FontWeight>
+                                                      <Format>#,0.00</Format>
                                                     </Style>
                                                   </TextRun>
                                                 </TextRuns>
@@ -1845,6 +1776,7 @@
                                                     <Style>
                                                       <FontFamily>Calibri</FontFamily>
                                                       <FontWeight>Bold</FontWeight>
+                                                      <Format>#,0.00</Format>
                                                     </Style>
                                                   </TextRun>
                                                 </TextRuns>
@@ -1914,6 +1846,7 @@
                                                     <Style>
                                                       <FontFamily>Calibri</FontFamily>
                                                       <FontWeight>Bold</FontWeight>
+                                                      <Format>#,0.00</Format>
                                                     </Style>
                                                   </TextRun>
                                                 </TextRuns>
@@ -1972,14 +1905,14 @@
                                       </TablixCell>
                                       <TablixCell>
                                         <CellContents>
-                                          <Textbox Name="Afk_CurrencyCode">
+                                          <Textbox Name="AfkCurrencyName">
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
                                             <Paragraphs>
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value>=Fields!Afk_CurrencyCode.Value</Value>
+                                                    <Value>=LAST(Fields!AfkCurrencyName.Value)</Value>
                                                     <Style>
                                                       <FontFamily>Calibri</FontFamily>
                                                       <FontWeight>Bold</FontWeight>
@@ -1991,7 +1924,7 @@
                                                 </Style>
                                               </Paragraph>
                                             </Paragraphs>
-                                            <rd:DefaultName>Afk_CurrencyCode</rd:DefaultName>
+                                            <rd:DefaultName>AfkCurrencyName</rd:DefaultName>
                                             <Style>
                                               <Border>
                                                 <Color>LightGrey</Color>
@@ -2000,6 +1933,7 @@
                                               <PaddingRight>2pt</PaddingRight>
                                             </Style>
                                           </Textbox>
+                                          <rd:Selected>true</rd:Selected>
                                         </CellContents>
                                       </TablixCell>
                                     </TablixCells>
@@ -2023,8 +1957,8 @@
                                 </TablixMembers>
                               </TablixRowHierarchy>
                               <DataSetName>DataSet_Result</DataSetName>
-                              <Top>7.66959cm</Top>
-                              <Left>10.97726cm</Left>
+                              <Top>7.16159cm</Top>
+                              <Left>10.92726cm</Left>
                               <Height>3cm</Height>
                               <Width>7.53258cm</Width>
                               <ZIndex>7</ZIndex>
@@ -2038,10 +1972,10 @@
                               <TablixBody>
                                 <TablixColumns>
                                   <TablixColumn>
-                                    <Width>5.42077cm</Width>
+                                    <Width>4.15077cm</Width>
                                   </TablixColumn>
                                   <TablixColumn>
-                                    <Width>4.89579cm</Width>
+                                    <Width>6.13933cm</Width>
                                   </TablixColumn>
                                 </TablixColumns>
                                 <TablixRows>
@@ -2267,10 +2201,10 @@
                                 </TablixMembers>
                               </TablixRowHierarchy>
                               <DataSetName>DataSet_Result</DataSetName>
-                              <Top>8.17759cm</Top>
-                              <Left>0.59831cm</Left>
+                              <Top>7.66959cm</Top>
+                              <Left>0.54831cm</Left>
                               <Height>1.5cm</Height>
-                              <Width>10.31656cm</Width>
+                              <Width>10.2901cm</Width>
                               <ZIndex>8</ZIndex>
                               <Style>
                                 <Border>
@@ -2337,8 +2271,8 @@
                                 </TablixMembers>
                               </TablixRowHierarchy>
                               <DataSetName>DataSet_Result</DataSetName>
-                              <Top>11.07636cm</Top>
-                              <Left>6.40199cm</Left>
+                              <Top>10.56836cm</Top>
+                              <Left>6.35199cm</Left>
                               <Height>2.08967cm</Height>
                               <Width>7.8837cm</Width>
                               <ZIndex>9</ZIndex>
@@ -2358,7 +2292,7 @@
                                       <Value>=Fields!QRCode.Value</Value>
                                       <Style>
                                         <FontFamily>IDAutomation2D</FontFamily>
-                                        <FontSize>7pt</FontSize>
+                                        <FontSize>6pt</FontSize>
                                       </Style>
                                     </TextRun>
                                   </TextRuns>
@@ -2366,10 +2300,10 @@
                                 </Paragraph>
                               </Paragraphs>
                               <rd:DefaultName>QRCode</rd:DefaultName>
-                              <Top>11.07636cm</Top>
-                              <Left>0.72697cm</Left>
-                              <Height>2.02969cm</Height>
-                              <Width>2.20581cm</Width>
+                              <Top>10.56836cm</Top>
+                              <Left>0.67697cm</Left>
+                              <Height>2.08967cm</Height>
+                              <Width>2.5cm</Width>
                               <ZIndex>10</ZIndex>
                               <Style>
                                 <Border />
@@ -2408,22 +2342,13 @@
                     <PageBreak>
                       <BreakLocation>Between</BreakLocation>
                     </PageBreak>
-                    <Filters>
-                      <Filter>
-                        <FilterExpression>=Fields!AfkIsLine.Value+Fields!AfkIsLine2.Value</FilterExpression>
-                        <Operator>Equal</Operator>
-                        <FilterValues>
-                          <FilterValue>1</FilterValue>
-                        </FilterValues>
-                      </Filter>
-                    </Filters>
                   </Group>
                 </TablixMember>
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>DataSet_Result</DataSetName>
             <Top>0.07281cm</Top>
-            <Height>14.01411cm</Height>
+            <Height>13.00869cm</Height>
             <Width>18.65799cm</Width>
             <Style>
               <Border>
@@ -2432,7 +2357,7 @@
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>14.08692cm</Height>
+        <Height>13.0815cm</Height>
         <Style />
       </Body>
       <Width>18.65799cm</Width>
@@ -2699,7 +2624,7 @@
               <Source>Database</Source>
               <Value>=First(Fields!AfkCompanyPicture.Value, "DataSet_Result")</Value>
               <MIMEType>image/png</MIMEType>
-              <Sizing>FitProportional</Sizing>
+              <Sizing>Fit</Sizing>
               <Top>0.22206cm</Top>
               <Left>6.40199cm</Left>
               <Height>4.36254cm</Height>
@@ -2732,9 +2657,9 @@
               </Paragraphs>
               <rd:DefaultName>Textbox14</rd:DefaultName>
               <Top>1.60496in</Top>
-              <Left>4.70817in</Left>
+              <Left>4.79513in</Left>
               <Height>0.2in</Height>
-              <Width>2.57917in</Width>
+              <Width>2.49221in</Width>
               <ZIndex>2</ZIndex>
               <Style>
                 <Border>
@@ -3354,6 +3279,21 @@ End Function
         <Field Name="AfkIssuerText">
           <DataField>AfkIssuerText</DataField>
         </Field>
+        <Field Name="AfkVendorAddress2">
+          <DataField>AfkVendorAddress2</DataField>
+        </Field>
+        <Field Name="AfkVendorAddress1">
+          <DataField>AfkVendorAddress1</DataField>
+        </Field>
+        <Field Name="AfkCurrencyName">
+          <DataField>AfkCurrencyName</DataField>
+        </Field>
+        <Field Name="AfkCompanyAddress2">
+          <DataField>AfkCompanyAddress2</DataField>
+        </Field>
+        <Field Name="AfkCompanyAddress1">
+          <DataField>AfkCompanyAddress1</DataField>
+        </Field>
         <Field Name="TaxeAmount">
           <DataField>TaxeAmount</DataField>
         </Field>
@@ -3741,8 +3681,8 @@ End Function
         <Field Name="VATIdentifier_PurchLineCaption">
           <DataField>VATIdentifier_PurchLineCaption</DataField>
         </Field>
-        <Field Name="AfkNumLigneText">
-          <DataField>AfkNumLigneText</DataField>
+        <Field Name="AfkNumLigne">
+          <DataField>AfkNumLigne</DataField>
         </Field>
         <Field Name="AfkIsLigne">
           <DataField>AfkIsLigne</DataField>

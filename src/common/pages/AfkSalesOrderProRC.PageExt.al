@@ -205,6 +205,13 @@ pageextension 50004 AfkSalesOrderProRC extends "Order Processor Role Center"
                     Image = Track;
                     RunObject = Page "AfkServiceList";
                 }
+                action(AfkBankAccountUsers)
+                {
+                    ApplicationArea = Basic, Suite;
+                    Caption = 'Bank Account Users';
+                    Image = UserCertificate;
+                    RunObject = Page AfkBankAcountUsers;
+                }
             }
         }
     }

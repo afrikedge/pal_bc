@@ -66,14 +66,14 @@ pageextension 50016 AfkPurchaseOrder extends "Purchase Order"
             {
                 ApplicationArea = Basic, Suite;
             }
-            field("Afk_TSR_Pourcent"; Rec.Afk_TSR_Pourcent)
-            {
-                ApplicationArea = Basic, Suite;
-            }
-            field("Afk_IR_Pourcent"; Rec.Afk_IR_Pourcent)
-            {
-                ApplicationArea = Basic, Suite;
-            }
+            // field("Afk_TSR_Pourcent"; Rec.Afk_TSR_Pourcent)
+            // {
+            //     ApplicationArea = Basic, Suite;
+            // }
+            // field("Afk_IR_Pourcent"; Rec.Afk_IR_Pourcent)
+            // {
+            //     ApplicationArea = Basic, Suite;
+            // }
         }
         addafter(PurchLines)
         {

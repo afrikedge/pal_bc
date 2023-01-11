@@ -701,6 +701,15 @@ report 50000 "AfkSalesInvoicePreview"
                 {
                 }
                 //*************LIGNES**LIGNES**LIGNES**************************************************
+                column(AfkLineQty; AfkLineQty)
+                {
+                }
+                column(AfkLineBase; AfkLineBase)
+                {
+                }
+                column(AfkLinePU; AfkLinePU)
+                {
+                }
                 column(AmountExcludingVAT_Line; Amount)
                 {
                     AutoFormatExpression = Header."Currency Code";
@@ -914,7 +923,10 @@ report 50000 "AfkSalesInvoicePreview"
                         AfkFormattedVAT := Format("Amount Including VAT" - "Line Amount", 0, AutoFormat.ResolveAutoFormat("Auto Format"::AmountFormat, Header."Currency Code"));
                         FormattedLineAmountTTC := Format("Amount Including VAT", 0, AutoFormat.ResolveAutoFormat("Auto Format"::AmountFormat, Header."Currency Code"));
                     end;
-                    ;
+
+                    AfkLineBase := Line.Afk_Quantity1;
+                    AfkLineQty := Line.Quantity;
+                    AfkLinePU := Line."Unit Price";
 
                     //**************************************************LIGNE**********************
                     InitializeShipmentLine;
@@ -1459,14 +1471,14 @@ report 50000 "AfkSalesInvoicePreview"
                     end else begin
                         AfkTotalAmountInclVAT_LCYText :=
                             Format(AfkTotalAmountInclVAT_LCY, 0,
-                            AutoFormat.ResolveAutoFormat("Auto Format"::AmountFormat, Header."Currency Code"));
+                            AutoFormat.ResolveAutoFormat("Auto Format"::AmountFormat, AfkLocalCurrency.Code));
                         AfkTotalAmount_LCYText :=
                             Format(AfkTotalAmount_LCY, 0,
-                            AutoFormat.ResolveAutoFormat("Auto Format"::AmountFormat, Header."Currency Code"));
+                            AutoFormat.ResolveAutoFormat("Auto Format"::AmountFormat, AfkLocalCurrency.Code));
                         AfkLocalCurrencyText := 'XAF';
                         AfkTotalVAT_LCYText :=
                             Format(AfkTotalVAT_LCY, 0,
-                            AutoFormat.ResolveAutoFormat("Auto Format"::AmountFormat, Header."Currency Code"));
+                            AutoFormat.ResolveAutoFormat("Auto Format"::AmountFormat, AfkLocalCurrency.Code));
                         AfkLocalCurrencyCaption := AfkDeviseLbl;
                         AfkTotalAmount_LCYCaption := AfkTotalHTCFALbl;
                         AfkTotalVAT_LCYCaption := AfkVAT1925Lbl;
@@ -1476,9 +1488,10 @@ report 50000 "AfkSalesInvoicePreview"
 
                     RepCheck.InitTextVariable();
                     //RepCheck.FormatNoText(NoText, AfkTotalAmountInclVAT_LCY, Header."Currency Code");
-                    RepCheck.FormatNoText(NoText, ROUND(AfkTotalAmountInclVAT_LCY), AfkSetup."XAF Currency Code");
+                    //AmountToConvertInLetters := ROUND(AfkTotalAmountInclVAT_LCY, AfkLocalCurrency."Amount Rounding Precision");
+                    RepCheck.FormatNoText(NoText, AfkTotalAmountInclVAT_LCY, AfkLocalCurrency.Code);
                     //RepCheck.FormatNoTextFR(NoText, AfkTotalAmountInclVAT_LCY, '');
-                    Afk_AmountInWords := NoText[1];
+                    Afk_AmountInWords := NoText[1] + ' ' + NoText[2];
 
                     QRCodeText := StrSubstNo(QRCodeLbl, "Header"."No.", "Header"."Document Date", AfkTotalAmountInclVAT_LCY);
                     QRCode := QRCodeMgt.GenerateQRCode(QRCodeText);
@@ -1504,9 +1517,11 @@ report 50000 "AfkSalesInvoicePreview"
                 //    CODEUNIT.Run(CODEUNIT::"Sales Inv.-Printed", Header);
 
                 AfkSetup.Get();
+                GLSetup.Get();
+                GLSetup.TestField("LCY Code");
                 AfkSetup.TestField("XAF Currency Code");
 
-                if not Cust.Get("Bill-to Customer No.") then
+                if not Cust.Get("Sell-to Customer No.") then
                     Clear(Cust);
 
                 AfkCurrCode := Header."Currency Code";
@@ -1541,10 +1556,10 @@ report 50000 "AfkSalesInvoicePreview"
                 AfkCompanyAddress3 := CompanyInfo.City;
                 AfkCustomerAddress1 := Cust.Address;
                 AfkCustomerAddress2 := Cust."Address 2" + ' ' + Cust."Post Code" + ' ' + Cust.City + ' ' + Country.Name;
-                AfkCustomerAddress3 := Cust."E-Mail" + ' ' + Cust."Phone No.";
+                AfkCustomerAddress3 := Cust."E-Mail" + ' Tel : ' + Cust."Phone No.";
 
                 BankAccount1 := CompanyInfo."Bank Name";
-                BankAccount1 := CompanyInfo."Bank Branch No." + ' ' + CompanyInfo."Bank Account No.";
+                BankAccount2 := CompanyInfo."Bank Branch No." + ' ' + CompanyInfo."Bank Account No.";
 
 
                 FooterLabel02Text := StrSubstNo(FooterLabel02,
@@ -1759,6 +1774,12 @@ report 50000 "AfkSalesInvoicePreview"
         AfkCurrCode: Code[20];
         JobNo: Code[20];
         JobTaskNo: Code[20];
+        AfkLineBase: Decimal;
+        AfkLineHT: Decimal;
+        AfkLinePU: Decimal;
+        AfkLineQty: Decimal;
+        AfkLineTTC: Decimal;
+        AfkLineTVA: Decimal;
         AfkTotalAmount_LCY: Decimal;
         AfkTotalAmountInclVAT_LCY: Decimal;
         AfkTotalVAT_LCY: Decimal;

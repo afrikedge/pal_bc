@@ -30,5 +30,16 @@ tableextension 50014 AfkVendorPostingGroup extends "Vendor Posting Group"
             DataClassification = CustomerContent;
             TableRelation = "G/L Account";
         }
+        field(50004; Afk_VAT_Deduction; Boolean)
+        {
+            Caption = 'Withhold VAT';
+            DataClassification = CustomerContent;
+        }
+        field(50005; Afk_VATWithholding_Account; Code[20])
+        {
+            Caption = 'VAT Withholding Account';
+            DataClassification = CustomerContent;
+            TableRelation = "G/L Account";
+        }
     }
 }

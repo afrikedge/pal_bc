@@ -20,6 +20,14 @@ pageextension 50022 AfkVendPostingGroups extends "Vendor Posting Groups"
             {
                 ApplicationArea = Basic;
             }
+            field("Afk_VAT_Deduction"; Rec.Afk_VAT_Deduction)
+            {
+                ApplicationArea = Basic;
+            }
+            field("Afk_VATWithholding_Account"; Rec.Afk_VATWithholding_Account)
+            {
+                ApplicationArea = Basic;
+            }
         }
     }
 }

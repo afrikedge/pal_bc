@@ -38,8 +38,10 @@ pageextension 50010 AfkUserSetup extends "User Setup"
             {
                 ApplicationArea = Suite;
             }
-
-
+            field("Afk_CanUpdateAutoriseOnPayment"; Rec.Afk_CanUpdateAutoriseOnPayment)
+            {
+                ApplicationArea = Suite;
+            }
         }
     }
 

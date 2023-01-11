@@ -519,8 +519,8 @@ codeunit 50004 AfkPurchaseReqMgt
 
     internal procedure OnAfterInsertVendorOnPurchase(var PurchaseHeader: Record "Purchase Header"; Vendor: Record Vendor; xPurchaseHeader: Record "Purchase Header")
     begin
-        PurchaseHeader.Afk_IR_Pourcent := Vendor.Afk_IR_Pourcent;
-        PurchaseHeader.Afk_TSR_Pourcent := Vendor.Afk_TSR_Pourcent;
+        // PurchaseHeader.Afk_IR_Pourcent := Vendor.Afk_IR_Pourcent;
+        // PurchaseHeader.Afk_TSR_Pourcent := Vendor.Afk_TSR_Pourcent;
     end;
 
     internal procedure CheckBudgetOnLineUpdate(var PurchaseLine: Record "Purchase Line")

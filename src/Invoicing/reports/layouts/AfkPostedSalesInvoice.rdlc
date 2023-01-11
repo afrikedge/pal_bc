@@ -23,7 +23,7 @@
               </TablixColumns>
               <TablixRows>
                 <TablixRow>
-                  <Height>12.59491cm</Height>
+                  <Height>12.17784cm</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -884,7 +884,7 @@
                                   <TablixBody>
                                     <TablixColumns>
                                       <TablixColumn>
-                                        <Width>8.76088cm</Width>
+                                        <Width>9.38935cm</Width>
                                       </TablixColumn>
                                     </TablixColumns>
                                     <TablixRows>
@@ -1047,9 +1047,9 @@
                                   </TablixRowHierarchy>
                                   <DataSetName>DataSet_Result</DataSetName>
                                   <Top>0.09525cm</Top>
-                                  <Left>0.15875cm</Left>
+                                  <Left>0.25832cm</Left>
                                   <Height>2cm</Height>
-                                  <Width>8.76088cm</Width>
+                                  <Width>9.38935cm</Width>
                                   <Style>
                                     <Border>
                                       <Style>None</Style>
@@ -1059,9 +1059,9 @@
                               </ReportItems>
                               <KeepTogether>true</KeepTogether>
                               <Top>3.6745cm</Top>
-                              <Left>9.59021cm</Left>
+                              <Left>8.86217cm</Left>
                               <Height>2.3cm</Height>
-                              <Width>9.0463cm</Width>
+                              <Width>9.77434cm</Width>
                               <ZIndex>6</ZIndex>
                               <Style>
                                 <Border>
@@ -1080,10 +1080,10 @@
                                     <Width>6.49352cm</Width>
                                   </TablixColumn>
                                   <TablixColumn>
-                                    <Width>2.10855cm</Width>
+                                    <Width>1.9cm</Width>
                                   </TablixColumn>
                                   <TablixColumn>
-                                    <Width>1.38395cm</Width>
+                                    <Width>1.59249cm</Width>
                                   </TablixColumn>
                                   <TablixColumn>
                                     <Width>1.66786cm</Width>
@@ -1432,17 +1432,18 @@
                                       </TablixCell>
                                       <TablixCell>
                                         <CellContents>
-                                          <Textbox Name="AfkFormattedBase">
+                                          <Textbox Name="AfkLineBase">
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
                                             <Paragraphs>
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value>=Fields!AfkFormattedBase.Value</Value>
+                                                    <Value>=Fields!AfkLineBase.Value</Value>
                                                     <Style>
                                                       <FontFamily>Calibri</FontFamily>
                                                       <FontSize>9pt</FontSize>
+                                                      <Format>#,0.00;-#,0.00;''</Format>
                                                     </Style>
                                                   </TextRun>
                                                 </TextRuns>
@@ -1451,7 +1452,7 @@
                                                 </Style>
                                               </Paragraph>
                                             </Paragraphs>
-                                            <rd:DefaultName>AfkFormattedBase</rd:DefaultName>
+                                            <rd:DefaultName>AfkLineBase</rd:DefaultName>
                                             <Style>
                                               <Border>
                                                 <Style>Solid</Style>
@@ -1466,17 +1467,18 @@
                                       </TablixCell>
                                       <TablixCell>
                                         <CellContents>
-                                          <Textbox Name="AfkFormattedNumber">
+                                          <Textbox Name="AfkLineQty">
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
                                             <Paragraphs>
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value>=Fields!AfkFormattedNumber.Value</Value>
+                                                    <Value>=Fields!AfkLineQty.Value</Value>
                                                     <Style>
                                                       <FontFamily>Calibri</FontFamily>
                                                       <FontSize>9pt</FontSize>
+                                                      <Format>0.00;-0.00;''</Format>
                                                     </Style>
                                                   </TextRun>
                                                 </TextRuns>
@@ -1485,7 +1487,7 @@
                                                 </Style>
                                               </Paragraph>
                                             </Paragraphs>
-                                            <rd:DefaultName>AfkFormattedNumber</rd:DefaultName>
+                                            <rd:DefaultName>AfkLineQty</rd:DefaultName>
                                             <Style>
                                               <Border>
                                                 <Style>Solid</Style>
@@ -1500,18 +1502,18 @@
                                       </TablixCell>
                                       <TablixCell>
                                         <CellContents>
-                                          <Textbox Name="UnitPrice">
+                                          <Textbox Name="AfkLinePU">
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
                                             <Paragraphs>
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value>=Fields!UnitPrice.Value</Value>
+                                                    <Value>=Fields!AfkLinePU.Value</Value>
                                                     <Style>
                                                       <FontFamily>Calibri</FontFamily>
                                                       <FontSize>9pt</FontSize>
-                                                      <Format>#,0.00</Format>
+                                                      <Format>#,0.00;-#,0.00;''</Format>
                                                     </Style>
                                                   </TextRun>
                                                 </TextRuns>
@@ -1520,7 +1522,7 @@
                                                 </Style>
                                               </Paragraph>
                                             </Paragraphs>
-                                            <rd:DefaultName>UnitPrice</rd:DefaultName>
+                                            <rd:DefaultName>AfkLinePU</rd:DefaultName>
                                             <Style>
                                               <Border>
                                                 <Style>Solid</Style>
@@ -1675,7 +1677,7 @@
                               <Top>6.23567cm</Top>
                               <Left>0.0332cm</Left>
                               <Height>1cm</Height>
-                              <Width>18.60331cm</Width>
+                              <Width>18.6033cm</Width>
                               <ZIndex>7</ZIndex>
                               <Style>
                                 <Border>
@@ -2021,7 +2023,7 @@
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value>=Fields!AfkTotalAmount_LCYCaption.Value</Value>
+                                                    <Value>=LAST(Fields!AfkTotalAmount_LCYCaption.Value)</Value>
                                                     <Style>
                                                       <FontFamily>Calibri</FontFamily>
                                                       <FontWeight>Bold</FontWeight>
@@ -2090,7 +2092,7 @@
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value>=Fields!AfkTotalVAT_LCYCaption.Value</Value>
+                                                    <Value>=LAST(Fields!AfkTotalVAT_LCYCaption.Value)</Value>
                                                     <Style>
                                                       <FontFamily>Calibri</FontFamily>
                                                       <FontWeight>Bold</FontWeight>
@@ -2159,7 +2161,7 @@
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value>=Fields!AfkTotalAmountInclVAT_LCYCaption.Value</Value>
+                                                    <Value>=LAST(Fields!AfkTotalAmountInclVAT_LCYCaption.Value)</Value>
                                                     <Style>
                                                       <FontFamily>Calibri</FontFamily>
                                                       <FontWeight>Bold</FontWeight>
@@ -2228,7 +2230,7 @@
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value>=Fields!AfkTotalAmountInclVAT_LCYCaption.Value</Value>
+                                                    <Value>=LAST(Fields!AfkTotalAmountInclVAT_LCYCaption.Value)</Value>
                                                     <Style>
                                                       <FontFamily>Calibri</FontFamily>
                                                       <FontWeight>Bold</FontWeight>
@@ -2249,6 +2251,7 @@
                                               <PaddingRight>1pt</PaddingRight>
                                             </Style>
                                           </Textbox>
+                                          <rd:Selected>true</rd:Selected>
                                         </CellContents>
                                       </TablixCell>
                                       <TablixCell>
@@ -2317,10 +2320,10 @@
                               <TablixBody>
                                 <TablixColumns>
                                   <TablixColumn>
-                                    <Width>4.00732cm</Width>
+                                    <Width>3.68951cm</Width>
                                   </TablixColumn>
                                   <TablixColumn>
-                                    <Width>6.89589cm</Width>
+                                    <Width>7.2894cm</Width>
                                   </TablixColumn>
                                 </TablixColumns>
                                 <TablixRows>
@@ -2372,6 +2375,7 @@
                                                     <Value>=Fields!PaymentTermsDescription.Value</Value>
                                                     <Style>
                                                       <FontFamily>Calibri</FontFamily>
+                                                      <FontSize>9pt</FontSize>
                                                     </Style>
                                                   </TextRun>
                                                 </TextRuns>
@@ -2441,6 +2445,7 @@
                                                     <Value />
                                                     <Style>
                                                       <FontFamily>Calibri</FontFamily>
+                                                      <FontSize>9pt</FontSize>
                                                     </Style>
                                                   </TextRun>
                                                 </TextRuns>
@@ -2509,6 +2514,7 @@
                                                     <Value>=Fields!BankAccount1.Value</Value>
                                                     <Style>
                                                       <FontFamily>Calibri</FontFamily>
+                                                      <FontSize>9pt</FontSize>
                                                     </Style>
                                                   </TextRun>
                                                 </TextRuns>
@@ -2577,6 +2583,7 @@
                                                     <Value>=Fields!BankAccount2.Value</Value>
                                                     <Style>
                                                       <FontFamily>Calibri</FontFamily>
+                                                      <FontSize>9pt</FontSize>
                                                     </Style>
                                                   </TextRun>
                                                 </TextRuns>
@@ -2615,9 +2622,9 @@
                               </TablixRowHierarchy>
                               <DataSetName>DataSet_Result</DataSetName>
                               <Top>7.54149cm</Top>
-                              <Left>0.16544cm</Left>
+                              <Left>0.08974cm</Left>
                               <Height>2cm</Height>
-                              <Width>10.90321cm</Width>
+                              <Width>10.97891cm</Width>
                               <ZIndex>10</ZIndex>
                               <Style>
                                 <Border>
@@ -2648,6 +2655,7 @@
                                                     <Value>=Fields!AfkArreteMontantLbl.Value</Value>
                                                     <Style>
                                                       <FontFamily>Calibri</FontFamily>
+                                                      <FontSize>9pt</FontSize>
                                                     </Style>
                                                   </TextRun>
                                                 </TextRuns>
@@ -2668,7 +2676,7 @@
                                     </TablixCells>
                                   </TablixRow>
                                   <TablixRow>
-                                    <Height>2.14042cm</Height>
+                                    <Height>1.72335cm</Height>
                                     <TablixCells>
                                       <TablixCell>
                                         <CellContents>
@@ -2682,6 +2690,7 @@
                                                     <Value>=LAST(Fields!Afk_AmountInWords.Value)</Value>
                                                     <Style>
                                                       <FontFamily>Calibri</FontFamily>
+                                                      <FontSize>9pt</FontSize>
                                                       <FontWeight>Bold</FontWeight>
                                                     </Style>
                                                   </TextRun>
@@ -2718,7 +2727,7 @@
                               <DataSetName>DataSet_Result</DataSetName>
                               <Top>9.95449cm</Top>
                               <Left>2.68293cm</Left>
-                              <Height>2.64042cm</Height>
+                              <Height>2.22335cm</Height>
                               <Width>8.38572cm</Width>
                               <ZIndex>11</ZIndex>
                               <Style>
@@ -2795,7 +2804,7 @@
             </TablixRowHierarchy>
             <DataSetName>DataSet_Result</DataSetName>
             <Top>0.07281cm</Top>
-            <Height>12.59491cm</Height>
+            <Height>12.17784cm</Height>
             <Width>18.65799cm</Width>
             <Style>
               <Border>
@@ -2804,7 +2813,7 @@
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>12.73232cm</Height>
+        <Height>12.41482cm</Height>
         <Style />
       </Body>
       <Width>18.65799cm</Width>
@@ -4113,12 +4122,6 @@ End Function
         <Field Name="AfkNumLigne">
           <DataField>AfkNumLigne</DataField>
         </Field>
-        <Field Name="AfkLigneBase">
-          <DataField>AfkLigneBase</DataField>
-        </Field>
-        <Field Name="AfkLigneQte">
-          <DataField>AfkLigneQte</DataField>
-        </Field>
         <Field Name="AfkLignePrintedDescr">
           <DataField>AfkLignePrintedDescr</DataField>
         </Field>
@@ -4133,6 +4136,42 @@ End Function
         </Field>
         <Field Name="AfkFormattedVAT">
           <DataField>AfkFormattedVAT</DataField>
+        </Field>
+        <Field Name="AfkLineQty">
+          <DataField>AfkLineQty</DataField>
+        </Field>
+        <Field Name="AfkLineQtyFormat">
+          <DataField>AfkLineQtyFormat</DataField>
+        </Field>
+        <Field Name="AfkLineBase">
+          <DataField>AfkLineBase</DataField>
+        </Field>
+        <Field Name="AfkLineBaseFormat">
+          <DataField>AfkLineBaseFormat</DataField>
+        </Field>
+        <Field Name="AfkLinePU">
+          <DataField>AfkLinePU</DataField>
+        </Field>
+        <Field Name="AfkLinePUFormat">
+          <DataField>AfkLinePUFormat</DataField>
+        </Field>
+        <Field Name="AfkLineHT">
+          <DataField>AfkLineHT</DataField>
+        </Field>
+        <Field Name="AfkLineHTFormat">
+          <DataField>AfkLineHTFormat</DataField>
+        </Field>
+        <Field Name="AfkLineTVA">
+          <DataField>AfkLineTVA</DataField>
+        </Field>
+        <Field Name="AfkLineTVAFormat">
+          <DataField>AfkLineTVAFormat</DataField>
+        </Field>
+        <Field Name="AfkLineTTC">
+          <DataField>AfkLineTTC</DataField>
+        </Field>
+        <Field Name="AfkLineTTCFormat">
+          <DataField>AfkLineTTCFormat</DataField>
         </Field>
         <Field Name="AmountExcludingVAT_Line">
           <DataField>AmountExcludingVAT_Line</DataField>

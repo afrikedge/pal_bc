@@ -441,6 +441,7 @@ codeunit 50009 AfkBudgetControl
          DateDeb: Date; DateFin: Date; IsItem: Boolean) ReturnAmt: Decimal
     var
         AfkDocItem: Record AfkWhseDelivery;
+        PostedCreditMemoHeader: Record "Purch. Cr. Memo Hdr.";
         PostedPurchHeader: Record "Purch. Inv. Header";
     begin
 
@@ -461,19 +462,28 @@ codeunit 50009 AfkBudgetControl
 
         end else begin
 
+            //Purchase Invoices
             PostedPurchHeader.RESET;
-            //PostedPurchHeader.SetRange(PostedPurchHeader."Document Type", PostedPurchHeader."Document Type"::Order);
             PostedPurchHeader.SetRange(PostedPurchHeader."Shortcut Dimension 1 Code", CodeTache);
             PostedPurchHeader.SetRange(PostedPurchHeader."Shortcut Dimension 2 Code", CodeNature);
-            //PurchHeader.SETFILTER(PurchHeader.Status, '%1|%2', PurchHeader.Status::Released, PurchHeader.Status::"Pending Prepayment");
             IF DateDeb <> 0D then
                 PostedPurchHeader.SETRANGE("Document Date", DateDeb, DateFin);
             IF PostedPurchHeader.FINDSET THEN
                 REPEAT
-
                     ReturnAmt := ReturnAmt + GetDocPurchaseInvoicedAmount(PostedPurchHeader);
-
                 UNTIL PostedPurchHeader.NEXT = 0;
+
+
+            //Credit Memos
+            PostedCreditMemoHeader.RESET;
+            PostedCreditMemoHeader.SetRange("Shortcut Dimension 1 Code", CodeTache);
+            PostedCreditMemoHeader.SetRange("Shortcut Dimension 2 Code", CodeNature);
+            IF DateDeb <> 0D then
+                PostedCreditMemoHeader.SETRANGE("Document Date", DateDeb, DateFin);
+            IF PostedCreditMemoHeader.FINDSET THEN
+                REPEAT
+                    ReturnAmt := ReturnAmt - GetDocPurchaseInvoicedCreditMemoAmount(PostedCreditMemoHeader);
+                UNTIL PostedCreditMemoHeader.NEXT = 0;
         end;
     end;
 
@@ -767,6 +777,21 @@ codeunit 50009 AfkBudgetControl
                 LineAmt := PurchLine."Direct Unit Cost" * (PurchLine.Quantity);
                 ReturnAmt := ReturnAmt + ConvertAmtLCY(PurchHeader."Document Date", LineAmt, PurchHeader."Currency Code");
             //END;
+            UNTIL PurchLine.NEXT = 0;
+    end;
+
+    local procedure GetDocPurchaseInvoicedCreditMemoAmount(PurchHeader: Record "Purch. Cr. Memo Hdr.") ReturnAmt: Decimal
+    var
+        PurchLine: Record "Purch. Cr. Memo Line";
+        LineAmt: Decimal;
+    begin
+
+        PurchLine.RESET;
+        PurchLine.SETRANGE("Document No.", PurchHeader."No.");
+        IF PurchLine.FINDSET THEN
+            REPEAT
+                LineAmt := PurchLine."Direct Unit Cost" * (PurchLine.Quantity);
+                ReturnAmt := ReturnAmt + ConvertAmtLCY(PurchHeader."Document Date", LineAmt, PurchHeader."Currency Code");
             UNTIL PurchLine.NEXT = 0;
     end;
 

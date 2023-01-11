@@ -68,6 +68,18 @@ page 50005 AfkSetupCard
                 {
                     ApplicationArea = Suite;
                 }
+                field("SecurityOnBankAccount"; Rec.SecurityOnBankAccount)
+                {
+                    ApplicationArea = Suite;
+                }
+                field("SecurityOnVendorPayment"; Rec.SecurityOnVendorPayment)
+                {
+                    ApplicationArea = Suite;
+                }
+                field("VendorDeductionMgt"; Rec.VendorDeductionMgt)
+                {
+                    ApplicationArea = Suite;
+                }
             }
         }
     }

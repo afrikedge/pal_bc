@@ -77,6 +77,18 @@ table 50004 AfkSetup
         //     Caption = 'Insurance Nos.';
         //     TableRelation = "No. Series";
         // }
+        field(50013; "SecurityOnBankAccount"; Boolean)
+        {
+            Caption = 'Security on Bank Account';
+        }
+        field(50014; "SecurityOnVendorPayment"; Boolean)
+        {
+            Caption = 'Security on Vendor Payment Lines';
+        }
+        field(50015; "VendorDeductionMgt"; Boolean)
+        {
+            Caption = 'Activate Vendor Deduction Mgt';
+        }
     }
 
     keys

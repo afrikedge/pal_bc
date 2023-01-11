@@ -163,6 +163,21 @@ report 50004 "AfkPurchaseOrder"
             column(AfkIssuerText; AfkIssuerText)
             {
             }
+            column(AfkVendorAddress2; AfkVendorAddress2)
+            {
+            }
+            column(AfkVendorAddress1; AfkVendorAddress1)
+            {
+            }
+            column(AfkCurrencyName; AfkCurrencyName)
+            {
+            }
+            column(AfkCompanyAddress2; AfkCompanyAddress2)
+            {
+            }
+            column(AfkCompanyAddress1; AfkCompanyAddress1)
+            {
+            }
 
             //***********************data**********************************
             //*********************************************************************************************************
@@ -612,7 +627,7 @@ report 50004 "AfkPurchaseOrder"
                         column(VATIdentifier_PurchLineCaption; "Purchase Line".FieldCaption("VAT Identifier"))
                         {
                         }
-                        column(AfkNumLigneText; AfkNumLigneText)//************
+                        column(AfkNumLigne; AfkNumLigneText)//************
                         {
                         }
                         column(AfkIsLigne; AfkIsLine)
@@ -732,17 +747,14 @@ report 50004 "AfkPurchaseOrder"
                         begin
                             AfkNumLigne := AfkNumLigne + 1;
                             AfkIsLine := 1;
-                            // if (AfkNumLigne > 9) then
-                            //     AfkNumLigneText := Format(AfkNumLigne)
-                            // else
-                            //     AfkNumLigneText := '0' + Format(AfkNumLigne);
+                            if (AfkNumLigne > 9) then
+                                AfkNumLigneText := Format(AfkNumLigne)
+                            else
+                                AfkNumLigneText := '0' + Format(AfkNumLigne);
                         end;
 
                         trigger OnPreDataItem()
                         begin
-                            // if (AfkLinesNumber < 10) then
-                            //     SetRange(Number, 1, 10 - AfkLinesNumber)
-                            // else
                             SetRange(Number, 1, 10 - AfkLinesNumber);
                         end;
                     }
@@ -1103,6 +1115,7 @@ report 50004 "AfkPurchaseOrder"
                     TempPurchLine: Record "Purchase Line" temporary;
                     Vend1: Record "Vendor";
                     VendPostingGroup: Record "Vendor Posting Group";
+                    TotalHT: decimal;
                 begin
                     Clear(PurchLine);
                     Clear(PurchPost);
@@ -1121,19 +1134,20 @@ report 50004 "AfkPurchaseOrder"
                     //****************************
                     //Calc tax
                     //----------------------------
+                    TotalHT := VATAmountLine.GetTotalLineAmount(false, "Purchase Header"."Currency Code");
                     Vend1.get("Purchase Header"."Buy-from Vendor No.");
                     VendPostingGroup.get(Vend1."Vendor Posting Group");
                     if (VendPostingGroup.Afk_IR_Pourcent > 0) then begin
-                        TaxeAmount := TotalAmount * VendPostingGroup.Afk_IR_Pourcent / 100;
+                        TaxeAmount := -TotalHT * VendPostingGroup.Afk_IR_Pourcent / 100;
                         TaxeTextLabel := StrSubstNo(IRLbl, Format(VendPostingGroup.Afk_IR_Pourcent));
                     end else begin
-                        TaxeAmount := TotalAmount * VendPostingGroup.Afk_TSR_Pourcent / 100;
+                        TaxeAmount := -TotalHT * VendPostingGroup.Afk_TSR_Pourcent / 100;
                         TaxeTextLabel := StrSubstNo(TSRLbl, Format(VendPostingGroup.Afk_TSR_Pourcent));
                     end;
-                    NetToPayAmount := TotalAmount - TaxeAmount;
+                    NetToPayAmount := TotalHT + TaxeAmount;
 
                     TaxeAmount := Round(TaxeAmount, AfkCurrency."Amount Rounding Precision");
-                    NetToPayAmount := Round(TaxeAmount, AfkCurrency."Amount Rounding Precision");
+                    NetToPayAmount := Round(NetToPayAmount, AfkCurrency."Amount Rounding Precision");
                     //****************************
 
 
@@ -1208,6 +1222,8 @@ report 50004 "AfkPurchaseOrder"
             trigger OnAfterGetRecord()
             var
                 AfkService: Record Afk_Service;
+                Country: Record "Country/Region";
+                Vend: Record Vendor;
                 QRCodeText: Text;
             begin
 
@@ -1220,6 +1236,13 @@ report 50004 "AfkPurchaseOrder"
                 if ("Purchase Header"."Currency Code" = '') then
                     AfkCurrencyCode := AfkSetup."XAF Currency Code";
 
+                if not Vend.Get("Buy-from Vendor No.") then
+                    Clear(Vend);
+
+
+                if AfkCurrency.Get(AfkCurrencyCode) then
+                    AfkCurrencyName := AfkCurrency.Description;
+
                 AfkCurrency.Get(AfkCurrencyCode);
                 if (AfkService.get("Purchase Header".Afk_IssuerCode)) then
                     AfkIssuerText := AfkService.Name;
@@ -1231,6 +1254,13 @@ report 50004 "AfkPurchaseOrder"
                 QRCode := QRCodeMgt.GenerateQRCode(QRCodeText);
                 //************************
                 CurrReport.Language := Language.GetLanguageIdOrDefault("Language Code");
+
+                if Country.get(Vend."Country/Region Code") then;
+                AfkCompanyAddress1 := CompanyInfo.Name;
+                AfkCompanyAddress2 := CompanyInfo.Address + ' ' + CompanyInfo.City;
+                AfkVendorAddress1 := Vend."Address" + ' ' + Vend.City + ' ' + Country.Name;
+                AfkVendorAddress2 := Vend."E-Mail" + ' Tel : ' + Vend."Phone No.";
+
 
                 //'Société Anonyme à Capital Public | Capital social : %1 | N° Contribuable : %2 | RCCM : %3 | NACAM : %4';
                 FooterLabel02Text := StrSubstNo(FooterLabel02,
@@ -1428,7 +1458,7 @@ report 50004 "AfkPurchaseOrder"
         AfkAcheteurLbl: Label 'Purchaser :';
         AfkAdresseLivraisonLbl: Label 'Shipping Address :';
         AfkCondPaiementLbl: Label 'Payment terms :';
-        AfkDeviseLbl: Label 'Currency :';
+        AfkDeviseLbl: Label 'Currency';
         AfkDirecteurDelegueLbl: Label 'The Deputy Director';
         AfkDureeValiditeLbl: Label 'Validity Period (Days)';
         AfkEmetteurLbl: Label 'Issuer :';
@@ -1474,7 +1504,7 @@ report 50004 "AfkPurchaseOrder"
 
         HdrDimCaptionLbl: Label 'Header Dimensions';
         HomePageCaptionLbl: Label 'Home Page';
-        IRLbl: Label 'AIR %1 %:';
+        IRLbl: Label 'AIR %1 %';
         LineDimCaptionLbl: Label 'Line Dimensions';
         NetToPayLbl: Label 'Net to pay:';
         OrderNoCaptionLbl: Label 'Order No.';
@@ -1500,7 +1530,7 @@ report 50004 "AfkPurchaseOrder"
         Text008: Label 'Local Currency';
         Text009: Label 'Exchange rate: %1/%2';
         TotalCaptionLbl: Label 'Total';
-        TSRLbl: Label 'TSR %1 %:';
+        TSRLbl: Label 'TSR %1 %';
         VALVATBaseLCYCaptionLbl: Label 'VAT Base';
         VATAmtLineInvDiscBaseAmtCaptionLbl: Label 'Invoice Discount Base Amount';
         VATAmtLineLineAmtCaptionLbl: Label 'Line Amount';
@@ -1510,6 +1540,12 @@ report 50004 "AfkPurchaseOrder"
         VATDiscountAmountCaptionLbl: Label 'Payment Discount on VAT';
         VATIdentifierCaptionLbl: Label 'VAT Identifier';
         VendNoCaptionLbl: Label 'Vendor No.';
+
+        AfkCompanyAddress1: Text;
+        AfkCompanyAddress2: Text;
+        AfkCurrencyName: Text;
+        AfkVendorAddress1: Text;
+        AfkVendorAddress2: Text;
 
         QRCode: Text;
         AfkCurrencyCode: Text[20];
