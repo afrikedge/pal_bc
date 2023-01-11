@@ -1215,6 +1215,12 @@
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Table AfkSetup - Field SecurityOnVendorPayment - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 252127493 - Field 1219261655 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Activate Vendor Deduction Mgt</source>
+          <target state="needs-translation">Activer les retenues IR/TSR</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkSetup - Field VendorDeductionMgt - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 252127493 - Field 3852360763 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Item Delivery Nos.</source>
           <target state="needs-translation">Numéros livraisons</target>
@@ -6729,6 +6735,18 @@
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">TableExtension AfkVendorPostingGroup - Field Afk_TSR_Pourcent - Property Caption</note>
         </trans-unit>
+        <trans-unit id="TableExtension 497414593 - Field 255984117 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 3194161445">
+          <source>VAT Withholding Account</source>
+          <target state="needs-translation">Compte pour la retenue TVA</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension AfkVendorPostingGroup - Field Afk_VATWithholding_Account - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="TableExtension 497414593 - Field 1644414636 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 3194161445">
+          <source>Withhold VAT</source>
+          <target state="needs-translation">Retenir la TVA sur les factures</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension AfkVendorPostingGroup - Field Afk_VAT_Deduction - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Enum 2127060407 - EnumValue 1358406803 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Block</source>
           <target state="needs-translation">Bloquer</target>
@@ -7022,12 +7040,6 @@
           <target state="needs-translation">Demande d'achat</target>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">EnumExtension AfkPurchReqBudgetDocType - EnumValue Requisition - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Codeunit 4284804636 - NamedType 2683274754" maxwidth="0" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Do you want to convert the quote to an order?</source>
-          <target state="translated">Do you want to convert the quote to an order? popo</target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Purch.-Quote to Order (Yes/No</note>
         </trans-unit>
       </group>
     </body>

@@ -40,8 +40,7 @@ codeunit 50014 "AfkGLSubs"
     var
         AfkGLMgt: codeunit Afk_vendorDeductionMgt;
     begin
-        AfkGLMgt.PostVendorDeductions(PurchHeader, GenJnlLine."Document Type", GenJnlLine."Document No.", GenJnlLine."External Document No.",
-        GenJnlLine."Source Code", GenJnlPostLine, TotalPurchLineLCY, TotalPurchLine);
+        AfkGLMgt.PostVendorDeductions(PurchHeader, GenJnlLine, GenJnlPostLine, TotalPurchLineLCY, TotalPurchLine);
     end;
 
 
