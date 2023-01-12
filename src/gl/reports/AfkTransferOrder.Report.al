@@ -150,7 +150,7 @@ report 50007 AfkTransferOrder
                 ParLeDebitDeText := StrSubstNo(ParLeDebitLabel, CompanyRIB);
                 AmountText := CurrencyName + ' ' + Format(Abs(Amount)) + ' ' + '(' + Afk_AmountInWords + ')';
 
-                VendorName := Vend.Name;
+                VendorName := VendBankAccount.AfkBeneficiary;
                 VendorBankAccountCode := VendorRIB;
                 VendorBankAccountName := VendBankAccount.Name;
                 MotifText := Description;
