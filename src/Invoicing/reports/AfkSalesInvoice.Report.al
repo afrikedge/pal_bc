@@ -901,6 +901,9 @@ report 50000 "AfkSalesInvoicePreview"
                 }
 
                 trigger OnAfterGetRecord()
+                var
+                    tempTTC: Decimal;
+                    tempVAT: Decimal;
                 begin
 
                     //******************************************************LIGNE**********************
@@ -920,8 +923,14 @@ report 50000 "AfkSalesInvoicePreview"
                         // AfkFormattedNumber := Format(Line.Afk_Quantity2);
                         AfkFormattedBase := Format(Round(Line.Afk_Quantity1, 2));
                         AfkFormattedNumber := Format(Round(Line.Quantity, 2));
-                        AfkFormattedVAT := Format("Amount Including VAT" - "Line Amount", 0, AutoFormat.ResolveAutoFormat("Auto Format"::AmountFormat, Header."Currency Code"));
-                        FormattedLineAmountTTC := Format("Amount Including VAT", 0, AutoFormat.ResolveAutoFormat("Auto Format"::AmountFormat, Header."Currency Code"));
+
+                        tempVAT := Line."Line Amount" * Line."VAT %" / 100;
+                        tempTTC := tempVAT + Line."Line Amount";
+                        AfkFormattedVAT := Format(Round(tempVAT, 2));
+                        FormattedLineAmountTTC := Format(Round(tempTTC, 2));
+
+                        //AfkFormattedVAT := Format("Amount Including VAT" - "Line Amount", 0, AutoFormat.ResolveAutoFormat("Auto Format"::AmountFormat, Header."Currency Code"));
+                        //FormattedLineAmountTTC := Format("Amount Including VAT", 0, AutoFormat.ResolveAutoFormat("Auto Format"::AmountFormat, Header."Currency Code"));
                     end;
 
                     AfkLineBase := Line.Afk_Quantity1;

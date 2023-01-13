@@ -1513,7 +1513,7 @@
                                                     <Style>
                                                       <FontFamily>Calibri</FontFamily>
                                                       <FontSize>9pt</FontSize>
-                                                      <Format>#,0.00;-#,0.00;''</Format>
+                                                      <Format>#,0.000;-#,0.000;''</Format>
                                                     </Style>
                                                   </TextRun>
                                                 </TextRuns>
@@ -1533,6 +1533,7 @@
                                               <PaddingRight>2pt</PaddingRight>
                                             </Style>
                                           </Textbox>
+                                          <rd:Selected>true</rd:Selected>
                                         </CellContents>
                                       </TablixCell>
                                       <TablixCell>
@@ -2623,7 +2624,7 @@
                               <Top>7.56522cm</Top>
                               <Left>0.10726cm</Left>
                               <Height>2cm</Height>
-                              <Width>11.05834cm</Width>
+                              <Width>11.05835cm</Width>
                               <ZIndex>10</ZIndex>
                               <Style>
                                 <Border>
