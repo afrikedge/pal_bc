@@ -701,13 +701,13 @@ report 50000 "AfkSalesInvoicePreview"
                 {
                 }
                 //*************LIGNES**LIGNES**LIGNES**************************************************
-                column(AfkLineQty; AfkLineQty)
+                column(AfkLineQty; AfkLineQtyFormatted)
                 {
                 }
-                column(AfkLineBase; AfkLineBase)
+                column(AfkLineBase; AfkLineBaseFormatted)
                 {
                 }
-                column(AfkLinePU; AfkLinePU)
+                column(AfkLinePU; AfkLinePUFormatted)
                 {
                 }
                 column(AmountExcludingVAT_Line; Amount)
@@ -740,7 +740,7 @@ report 50000 "AfkSalesInvoicePreview"
                 column(LineDiscountPercentText_Line; LineDiscountPctText)
                 {
                 }
-                column(AfkLineAmount_Line; FormattedLineAmount)
+                column(AfkLineAmount_Line; AfkFormattedAmtHT)
                 {
                     AutoFormatExpression = Header."Currency Code";
                     AutoFormatType = 1;
@@ -905,7 +905,7 @@ report 50000 "AfkSalesInvoicePreview"
                     tempTTC: Decimal;
                     tempVAT: Decimal;
                 begin
-
+                    //line formula
                     //******************************************************LIGNE**********************
                     AfkIsLine := 1;
                     NumLigne := NumLigne + 1;
@@ -918,24 +918,37 @@ report 50000 "AfkSalesInvoicePreview"
                         AfkFormattedBase := '';
                         AfkFormattedNumber := '';
                         AfkFormattedVAT := '';
+                        AfkFormattedAmtHT := '';
+
+                        AfkLineBaseFormatted := '';
+                        AfkLineQtyFormatted := '';
+                        AfkLinePUFormatted := '';
                     end else begin
                         // AfkFormattedBase := Format(Line.Afk_Quantity1);
                         // AfkFormattedNumber := Format(Line.Afk_Quantity2);
-                        AfkFormattedBase := Format(Round(Line.Afk_Quantity1, 2));
-                        AfkFormattedNumber := Format(Round(Line.Quantity, 2));
+                        AfkFormattedBase := Format(Round(Line.Afk_Quantity1, 0.001, '<'));
+                        AfkFormattedNumber := Format(Round(Line.Quantity, 0.001, '<'));
 
                         tempVAT := Line."Line Amount" * Line."VAT %" / 100;
                         tempTTC := tempVAT + Line."Line Amount";
-                        AfkFormattedVAT := Format(Round(tempVAT, 2));
-                        FormattedLineAmountTTC := Format(Round(tempTTC, 2));
+                        AfkFormattedVAT := Format(Round(tempVAT, 0.001, '<'));
+                        FormattedLineAmountTTC := Format(Round(tempTTC, 0.001, '<'));
+                        AfkFormattedAmtHT := Format(Round(Line.Quantity * Line."Unit Price", 0.001, '<'));
 
                         //AfkFormattedVAT := Format("Amount Including VAT" - "Line Amount", 0, AutoFormat.ResolveAutoFormat("Auto Format"::AmountFormat, Header."Currency Code"));
                         //FormattedLineAmountTTC := Format("Amount Including VAT", 0, AutoFormat.ResolveAutoFormat("Auto Format"::AmountFormat, Header."Currency Code"));
                     end;
 
-                    AfkLineBase := Line.Afk_Quantity1;
-                    AfkLineQty := Line.Quantity;
-                    AfkLinePU := Line."Unit Price";
+                    // AfkLineBase := Line.Afk_Quantity1;
+                    // AfkLineQty := Line.Quantity;
+                    // AfkLinePU := Line."Unit Price";
+                    AfkLineBase := Round(Line.Afk_Quantity1, 0.001, '<');
+                    AfkLineQty := Round(Line.Quantity, 0.001, '<');
+                    AfkLinePU := Round(Line."Unit Price", 0.001, '<');
+
+                    AfkLineBaseFormatted := Format(AfkLineBase);
+                    AfkLineQtyFormatted := Format(AfkLineQty);
+                    AfkLinePUFormatted := Format(AfkLinePU);
 
                     //**************************************************LIGNE**********************
                     InitializeShipmentLine;
@@ -993,6 +1006,7 @@ report 50000 "AfkSalesInvoicePreview"
                         JobNoLbl := '';
 
                     FormatDocument.SetSalesLine(Line, FormattedQuantity, FormattedUnitPrice, FormattedVATPct, FormattedLineAmount);
+
                 end;
 
                 trigger OnPreDataItem()
@@ -1947,6 +1961,7 @@ report 50000 "AfkSalesInvoicePreview"
         WorkDescriptionLine: Text;
         TextApercu: Text[20];
         SalesPersonText: Text[30];
+        AfkFormattedAmtHT: Text[50];
         AfkFormattedBase: Text[50];
         AfkFormattedNumber: Text[50];
         AfkFormattedTotalHT: Text[50];
@@ -1954,6 +1969,10 @@ report 50000 "AfkSalesInvoicePreview"
         AfkFormattedTotalVAT: Text[50];
         AfkFormattedVAT: Text[50];
         AfkLieuAdresseFacturation: Text[50];
+
+        AfkLineBaseFormatted: Text[50];
+        AfkLinePUFormatted: Text[50];
+        AfkLineQtyFormatted: Text[50];
         AfkLocalCurrencyCaption: Text[50];
         AfkTotalAmount_LCYCaption: Text[50];
         AfkTotalAmount_LCYText: Text[50];
