@@ -161,7 +161,7 @@ report 50001 "AfkPostedSalesInvoice"
             }
 
 
-            column(AfkCustName; Cust.Name)
+            column(AfkCustName; AfkCustNameValue)
             {
             }
             column(AfkCustNo; Cust."No.")
@@ -953,7 +953,7 @@ report 50001 "AfkPostedSalesInvoice"
 
                     AfkLineBase := Round(Line.Afk_Quantity1, 0.001, '<');
                     AfkLineQty := Round(Line.Quantity, 0.001, '<');
-                    AfkLinePU := Round(Line."Unit Price", 0.001, '<');
+                    AfkLinePU := Round(Line."Unit Price", 0.000001, '<');
 
                     AfkLineBaseFormatted := Format(AfkLineBase);
                     AfkLineQtyFormatted := Format(AfkLineQty);
@@ -1541,7 +1541,7 @@ report 50001 "AfkPostedSalesInvoice"
 
             trigger OnAfterGetRecord()
             var
-
+                Contact: Record Contact;
                 PaymentServiceSetup: Record "Payment Service Setup";
             begin
                 CurrReport.Language := Language.GetLanguageIdOrDefault("Language Code");
@@ -1566,6 +1566,10 @@ report 50001 "AfkPostedSalesInvoice"
                 AfkCurrencyName := AfkCurrCode;
                 if AfkCurrency.Get(AfkCurrCode) then
                     AfkCurrencyName := AfkCurrency.Description;
+
+                AfkCustNameValue := Cust.Name;
+                if Contact.Get(Header."Sell-to Contact No.") then
+                    AfkCustNameValue := Contact.Name;
 
                 if (AfkLocalCurrency.Get(GLSetup."LCY Code") and (AfkCurrCode <> GLSetup."LCY Code")) then
                     AfkLocalCurrencyName := AfkLocalCurrency.Description;
@@ -1984,6 +1988,7 @@ report 50001 "AfkPostedSalesInvoice"
         TotalExclVATText: Text[50];
         TotalInclVATText: Text[50];
         TotalText: Text[50];
+        AfkCustNameValue: Text[100];
         AfkLocalCurrencyText: Text[100];
         CompanyAddr: array[8] of Text[100];
         CustAddr: array[8] of Text[100];

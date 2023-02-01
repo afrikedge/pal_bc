@@ -2,6 +2,9 @@ table 50003 Afk_Boat
 {
     DataClassification = CustomerContent;
     //DataClassification = ToBeClassified;
+    DataCaptionFields = "OMI_Number", Name;
+    DrillDownPageID = AfkBoatList;
+    LookupPageID = "AfkBoatList";
 
     fields
     {

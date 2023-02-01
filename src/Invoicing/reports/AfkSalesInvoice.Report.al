@@ -131,7 +131,7 @@ report 50000 "AfkSalesInvoicePreview"
             }
 
 
-            column(AfkCustName; Cust.Name)
+            column(AfkCustName; AfkCustNameValue)
             {
             }
             column(AfkCustNo; Cust."No.")
@@ -944,7 +944,7 @@ report 50000 "AfkSalesInvoicePreview"
                     // AfkLinePU := Line."Unit Price";
                     AfkLineBase := Round(Line.Afk_Quantity1, 0.001, '<');
                     AfkLineQty := Round(Line.Quantity, 0.001, '<');
-                    AfkLinePU := Round(Line."Unit Price", 0.001, '<');
+                    AfkLinePU := Round(Line."Unit Price", 0.000001, '<');
 
                     AfkLineBaseFormatted := Format(AfkLineBase);
                     AfkLineQtyFormatted := Format(AfkLineQty);
@@ -1503,6 +1503,7 @@ report 50000 "AfkSalesInvoicePreview"
                             Format(AfkTotalVAT_LCY, 0,
                             AutoFormat.ResolveAutoFormat("Auto Format"::AmountFormat, AfkLocalCurrency.Code));
                         AfkLocalCurrencyCaption := AfkDeviseLbl;
+
                         AfkTotalAmount_LCYCaption := AfkTotalHTCFALbl;
                         AfkTotalVAT_LCYCaption := AfkVAT1925Lbl;
                         AfkTotalAmountInclVAT_LCYCaption := AfkTotalTTCCFALbl;
@@ -1531,6 +1532,7 @@ report 50000 "AfkSalesInvoicePreview"
             trigger OnAfterGetRecord()
             var
 
+                Contact: Record Contact;
                 PaymentServiceSetup: Record "Payment Service Setup";
 
             begin
@@ -1554,6 +1556,11 @@ report 50000 "AfkSalesInvoicePreview"
                 AfkCurrencyName := AfkCurrCode;
                 if AfkCurrency.Get(AfkCurrCode) then
                     AfkCurrencyName := AfkCurrency.Description;
+
+                AfkCustNameValue := Cust.Name;
+                if Contact.Get(Header."Sell-to Contact No.") then
+                    AfkCustNameValue := Contact.Name;
+
 
 
                 if (AfkLocalCurrency.Get(GLSetup."LCY Code") and (AfkCurrCode <> GLSetup."LCY Code")) then
@@ -1880,6 +1887,7 @@ report 50000 "AfkSalesInvoicePreview"
 
 
 
+
         // SalespersonLbl: Label 'Salesperson';
         CompanyInfoBankAccNoLbl: Label 'Account No.';
         CompanyInfoBankNameLbl: Label 'Bank';
@@ -1983,6 +1991,7 @@ report 50000 "AfkSalesInvoicePreview"
         TotalExclVATText: Text[50];
         TotalInclVATText: Text[50];
         TotalText: Text[50];
+        AfkCustNameValue: Text[100];
         AfkLocalCurrencyText: Text[100];
         CompanyAddr: array[8] of Text[100];
         CustAddr: array[8] of Text[100];

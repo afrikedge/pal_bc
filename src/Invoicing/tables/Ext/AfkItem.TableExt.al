@@ -27,5 +27,9 @@ tableextension 50002 AfkItem extends "Item"
             DataClassification = CustomerContent;
         }
     }
+    fieldgroups
+    {
+        addlast(DropDown; "Item Category Code", "Stockkeeping Unit Exists") { }
+    }
 
 }
