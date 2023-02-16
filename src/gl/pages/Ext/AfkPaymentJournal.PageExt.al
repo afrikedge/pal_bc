@@ -13,8 +13,13 @@ pageextension 50027 AfkPaymentJournal extends "Payment Journal"
                 var
                 begin
                     UserSetup.Get(UserId);
+
                     if (not UserSetup.Afk_CanUpdateAutoriseOnPayment) then
                         Error(Text000);
+
+                    if (Rec.Afk_Authorised) then
+                        Rec.TestField("External Document No.");
+
                 end;
             }
         }

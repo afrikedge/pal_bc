@@ -89,6 +89,10 @@ table 50004 AfkSetup
         {
             Caption = 'Activate Vendor Deduction Mgt';
         }
+        field(50016; "TransferNoSuffix"; Code[30])
+        {
+            Caption = 'Transfer No Suffix';
+        }
     }
 
     keys

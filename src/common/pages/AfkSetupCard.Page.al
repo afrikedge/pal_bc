@@ -80,6 +80,11 @@ page 50005 AfkSetupCard
                 {
                     ApplicationArea = Suite;
                 }
+                field("TransferNoSuffix"; Rec.TransferNoSuffix)
+                {
+                    ToolTip = '/BCF/SAF/DD/PAL';
+                    ApplicationArea = Suite;
+                }
             }
         }
     }

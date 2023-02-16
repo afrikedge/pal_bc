@@ -1013,6 +1013,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table AfkSetup - Field SecurityOnVendorPayment - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 252127493 - Field 3347926903 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Transfer No Suffix</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkSetup - Field TransferNoSuffix - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 252127493 - Field 1219261655 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Activate Vendor Deduction Mgt</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -2547,6 +2552,11 @@
           <source>Night starting time</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page AfkSetupCard - Control NightStartingTime - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 2705747673 - Control 3347926903 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>/BCF/SAF/DD/PAL</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page AfkSetupCard - Control TransferNoSuffix - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 982683567 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Delivery Card</source>
@@ -4184,7 +4194,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Report AfkTransferOrder - NamedType NousVouPrionsLabel</note>
         </trans-unit>
         <trans-unit id="Report 2473026443 - NamedType 3375212540" size-unit="char" translate="yes" xml:space="preserve">
-          <source>N° %1 /BCF/SAF/DD/PAL</source>
+          <source>N° %1 %2</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report AfkTransferOrder - NamedType NumeroLabel</note>
         </trans-unit>

@@ -142,7 +142,7 @@ report 50007 AfkTransferOrder
                 RepCheck.FormatNoText(NoText, Amount, Currency.Code);
                 Afk_AmountInWords := NoText[1] + ' ' + NoText[2];
 
-                NumeroText := StrSubstNo(NumeroLabel, "Document No.");
+                NumeroText := StrSubstNo(NumeroLabel, '_____________', AfkSetup.TransferNoSuffix);
                 LimbeLeText := StrSubstNo(LimbeLeLabel, Format("Posting Date", 0, 0));
                 AttentionText := StrSubstNo(AttentionDeLabel, PayBankAccount.Contact);
                 CompanyRIB := GetRIB(PayBankAccount);
@@ -211,7 +211,7 @@ report 50007 AfkTransferOrder
         MonsieurLabel: Label 'Sir / Madam,';
         MotifLabel: Label 'REASON :';
         NousVouPrionsLabel: Label 'we kindly ask you to make the transfer, the details of which follow :';
-        NumeroLabel: Label 'N° %1 /BCF/SAF/DD/PAL';
+        NumeroLabel: Label 'N° %1 %2';
         ObjectLabel: Label 'Object :';
         OuvertLabel: Label ' opened in your books,';
         OVLabel: Label 'Transfer order.';
