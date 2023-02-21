@@ -13,6 +13,14 @@ pageextension 50023 AfkVendorCard extends "Vendor Card"
             {
                 ApplicationArea = Basic;
             }
+            field("Afk_Tax_Number"; Rec.Afk_Tax_Number)
+            {
+                ApplicationArea = Suite;
+            }
+            field("Afk_TradeRegister"; Rec.Afk_TradeRegister)
+            {
+                ApplicationArea = Suite;
+            }
         }
     }
 }

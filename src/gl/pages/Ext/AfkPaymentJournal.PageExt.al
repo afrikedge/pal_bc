@@ -22,6 +22,18 @@ pageextension 50027 AfkPaymentJournal extends "Payment Journal"
 
                 end;
             }
+            field(Afk_Beneficiary; Rec.Afk_Beneficiary)
+            {
+                ApplicationArea = Suite;
+            }
+            field(Afk_RIBAccount; Rec.Afk_RIBAccount)
+            {
+                ApplicationArea = Suite;
+            }
+            field(Afk_Domiciliation; Rec.Afk_Domiciliation)
+            {
+                ApplicationArea = Suite;
+            }
         }
     }
     actions

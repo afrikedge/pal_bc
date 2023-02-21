@@ -124,36 +124,49 @@ report 50007 AfkTransferOrder
 
                 AfkUtils.GetPageFooterInfos(FooterInfos);
 
-                TestField("Account Type", "Account Type"::Vendor);
+                //TestField("Account Type", "Account Type"::Vendor);
                 TestField("Bal. Account Type", "Bal. Account Type"::"Bank Account");
                 TestField("Account No.");
                 TestField("Bal. Account No.");
-                TestField("Recipient Bank Account");
+
                 CompanyInfo.TestField("Default Bank Account No.");
                 CompanyBankAccount.Get(CompanyInfo."Default Bank Account No.");
                 PayBankAccount.Get("Bal. Account No.");
                 //CompanyBankAccountName := CompanyBankAccount.Name;
                 PaymentBankAccountName := PayBankAccount.Name;
 
-                Vend.get("Account No.");
-                VendBankAccount.get("Account No.", "Recipient Bank Account");
+
 
                 RepCheck.InitTextVariable();
                 RepCheck.FormatNoText(NoText, Amount, Currency.Code);
+                NoText[1] := ConvertStr(NoText[1], '*', ' ');
+                NoText[2] := ConvertStr(NoText[2], '*', ' ');
                 Afk_AmountInWords := NoText[1] + ' ' + NoText[2];
 
                 NumeroText := StrSubstNo(NumeroLabel, '_____________', AfkSetup.TransferNoSuffix);
                 LimbeLeText := StrSubstNo(LimbeLeLabel, Format("Posting Date", 0, 0));
                 AttentionText := StrSubstNo(AttentionDeLabel, PayBankAccount.Contact);
                 CompanyRIB := GetRIB(PayBankAccount);
-                VendorRIB := VendBankAccount."Bank Branch No." + ' ' + VendBankAccount."Agency Code" + ' ' + VendBankAccount."Bank Account No." + ' ' + Format(VendBankAccount."RIB Key");
                 ParLeDebitDeText := StrSubstNo(ParLeDebitLabel, CompanyRIB);
+                MotifText := Description;
                 AmountText := CurrencyName + ' ' + Format(Abs(Amount)) + ' ' + '(' + Afk_AmountInWords + ')';
 
-                VendorName := VendBankAccount.AfkBeneficiary;
-                VendorBankAccountCode := VendorRIB;
-                VendorBankAccountName := VendBankAccount.Name;
-                MotifText := Description;
+
+                if ("Account Type" = "Account Type"::Vendor) then begin
+                    TestField("Recipient Bank Account");
+                    Vend.get("Account No.");
+                    VendBankAccount.get("Account No.", "Recipient Bank Account");
+                    VendorRIB := VendBankAccount."Bank Branch No." + ' ' + VendBankAccount."Agency Code" + ' ' + VendBankAccount."Bank Account No." + ' ' + Format(VendBankAccount."RIB Key");
+                    VendorName := VendBankAccount.AfkBeneficiary;
+                    VendorBankAccountCode := VendorRIB;
+                    VendorBankAccountName := VendBankAccount.Name;
+                end else begin
+                    VendorName := Afk_Beneficiary;
+                    VendorRIB := Afk_RIBAccount;
+                    VendorBankAccountCode := Afk_RIBAccount;
+                    VendorBankAccountName := Afk_Domiciliation;
+                end;
+
 
 
             end;

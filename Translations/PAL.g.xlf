@@ -4843,6 +4843,21 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">TableExtension AfkGenJournalLine - Field Afk_Authorised - Property Caption</note>
         </trans-unit>
+        <trans-unit id="TableExtension 2045032449 - Field 2898748612 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 1806786327">
+          <source>Beneficiary</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension AfkGenJournalLine - Field Afk_Beneficiary - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="TableExtension 2045032449 - Field 538924290 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 1806786327">
+          <source>Domiciliation</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension AfkGenJournalLine - Field Afk_Domiciliation - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="TableExtension 2045032449 - Field 1980366581 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 1806786327">
+          <source>Account</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension AfkGenJournalLine - Field Afk_RIBAccount - Property Caption</note>
+        </trans-unit>
         <trans-unit id="TableExtension 389579315 - Field 3613664535 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 3016508349">
           <source>Default Account Type</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -5597,6 +5612,16 @@
           <source>IR %</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">TableExtension AfkVendor - Field Afk_IR_Pourcent - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="TableExtension 3146599148 - Field 528949462 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 1936001480">
+          <source>Tax Number</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension AfkVendor - Field Afk_Tax_Number - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="TableExtension 3146599148 - Field 4072563232 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 1936001480">
+          <source>Trade Register</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension AfkVendor - Field Afk_TradeRegister - Property Caption</note>
         </trans-unit>
         <trans-unit id="TableExtension 3146599148 - Field 1690449727 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 1936001480">
           <source>TSR %</source>
