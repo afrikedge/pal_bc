@@ -139,8 +139,8 @@ report 50007 AfkTransferOrder
 
                 RepCheck.InitTextVariable();
                 RepCheck.FormatNoText(NoText, Amount, Currency.Code);
-                NoText[1] := ConvertStr(NoText[1], '*', ' ');
-                NoText[2] := ConvertStr(NoText[2], '*', ' ');
+                NoText[1] := DelChr(NoText[1], '=', '*');
+                NoText[2] := DelChr(NoText[2], '=', '*');
                 Afk_AmountInWords := NoText[1] + ' ' + NoText[2];
 
                 NumeroText := StrSubstNo(NumeroLabel, '_____________', AfkSetup.TransferNoSuffix);

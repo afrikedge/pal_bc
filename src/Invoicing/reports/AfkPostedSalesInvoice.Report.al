@@ -941,8 +941,14 @@ report 50001 "AfkPostedSalesInvoice"
                         AfkFormattedBase := Format(Round(Line.Afk_Quantity1, 0.001, '<'));
                         AfkFormattedNumber := Format(Round(Line.Quantity, 0.001, '<'));
 
-                        tempVAT := Line."Line Amount" * Line."VAT %" / 100;
-                        tempTTC := tempVAT + Line."Line Amount";
+                        if (Header."Prices Including VAT") then begin
+                            tempVAT := Line."Line Amount" * Line."VAT %" / 100;
+                            tempTTC := line."Amount Including VAT";
+                        end else begin
+                            tempVAT := Line."Line Amount" * Line."VAT %" / 100;
+                            tempTTC := tempVAT + Line."Line Amount";
+                        end;
+
                         AfkFormattedVAT := Format(Round(tempVAT, 0.001, '<'));
                         FormattedLineAmountTTC := Format(Round(tempTTC, 0.001, '<'));
                         AfkFormattedAmtHT := Format(Round(Line.Quantity * Line."Unit Price", 0.001, '<'));

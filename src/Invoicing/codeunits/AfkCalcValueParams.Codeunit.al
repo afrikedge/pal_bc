@@ -31,9 +31,10 @@ codeunit 50002 AfkCalcValueParams
 
     local procedure GetCalcParamValue(sHeader: Record "Sales Header"; sLine: Record "Sales Line"; paramCode: Code[30]): Decimal
     var
+        actualDate: Date;
         endDate: Date;
         startDate: Date;
-        actualDate: DateTime;
+        actualDateTime: DateTime;
         endDateTime: DateTime;
         startDatetime: DateTime;
         nb: Integer;
@@ -133,13 +134,13 @@ codeunit 50002 AfkCalcValueParams
             nb := 0;
             sHeader.TestField(Afk_Arrival_Pilot_MAD_Date);
             sHeader.TestField(Afk_Arrival_Pilot_MAD_Time);
-            actualDate := CreateDateTime(sHeader.Afk_Arrival_Pilot_MAD_Date, sHeader.Afk_Arrival_Pilot_MAD_Time);
-            actualDate := actualDate + (1 * 60 * 60 * 1000);//add free hour
+            actualDateTime := CreateDateTime(sHeader.Afk_Arrival_Pilot_MAD_Date, sHeader.Afk_Arrival_Pilot_MAD_Time);
+            actualDateTime := actualDateTime + (1 * 60 * 60 * 1000);//add free hour
             endDateTime := CreateDateTime(sHeader.Afk_Arrival_Pilot_OnBoard_Date, sHeader.Afk_Arrival_Pilot_OnBoard_time);
-            while (actualDate < endDateTime) do begin
-                if (not IsHoliDayDate(DT2Date(actualDate)) and IsDuringDay(DT2Time(actualDate))) then
+            while (actualDateTime < endDateTime) do begin
+                if (not IsHoliDayDate(DT2Date(actualDateTime)) and IsDuringDay(DT2Time(actualDateTime))) then
                     nb += 1;
-                actualDate := actualDate + (1 * 60 * 60 * 1000);//add 1 hour
+                actualDateTime := actualDateTime + (1 * 60 * 60 * 1000);//add 1 hour
             end;
             exit(nb);
         end;
@@ -148,13 +149,13 @@ codeunit 50002 AfkCalcValueParams
             nb := 0;
             sHeader.TestField(Afk_Arrival_Pilot_MAD_Date);
             sHeader.TestField(Afk_Arrival_Pilot_MAD_Time);
-            actualDate := CreateDateTime(sHeader.Afk_Arrival_Pilot_MAD_Date, sHeader.Afk_Arrival_Pilot_MAD_Time);
-            actualDate := actualDate + (1 * 60 * 60 * 1000);//add free hour
+            actualDateTime := CreateDateTime(sHeader.Afk_Arrival_Pilot_MAD_Date, sHeader.Afk_Arrival_Pilot_MAD_Time);
+            actualDateTime := actualDateTime + (1 * 60 * 60 * 1000);//add free hour
             endDateTime := CreateDateTime(sHeader.Afk_Arrival_Pilot_OnBoard_Date, sHeader.Afk_Arrival_Pilot_OnBoard_time);
-            while (actualDate < endDateTime) do begin
-                if (IsHoliDayDate(DT2Date(actualDate)) or IsDuringNight(DT2Time(actualDate))) then
+            while (actualDateTime < endDateTime) do begin
+                if (IsHoliDayDate(DT2Date(actualDateTime)) or IsDuringNight(DT2Time(actualDateTime))) then
                     nb += 1;
-                actualDate := actualDate + (1 * 60 * 60 * 1000);//add 1 hour
+                actualDateTime := actualDateTime + (1 * 60 * 60 * 1000);//add 1 hour
             end;
             exit(nb);
         end;
@@ -163,13 +164,13 @@ codeunit 50002 AfkCalcValueParams
             nb := 0;
             sHeader.TestField(Afk_Depart_Pilot_OnLoad_Date);
             sHeader.TestField(Afk_Depart_Pilot_OnLoad_Time);
-            actualDate := CreateDateTime(sHeader.Afk_Depart_Pilot_OnLoad_Date, sHeader.Afk_Depart_Pilot_OnLoad_Time);
-            actualDate := actualDate + (1 * 60 * 60 * 1000);//add free hour
+            actualDateTime := CreateDateTime(sHeader.Afk_Depart_Pilot_OnLoad_Date, sHeader.Afk_Depart_Pilot_OnLoad_Time);
+            actualDateTime := actualDateTime + (1 * 60 * 60 * 1000);//add free hour
             endDateTime := CreateDateTime(sHeader.Afk_Depart_Pilot_Return_Date, sHeader.Afk_Depart_Pilot_Return_Time);
-            while (actualDate < endDateTime) do begin
-                if (not IsHoliDayDate(DT2Date(actualDate)) and IsDuringDay(DT2Time(actualDate))) then
+            while (actualDateTime < endDateTime) do begin
+                if (not IsHoliDayDate(DT2Date(actualDateTime)) and IsDuringDay(DT2Time(actualDateTime))) then
                     nb += 1;
-                actualDate := actualDate + (1 * 60 * 60 * 1000);//add 1 hour
+                actualDateTime := actualDateTime + (1 * 60 * 60 * 1000);//add 1 hour
             end;
             exit(nb);
         end;
@@ -178,13 +179,13 @@ codeunit 50002 AfkCalcValueParams
             nb := 0;
             sHeader.TestField(Afk_Depart_Pilot_OnLoad_Date);
             sHeader.TestField(Afk_Depart_Pilot_OnLoad_Time);
-            actualDate := CreateDateTime(sHeader.Afk_Depart_Pilot_OnLoad_Date, sHeader.Afk_Depart_Pilot_OnLoad_Time);
-            actualDate := actualDate + (1 * 60 * 60 * 1000);//add free hour
+            actualDateTime := CreateDateTime(sHeader.Afk_Depart_Pilot_OnLoad_Date, sHeader.Afk_Depart_Pilot_OnLoad_Time);
+            actualDateTime := actualDateTime + (1 * 60 * 60 * 1000);//add free hour
             endDateTime := CreateDateTime(sHeader.Afk_Depart_Pilot_Return_Date, sHeader.Afk_Depart_Pilot_Return_Time);
-            while (actualDate < endDateTime) do begin
-                if (IsHoliDayDate(DT2Date(actualDate)) or IsDuringNight(DT2Time(actualDate))) then
+            while (actualDateTime < endDateTime) do begin
+                if (IsHoliDayDate(DT2Date(actualDateTime)) or IsDuringNight(DT2Time(actualDateTime))) then
                     nb += 1;
-                actualDate := actualDate + (1 * 60 * 60 * 1000);//add 1 hour
+                actualDateTime := actualDateTime + (1 * 60 * 60 * 1000);//add 1 hour
             end;
             exit(nb);
         end;
@@ -197,13 +198,13 @@ codeunit 50002 AfkCalcValueParams
             sHeader.TestField(Afk_Arrival_Pilot_OnBoard_Time);
             sHeader.TestField(Afk_Depart_Pilot_Return_Date);
             sHeader.TestField(Afk_Depart_Pilot_Return_Time);
-            actualDate := CreateDateTime(sHeader.Afk_Arrival_Pilot_OnBoard_Date, sHeader.Afk_Arrival_Pilot_OnBoard_Time);
+            actualDateTime := CreateDateTime(sHeader.Afk_Arrival_Pilot_OnBoard_Date, sHeader.Afk_Arrival_Pilot_OnBoard_Time);
             //actualDate := actualDate + (1 * 60 * 60 * 1000);//add free hour
             endDateTime := CreateDateTime(sHeader.Afk_Depart_Pilot_OnLoad_Date, sHeader.Afk_Depart_Pilot_OnLoad_Time);
-            while (actualDate < endDateTime) do begin
-                if (not IsHoliDayDate(DT2Date(actualDate)) and IsDuringDay(DT2Time(actualDate))) then
+            while (actualDateTime < endDateTime) do begin
+                if (not IsHoliDayDate(DT2Date(actualDateTime)) and IsDuringDay(DT2Time(actualDateTime))) then
                     nb += 1;
-                actualDate := actualDate + (1 * 60 * 60 * 1000);//add 1 hour
+                actualDateTime := actualDateTime + (1 * 60 * 60 * 1000);//add 1 hour
             end;
             exit(nb);
         end;
@@ -214,13 +215,13 @@ codeunit 50002 AfkCalcValueParams
             sHeader.TestField(Afk_Arrival_Pilot_OnBoard_Time);
             sHeader.TestField(Afk_Depart_Pilot_Return_Date);
             sHeader.TestField(Afk_Depart_Pilot_Return_Time);
-            actualDate := CreateDateTime(sHeader.Afk_Arrival_Pilot_OnBoard_Date, sHeader.Afk_Arrival_Pilot_OnBoard_Time);
+            actualDateTime := CreateDateTime(sHeader.Afk_Arrival_Pilot_OnBoard_Date, sHeader.Afk_Arrival_Pilot_OnBoard_Time);
             //actualDate := actualDate + (1 * 60 * 60 * 1000);//add free hour
             endDateTime := CreateDateTime(sHeader.Afk_Depart_Pilot_OnLoad_Date, sHeader.Afk_Depart_Pilot_OnLoad_Time);
-            while (actualDate < endDateTime) do begin
-                if (IsHoliDayDate(DT2Date(actualDate)) or IsDuringNight(DT2Time(actualDate))) then
+            while (actualDateTime < endDateTime) do begin
+                if (IsHoliDayDate(DT2Date(actualDateTime)) or IsDuringNight(DT2Time(actualDateTime))) then
                     nb += 1;
-                actualDate := actualDate + (1 * 60 * 60 * 1000);//add 1 hour
+                actualDateTime := actualDateTime + (1 * 60 * 60 * 1000);//add 1 hour
             end;
             exit(nb);
         end;
@@ -233,10 +234,10 @@ codeunit 50002 AfkCalcValueParams
             startDate := sHeader.Afk_Arrival_Boat_Amarre_Date;
             endDate := sHeader.Afk_Depart_Boat_Appareil_Date;
 
-            while (startDate < endDate) do begin
-                nb += 1;
-            end;
-            exit(nb + 1);
+            if (startDate <= endDate) then
+                exit(endDate - startDate + 1)
+            else
+                exit(0);
         end;
 
 
