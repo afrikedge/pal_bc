@@ -25,7 +25,7 @@ codeunit 50003 AfkInvEventsSubs
     var
         AfkPricingMgt: codeunit AfkPortServiceInvMgt;
     begin
-        AfkPricingMgt.LoadSalesInvoicePostingNosSeries(SalesHeader, xSalesHeader);
+        AfkPricingMgt.LoadSalesInvoicePostingNosSeries(SalesHeader);
     end;
 
     [EventSubscriber(ObjectType::Table, Database::"Sales Header", 'OnAfterValidateEvent', 'Responsibility Center', true, false)]
@@ -35,6 +35,21 @@ codeunit 50003 AfkInvEventsSubs
     begin
         AfkPricingMgt.OnAfterValidate_RespCenter(Rec, xRec, CurrFieldNo);
     end;
+
+
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::"Copy Document Mgt.", 'OnAfterCopySalesDocument', '', true, false)]
+    local procedure OnAfterCopySalesDocumentSalesInv(FromDocumentType: Option; FromDocumentNo: Code[20]; var ToSalesHeader: Record "Sales Header"; FromDocOccurenceNo: Integer; FromDocVersionNo: Integer; IncludeHeader: Boolean; RecalculateLines: Boolean; MoveNegLines: Boolean)
+    var
+        AfkPricingMgt: codeunit AfkPortServiceInvMgt;
+    begin
+        if (ToSalesHeader."Document Type" = ToSalesHeader."Document Type"::Invoice) then
+            AfkPricingMgt.LoadSalesInvoicePostingNosSeries(ToSalesHeader);
+    end;
+
+    // [IntegrationEvent(false, false)]
+    // local procedure OnAfterCopySalesDocument(FromDocumentType: Option; FromDocumentNo: Code[20]; var ToSalesHeader: Record "Sales Header"; FromDocOccurenceNo: Integer; FromDocVersionNo: Integer; IncludeHeader: Boolean; RecalculateLines: Boolean; MoveNegLines: Boolean)
+    // begin
+    // end;
 
 
 

@@ -168,7 +168,7 @@ codeunit 50000 AfkPortServiceInvMgt
         end;
     end;
 
-    procedure LoadSalesInvoicePostingNosSeries(var SalesH: Record "Sales Header"; var xSalesH: Record "Sales Header")
+    procedure LoadSalesInvoicePostingNosSeries(var SalesH: Record "Sales Header")
     var
         RespCenter: Record "Responsibility Center";
         UserSetup1: Record "User Setup";
@@ -179,18 +179,12 @@ codeunit 50000 AfkPortServiceInvMgt
         if (SalesH."Document Type" <> SalesH."Document Type"::Invoice) then
             exit;
         UserSetup1.get(UserId);
-        //UserSetup1.TestField("Sales Resp. Ctr. Filter");
+
         respCenterCode := UserSetupMgt.GetRespCenter(0, SalesH."Responsibility Center");
         if (RespCenter.get(RespCentercode)) then begin
             RespCenter.TestField(RespCenter.AfkSalesInvoiceNos);
             SalesH."Posting No. Series" := RespCenter.AfkSalesInvoiceNos;
-            /*
-                if SalesH."No." = '' then begin
-                //SalesH.TestNoSeries;
-                NoSeriesMgt.InitSeries(RespCenter.AfkSalesInvoiceNos, xSalesH."No. Series", SalesH."Posting Date", SalesH."No.", SalesH."No. Series");
-                IsHandled := true;
-                end;
-            */
+            if SalesH.Modify() then;
         end;
     end;
 

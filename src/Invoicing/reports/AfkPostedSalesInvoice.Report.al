@@ -917,6 +917,8 @@ report 50001 "AfkPostedSalesInvoice"
 
                 trigger OnAfterGetRecord()
                 var
+                    tempHT: Decimal;
+                    tempPU: Decimal;
                     tempTTC: Decimal;
                     tempVAT: Decimal;
                 begin
@@ -942,16 +944,21 @@ report 50001 "AfkPostedSalesInvoice"
                         AfkFormattedNumber := Format(Round(Line.Quantity, 0.001, '<'));
 
                         if (Header."Prices Including VAT") then begin
-                            tempVAT := Line."Line Amount" * Line."VAT %" / 100;
+                            tempHT := Line."Line Amount" * (1 / (1 + Line."VAT %" / 100));
+                            tempPU := Line."Unit Price" * (1 / (1 + Line."VAT %" / 100));
+                            tempVAT := line."Amount Including VAT" - tempHT;
                             tempTTC := line."Amount Including VAT";
                         end else begin
-                            tempVAT := Line."Line Amount" * Line."VAT %" / 100;
+                            tempHT := Line."Line Amount";
+                            tempPU := Line."Unit Price";
+                            tempVAT := tempHT * Line."VAT %" / 100;
                             tempTTC := tempVAT + Line."Line Amount";
                         end;
 
+
                         AfkFormattedVAT := Format(Round(tempVAT, 0.001, '<'));
                         FormattedLineAmountTTC := Format(Round(tempTTC, 0.001, '<'));
-                        AfkFormattedAmtHT := Format(Round(Line.Quantity * Line."Unit Price", 0.001, '<'));
+                        AfkFormattedAmtHT := Format(Round(Line.Quantity * tempPU, 0.001, '<'));
 
                         // AfkFormattedVAT := Format("Amount Including VAT" - "Line Amount", 0, AutoFormat.ResolveAutoFormat("Auto Format"::AmountFormat, Header."Currency Code"));
                         // FormattedLineAmountTTC := Format("Amount Including VAT", 0, AutoFormat.ResolveAutoFormat("Auto Format"::AmountFormat, Header."Currency Code"));
@@ -959,7 +966,7 @@ report 50001 "AfkPostedSalesInvoice"
 
                     AfkLineBase := Round(Line.Afk_Quantity1, 0.001, '<');
                     AfkLineQty := Round(Line.Quantity, 0.001, '<');
-                    AfkLinePU := Round(Line."Unit Price", 0.000001, '<');
+                    AfkLinePU := Round(tempPU, 0.000001, '<');
 
                     AfkLineBaseFormatted := Format(AfkLineBase);
                     AfkLineQtyFormatted := Format(AfkLineQty);
@@ -993,15 +1000,28 @@ report 50001 "AfkPostedSalesInvoice"
                     VATAmountLine."VAT Clause Code" := "VAT Clause Code";
                     VATAmountLine.InsertLine();
 
-                    TransHeaderAmount += PrevLineAmount;
-                    PrevLineAmount := "Line Amount";
-                    TotalSubTotal += "Line Amount";
-                    TotalInvDiscAmount -= "Inv. Discount Amount";
-                    TotalAmount += Amount;
-                    TotalAmountVAT += "Amount Including VAT" - Amount;
-                    TotalAmountInclVAT += "Amount Including VAT";
-                    TotalPaymentDiscOnVAT += -("Line Amount" - "Inv. Discount Amount" - "Amount Including VAT");
 
+                    if (Header."Prices Including VAT") then begin
+                        TransHeaderAmount += PrevLineAmount;
+                        PrevLineAmount := tempHT;
+                        TotalSubTotal += tempHT;
+                        TotalInvDiscAmount -= "Inv. Discount Amount";
+                        TotalAmount += tempHT;
+                        TotalAmountVAT += "Amount Including VAT" - tempHT;
+                        TotalAmountInclVAT += "Amount Including VAT";
+                        TotalPaymentDiscOnVAT += -(tempHT - "Inv. Discount Amount" - "Amount Including VAT");
+
+                    end else begin
+
+                        TransHeaderAmount += PrevLineAmount;
+                        PrevLineAmount := "Line Amount";
+                        TotalSubTotal += "Line Amount";
+                        TotalInvDiscAmount -= "Inv. Discount Amount";
+                        TotalAmount += Amount;
+                        TotalAmountVAT += "Amount Including VAT" - Amount;
+                        TotalAmountInclVAT += "Amount Including VAT";
+                        TotalPaymentDiscOnVAT += -("Line Amount" - "Inv. Discount Amount" - "Amount Including VAT");
+                    end;
                     if FirstLineHasBeenOutput then
                         Clear(DummyCompanyInfo.Picture);
                     FirstLineHasBeenOutput := true;
@@ -1463,13 +1483,13 @@ report 50001 "AfkPostedSalesInvoice"
                     AmountToConvertInLetters: decimal;
                     QRCodeText: Text;
                 begin
-                    if Header."Prices Including VAT" then begin
-                        TotalAmountExclInclVATTextValue := TotalExclVATText;
-                        TotalAmountExclInclVATValue := TotalAmount;
-                    end else begin
-                        TotalAmountExclInclVATTextValue := TotalInclVATText;
-                        TotalAmountExclInclVATValue := TotalAmountInclVAT;
-                    end;
+                    // if Header."Prices Including VAT" then begin
+                    //     TotalAmountExclInclVATTextValue := TotalExclVATText;
+                    //     TotalAmountExclInclVATValue := TotalAmount;
+                    // end else begin
+                    TotalAmountExclInclVATTextValue := TotalInclVATText;
+                    TotalAmountExclInclVATValue := TotalAmountInclVAT;
+                    //end;
 
                     //******************************************************Sales Header************************************
 

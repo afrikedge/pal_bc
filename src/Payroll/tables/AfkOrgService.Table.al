@@ -1,4 +1,4 @@
-table 60007 "Afk_Service"
+table 60017 "Afk_Service"
 {
     Caption = 'Service';
     DataClassification = CustomerContent;

@@ -7,14 +7,14 @@
         <DataProvider>SQL</DataProvider>
         <ConnectString />
       </ConnectionProperties>
-      <rd:DataSourceID>16a55544-e5bf-4b46-96f8-3ab87f60f3ce</rd:DataSourceID>
+      <rd:DataSourceID>9cdd45eb-1d31-4d98-95b7-11821916d68c</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <ReportSections>
     <ReportSection>
       <Body>
         <ReportItems>
-          <Tablix Name="table2">
+          <Tablix Name="Table1">
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
@@ -39,7 +39,7 @@
                   <Width>1.8cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.15cm</Width>
+                  <Width>0.2cm</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -48,13 +48,13 @@
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Customer_TABLECAPTION__________Filter">
+                        <Textbox Name="Vendor_TABLECAPTION__________Filter">
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=First(Fields!Customer_TABLECAPTION__________Filter.Value)</Value>
+                                  <Value>=First(Fields!Vendor_TABLECAPTION__________Filter.Value)</Value>
                                   <Style>
                                     <FontSize>8pt</FontSize>
                                   </Style>
@@ -63,9 +63,11 @@
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <ZIndex>64</ZIndex>
+                          <ZIndex>63</ZIndex>
                           <Style>
                             <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
                           </Style>
                         </Textbox>
                         <ColSpan>7</ColSpan>
@@ -79,8 +81,7 @@
                     <TablixCell />
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="textbox29">
-                          <CanGrow>true</CanGrow>
+                        <Textbox Name="textbox52">
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
@@ -95,10 +96,11 @@
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>textbox29</rd:DefaultName>
-                          <ZIndex>63</ZIndex>
+                          <rd:DefaultName>textbox52</rd:DefaultName>
+                          <ZIndex>62</ZIndex>
                           <Style>
-                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
                           </Style>
                         </Textbox>
                       </CellContents>
@@ -110,38 +112,212 @@
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="textbox2">
+                        <Textbox Name="textbox25">
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
                                   <Value />
-                                  <Style>
-                                    <FontSize>8pt</FontSize>
-                                    <FontWeight>Bold</FontWeight>
-                                  </Style>
+                                  <Style />
                                 </TextRun>
                               </TextRuns>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>textbox2</rd:DefaultName>
-                          <ZIndex>62</ZIndex>
+                          <rd:DefaultName>textbox25</rd:DefaultName>
+                          <ZIndex>61</ZIndex>
                           <Style>
-                            <VerticalAlign>Bottom</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <ColSpan>8</ColSpan>
                       </CellContents>
                     </TablixCell>
-                    <TablixCell />
-                    <TablixCell />
-                    <TablixCell />
-                    <TablixCell />
-                    <TablixCell />
-                    <TablixCell />
-                    <TablixCell />
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="textbox27">
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value />
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>textbox27</rd:DefaultName>
+                          <ZIndex>59</ZIndex>
+                          <Style>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="textbox28">
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value />
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>textbox28</rd:DefaultName>
+                          <ZIndex>58</ZIndex>
+                          <Style>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="textbox29">
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value />
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>textbox29</rd:DefaultName>
+                          <ZIndex>57</ZIndex>
+                          <Style>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="textbox30">
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value />
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>textbox30</rd:DefaultName>
+                          <ZIndex>56</ZIndex>
+                          <Style>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="textbox31">
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value />
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>textbox31</rd:DefaultName>
+                          <ZIndex>55</ZIndex>
+                          <Style>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="textbox32">
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value />
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>textbox32</rd:DefaultName>
+                          <ZIndex>54</ZIndex>
+                          <Style>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="textbox38">
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value />
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>textbox38</rd:DefaultName>
+                          <ZIndex>53</ZIndex>
+                          <Style>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
                   </TablixCells>
                 </TablixRow>
                 <TablixRow>
@@ -165,7 +341,7 @@
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <ZIndex>61</ZIndex>
+                          <ZIndex>52</ZIndex>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -197,7 +373,7 @@
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <ZIndex>59</ZIndex>
+                          <ZIndex>50</ZIndex>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -229,7 +405,7 @@
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <ZIndex>58</ZIndex>
+                          <ZIndex>49</ZIndex>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -261,7 +437,7 @@
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <ZIndex>57</ZIndex>
+                          <ZIndex>48</ZIndex>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -293,7 +469,7 @@
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <ZIndex>56</ZIndex>
+                          <ZIndex>47</ZIndex>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -325,7 +501,7 @@
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <ZIndex>55</ZIndex>
+                          <ZIndex>46</ZIndex>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -357,7 +533,7 @@
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <ZIndex>54</ZIndex>
+                          <ZIndex>45</ZIndex>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -379,25 +555,24 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!Customer_Detail_Trial_BalanceCaption.Value + Chr(177) +
+                                  <Value>=Fields!Vendor_Detail_Trial_BalanceCaption.Value + Chr(177) +
 Fields!COMPANYNAME.Value + Chr(177) +
 Fields!STRSUBSTNO_Text004_PreviousStartDate_.Value + Chr(177) +
 Fields!PrintedByCaption.Value + Chr(177) +
 Fields!PageCaption.Value</Value>
                                   <Style>
-                                    <Color>#ff0000</Color>
+                                    <Color>Red</Color>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <ZIndex>53</ZIndex>
+                          <ZIndex>44</ZIndex>
                           <Visibility>
                             <Hidden>true</Hidden>
                           </Visibility>
                           <Style>
-                            <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -413,7 +588,7 @@ Fields!PageCaption.Value</Value>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="textbox40">
+                        <Textbox Name="textbox1">
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
@@ -428,12 +603,12 @@ Fields!PageCaption.Value</Value>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>textbox40</rd:DefaultName>
-                          <ZIndex>52</ZIndex>
+                          <rd:DefaultName>textbox1</rd:DefaultName>
+                          <ZIndex>43</ZIndex>
                           <Style>
                             <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>0.15cm</PaddingRight>
+                            <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
@@ -455,24 +630,24 @@ Fields!PageCaption.Value</Value>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Customer__No__">
+                        <Textbox Name="Vendor__No__">
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!Customer__No__.Value</Value>
+                                  <Value>=Fields!Vendor__No__.Value</Value>
                                   <Style>
                                     <FontSize>8pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style>
-                                <TextAlign>Right</TextAlign>
+                                <TextAlign>=IIF(IsNumeric(Fields!Vendor__No__.Value),"Right","Left")</TextAlign>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <ZIndex>51</ZIndex>
+                          <ZIndex>42</ZIndex>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -486,14 +661,14 @@ Fields!PageCaption.Value</Value>
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox19">
+                        <Textbox Name="Textbox7">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!Customer_Name.Value</Value>
+                                  <Value>=Fields!Vendor_Name.Value</Value>
                                   <Style>
                                     <FontSize>8pt</FontSize>
                                   </Style>
@@ -502,7 +677,7 @@ Fields!PageCaption.Value</Value>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox19</rd:DefaultName>
+                          <rd:DefaultName>Textbox7</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -519,7 +694,7 @@ Fields!PageCaption.Value</Value>
                     <TablixCell />
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="textbox44">
+                        <Textbox Name="TextBox14">
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
@@ -532,9 +707,9 @@ Fields!PageCaption.Value</Value>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>textbox44</rd:DefaultName>
-                          <ZIndex>49</ZIndex>
+                          <ZIndex>40</ZIndex>
                           <Style>
+                            <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>4pt</PaddingLeft>
                             <PaddingRight>4pt</PaddingRight>
                           </Style>
@@ -552,13 +727,13 @@ Fields!PageCaption.Value</Value>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="textbox88">
+                        <Textbox Name="STRSUBSTNO_Text006_PreviousEndDate_">
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=First(Fields!STRSUBSTNO_Text006_PreviousEndDate_.Value)</Value>
+                                  <Value>=Fields!STRSUBSTNO_Text006_PreviousEndDate_.Value</Value>
                                   <Style>
                                     <FontSize>8pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
@@ -570,8 +745,7 @@ Fields!PageCaption.Value</Value>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>textbox88</rd:DefaultName>
-                          <ZIndex>48</ZIndex>
+                          <ZIndex>39</ZIndex>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -595,7 +769,7 @@ Fields!PageCaption.Value</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Code.BlankZero(First(Fields!PreviousDebitAmountLCY.Value))</Value>
+                                  <Value>=Code.BlankZero(Fields!PreviousDebitAmountLCY.Value)</Value>
                                   <Style>
                                     <FontSize>8pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
@@ -606,7 +780,7 @@ Fields!PageCaption.Value</Value>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <ZIndex>47</ZIndex>
+                          <ZIndex>38</ZIndex>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -626,7 +800,7 @@ Fields!PageCaption.Value</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Code.BlankZero(First(Fields!PreviousCreditAmountLCY.Value))</Value>
+                                  <Value>=Code.BlankZero(Fields!PreviousCreditAmountLCY.Value)</Value>
                                   <Style>
                                     <FontSize>8pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
@@ -637,7 +811,7 @@ Fields!PageCaption.Value</Value>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <ZIndex>46</ZIndex>
+                          <ZIndex>37</ZIndex>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -657,7 +831,7 @@ Fields!PageCaption.Value</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Code.BlankZero(First(Fields!PreviousDebitAmountLCY_PreviousCreditAmountLCY.Value))</Value>
+                                  <Value>=Code.BlankZero(Fields!PreviousDebitAmountLCY_PreviousCreditAmountLCY.Value)</Value>
                                   <Style>
                                     <FontSize>8pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
@@ -668,7 +842,7 @@ Fields!PageCaption.Value</Value>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <ZIndex>45</ZIndex>
+                          <ZIndex>36</ZIndex>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -681,7 +855,7 @@ Fields!PageCaption.Value</Value>
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="textbox48">
+                        <Textbox Name="textbox73">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -689,14 +863,16 @@ Fields!PageCaption.Value</Value>
                               <TextRuns>
                                 <TextRun>
                                   <Value />
-                                  <Style />
+                                  <Style>
+                                    <FontSize>8pt</FontSize>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>textbox48</rd:DefaultName>
-                          <ZIndex>44</ZIndex>
+                          <rd:DefaultName>textbox73</rd:DefaultName>
+                          <ZIndex>35</ZIndex>
                           <Style>
                             <PaddingLeft>4pt</PaddingLeft>
                             <PaddingRight>4pt</PaddingRight>
@@ -711,13 +887,13 @@ Fields!PageCaption.Value</Value>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Detailed_Cust__Ledg__Entry__Posting_Date_">
+                        <Textbox Name="Detailed_Vendor_Ledg__Entry__Posting_Date_">
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!Detailed_Cust__Ledg__Entry__Posting_Date_.Value</Value>
+                                  <Value>=Fields!Detailed_Vendor_Ledg__Entry__Posting_Date_.Value</Value>
                                   <Style>
                                     <FontSize>7pt</FontSize>
                                   </Style>
@@ -742,20 +918,20 @@ Fields!PageCaption.Value</Value>
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Detailed_Cust__Ledg__Entry__Document_No__">
+                        <Textbox Name="Detailed_Vendor_Ledg__Entry__Document_No__">
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!Detailed_Cust__Ledg__Entry__Document_No__.Value</Value>
+                                  <Value>=Fields!Detailed_Vendor_Ledg__Entry__Document_No__.Value</Value>
                                   <Style>
                                     <FontSize>7pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style>
-                                <TextAlign>=IIF(IsNumeric(Fields!Detailed_Cust__Ledg__Entry__Document_No__.Value),"Right","Left")</TextAlign>
+                                <TextAlign>=IIF(IsNumeric(Fields!Detailed_Vendor_Ledg__Entry__Document_No__.Value),"Right","Left")</TextAlign>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
@@ -787,7 +963,9 @@ Fields!PageCaption.Value</Value>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>=IIF(IsNumeric(Fields!OriginalLedgerEntry__External_Document_No__.Value),"Right","Left")</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <ZIndex>5</ZIndex>
@@ -833,22 +1011,21 @@ Fields!PageCaption.Value</Value>
                             <PaddingRight>1pt</PaddingRight>
                           </Style>
                         </Textbox>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Detailed_Cust__Ledg__Entry__Debit_Amount__LCY___Control1120116">
+                        <Textbox Name="Detailed_Vendor_Ledg__Entry__Debit_Amount__LCY___Control1120116">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Code.BlankZero(Fields!Detailed_Cust__Ledg__Entry__Debit_Amount__LCY__.Value)</Value>
+                                  <Value>=Code.BlankZero(Fields!Detailed_Vendor_Ledg__Entry__Debit_Amount__LCY__.Value)</Value>
                                   <Style>
                                     <FontSize>7pt</FontSize>
-                                    <Format>=Fields!Detailed_Cust__Ledg__Entry__Debit_Amount__LCY___Control1120116Format.Value</Format>
+                                    <Format>=Fields!Detailed_Vendor_Ledg__Entry__Debit_Amount__LCY___Control1120116Format.Value</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -871,17 +1048,17 @@ Fields!PageCaption.Value</Value>
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Detailed_Cust__Ledg__Entry__Credit_Amount__LCY___Control1120119">
+                        <Textbox Name="Detailed_Vendor_Ledg__Entry__Credit_Amount__LCY___Control1120119">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Code.BlankZero(Fields!Detailed_Cust__Ledg__Entry__Credit_Amount__LCY__.Value)</Value>
+                                  <Value>=Code.BlankZero(Fields!Detailed_Vendor_Ledg__Entry__Credit_Amount__LCY__.Value)</Value>
                                   <Style>
                                     <FontSize>7pt</FontSize>
-                                    <Format>=Fields!Detailed_Cust__Ledg__Entry__Credit_Amount__LCY___Control1120119Format.Value</Format>
+                                    <Format>=Fields!Detailed_Vendor_Ledg__Entry__Credit_Amount__LCY___Control1120119Format.Value</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -933,11 +1110,12 @@ Fields!PageCaption.Value</Value>
                             <PaddingRight>1pt</PaddingRight>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="textbox52">
+                        <Textbox Name="textbox6">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -945,16 +1123,18 @@ Fields!PageCaption.Value</Value>
                               <TextRuns>
                                 <TextRun>
                                   <Value />
-                                  <Style />
+                                  <Style>
+                                    <FontSize>7pt</FontSize>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>textbox52</rd:DefaultName>
+                          <rd:DefaultName>textbox6</rd:DefaultName>
                           <Style>
-                            <PaddingLeft>4pt</PaddingLeft>
-                            <PaddingRight>4pt</PaddingRight>
+                            <PaddingLeft>1pt</PaddingLeft>
+                            <PaddingRight>1pt</PaddingRight>
                           </Style>
                         </Textbox>
                       </CellContents>
@@ -1003,17 +1183,17 @@ Fields!PageCaption.Value</Value>
                     <TablixCell />
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Detailed_Cust__Ledg__Entry__Debit_Amount__LCY___Control1120136">
+                        <Textbox Name="Detailed_Vendor_Ledg__Entry__Debit_Amount__LCY___Control1120136">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Code.BlankZero(Sum(Fields!Detailed_Cust__Ledg__Entry__Debit_Amount__LCY__.Value))</Value>
+                                  <Value>=Code.BlankZero(Sum(Fields!Detailed_Vendor_Ledg__Entry__Debit_Amount__LCY__.Value))</Value>
                                   <Style>
                                     <FontSize>8pt</FontSize>
-                                    <Format>=First(Fields!Detailed_Cust__Ledg__Entry__Debit_Amount__LCY___Control1120136Format.Value)</Format>
+                                    <Format>=First(Fields!Detailed_Vendor_Ledg__Entry__Debit_Amount__LCY___Control1120136Format.Value)</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1036,17 +1216,17 @@ Fields!PageCaption.Value</Value>
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Detailed_Cust__Ledg__Entry__Credit_Amount__LCY___Control1120139">
+                        <Textbox Name="Detailed_Vendor_Ledg__Entry__Credit_Amount__LCY___Control1120139">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Code.BlankZero(Sum(Fields!Detailed_Cust__Ledg__Entry__Credit_Amount__LCY__.Value))</Value>
+                                  <Value>=Code.BlankZero(Sum(Fields!Detailed_Vendor_Ledg__Entry__Credit_Amount__LCY__.Value))</Value>
                                   <Style>
                                     <FontSize>8pt</FontSize>
-                                    <Format>=First(Fields!Detailed_Cust__Ledg__Entry__Credit_Amount__LCY___Control1120139Format.Value)</Format>
+                                    <Format>=First(Fields!Detailed_Vendor_Ledg__Entry__Credit_Amount__LCY___Control1120139Format.Value)</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1076,7 +1256,7 @@ Fields!PageCaption.Value</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Code.BlankZero(Last(Fields!BalanceLCY.Value,"table2_Group3"))</Value>
+                                  <Value>=Code.BlankZero(Last(Fields!BalanceLCY.Value))</Value>
                                   <Style>
                                     <FontSize>8pt</FontSize>
                                     <Format>=First(Fields!BalanceLCY_Control1120142Format.Value)</Format>
@@ -1102,7 +1282,7 @@ Fields!PageCaption.Value</Value>
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="textbox56">
+                        <Textbox Name="textbox65">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -1110,13 +1290,15 @@ Fields!PageCaption.Value</Value>
                               <TextRuns>
                                 <TextRun>
                                   <Value />
-                                  <Style />
+                                  <Style>
+                                    <FontSize>8pt</FontSize>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>textbox56</rd:DefaultName>
+                          <rd:DefaultName>textbox65</rd:DefaultName>
                           <ZIndex>9</ZIndex>
                           <Style>
                             <PaddingLeft>4pt</PaddingLeft>
@@ -1132,7 +1314,7 @@ Fields!PageCaption.Value</Value>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="textbox111">
+                        <Textbox Name="textbox91">
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
@@ -1150,7 +1332,7 @@ Fields!PageCaption.Value</Value>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>textbox111</rd:DefaultName>
+                          <rd:DefaultName>textbox91</rd:DefaultName>
                           <ZIndex>18</ZIndex>
                           <Style>
                             <Border>
@@ -1168,7 +1350,7 @@ Fields!PageCaption.Value</Value>
                     <TablixCell />
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="textbox124">
+                        <Textbox Name="textbox96">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -1186,7 +1368,7 @@ Fields!PageCaption.Value</Value>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>textbox124</rd:DefaultName>
+                          <rd:DefaultName>textbox96</rd:DefaultName>
                           <ZIndex>17</ZIndex>
                           <Style>
                             <Border>
@@ -1200,7 +1382,7 @@ Fields!PageCaption.Value</Value>
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="textbox125">
+                        <Textbox Name="textbox97">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -1218,7 +1400,7 @@ Fields!PageCaption.Value</Value>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>textbox125</rd:DefaultName>
+                          <rd:DefaultName>textbox97</rd:DefaultName>
                           <ZIndex>16</ZIndex>
                           <Style>
                             <Border>
@@ -1232,7 +1414,7 @@ Fields!PageCaption.Value</Value>
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="textbox126">
+                        <Textbox Name="textbox98">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -1250,7 +1432,7 @@ Fields!PageCaption.Value</Value>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>textbox126</rd:DefaultName>
+                          <rd:DefaultName>textbox98</rd:DefaultName>
                           <ZIndex>15</ZIndex>
                           <Style>
                             <Border>
@@ -1264,7 +1446,7 @@ Fields!PageCaption.Value</Value>
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="textbox60">
+                        <Textbox Name="textbox103">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -1281,7 +1463,7 @@ Fields!PageCaption.Value</Value>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>textbox60</rd:DefaultName>
+                          <rd:DefaultName>textbox103</rd:DefaultName>
                           <ZIndex>14</ZIndex>
                           <Style>
                             <PaddingLeft>4pt</PaddingLeft>
@@ -1297,7 +1479,7 @@ Fields!PageCaption.Value</Value>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="textbox27">
+                        <Textbox Name="textbox57">
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
@@ -1314,7 +1496,7 @@ Fields!PageCaption.Value</Value>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>textbox27</rd:DefaultName>
+                          <rd:DefaultName>textbox57</rd:DefaultName>
                           <ZIndex>23</ZIndex>
                           <Style>
                             <Border>
@@ -1332,7 +1514,7 @@ Fields!PageCaption.Value</Value>
                     <TablixCell />
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="textbox90">
+                        <Textbox Name="textbox83">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -1349,7 +1531,7 @@ Fields!PageCaption.Value</Value>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>textbox90</rd:DefaultName>
+                          <rd:DefaultName>textbox83</rd:DefaultName>
                           <ZIndex>22</ZIndex>
                           <Style>
                             <Border>
@@ -1363,7 +1545,7 @@ Fields!PageCaption.Value</Value>
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="textbox91">
+                        <Textbox Name="textbox84">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -1380,7 +1562,7 @@ Fields!PageCaption.Value</Value>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>textbox91</rd:DefaultName>
+                          <rd:DefaultName>textbox84</rd:DefaultName>
                           <ZIndex>21</ZIndex>
                           <Style>
                             <Border>
@@ -1394,7 +1576,7 @@ Fields!PageCaption.Value</Value>
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="textbox92">
+                        <Textbox Name="textbox85">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -1411,7 +1593,7 @@ Fields!PageCaption.Value</Value>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>textbox92</rd:DefaultName>
+                          <rd:DefaultName>textbox85</rd:DefaultName>
                           <ZIndex>20</ZIndex>
                           <Style>
                             <Border>
@@ -1425,7 +1607,7 @@ Fields!PageCaption.Value</Value>
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="textbox66">
+                        <Textbox Name="textbox90">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -1441,7 +1623,7 @@ Fields!PageCaption.Value</Value>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>textbox66</rd:DefaultName>
+                          <rd:DefaultName>textbox90</rd:DefaultName>
                           <ZIndex>19</ZIndex>
                           <Style>
                             <PaddingLeft>4pt</PaddingLeft>
@@ -1457,7 +1639,7 @@ Fields!PageCaption.Value</Value>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="textbox61">
+                        <Textbox Name="TextBox113">
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
@@ -1475,7 +1657,6 @@ Fields!PageCaption.Value</Value>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>textbox61</rd:DefaultName>
                           <ZIndex>28</ZIndex>
                           <Style>
                             <Border>
@@ -1493,7 +1674,7 @@ Fields!PageCaption.Value</Value>
                     <TablixCell />
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="textbox1">
+                        <Textbox Name="textbox53">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -1524,7 +1705,7 @@ Fields!PageCaption.Value</Value>
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="textbox5">
+                        <Textbox Name="textbox58">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -1555,7 +1736,7 @@ Fields!PageCaption.Value</Value>
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="textbox6">
+                        <Textbox Name="textbox59">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -1586,7 +1767,7 @@ Fields!PageCaption.Value</Value>
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="textbox71">
+                        <Textbox Name="textbox77">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -1603,7 +1784,7 @@ Fields!PageCaption.Value</Value>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>textbox71</rd:DefaultName>
+                          <rd:DefaultName>textbox77</rd:DefaultName>
                           <ZIndex>24</ZIndex>
                           <Style>
                             <PaddingLeft>4pt</PaddingLeft>
@@ -1619,22 +1800,28 @@ Fields!PageCaption.Value</Value>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="textbox133">
+                        <Textbox Name="textbox18">
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
                                   <Value />
-                                  <Style />
+                                  <Style>
+                                    <FontSize>8pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>textbox133</rd:DefaultName>
+                          <rd:DefaultName>textbox18</rd:DefaultName>
                           <ZIndex>29</ZIndex>
                           <Style>
+                            <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -1664,7 +1851,7 @@ Fields!PageCaption.Value</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=First(Fields!Grand_TotalCaption.Value)</Value>
+                                  <Value>=Last(Fields!Grand_TotalCaption.Value)</Value>
                                   <Style>
                                     <FontSize>8pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
@@ -1786,7 +1973,7 @@ Fields!PageCaption.Value</Value>
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="textbox89">
+                        <Textbox Name="textbox47">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -1794,13 +1981,16 @@ Fields!PageCaption.Value</Value>
                               <TextRuns>
                                 <TextRun>
                                   <Value />
-                                  <Style />
+                                  <Style>
+                                    <FontSize>8pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>textbox89</rd:DefaultName>
+                          <rd:DefaultName>textbox47</rd:DefaultName>
                           <ZIndex>30</ZIndex>
                           <Style>
                             <PaddingLeft>4pt</PaddingLeft>
@@ -1828,40 +2018,31 @@ Fields!PageCaption.Value</Value>
             <TablixRowHierarchy>
               <TablixMembers>
                 <TablixMember>
-                  <Visibility>
-                    <Hidden>=IIF(Fields!Filter.Value = "",True,False)</Hidden>
-                  </Visibility>
                   <KeepWithGroup>After</KeepWithGroup>
                   <RepeatOnNewPage>true</RepeatOnNewPage>
                   <KeepTogether>true</KeepTogether>
                 </TablixMember>
                 <TablixMember>
-                  <Visibility>
-                    <Hidden>=iif(CountRows(), FALSE, TRUE)</Hidden>
-                  </Visibility>
                   <KeepWithGroup>After</KeepWithGroup>
                   <RepeatOnNewPage>true</RepeatOnNewPage>
                   <KeepTogether>true</KeepTogether>
                 </TablixMember>
                 <TablixMember>
-                  <Visibility>
-                    <Hidden>=iif(CountRows(), FALSE, TRUE)</Hidden>
-                  </Visibility>
                   <KeepWithGroup>After</KeepWithGroup>
                   <RepeatOnNewPage>true</RepeatOnNewPage>
                   <KeepTogether>true</KeepTogether>
                 </TablixMember>
                 <TablixMember>
-                  <Group Name="table2_Group2">
+                  <Group Name="Table1_Group2">
                     <GroupExpressions>
                       <GroupExpression>=1</GroupExpression>
                     </GroupExpressions>
                   </Group>
                   <TablixMembers>
                     <TablixMember>
-                      <Group Name="table2_Group1">
+                      <Group Name="Table1_Group">
                         <GroupExpressions>
-                          <GroupExpression>=Fields!Customer__No__.Value</GroupExpression>
+                          <GroupExpression>=Fields!Vendor__No__.Value</GroupExpression>
                         </GroupExpressions>
                       </Group>
                       <TablixMembers>
@@ -1878,21 +2059,21 @@ Fields!PageCaption.Value</Value>
                           <KeepTogether>true</KeepTogether>
                         </TablixMember>
                         <TablixMember>
-                          <Group Name="table2_Group3">
+                          <Group Name="Table1_Group3">
                             <GroupExpressions>
-                              <GroupExpression>=Fields!Text008_________FORMAT_Date__Period_Type___________Date__Period_Name_.Value</GroupExpression>
+                              <GroupExpression>=Fields!Date__Period_Name_.Value</GroupExpression>
                               <GroupExpression>=Fields!PostingYearValue.Value</GroupExpression>
                             </GroupExpressions>
                           </Group>
                           <TablixMembers>
                             <TablixMember>
-                              <Group Name="table2_Details_Group">
+                              <Group Name="Table1_Details_Group">
                                 <DataElementName>Detail</DataElementName>
                               </Group>
                               <TablixMembers>
                                 <TablixMember>
                                   <Visibility>
-                                    <Hidden>=iif(Fields!Detailed_Cust__Ledg__Entry_Entry_No_.Value &gt; 0, FALSE, TRUE)</Hidden>
+                                    <Hidden>=IIF(Fields!Det_Vendor_L_E___Entry_No__.Value &gt; 0,False,True)</Hidden>
                                   </Visibility>
                                 </TablixMember>
                               </TablixMembers>
@@ -1902,7 +2083,7 @@ Fields!PageCaption.Value</Value>
                             </TablixMember>
                             <TablixMember>
                               <Visibility>
-                                <Hidden>=IIF(Fields!DatePeriodTypeInt.Value = 3 or Fields!Text008_________FORMAT_Date__Period_Type___________Date__Period_Name_.Value = "",True,False)</Hidden>
+                                <Hidden>=IIF(Fields!FooterEnable.Value,False,True)</Hidden>
                               </Visibility>
                               <KeepWithGroup>Before</KeepWithGroup>
                               <KeepTogether>true</KeepTogether>
@@ -1911,21 +2092,21 @@ Fields!PageCaption.Value</Value>
                         </TablixMember>
                         <TablixMember>
                           <Visibility>
-                            <Hidden>=IIF((Sum(Fields!Detailed_Cust__Ledg__Entry__Debit_Amount__LCY__.Value) = 0) and (Sum(Fields!Detailed_Cust__Ledg__Entry__Credit_Amount__LCY__.Value) = 0),False,True)</Hidden>
+                            <Hidden>=IIF((Sum(Fields!Detailed_Vendor_Ledg__Entry__Debit_Amount__LCY__.Value) = 0) and (Sum(Fields!Detailed_Vendor_Ledg__Entry__Credit_Amount__LCY__.Value) = 0),False,True)</Hidden>
                           </Visibility>
                           <KeepWithGroup>Before</KeepWithGroup>
                           <KeepTogether>true</KeepTogether>
                         </TablixMember>
                         <TablixMember>
                           <Visibility>
-                            <Hidden>=IIF((Sum(Fields!Detailed_Cust__Ledg__Entry__Debit_Amount__LCY__.Value) = 0) and (Sum(Fields!Detailed_Cust__Ledg__Entry__Credit_Amount__LCY__.Value) = 0),True,False)</Hidden>
+                            <Hidden>=IIF((Sum(Fields!Detailed_Vendor_Ledg__Entry__Debit_Amount__LCY__.Value) = 0) and (Sum(Fields!Detailed_Vendor_Ledg__Entry__Credit_Amount__LCY__.Value) = 0),True,False)</Hidden>
                           </Visibility>
                           <KeepWithGroup>Before</KeepWithGroup>
                           <KeepTogether>true</KeepTogether>
                         </TablixMember>
                         <TablixMember>
                           <Visibility>
-                            <Hidden>=IIF((Sum(Fields!Detailed_Cust__Ledg__Entry__Debit_Amount__LCY__.Value) = 0) and (Sum(Fields!Detailed_Cust__Ledg__Entry__Credit_Amount__LCY__.Value) = 0),True,False)</Hidden>
+                            <Hidden>=IIF((Sum(Fields!Detailed_Vendor_Ledg__Entry__Debit_Amount__LCY__.Value) = 0) and (Sum(Fields!Detailed_Vendor_Ledg__Entry__Credit_Amount__LCY__.Value) = 0),True,False)</Hidden>
                           </Visibility>
                           <KeepWithGroup>Before</KeepWithGroup>
                           <KeepTogether>true</KeepTogether>
@@ -1944,72 +2125,53 @@ Fields!PageCaption.Value</Value>
                 </TablixMember>
               </TablixMembers>
             </TablixRowHierarchy>
-            <Top>0.50265cm</Top>
+            <DataSetName>DataSet_Result</DataSetName>
+            <Filters>
+              <Filter>
+                <FilterExpression>=Fields!Posting_DateCaption.Value</FilterExpression>
+                <Operator>GreaterThan</Operator>
+                <FilterValues>
+                  <FilterValue />
+                </FilterValues>
+              </Filter>
+            </Filters>
+            <Top>0.47619cm</Top>
             <Height>4.446cm</Height>
-            <Width>19.45cm</Width>
+            <Width>19.5cm</Width>
+            <Visibility>
+              <Hidden>=IIF(Fields!Posting_DateCaption.Value = "",True,False)</Hidden>
+            </Visibility>
+            <DataElementOutput>NoOutput</DataElementOutput>
             <Style />
           </Tablix>
-          <Tablix Name="table3">
-            <TablixBody>
-              <TablixColumns>
-                <TablixColumn>
-                  <Width>12.06349cm</Width>
-                </TablixColumn>
-              </TablixColumns>
-              <TablixRows>
-                <TablixRow>
-                  <Height>0.423cm</Height>
-                  <TablixCells>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="This_report_also_includes_customers_that_only_have_balances_Caption">
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>=First(Fields!This_report_also_includes_customers_that_only_have_balances_Caption.Value)</Value>
-                                  <Style>
-                                    <FontSize>7pt</FontSize>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style />
-                            </Paragraph>
-                          </Paragraphs>
-                          <Style>
-                            <VerticalAlign>Middle</VerticalAlign>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                  </TablixCells>
-                </TablixRow>
-              </TablixRows>
-            </TablixBody>
-            <TablixColumnHierarchy>
-              <TablixMembers>
-                <TablixMember />
-              </TablixMembers>
-            </TablixColumnHierarchy>
-            <TablixRowHierarchy>
-              <TablixMembers>
-                <TablixMember>
-                  <Visibility>
-                    <Hidden>=IIF(Fields!ExcludeBalanceOnly.Value,True,False)</Hidden>
-                  </Visibility>
-                  <KeepWithGroup>After</KeepWithGroup>
-                  <KeepTogether>true</KeepTogether>
-                </TablixMember>
-              </TablixMembers>
-            </TablixRowHierarchy>
+          <Textbox Name="This_report_also_includes_vendors_that_only_have_balances_Caption">
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=First(Fields!This_report_also_includes_vendors_that_only_have_balances_Caption.Value)</Value>
+                    <Style>
+                      <FontSize>7pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
             <Height>0.423cm</Height>
-            <Width>12.06349cm</Width>
+            <Width>12cm</Width>
             <ZIndex>1</ZIndex>
-            <Style />
-          </Tablix>
+            <Visibility>
+              <Hidden>=IIF(Fields!ExcludeBalanceOnly.Value,True,False)</Hidden>
+            </Visibility>
+            <DataElementOutput>NoOutput</DataElementOutput>
+            <Style>
+              <VerticalAlign>Middle</VerticalAlign>
+            </Style>
+          </Textbox>
         </ReportItems>
-        <Height>4.94865cm</Height>
+        <Height>4.92219cm</Height>
         <Style />
       </Body>
       <Width>19.5cm</Width>
@@ -2019,7 +2181,7 @@ Fields!PageCaption.Value</Value>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
-            <Textbox Name="Customer_Detail_Trial_BalanceCaption1">
+            <Textbox Name="Vendor_Detail_Trial_BalanceCaption1">
               <KeepTogether>true</KeepTogether>
               <Paragraphs>
                 <Paragraph>
@@ -2048,7 +2210,7 @@ Fields!PageCaption.Value</Value>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>=Cstr(Choose(3,Split(Cstr(ReportItems!AllData.Value),Chr(177))))</Value>
+                      <Value>=Cstr(Choose(3,Split(Cstr(ReportItems!AllData.Value),Chr(177)))) </Value>
                       <Style>
                         <FontSize>8pt</FontSize>
                       </Style>
@@ -2084,9 +2246,9 @@ Fields!PageCaption.Value</Value>
                 </Paragraph>
               </Paragraphs>
               <Top>0.3cm</Top>
-              <Left>14.92063cm</Left>
+              <Left>13.96825cm</Left>
               <Height>0.31746cm</Height>
-              <Width>4.56985cm</Width>
+              <Width>4.76191cm</Width>
               <ZIndex>2</ZIndex>
               <Style>
                 <VerticalAlign>Middle</VerticalAlign>
@@ -2098,7 +2260,7 @@ Fields!PageCaption.Value</Value>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>=Cstr(Choose(2,Split(Cstr(ReportItems!AllData.Value),Chr(177))))</Value>
+                      <Value>=Cstr(Choose(2,Split(Cstr(ReportItems!AllData.Value),Chr(177)))) </Value>
                       <Style>
                         <FontSize>8pt</FontSize>
                       </Style>
@@ -2133,9 +2295,9 @@ Fields!PageCaption.Value</Value>
                   </Style>
                 </Paragraph>
               </Paragraphs>
-              <Left>14.92063cm</Left>
+              <Left>13.96825cm</Left>
               <Height>0.31746cm</Height>
-              <Width>4.56985cm</Width>
+              <Width>4.76191cm</Width>
               <ZIndex>4</ZIndex>
               <Style>
                 <VerticalAlign>Middle</VerticalAlign>
@@ -2147,7 +2309,7 @@ Fields!PageCaption.Value</Value>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>=Cstr(Choose(5,Split(Cstr(ReportItems!AllData.Value),Chr(177)))) &amp; Globals!PageNumber</Value>
+                      <Value>=Cstr(Choose(5,Split(Cstr(ReportItems!AllData.Value),Chr(177))))  &amp; Globals!PageNumber</Value>
                       <Style>
                         <FontSize>8pt</FontSize>
                       </Style>
@@ -2159,9 +2321,9 @@ Fields!PageCaption.Value</Value>
                 </Paragraph>
               </Paragraphs>
               <Top>0.9cm</Top>
-              <Left>14.92063cm</Left>
+              <Left>13.96825cm</Left>
               <Height>0.31746cm</Height>
-              <Width>4.44444cm</Width>
+              <Width>4.43731cm</Width>
               <ZIndex>5</ZIndex>
               <Style>
                 <VerticalAlign>Middle</VerticalAlign>
@@ -2219,7 +2381,7 @@ End Function
   <Language>=User!Language</Language>
   <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
   <rd:ReportUnitType>Cm</rd:ReportUnitType>
-  <rd:ReportID>4f834dc9-b492-4163-9f38-3bcd408d41c5</rd:ReportID>
+  <rd:ReportID>35aa6302-053d-472d-9846-f82903f9f00a</rd:ReportID>
   <DataSets>
     <DataSet Name="DataSet_Result">
       <Fields>
@@ -2244,17 +2406,17 @@ End Function
         <Field Name="ExcludeBalanceOnly">
           <DataField>ExcludeBalanceOnly</DataField>
         </Field>
-        <Field Name="Customer_TABLECAPTION__________Filter">
-          <DataField>Customer_TABLECAPTION__________Filter</DataField>
+        <Field Name="Vendor_TABLECAPTION__________Filter">
+          <DataField>Vendor_TABLECAPTION__________Filter</DataField>
         </Field>
         <Field Name="Filter">
           <DataField>Filter</DataField>
         </Field>
-        <Field Name="Customer__No__">
-          <DataField>Customer__No__</DataField>
+        <Field Name="Vendor__No__">
+          <DataField>Vendor__No__</DataField>
         </Field>
-        <Field Name="Customer_Name">
-          <DataField>Customer_Name</DataField>
+        <Field Name="Vendor_Name">
+          <DataField>Vendor_Name</DataField>
         </Field>
         <Field Name="ReportDebitAmountLCY">
           <DataField>ReportDebitAmountLCY</DataField>
@@ -2331,23 +2493,23 @@ End Function
         <Field Name="GeneralDebitAmountLCY_GeneralCreditAmountLCYFormat">
           <DataField>GeneralDebitAmountLCY_GeneralCreditAmountLCYFormat</DataField>
         </Field>
-        <Field Name="Customer_Date_Filter">
-          <DataField>Customer_Date_Filter</DataField>
+        <Field Name="Vendor_Date_Filter">
+          <DataField>Vendor_Date_Filter</DataField>
         </Field>
-        <Field Name="Customer_Global_Dimension_1_Filter">
-          <DataField>Customer_Global_Dimension_1_Filter</DataField>
+        <Field Name="Vendor_Global_Dimension_1_Filter">
+          <DataField>Vendor_Global_Dimension_1_Filter</DataField>
         </Field>
-        <Field Name="Customer_Global_Dimension_2_Filter">
-          <DataField>Customer_Global_Dimension_2_Filter</DataField>
+        <Field Name="Vendor_Global_Dimension_2_Filter">
+          <DataField>Vendor_Global_Dimension_2_Filter</DataField>
         </Field>
-        <Field Name="Customer_Currency_Filter">
-          <DataField>Customer_Currency_Filter</DataField>
+        <Field Name="Vendor_Currency_Filter">
+          <DataField>Vendor_Currency_Filter</DataField>
         </Field>
-        <Field Name="Customer_Detail_Trial_BalanceCaption">
-          <DataField>Customer_Detail_Trial_BalanceCaption</DataField>
+        <Field Name="Vendor_Detail_Trial_BalanceCaption">
+          <DataField>Vendor_Detail_Trial_BalanceCaption</DataField>
         </Field>
-        <Field Name="This_report_also_includes_customers_that_only_have_balances_Caption">
-          <DataField>This_report_also_includes_customers_that_only_have_balances_Caption</DataField>
+        <Field Name="This_report_also_includes_vendors_that_only_have_balances_Caption">
+          <DataField>This_report_also_includes_vendors_that_only_have_balances_Caption</DataField>
         </Field>
         <Field Name="Posting_DateCaption">
           <DataField>Posting_DateCaption</DataField>
@@ -2403,6 +2565,9 @@ End Function
         <Field Name="STRSUBSTNO_Text006_EndDate_">
           <DataField>STRSUBSTNO_Text006_EndDate_</DataField>
         </Field>
+        <Field Name="Date__Period_Name_">
+          <DataField>Date__Period_Name_</DataField>
+        </Field>
         <Field Name="STRSUBSTNO_Text007_EndDate_">
           <DataField>STRSUBSTNO_Text007_EndDate_</DataField>
         </Field>
@@ -2451,17 +2616,17 @@ End Function
         <Field Name="Total_Date_RangeCaption">
           <DataField>Total_Date_RangeCaption</DataField>
         </Field>
-        <Field Name="Detailed_Cust__Ledg__Entry__Debit_Amount__LCY__">
-          <DataField>Detailed_Cust__Ledg__Entry__Debit_Amount__LCY__</DataField>
+        <Field Name="Detailed_Vendor_Ledg__Entry__Debit_Amount__LCY__">
+          <DataField>Detailed_Vendor_Ledg__Entry__Debit_Amount__LCY__</DataField>
         </Field>
-        <Field Name="Detailed_Cust__Ledg__Entry__Debit_Amount__LCY__Format">
-          <DataField>Detailed_Cust__Ledg__Entry__Debit_Amount__LCY__Format</DataField>
+        <Field Name="Detailed_Vendor_Ledg__Entry__Debit_Amount__LCY__Format">
+          <DataField>Detailed_Vendor_Ledg__Entry__Debit_Amount__LCY__Format</DataField>
         </Field>
-        <Field Name="Detailed_Cust__Ledg__Entry__Credit_Amount__LCY__">
-          <DataField>Detailed_Cust__Ledg__Entry__Credit_Amount__LCY__</DataField>
+        <Field Name="Detailed_Vendor_Ledg__Entry__Credit_Amount__LCY__">
+          <DataField>Detailed_Vendor_Ledg__Entry__Credit_Amount__LCY__</DataField>
         </Field>
-        <Field Name="Detailed_Cust__Ledg__Entry__Credit_Amount__LCY__Format">
-          <DataField>Detailed_Cust__Ledg__Entry__Credit_Amount__LCY__Format</DataField>
+        <Field Name="Detailed_Vendor_Ledg__Entry__Credit_Amount__LCY__Format">
+          <DataField>Detailed_Vendor_Ledg__Entry__Credit_Amount__LCY__Format</DataField>
         </Field>
         <Field Name="Debit_Amount__LCY______Credit_Amount__LCY__">
           <DataField>Debit_Amount__LCY______Credit_Amount__LCY__</DataField>
@@ -2469,14 +2634,14 @@ End Function
         <Field Name="Debit_Amount__LCY______Credit_Amount__LCY__Format">
           <DataField>Debit_Amount__LCY______Credit_Amount__LCY__Format</DataField>
         </Field>
-        <Field Name="Detailed_Cust__Ledg__Entry__Posting_Date_">
-          <DataField>Detailed_Cust__Ledg__Entry__Posting_Date_</DataField>
+        <Field Name="Detailed_Vendor_Ledg__Entry__Posting_Date_">
+          <DataField>Detailed_Vendor_Ledg__Entry__Posting_Date_</DataField>
         </Field>
-        <Field Name="Detailed_Cust__Ledg__Entry__Source_Code_">
-          <DataField>Detailed_Cust__Ledg__Entry__Source_Code_</DataField>
+        <Field Name="Detailed_Vendor_Ledg__Entry__Source_Code_">
+          <DataField>Detailed_Vendor_Ledg__Entry__Source_Code_</DataField>
         </Field>
-        <Field Name="Detailed_Cust__Ledg__Entry__Document_No__">
-          <DataField>Detailed_Cust__Ledg__Entry__Document_No__</DataField>
+        <Field Name="Detailed_Vendor_Ledg__Entry__Document_No__">
+          <DataField>Detailed_Vendor_Ledg__Entry__Document_No__</DataField>
         </Field>
         <Field Name="OriginalLedgerEntry__External_Document_No__">
           <DataField>OriginalLedgerEntry__External_Document_No__</DataField>
@@ -2484,17 +2649,17 @@ End Function
         <Field Name="OriginalLedgerEntry_Description">
           <DataField>OriginalLedgerEntry_Description</DataField>
         </Field>
-        <Field Name="Detailed_Cust__Ledg__Entry__Debit_Amount__LCY___Control1120116">
-          <DataField>Detailed_Cust__Ledg__Entry__Debit_Amount__LCY___Control1120116</DataField>
+        <Field Name="Detailed_Vendor_Ledg__Entry__Debit_Amount__LCY___Control1120116">
+          <DataField>Detailed_Vendor_Ledg__Entry__Debit_Amount__LCY___Control1120116</DataField>
         </Field>
-        <Field Name="Detailed_Cust__Ledg__Entry__Debit_Amount__LCY___Control1120116Format">
-          <DataField>Detailed_Cust__Ledg__Entry__Debit_Amount__LCY___Control1120116Format</DataField>
+        <Field Name="Detailed_Vendor_Ledg__Entry__Debit_Amount__LCY___Control1120116Format">
+          <DataField>Detailed_Vendor_Ledg__Entry__Debit_Amount__LCY___Control1120116Format</DataField>
         </Field>
-        <Field Name="Detailed_Cust__Ledg__Entry__Credit_Amount__LCY___Control1120119">
-          <DataField>Detailed_Cust__Ledg__Entry__Credit_Amount__LCY___Control1120119</DataField>
+        <Field Name="Detailed_Vendor_Ledg__Entry__Credit_Amount__LCY___Control1120119">
+          <DataField>Detailed_Vendor_Ledg__Entry__Credit_Amount__LCY___Control1120119</DataField>
         </Field>
-        <Field Name="Detailed_Cust__Ledg__Entry__Credit_Amount__LCY___Control1120119Format">
-          <DataField>Detailed_Cust__Ledg__Entry__Credit_Amount__LCY___Control1120119Format</DataField>
+        <Field Name="Detailed_Vendor_Ledg__Entry__Credit_Amount__LCY___Control1120119Format">
+          <DataField>Detailed_Vendor_Ledg__Entry__Credit_Amount__LCY___Control1120119Format</DataField>
         </Field>
         <Field Name="BalanceLCY">
           <DataField>BalanceLCY</DataField>
@@ -2502,17 +2667,20 @@ End Function
         <Field Name="BalanceLCYFormat">
           <DataField>BalanceLCYFormat</DataField>
         </Field>
-        <Field Name="Detailed_Cust__Ledg__Entry__Debit_Amount__LCY___Control1120126">
-          <DataField>Detailed_Cust__Ledg__Entry__Debit_Amount__LCY___Control1120126</DataField>
+        <Field Name="Det_Vendor_L_E___Entry_No__">
+          <DataField>Det_Vendor_L_E___Entry_No__</DataField>
         </Field>
-        <Field Name="Detailed_Cust__Ledg__Entry__Debit_Amount__LCY___Control1120126Format">
-          <DataField>Detailed_Cust__Ledg__Entry__Debit_Amount__LCY___Control1120126Format</DataField>
+        <Field Name="Detailed_Vendor_Ledg__Entry__Debit_Amount__LCY___Control1120126">
+          <DataField>Detailed_Vendor_Ledg__Entry__Debit_Amount__LCY___Control1120126</DataField>
         </Field>
-        <Field Name="Detailed_Cust__Ledg__Entry__Credit_Amount__LCY___Control1120128">
-          <DataField>Detailed_Cust__Ledg__Entry__Credit_Amount__LCY___Control1120128</DataField>
+        <Field Name="Detailed_Vendor_Ledg__Entry__Debit_Amount__LCY___Control1120126Format">
+          <DataField>Detailed_Vendor_Ledg__Entry__Debit_Amount__LCY___Control1120126Format</DataField>
         </Field>
-        <Field Name="Detailed_Cust__Ledg__Entry__Credit_Amount__LCY___Control1120128Format">
-          <DataField>Detailed_Cust__Ledg__Entry__Credit_Amount__LCY___Control1120128Format</DataField>
+        <Field Name="Detailed_Vendor_Ledg__Entry__Credit_Amount__LCY___Control1120128">
+          <DataField>Detailed_Vendor_Ledg__Entry__Credit_Amount__LCY___Control1120128</DataField>
+        </Field>
+        <Field Name="Detailed_Vendor_Ledg__Entry__Credit_Amount__LCY___Control1120128Format">
+          <DataField>Detailed_Vendor_Ledg__Entry__Credit_Amount__LCY___Control1120128Format</DataField>
         </Field>
         <Field Name="Debit_Amount__LCY______Credit_Amount__LCY___Control1120130">
           <DataField>Debit_Amount__LCY______Credit_Amount__LCY___Control1120130</DataField>
@@ -2523,17 +2691,17 @@ End Function
         <Field Name="Text008_________FORMAT_Date__Period_Type___________Date__Period_Name_">
           <DataField>Text008_________FORMAT_Date__Period_Type___________Date__Period_Name_</DataField>
         </Field>
-        <Field Name="Detailed_Cust__Ledg__Entry__Debit_Amount__LCY___Control1120136">
-          <DataField>Detailed_Cust__Ledg__Entry__Debit_Amount__LCY___Control1120136</DataField>
+        <Field Name="Detailed_Vendor_Ledg__Entry__Debit_Amount__LCY___Control1120136">
+          <DataField>Detailed_Vendor_Ledg__Entry__Debit_Amount__LCY___Control1120136</DataField>
         </Field>
-        <Field Name="Detailed_Cust__Ledg__Entry__Debit_Amount__LCY___Control1120136Format">
-          <DataField>Detailed_Cust__Ledg__Entry__Debit_Amount__LCY___Control1120136Format</DataField>
+        <Field Name="Detailed_Vendor_Ledg__Entry__Debit_Amount__LCY___Control1120136Format">
+          <DataField>Detailed_Vendor_Ledg__Entry__Debit_Amount__LCY___Control1120136Format</DataField>
         </Field>
-        <Field Name="Detailed_Cust__Ledg__Entry__Credit_Amount__LCY___Control1120139">
-          <DataField>Detailed_Cust__Ledg__Entry__Credit_Amount__LCY___Control1120139</DataField>
+        <Field Name="Detailed_Vendor_Ledg__Entry__Credit_Amount__LCY___Control1120139">
+          <DataField>Detailed_Vendor_Ledg__Entry__Credit_Amount__LCY___Control1120139</DataField>
         </Field>
-        <Field Name="Detailed_Cust__Ledg__Entry__Credit_Amount__LCY___Control1120139Format">
-          <DataField>Detailed_Cust__Ledg__Entry__Credit_Amount__LCY___Control1120139Format</DataField>
+        <Field Name="Detailed_Vendor_Ledg__Entry__Credit_Amount__LCY___Control1120139Format">
+          <DataField>Detailed_Vendor_Ledg__Entry__Credit_Amount__LCY___Control1120139Format</DataField>
         </Field>
         <Field Name="BalanceLCY_Control1120142">
           <DataField>BalanceLCY_Control1120142</DataField>
@@ -2541,26 +2709,23 @@ End Function
         <Field Name="BalanceLCY_Control1120142Format">
           <DataField>BalanceLCY_Control1120142Format</DataField>
         </Field>
-        <Field Name="DatePeriodTypeInt">
-          <DataField>DatePeriodTypeInt</DataField>
+        <Field Name="FooterEnable">
+          <DataField>FooterEnable</DataField>
         </Field>
-        <Field Name="Detailed_Cust__Ledg__Entry_Entry_No_">
-          <DataField>Detailed_Cust__Ledg__Entry_Entry_No_</DataField>
+        <Field Name="Detailed_Vendor_Ledg__Entry_Vendor_No_">
+          <DataField>Detailed_Vendor_Ledg__Entry_Vendor_No_</DataField>
         </Field>
-        <Field Name="Detailed_Cust__Ledg__Entry_Customer_No_">
-          <DataField>Detailed_Cust__Ledg__Entry_Customer_No_</DataField>
+        <Field Name="Detailed_Vendor_Ledg__Entry_Posting_Date">
+          <DataField>Detailed_Vendor_Ledg__Entry_Posting_Date</DataField>
         </Field>
-        <Field Name="Detailed_Cust__Ledg__Entry_Posting_Date">
-          <DataField>Detailed_Cust__Ledg__Entry_Posting_Date</DataField>
+        <Field Name="Detailed_Vendor_Ledg__Entry_Initial_Entry_Global_Dim__1">
+          <DataField>Detailed_Vendor_Ledg__Entry_Initial_Entry_Global_Dim__1</DataField>
         </Field>
-        <Field Name="Detailed_Cust__Ledg__Entry_Initial_Entry_Global_Dim__1">
-          <DataField>Detailed_Cust__Ledg__Entry_Initial_Entry_Global_Dim__1</DataField>
+        <Field Name="Detailed_Vendor_Ledg__Entry_Initial_Entry_Global_Dim__2">
+          <DataField>Detailed_Vendor_Ledg__Entry_Initial_Entry_Global_Dim__2</DataField>
         </Field>
-        <Field Name="Detailed_Cust__Ledg__Entry_Initial_Entry_Global_Dim__2">
-          <DataField>Detailed_Cust__Ledg__Entry_Initial_Entry_Global_Dim__2</DataField>
-        </Field>
-        <Field Name="Detailed_Cust__Ledg__Entry_Currency_Code">
-          <DataField>Detailed_Cust__Ledg__Entry_Currency_Code</DataField>
+        <Field Name="Detailed_Vendor_Ledg__Entry_Currency_Code">
+          <DataField>Detailed_Vendor_Ledg__Entry_Currency_Code</DataField>
         </Field>
         <Field Name="Previous_pageCaption">
           <DataField>Previous_pageCaption</DataField>
