@@ -44,6 +44,15 @@ codeunit 50014 "AfkGLSubs"
     end;
 
 
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::"Payment Management", 'OnGenerEntriesOnBeforeGenJnlPostLineRunWithCheck', '', true, false)]
+    local procedure OnGenerEntriesPaymentEntries(var GenJnlLine: Record "Gen. Journal Line"; PaymentHeader: Record "Payment Header"; StepLedger: Record "Payment Step Ledger")
+    var
+        AfkGLMgt: codeunit AfkGLMgt;
+    begin
+        AfkGLMgt.UpdatePayMethodCodeOnPaymentHeader(GenJnlLine, PaymentHeader);
+    end;
+
+
 
 
 

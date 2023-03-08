@@ -34,6 +34,8 @@ codeunit 50017 Afk_vendorDeductionMgt
         end;
     end;
 
+
+
     local procedure PostVendor_IR_TSR(PurchHeader: Record "Purchase Header"; AccountNo: Code[20]; AmtPourcentage: decimal;
     VendorGenJnlLine: Record "Gen. Journal Line";
     var GenJnlPostLine: Codeunit "Gen. Jnl.-Post Line"; var TotalPurchLineLCY: Record "Purchase Line"; var TotalPurchLine: Record "Purchase Line"; IsVATDeduction: Boolean)

@@ -139,8 +139,17 @@ report 50007 AfkTransferOrder
 
                 RepCheck.InitTextVariable();
                 RepCheck.FormatNoText(NoText, Amount, Currency.Code);
-                NoText[1] := DelChr(NoText[1], '=', '*');
-                NoText[2] := DelChr(NoText[2], '=', '*');
+                // NoText[1] := DelChr(NoText[1], '=', '*');
+                // NoText[2] := DelChr(NoText[2], '=', '*');
+                // NoText[1] := DelChr(NoText[1], '=', 'AND 0/100');
+                // NoText[2] := DelChr(NoText[2], '=', 'AND 0/100');
+
+                NoText[1] := ReplaceString(NoText[1], '****');
+                NoText[1] := ReplaceString(NoText[1], 'AND 0/100');
+
+                NoText[2] := ReplaceString(NoText[2], '****');
+                NoText[2] := ReplaceString(NoText[2], 'AND 0/100');
+
                 Afk_AmountInWords := NoText[1] + ' ' + NoText[2];
 
                 NumeroText := StrSubstNo(NumeroLabel, '_____________', AfkSetup.TransferNoSuffix);
@@ -247,5 +256,18 @@ report 50007 AfkTransferOrder
         VendorBankAccountName: Text;
         VendorName: Text;
         VendorRIB: Text;
+
+    local procedure ReplaceString(OriginString: Text; ReplaceString: Text): Text
+    var
+        Rep: Text;
+        pos: Integer;
+    begin
+        Rep := OriginString;
+        pos := StrPos(OriginString, ReplaceString);
+        if (pos >= 1) then begin
+            Rep := DelStr(OriginString, pos, StrLen(ReplaceString));
+        end;
+        exit(Rep);
+    end;
 
 }

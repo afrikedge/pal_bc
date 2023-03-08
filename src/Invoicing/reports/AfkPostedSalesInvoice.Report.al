@@ -1549,6 +1549,12 @@ report 50001 "AfkPostedSalesInvoice"
                     //AmountToConvertInLetters := ROUND(AfkTotalAmountInclVAT_LCY, AfkLocalCurrency."Amount Rounding Precision");
                     RepCheck.FormatNoText(NoText, AfkTotalAmountInclVAT_LCY, AfkLocalCurrency.code);
                     //RepCheck.FormatNoTextFR(NoText, AfkTotalAmountInclVAT_LCY, '');
+
+                    NoText[1] := ReplaceString(NoText[1], '****');
+                    NoText[1] := ReplaceString(NoText[1], 'AND 0/100');
+                    NoText[2] := ReplaceString(NoText[2], '****');
+                    NoText[2] := ReplaceString(NoText[2], 'AND 0/100');
+
                     Afk_AmountInWords := NoText[1] + ' ' + NoText[2];
 
                     QRCodeText := StrSubstNo(QRCodeLbl, "Header"."No.", "Header"."Document Date", AfkTotalAmountInclVAT_LCY);
@@ -2267,6 +2273,19 @@ report 50001 "AfkPostedSalesInvoice"
             exit(false);
 
         exit(true);
+    end;
+
+    local procedure ReplaceString(OriginString: Text; ReplaceString: Text): Text
+    var
+        Rep: Text;
+        pos: Integer;
+    begin
+        Rep := OriginString;
+        pos := StrPos(OriginString, ReplaceString);
+        if (pos >= 1) then begin
+            Rep := DelStr(OriginString, pos, StrLen(ReplaceString));
+        end;
+        exit(Rep);
     end;
 }
 

@@ -38,6 +38,11 @@ codeunit 50015 AfkGLMgt
 
     end;
 
+    internal procedure UpdatePayMethodCodeOnPaymentHeader(var GenJnlLine: Record "Gen. Journal Line"; PaymentHeader: Record "Payment Header")
+    begin
+        GenJnlLine.Validate("Payment Method Code", PaymentHeader."Payment Class");
+    end;
+
 
 
     var
