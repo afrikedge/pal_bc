@@ -513,8 +513,15 @@ codeunit 50004 AfkPurchaseReqMgt
     end;
 
     internal procedure OnCreatePurchHeaderOnBeforeInitRecord_CreateOrder(var PurchOrderHeader: Record "Purchase Header"; var PurchHeader: Record "Purchase Header")
+    var
+        userSetup1: Record "User Setup";
     begin
         PurchOrderHeader.Afk_CommitmentType := PurchOrderHeader.Afk_CommitmentType::"Purchase order";
+
+        //Code acheteur initial
+        userSetup1.get(UserId);
+        userSetup1.TestField(userSetup1."Salespers./Purch. Code");
+        PurchOrderHeader."Purchaser Code" := userSetup1."Salespers./Purch. Code";
     end;
 
     internal procedure OnAfterInsertVendorOnPurchase(var PurchaseHeader: Record "Purchase Header"; Vendor: Record Vendor; xPurchaseHeader: Record "Purchase Header")

@@ -25,7 +25,7 @@ table 50007 AfkDocRequisitionBudget
         }
         field(5; "Dimension Code 1"; Code[20])
         {
-            Caption = 'Task Code';
+            Caption = 'Budget Task Code';
             Editable = false;
         }
         field(6; "Dimension Code 2"; Code[20])

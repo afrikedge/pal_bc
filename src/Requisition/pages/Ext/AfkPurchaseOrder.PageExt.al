@@ -1,6 +1,6 @@
 pageextension 50016 AfkPurchaseOrder extends "Purchase Order"
 {
-    Caption = 'Purchase Commitment';
+    Caption = 'Order';
 
     layout
     {
@@ -8,6 +8,10 @@ pageextension 50016 AfkPurchaseOrder extends "Purchase Order"
         {
             Caption = 'Vendor Offer Ref.';
             //ShowMandatory = true;
+        }
+        modify("Vendor Invoice No.")
+        {
+            Caption = 'Final invoice number';
         }
         modify("Quote No.")
         {
@@ -100,6 +104,29 @@ pageextension 50016 AfkPurchaseOrder extends "Purchase Order"
     }
     actions
     {
+        modify(Release)
+        {
+            Caption = 'Approve';
+        }
+        modify(Reopen)
+        {
+            Caption = 'Modify';
+        }
+        modify(Post)
+        {
+            Caption = 'Reception/Invoice';
+        }
+        modify("P&osting")
+        {
+            Caption = 'Reception/Invoice';
+        }
+
+
+
+
+
+
+
         addafter(CopyDocument)
         {
             action(AfkCalculateBudget)

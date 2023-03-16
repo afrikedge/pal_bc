@@ -1,6 +1,6 @@
 pageextension 50017 AfkPurchaseOrderList extends "Purchase Order List"
 {
-    Caption = 'Purchase Commitments';
+    Caption = 'Orders';
 
     layout
     {

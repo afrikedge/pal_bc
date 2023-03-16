@@ -5,19 +5,46 @@ pageextension 50014 AfkPurchaseQuote extends "Purchase Quote"
     {
         modify("Vendor Order No.")
         {
-            Caption = 'Vendor Offer Ref.';
+            Caption = 'Proforma Invoice No.';
         }
+
+        modify("Order Date")
+        {
+            Caption = 'Estimated Order Date';
+        }
+        modify("Requested Receipt Date")
+        {
+            Caption = 'Estimated Reception Date';
+        }
+
+
+
+
 
         modify("Vendor Shipment No.")
         {
             Visible = false;
         }
+        modify("Document Date")
+        {
+            trigger OnAfterValidate()
+            begin
+                if (rec."Document Date" <> 0D) then
+                    Rec.Validate("Order Date", CalcDate('<+2D>', Rec."Document Date"));
+                ;
+            end;
+        }
 
         addafter("Vendor Order No.")
         {
+            field(Afk_ProformaDate; Rec.Afk_ProformaDate)
+            {
+                ApplicationArea = Basic, Suite;
+            }
             field(Afk_IssuerCode; Rec.Afk_IssuerCode)
             {
                 ApplicationArea = Basic, Suite;
+                Editable = false;
             }
             field(Afk_Object; Rec.Afk_Object)
             {

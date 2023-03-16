@@ -127,7 +127,7 @@ pageextension 50004 AfkSalesOrderProRC extends "Order Processor Role Center"
                 action(AfkPODocs)
                 {
                     ApplicationArea = Basic, Suite;
-                    Caption = 'Purchase commitments';
+                    Caption = 'Orders';
                     Image = Purchase;
                     RunObject = Page "Purchase order list";
                     ToolTip = 'View or edit detailed information about commitments';

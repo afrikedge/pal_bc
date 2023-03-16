@@ -7,7 +7,7 @@ tableextension 50013 AfkPurchaseHeaderArchive extends "Purchase Header Archive"
             Caption = 'Requisition Code';
             DataClassification = CustomerContent;
         }
-        field(50001; "Afk_PRDescription"; Text[250])
+        field(50001; "Afk_PRDescription"; Code[250])
         {
             Caption = 'PR Description';
             DataClassification = CustomerContent;
@@ -99,9 +99,19 @@ tableextension 50013 AfkPurchaseHeaderArchive extends "Purchase Header Archive"
             MinValue = 0;
             DataClassification = CustomerContent;
         }
-        field(50018; "Afk_Object"; Text[100])
+        field(50018; "Afk_Object"; Code[250])
         {
-            Caption = 'Subject';
+            Caption = 'Purpose of expense';
+            DataClassification = CustomerContent;
+        }
+        field(50019; "Afk_IssuerCode"; Code[50])
+        {
+            Caption = 'Issuer Code';
+            DataClassification = CustomerContent;
+        }
+        field(50020; "Afk_ProformaDate"; Date)
+        {
+            Caption = 'Proforma Invoice Date';
             DataClassification = CustomerContent;
         }
     }

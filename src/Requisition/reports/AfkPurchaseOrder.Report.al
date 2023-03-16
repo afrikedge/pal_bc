@@ -19,6 +19,10 @@ report 50004 "AfkPurchaseOrder"
             column(AfkLblLimbeLe; AfkLimbeLeLbl)
             {
             }
+            column(AfkLineHeight; AfkLineHeight)
+            {
+            }
+
             column(AfkLblObject; AfkObjectLbl)
             {
             }
@@ -730,6 +734,10 @@ report 50004 "AfkPurchaseOrder"
 
                             AfkLinesNumber := PurchLine.Count;
 
+                            if (AfkLinesNumber > 10) then begin
+                                AfkLineHeight := 0.5;
+                            end;
+
                             AfkNumLigne := 0;
                         end;
                     }
@@ -1247,10 +1255,13 @@ report 50004 "AfkPurchaseOrder"
                 if (AfkService.get("Purchase Header".Afk_IssuerCode)) then
                     AfkIssuerText := AfkService.Name;
 
-                AfkLimbeLeText := StrSubstNo(AfkLimbeLeLbl, "Purchase Header"."Order Date");
+                //AfkLimbeLeText := StrSubstNo(AfkLimbeLeLbl, "Purchase Header"."Order Date");
+                AfkLimbeLeText := AfkLimbeLeLbl;
 
                 "Purchase Header".CalcFields("Purchase Header"."Amount Including VAT");
-                QRCodeText := StrSubstNo(QRCodeLbl, "Purchase Header"."No.", "Purchase Header"."Order Date", "Purchase Header"."Amount Including VAT");
+                QRCodeText := StrSubstNo(QRCodeLbl, "Purchase Header"."No.",
+                "Purchase Header"."Order Date", "Purchase Header"."Amount Including VAT",
+                    Vend.Name);
                 QRCode := QRCodeMgt.GenerateQRCode(QRCodeText);
                 //************************
                 CurrReport.Language := Language.GetLanguageIdOrDefault("Language Code");
@@ -1431,6 +1442,7 @@ report 50004 "AfkPurchaseOrder"
         MoreLines: Boolean;
         ShowInternalInfo: Boolean;
         AfkNumLigneText: Code[2];
+        AfkLineHeight: Decimal;
         NetToPayAmount: Decimal;
         PrepmtLineAmount: Decimal;
         PrepmtTotalAmountInclVAT: Decimal;
@@ -1471,8 +1483,8 @@ report 50004 "AfkPurchaseOrder"
         AfkLigneTotalTTCLbl: Label 'TOTAL Incl. VAT';
         AfkLigneTVALbl: Label 'VAT';
         AfkLigneUniteLbl: Label 'Unit';
-        AfkLimbeLeLbl: Label 'Limbe on %1';
-        AfkNatureBudgetaireLbl: Label 'Nature Code :';
+        AfkLimbeLeLbl: Label 'Limbe on ___________________';
+        AfkNatureBudgetaireLbl: Label 'Expense nature :';
         AfkNomFournisseurLbl: Label 'Vendor name :';
         AfkNumCommandeLbl: Label 'PURCHASE ORDER %1';
         AfkNumDALbl: Label 'Requisition No';
@@ -1480,7 +1492,7 @@ report 50004 "AfkPurchaseOrder"
         AfkRefFournisseurLbl: Label 'Vendor No :';
         AfkRefProformaLbl: Label 'Quote Ref';
         AfkRIBFournisseurLbl: Label 'Vendor RIB';
-        AfkTacheBudgetaireLbl: Label 'Task Code :';
+        AfkTacheBudgetaireLbl: Label 'Budgetary Task :';
         AfkTotalHTDeviseLbl: Label 'Total Excl. VAT :';
         AfkTotalTTCDeviseLbl: Label 'Total Incl. VAT :';
         AfkVAT1925Lbl: Label 'VAT 19.25% :';
@@ -1521,7 +1533,7 @@ report 50004 "AfkPurchaseOrder"
         PrepymtVATAmtSpecCaptionLbl: Label 'Prepayment VAT Amount Specification';
         PurchLineInvDiscAmtCaptionLbl: Label 'Invoice Discount Amount';
         PurchLineLineDiscCaptionLbl: Label 'Discount %';
-        QRCodeLbl: Label 'Order No : %1 Date : %2 Total Amount Incl VAT : %3';
+        QRCodeLbl: Label 'Order No : %1 Date : %2 Total Amount Incl VAT : %3 Vendor Name : %4';
         ShipmentMethodDescCaptionLbl: Label 'Shipment Method';
         ShiptoAddressCaptionLbl: Label 'Ship-to Address';
         SubtotalCaptionLbl: Label 'Subtotal';

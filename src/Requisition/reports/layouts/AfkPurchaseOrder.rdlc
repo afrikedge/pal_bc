@@ -334,7 +334,7 @@
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value>=Fields!AfkLblTacheBudgetaire.Value</Value>
+                                                    <Value>=Fields!AfkLblNumDA.Value</Value>
                                                     <Style>
                                                       <FontFamily>Calibri</FontFamily>
                                                       <FontWeight>Bold</FontWeight>
@@ -363,7 +363,7 @@
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value>=Fields!Afk_TaskCode.Value</Value>
+                                                    <Value>=Fields!Afk_QuoteNumber.Value</Value>
                                                     <Style>
                                                       <FontFamily>Calibri</FontFamily>
                                                     </Style>
@@ -453,7 +453,7 @@
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value>=Fields!AfkNatureBudgetaireLbl.Value</Value>
+                                                    <Value>=Fields!AfkLblTacheBudgetaire.Value</Value>
                                                     <Style>
                                                       <FontFamily>Calibri</FontFamily>
                                                       <FontWeight>Bold</FontWeight>
@@ -482,7 +482,7 @@
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value>=Fields!Afk_NatureCode.Value</Value>
+                                                    <Value>=Fields!Afk_TaskCode.Value</Value>
                                                     <Style>
                                                       <FontFamily>Calibri</FontFamily>
                                                     </Style>
@@ -572,7 +572,7 @@
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value>=Fields!AfkLblNumDA.Value</Value>
+                                                    <Value>=Fields!AfkNatureBudgetaireLbl.Value</Value>
                                                     <Style>
                                                       <FontFamily>Calibri</FontFamily>
                                                       <FontWeight>Bold</FontWeight>
@@ -601,7 +601,7 @@
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value>=Fields!Afk_QuoteNumber.Value</Value>
+                                                    <Value>=Fields!Afk_NatureCode.Value</Value>
                                                     <Style>
                                                       <FontFamily>Calibri</FontFamily>
                                                     </Style>
@@ -1254,6 +1254,7 @@
                                               <PaddingRight>1pt</PaddingRight>
                                             </Style>
                                           </Textbox>
+                                          <rd:Selected>true</rd:Selected>
                                         </CellContents>
                                       </TablixCell>
                                       <TablixCell>
@@ -1933,7 +1934,6 @@
                                               <PaddingRight>2pt</PaddingRight>
                                             </Style>
                                           </Textbox>
-                                          <rd:Selected>true</rd:Selected>
                                         </CellContents>
                                       </TablixCell>
                                     </TablixCells>
@@ -2216,12 +2216,12 @@
                               <TablixBody>
                                 <TablixColumns>
                                   <TablixColumn>
-                                    <Width>7.8837cm</Width>
+                                    <Width>7.53258cm</Width>
                                   </TablixColumn>
                                 </TablixColumns>
                                 <TablixRows>
                                   <TablixRow>
-                                    <Height>2.08967cm</Height>
+                                    <Height>0.95196cm</Height>
                                     <TablixCells>
                                       <TablixCell>
                                         <CellContents>
@@ -2271,10 +2271,10 @@
                                 </TablixMembers>
                               </TablixRowHierarchy>
                               <DataSetName>DataSet_Result</DataSetName>
-                              <Top>10.56836cm</Top>
-                              <Left>6.35199cm</Left>
-                              <Height>2.08967cm</Height>
-                              <Width>7.8837cm</Width>
+                              <Top>11.70607cm</Top>
+                              <Left>10.92726cm</Left>
+                              <Height>0.95196cm</Height>
+                              <Width>7.53258cm</Width>
                               <ZIndex>9</ZIndex>
                               <Style>
                                 <Border>
@@ -2301,7 +2301,7 @@
                               </Paragraphs>
                               <rd:DefaultName>QRCode</rd:DefaultName>
                               <Top>10.56836cm</Top>
-                              <Left>0.67697cm</Left>
+                              <Left>3.22697cm</Left>
                               <Height>2.08967cm</Height>
                               <Width>2.5cm</Width>
                               <ZIndex>10</ZIndex>
@@ -3143,6 +3143,12 @@ End Function
       <Fields>
         <Field Name="AfkLblLimbeLe">
           <DataField>AfkLblLimbeLe</DataField>
+        </Field>
+        <Field Name="AfkLineHeight">
+          <DataField>AfkLineHeight</DataField>
+        </Field>
+        <Field Name="AfkLineHeightFormat">
+          <DataField>AfkLineHeightFormat</DataField>
         </Field>
         <Field Name="AfkLblObject">
           <DataField>AfkLblObject</DataField>
