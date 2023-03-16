@@ -4971,6 +4971,60 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report AfkSalesInvoicePreview - ReportDataItem Header - Property RequestFilterHeading</note>
         </trans-unit>
+        <trans-unit id="Report 2423741561 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Update Deposit Date</source>
+          <target state="needs-translation">Modifier la date de dépôt</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkSetSalesInvoiceDueDate - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 2423741561 - NamedType 3114637384" size-unit="char" translate="yes" xml:space="preserve">
+          <source>the modification has been completed successfully</source>
+          <target state="needs-translation">Traitement terminé</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkSetSalesInvoiceDueDate - NamedType Text001</note>
+        </trans-unit>
+        <trans-unit id="Report 2423741561 - NamedType 3752334001" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Please enter a value for the deposit date</source>
+          <target state="needs-translation">Veuillez saisir la date de dépôt</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkSetSalesInvoiceDueDate - NamedType Text002</note>
+        </trans-unit>
+        <trans-unit id="Report 2423741561 - NamedType 95063322" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The new Due Date will be %1. Do you want to continue ?</source>
+          <target state="needs-translation">La nouvelle date d'échéance sera %1. Voulez-vous continuer ?</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkSetSalesInvoiceDueDate - NamedType Text003</note>
+        </trans-unit>
+        <trans-unit id="Report 2423741561 - Control 4105281732 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Options</source>
+          <target state="needs-translation">Options</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkSetSalesInvoiceDueDate - Control GroupName - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 2423741561 - Control 2783109906 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Deposit Date</source>
+          <target state="needs-translation">Date de dépôt</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkSetSalesInvoiceDueDate - Control DateDepot - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 2423741561 - Control 199329346 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Calculation Formula</source>
+          <target state="needs-translation">Formule de calcul</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkSetSalesInvoiceDueDate - Control FormuleCalcul - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 2423741561 - Control 901612800 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Numéro facture</source>
+          <target state="needs-translation">Numéro de facture</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkSetSalesInvoiceDueDate - Control NumeroFacture - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 2423741561 - Control 398215210 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>New Due Date</source>
+          <target state="needs-translation">Nouvelle date d'échéance</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkSetSalesInvoiceDueDate - Control NvelleDateEcheance - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Report 2473026443 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Transfer Order</source>
           <target state="needs-translation">Ordre de virement</target>
@@ -5228,6 +5282,18 @@
           <target state="needs-translation">Autorisé</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkPaymentJournal - Control Afk_Authorised - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3198086736 - Action 1700009010 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 2420212404">
+          <source>Update the Deposit Date</source>
+          <target state="needs-translation">Modifier la date de dépôt</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkPostedSalesInvoice - Action AfkSetDueDate - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 1069679610 - Action 1700009010 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 3434938165">
+          <source>Update the Deposit Date</source>
+          <target state="needs-translation">Modifier la date de dépôt</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkPostedSalesInvoiceList - Action AfkSetDueDate - Property Caption</note>
         </trans-unit>
         <trans-unit id="PageExtension 787257282 - Action 3788618999 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 2437096118">
           <source>Calculate Budget</source>
@@ -5858,6 +5924,18 @@
           <target>Unité (Nombre)</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">TableExtension AfkItem - Field Afk_Unit_of_Measure_Code_2 - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="TableExtension 2567195395 - Field 1432619022 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 1018708135">
+          <source>Description</source>
+          <target state="needs-translation">Description</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension AfkPaymentHeader - Field AfkDescription - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="TableExtension 3637775317 - Field 1432619022 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 863615289">
+          <source>Description</source>
+          <target state="needs-translation">Description</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension AfkPaymentHeaderArchive - Field AfkDescription - Property Caption</note>
         </trans-unit>
         <trans-unit id="TableExtension 2980345420 - Field 3404457557 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 2072992664">
           <source>Budget Code</source>

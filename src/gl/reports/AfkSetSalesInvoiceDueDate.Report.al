@@ -11,21 +11,21 @@ report 50008 AfkSetSalesInvoiceDueDate
             trigger OnAfterGetRecord()
             var
                 CustEntry: record "Cust. Ledger Entry";
-                NewDueDate: Date;
+            //NewDueDate: Date;
             begin
                 if (DateDepot = 0D) then Error(Text002);
 
-                NewDueDate := CalcNewDueDate(Header."Payment Terms Code");
+                //NewDueDate := CalcNewDueDate(Header."Payment Terms Code");
 
-                if Confirm(StrSubstNo(Text003, NewDueDate)) then begin
-                    Header.Validate("Due Date", NewDueDate);
-                    Header.Modify();
+                //if Confirm(StrSubstNo(Text003, NewDueDate)) then begin
+                Header.Validate("Due Date", NvelleDateEcheance);
+                Header.Modify();
 
-                    if (CustEntry.Get(Header."Cust. Ledger Entry No.")) then begin
-                        CustEntry.Validate("Due Date", NewDueDate);
-                        CustEntry.Modify();
-                    end;
+                if (CustEntry.Get(Header."Cust. Ledger Entry No.")) then begin
+                    CustEntry.Validate("Due Date", NvelleDateEcheance);
+                    CustEntry.Modify();
                 end;
+                //end;
 
 
             end;
@@ -47,10 +47,34 @@ report 50008 AfkSetSalesInvoiceDueDate
                 group(GroupName)
                 {
                     Caption = 'Options';
+                    field(NumeroFacture; NumeroFacture)
+                    {
+                        ApplicationArea = Basic, Suite;
+                        Caption = 'Numéro facture';
+                        Editable = false;
+
+                    }
                     field(DateDepot; DateDepot)
                     {
                         ApplicationArea = Basic, Suite;
                         Caption = 'Deposit Date';
+                        trigger OnValidate()
+                        begin
+                            if (DateDepot = 0D) then Error(Text002);
+                            NvelleDateEcheance := CalcNewDueDate(InvoiceH."Payment Terms Code");
+                        end;
+                    }
+                    field(FormuleCalcul; FormuleCalcul)
+                    {
+                        ApplicationArea = Basic, Suite;
+                        Caption = 'Calculation Formula';
+                        Editable = false;
+                    }
+                    field(NvelleDateEcheance; NvelleDateEcheance)
+                    {
+                        ApplicationArea = Basic, Suite;
+                        Caption = 'New Due Date';
+                        Editable = false;
                     }
                 }
             }
@@ -64,11 +88,22 @@ report 50008 AfkSetSalesInvoiceDueDate
         trigger OnOpenPage()
         begin
             DateDepot := WorkDate;
+
+            NumeroFacture := Header.GetFilter(Header."No.");
+
+            InvoiceH.get(NumeroFacture);
+            NvelleDateEcheance := CalcNewDueDate(InvoiceH."Payment Terms Code");
+
+
         end;
 
     }
     var
+        InvoiceH: Record "Sales Invoice Header";
+        FormuleCalcul: DateFormula;
+        NumeroFacture: code[20];
         DateDepot: Date;
+        NvelleDateEcheance: Date;
         Text001: Label 'the modification has been completed successfully';
         Text002: Label 'Please enter a value for the deposit date';
         Text003: Label 'The new Due Date will be %1. Do you want to continue ?';
@@ -80,6 +115,7 @@ report 50008 AfkSetSalesInvoiceDueDate
         IF (PaymentTermsCode <> '') THEN BEGIN
 
             PaymentTerms.GET(PaymentTermsCode);
+            FormuleCalcul := PaymentTerms."Due Date Calculation";
             exit(CALCDATE(PaymentTerms."Due Date Calculation", DateDepot));
 
         END ELSE BEGIN
