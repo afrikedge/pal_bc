@@ -1,5 +1,6 @@
 pageextension 50020 AfkPurchaseQuoteArchives extends "Purchase Quote Archives"
 {
+    Caption = 'Purchase Requisition Archive List';
     layout
     {
         addlast(Control1)

@@ -294,7 +294,6 @@
         <trans-unit id="Table 2681448935 - Field 835141888 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Budget Task Code</source>
           <target state="needs-adaptation">Tâche budgétaire</target>
-          <note from="XLIFF Sync" annotates="general" priority="1">Source text has changed. Please review the translation.</note>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table AfkDocRequisitionBudget - Field Dimension Code 1 - Property Caption</note>
         </trans-unit>
@@ -4062,15 +4061,13 @@
         </trans-unit>
         <trans-unit id="Report 678316379 - NamedType 2522063388" size-unit="char" translate="yes" xml:space="preserve">
           <source>Limbe on ___________________</source>
-          <target state="needs-adaptation">Limbé le %1 </target>
-          <note from="XLIFF Sync" annotates="general" priority="1">Source text has changed. Please review the translation.</note>
+          <target state="needs-adaptation">Limbé le ___________________</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report AfkPurchaseOrder - NamedType AfkLimbeLeLbl</note>
         </trans-unit>
         <trans-unit id="Report 678316379 - NamedType 4178849303" size-unit="char" translate="yes" xml:space="preserve">
           <source>Expense nature :</source>
           <target state="needs-adaptation">Code Nature :</target>
-          <note from="XLIFF Sync" annotates="general" priority="1">Source text has changed. Please review the translation.</note>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report AfkPurchaseOrder - NamedType AfkNatureBudgetaireLbl</note>
         </trans-unit>
@@ -4119,7 +4116,6 @@
         <trans-unit id="Report 678316379 - NamedType 4008155289" size-unit="char" translate="yes" xml:space="preserve">
           <source>Budgetary Task :</source>
           <target state="needs-adaptation">Code Tâche</target>
-          <note from="XLIFF Sync" annotates="general" priority="1">Source text has changed. Please review the translation.</note>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report AfkPurchaseOrder - NamedType AfkTacheBudgetaireLbl</note>
         </trans-unit>
@@ -4359,8 +4355,7 @@
         </trans-unit>
         <trans-unit id="Report 678316379 - NamedType 2648456304" size-unit="char" translate="yes" xml:space="preserve">
           <source>Order No : %1 Date : %2 Total Amount Incl VAT : %3 Vendor Name : %4</source>
-          <target state="needs-adaptation">Commande : %1 Date : %2 Total TTC : %3</target>
-          <note from="XLIFF Sync" annotates="general" priority="1">Source text has changed. Please review the translation.</note>
+          <target state="needs-adaptation">Commande : %1 Date : %2 Total TTC : %3 Fournisseur : %4</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report AfkPurchaseOrder - NamedType QRCodeLbl</note>
         </trans-unit>
@@ -5321,7 +5316,6 @@
         <trans-unit id="PageExtension 678316379 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 387971303">
           <source>Order</source>
           <target state="needs-adaptation">Fiche commande</target>
-          <note from="XLIFF Sync" annotates="general" priority="1">Source text has changed. Please review the translation.</note>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkPurchaseOrder - Property Caption</note>
         </trans-unit>
@@ -5391,10 +5385,21 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkPurchaseOrder - Change Vendor Order No. - Property Caption</note>
         </trans-unit>
+        <trans-unit id="PageExtension 2869070637 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 4198988281">
+          <source>Archive Order</source>
+          <target state="needs-translation">Archive commande</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkPurchaseOrderArchive - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 2426689907 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 5120816">
+          <source>Archived Orders</source>
+          <target state="needs-translation">Archives commandes</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkPurchaseOrderArchiveList - Property Caption</note>
+        </trans-unit>
         <trans-unit id="PageExtension 849346501 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 3195034673">
           <source>Orders</source>
           <target state="needs-adaptation">Commandes</target>
-          <note from="XLIFF Sync" annotates="general" priority="1">Source text has changed. Please review the translation.</note>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkPurchaseOrderList - Property Caption</note>
         </trans-unit>
@@ -5440,6 +5445,18 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkPurchaseQuote - Change Order Date - Property Caption</note>
         </trans-unit>
+        <trans-unit id="PageExtension 2819668743 - Change 4032263875 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 3321822267">
+          <source>Approve</source>
+          <target state="needs-translation">Approuver</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkPurchaseQuote - Change Release - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 2819668743 - Change 2071937805 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 3321822267">
+          <source>Modify</source>
+          <target state="needs-translation">Modifier</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkPurchaseQuote - Change Reopen - Property Caption</note>
+        </trans-unit>
         <trans-unit id="PageExtension 2819668743 - Change 1602222300 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 3321822267">
           <source>Estimated Reception Date</source>
           <target state="needs-translation">Date prévisionnelle de réception</target>
@@ -5448,10 +5465,15 @@
         </trans-unit>
         <trans-unit id="PageExtension 2819668743 - Change 3126877759 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 3321822267">
           <source>Proforma Invoice No.</source>
-          <target state="needs-adaptation">Réf. Offre fournisseur</target>
-          <note from="XLIFF Sync" annotates="general" priority="1">Source text has changed. Please review the translation.</note>
+          <target state="needs-adaptation">N° Facture Proforma</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkPurchaseQuote - Change Vendor Order No. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 394052656 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 1403724292">
+          <source>Purchase Requisition Archive List</source>
+          <target state="needs-translation">Archives demandes d'achat</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkPurchaseQuoteArchives - Property Caption</note>
         </trans-unit>
         <trans-unit id="PageExtension 394052656 - Action 2041854035 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 1403724292">
           <source>Print Follow Up</source>
@@ -5464,6 +5486,30 @@
           <target state="needs-translation">Demandes d'achat</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkPurchaseQuoteList - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 2143983358 - Change 2446493245 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 743575308">
+          <source>Order</source>
+          <target state="needs-translation">Commande</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkPurchasingAgentRC - Change Purchase &amp;Order - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 2143983358 - Change 1931101321 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 743575308">
+          <source>Purchase Requisition</source>
+          <target state="needs-translation">Demande d'achat</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkPurchasingAgentRC - Change Purchase &amp;Quote - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 2143983358 - Change 1819353702 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 743575308">
+          <source>Purchase Requisitions</source>
+          <target state="needs-translation">Demandes d'achat</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkPurchasingAgentRC - Change Purchase Quotes - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 2143983358 - Change 2827062946 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 743575308">
+          <source>Orders</source>
+          <target state="needs-translation">Commandes</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkPurchasingAgentRC - Change PurchaseOrders - Property Caption</note>
         </trans-unit>
         <trans-unit id="PageExtension 4156690961 - Control 3876233033 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 4255274469">
           <source>Sales Invoice Numbers</source>
@@ -5816,7 +5862,6 @@
         <trans-unit id="PageExtension 3297313626 - Action 2219047276 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 2747922353">
           <source>Orders</source>
           <target>Commandes</target>
-          <note from="XLIFF Sync" annotates="general" priority="1">Source text has changed. Please review the translation.</note>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkSalesOrderProRC - Action AfkPODocs - Property Caption</note>
         </trans-unit>
@@ -6020,8 +6065,7 @@
         </trans-unit>
         <trans-unit id="TableExtension 2980345420 - Field 2671329874 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 2072992664">
           <source>Purpose of expense</source>
-          <target >Motif de la dépense</target>
-          <note from="XLIFF Sync" annotates="general" priority="1">Source text has changed. Please review the translation.</note>
+          <target>Motif de la dépense</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">TableExtension AfkPurchaseHeader - Field Afk_Object - Property Caption</note>
         </trans-unit>
@@ -6142,7 +6186,6 @@
         <trans-unit id="TableExtension 39175526 - Field 2671329874 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 146271610">
           <source>Purpose of expense</source>
           <target state="needs-adaptation">Objet</target>
-          <note from="XLIFF Sync" annotates="general" priority="1">Source text has changed. Please review the translation.</note>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">TableExtension AfkPurchaseHeaderArchive - Field Afk_Object - Property Caption</note>
         </trans-unit>

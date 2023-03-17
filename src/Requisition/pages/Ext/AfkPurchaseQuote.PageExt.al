@@ -6,6 +6,7 @@ pageextension 50014 AfkPurchaseQuote extends "Purchase Quote"
         modify("Vendor Order No.")
         {
             Caption = 'Proforma Invoice No.';
+            Importance = Standard;
         }
 
         modify("Order Date")
@@ -30,17 +31,13 @@ pageextension 50014 AfkPurchaseQuote extends "Purchase Quote"
             trigger OnAfterValidate()
             begin
                 if (rec."Document Date" <> 0D) then
-                    Rec.Validate("Order Date", CalcDate('<+2D>', Rec."Document Date"));
+                    Rec.Validate("Order Date", AfkPurchaseReqMgt.CalcOrderDate_FromDocDate(Rec."Document Date"));
                 ;
             end;
         }
 
         addafter("Vendor Order No.")
         {
-            field(Afk_ProformaDate; Rec.Afk_ProformaDate)
-            {
-                ApplicationArea = Basic, Suite;
-            }
             field(Afk_IssuerCode; Rec.Afk_IssuerCode)
             {
                 ApplicationArea = Basic, Suite;
@@ -56,6 +53,15 @@ pageextension 50014 AfkPurchaseQuote extends "Purchase Quote"
         moveafter("Vendor Order No."; "Shortcut Dimension 2 Code")
         moveafter("Vendor Order No."; "Shortcut Dimension 1 Code")
 
+        addafter("Vendor Order No.")
+        {
+            field(Afk_ProformaDate; Rec.Afk_ProformaDate)
+            {
+                ApplicationArea = Basic, Suite;
+            }
+        }
+
+
         addafter(PurchLines)
         {
             part(AfkBudgetLines; AfkBudgetLinesSubForm)
@@ -69,6 +75,15 @@ pageextension 50014 AfkPurchaseQuote extends "Purchase Quote"
     }
     actions
     {
+        modify(Release)
+        {
+            Caption = 'Approve';
+        }
+        modify(Reopen)
+        {
+            Caption = 'Modify';
+        }
+
         addafter(CopyDocument)
         {
             action(AfkCalculateBudget)
@@ -128,5 +143,7 @@ pageextension 50014 AfkPurchaseQuote extends "Purchase Quote"
     var
         AfkBudgetControl: Codeunit AfkBudgetControl;
         AfkPurchaseReqMgt: Codeunit AfkPurchaseReqMgt;
+
+
 
 }

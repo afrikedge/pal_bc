@@ -466,11 +466,15 @@ codeunit 50004 AfkPurchaseReqMgt
     internal procedure OnAfterInitPurchaseDoc(var PurchaseHeader: Record "Purchase Header")
     var
         UserSetup: Record "User Setup";
+        AfkPurchaseReqMgt: Codeunit AfkPurchaseReqMgt;
     begin
         UserSetup.Get(UserId);
         if (UserSetup.Afk_DefaultTask <> '') then
             if (PurchaseHeader."Shortcut Dimension 1 Code" = '') then
                 PurchaseHeader."Shortcut Dimension 1 Code" := UserSetup.Afk_DefaultTask;
+
+        if (PurchaseHeader."Document Date" <> 0D) then
+            PurchaseHeader.Validate("Order Date", AfkPurchaseReqMgt.CalcOrderDate_FromDocDate(PurchaseHeader."Document Date"));
     end;
 
     internal procedure OnBeforePrintPurchaseDoc(var PurchaseHeader: Record "Purchase Header")
@@ -522,6 +526,12 @@ codeunit 50004 AfkPurchaseReqMgt
         userSetup1.get(UserId);
         userSetup1.TestField(userSetup1."Salespers./Purch. Code");
         PurchOrderHeader."Purchaser Code" := userSetup1."Salespers./Purch. Code";
+    end;
+
+    internal procedure CalcOrderDate_FromDocDate(DocDate: Date) returnValue: Date
+    begin
+        if (DocDate <> 0D) then
+            returnValue := CalcDate('<+2D>', DocDate);
     end;
 
     internal procedure OnAfterInsertVendorOnPurchase(var PurchaseHeader: Record "Purchase Header"; Vendor: Record Vendor; xPurchaseHeader: Record "Purchase Header")

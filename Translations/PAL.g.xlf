@@ -4488,6 +4488,16 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkPurchaseOrder - Change Vendor Order No. - Property Caption</note>
         </trans-unit>
+        <trans-unit id="PageExtension 2869070637 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 4198988281">
+          <source>Archive Order</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkPurchaseOrderArchive - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 2426689907 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 5120816">
+          <source>Archived Orders</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkPurchaseOrderArchiveList - Property Caption</note>
+        </trans-unit>
         <trans-unit id="PageExtension 849346501 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 3195034673">
           <source>Orders</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -4528,6 +4538,16 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkPurchaseQuote - Change Order Date - Property Caption</note>
         </trans-unit>
+        <trans-unit id="PageExtension 2819668743 - Change 4032263875 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 3321822267">
+          <source>Approve</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkPurchaseQuote - Change Release - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 2819668743 - Change 2071937805 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 3321822267">
+          <source>Modify</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkPurchaseQuote - Change Reopen - Property Caption</note>
+        </trans-unit>
         <trans-unit id="PageExtension 2819668743 - Change 1602222300 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 3321822267">
           <source>Estimated Reception Date</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -4538,6 +4558,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkPurchaseQuote - Change Vendor Order No. - Property Caption</note>
         </trans-unit>
+        <trans-unit id="PageExtension 394052656 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 1403724292">
+          <source>Purchase Requisition Archive List</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkPurchaseQuoteArchives - Property Caption</note>
+        </trans-unit>
         <trans-unit id="PageExtension 394052656 - Action 2041854035 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 1403724292">
           <source>Print Follow Up</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -4547,6 +4572,26 @@
           <source>Purchase Requests</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkPurchaseQuoteList - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 2143983358 - Change 2446493245 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 743575308">
+          <source>Order</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkPurchasingAgentRC - Change Purchase &amp;Order - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 2143983358 - Change 1931101321 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 743575308">
+          <source>Purchase Requisition</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkPurchasingAgentRC - Change Purchase &amp;Quote - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 2143983358 - Change 1819353702 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 743575308">
+          <source>Purchase Requisitions</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkPurchasingAgentRC - Change Purchase Quotes - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 2143983358 - Change 2827062946 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 743575308">
+          <source>Orders</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkPurchasingAgentRC - Change PurchaseOrders - Property Caption</note>
         </trans-unit>
         <trans-unit id="PageExtension 4156690961 - Control 3876233033 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 4255274469">
           <source>Sales Invoice Numbers</source>

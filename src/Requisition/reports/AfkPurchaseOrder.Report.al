@@ -345,7 +345,7 @@ report 50004 "AfkPurchaseOrder"
                     column(PurchaserText; PurchaserText)
                     {
                     }
-                    column(SalesPurchPersonName; SalesPurchPerson.Name)
+                    column(SalesPurchPersonName; SalesPurchPerson.Code)
                     {
                     }
                     column(ReferenceText; ReferenceText)
@@ -1252,8 +1252,9 @@ report 50004 "AfkPurchaseOrder"
                     AfkCurrencyName := AfkCurrency.Description;
 
                 AfkCurrency.Get(AfkCurrencyCode);
-                if (AfkService.get("Purchase Header".Afk_IssuerCode)) then
-                    AfkIssuerText := AfkService.Name;
+                //if (AfkService.get("Purchase Header".Afk_IssuerCode)) then
+                //    AfkIssuerText := AfkService.Name;
+                AfkIssuerText := "Purchase Header".Afk_IssuerCode;
 
                 //AfkLimbeLeText := StrSubstNo(AfkLimbeLeLbl, "Purchase Header"."Order Date");
                 AfkLimbeLeText := AfkLimbeLeLbl;
