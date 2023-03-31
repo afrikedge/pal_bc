@@ -22,13 +22,13 @@ tableextension 50015 AfkVendor extends Vendor
             FieldClass = FlowField;
             CalcFormula = lookup("Vendor Posting Group".Afk_IR_Pourcent where(Code = field("Vendor Posting Group")));
         }
-        field(50002; Afk_TradeRegister; Code[30])
+        field(50002; Afk_TradeRegister; Code[50])
         {
             //Registre de commerce
             Caption = 'Trade Register';
             DataClassification = CustomerContent;
         }
-        field(50003; "Afk_Tax_Number"; Code[30])
+        field(50003; "Afk_Tax_Number"; Code[50])
         {
             //Numéro contribuable
             Caption = 'Tax Number';

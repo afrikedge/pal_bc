@@ -1663,21 +1663,6 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Afk_Princing - Field Unit Price - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Table 642927562 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Service</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Table Afk_Service - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Table 642927562 - Field 3004954119 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Code</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Table Afk_Service - Field Code - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Table 642927562 - Field 2961552353 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Name</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Table Afk_Service - Field Name - Property Caption</note>
-        </trans-unit>
         <trans-unit id="Codeunit 3252649210 - NamedType 400588075" size-unit="char" translate="yes" xml:space="preserve">
           <source>The budget is insufficient for task %1, Nature %2. \Budgeted amount is %3, \pre-committed amount is %4, committed amount is %5, realized amount is %6, available amount is %7, document amount is %8</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -2522,11 +2507,6 @@
           <source>Specifies how final quantity is calculated</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page AfkSalesInvPricing - Control QtyCalculation - Property ToolTip</note>
-        </trans-unit>
-        <trans-unit id="Page 588024053 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>ServiceList</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page AfkServiceList - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 2705747673 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>AFK Setup</source>
@@ -4917,11 +4897,6 @@
           <source>Purchase Quote Archives</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkSalesOrderProRC - Action AfkPurchaseQuoteArchive - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="PageExtension 3297313626 - Action 588024053 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 2747922353">
-          <source>Service List</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkSalesOrderProRC - Action AfkServiceList - Property Caption</note>
         </trans-unit>
         <trans-unit id="PageExtension 3297313626 - Action 2955598406 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 2747922353">
           <source>User Setup</source>

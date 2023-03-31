@@ -1229,7 +1229,7 @@ report 50004 "AfkPurchaseOrder"
             }
             trigger OnAfterGetRecord()
             var
-                AfkService: Record Afk_Service;
+                // AfkService: Record Afk_Service;
                 Country: Record "Country/Region";
                 Vend: Record Vendor;
                 QRCodeText: Text;
