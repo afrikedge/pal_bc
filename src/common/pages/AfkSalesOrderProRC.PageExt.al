@@ -212,6 +212,13 @@ pageextension 50004 AfkSalesOrderProRC extends "Order Processor Role Center"
                     Image = UserCertificate;
                     RunObject = Page AfkBankAcountUsers;
                 }
+                action(AfkBudgetControl)
+                {
+                    ApplicationArea = Basic, Suite;
+                    Caption = 'Budget Control';
+                    Image = CostBudget;
+                    RunObject = Report AfkBudgetControl;
+                }
             }
         }
     }

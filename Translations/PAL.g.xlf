@@ -2583,6 +2583,126 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page AfkWhseDeliverySubForm - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Report 3252649210 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Budget Control</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkBudgetControl - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 3252649210 - NamedType 2569633030" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Pôle de Référence au cœur du golfe de Guinée | Pole of Reference at the Heart of the Gulf of Guinea</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkBudgetControl - NamedType FooterLabel01</note>
+        </trans-unit>
+        <trans-unit id="Report 3252649210 - NamedType 656543179" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Société Anonyme à Capital Public | Capital social : %1 | N° Contribuable : %2 | RCCM : %3 | NACAM : %4</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkBudgetControl - NamedType FooterLabel02</note>
+        </trans-unit>
+        <trans-unit id="Report 3252649210 - NamedType 1294239796" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Port Authority of Limbe Transitional Administration P.O Box 456 Limbe</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkBudgetControl - NamedType FooterLabel03</note>
+        </trans-unit>
+        <trans-unit id="Report 3252649210 - NamedType 3080256738" size-unit="char" translate="yes" xml:space="preserve">
+          <source>AMOUNT</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkBudgetControl - NamedType LblAmount</note>
+        </trans-unit>
+        <trans-unit id="Report 3252649210 - NamedType 1387285769" size-unit="char" translate="yes" xml:space="preserve">
+          <source>AVAILABLE AMOUNT</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkBudgetControl - NamedType LblAvailableAmount</note>
+        </trans-unit>
+        <trans-unit id="Report 3252649210 - NamedType 1279786559" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Budgetary Head :</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkBudgetControl - NamedType LblBudgetaryHead</note>
+        </trans-unit>
+        <trans-unit id="Report 3252649210 - NamedType 1595378021" size-unit="char" translate="yes" xml:space="preserve">
+          <source>CUMULATIVE AMOUNT</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkBudgetControl - NamedType LblCumulativeAmount</note>
+        </trans-unit>
+        <trans-unit id="Report 3252649210 - NamedType 731981210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>DATE</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkBudgetControl - NamedType LblDate</note>
+        </trans-unit>
+        <trans-unit id="Report 3252649210 - NamedType 3228576137" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Expenditure :</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkBudgetControl - NamedType LblExpenditure</note>
+        </trans-unit>
+        <trans-unit id="Report 3252649210 - NamedType 1526138677" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Head No :</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkBudgetControl - NamedType LblHeadNo</note>
+        </trans-unit>
+        <trans-unit id="Report 3252649210 - NamedType 2868420323" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Project Budget :</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkBudgetControl - NamedType LblInitialBudget</note>
+        </trans-unit>
+        <trans-unit id="Report 3252649210 - NamedType 1052369945" size-unit="char" translate="yes" xml:space="preserve">
+          <source>PERIOD :</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkBudgetControl - NamedType LblPeriod</note>
+        </trans-unit>
+        <trans-unit id="Report 3252649210 - NamedType 3146545970" size-unit="char" translate="yes" xml:space="preserve">
+          <source>PURCHASE ORDER NO.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkBudgetControl - NamedType LblPONumber</note>
+        </trans-unit>
+        <trans-unit id="Report 3252649210 - NamedType 2065746584" size-unit="char" translate="yes" xml:space="preserve">
+          <source>PURPOSE OF EXPENDITURE</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkBudgetControl - NamedType LblPurpose</note>
+        </trans-unit>
+        <trans-unit id="Report 3252649210 - NamedType 4035021322" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Sub-Head No :</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkBudgetControl - NamedType LblSubHead</note>
+        </trans-unit>
+        <trans-unit id="Report 3252649210 - NamedType 3894525882" size-unit="char" translate="yes" xml:space="preserve">
+          <source>SUPPLIER</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkBudgetControl - NamedType LblSupplier</note>
+        </trans-unit>
+        <trans-unit id="Report 3252649210 - NamedType 1119041022" size-unit="char" translate="yes" xml:space="preserve">
+          <source>BUDGET CONTROL AND FOLLOW-UP SHEET</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkBudgetControl - NamedType LblTitle</note>
+        </trans-unit>
+        <trans-unit id="Report 3252649210 - Control 3312878009 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Starting Date :</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkBudgetControl - Control DateDeb - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 3252649210 - Control 2475752935 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Ending Date :</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkBudgetControl - Control DateFin - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 3252649210 - Control 800625320 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Code of the Expenditure</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkBudgetControl - Control NatureCode - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Report 3252649210 - Control 800625320 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Sub-Head No :</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkBudgetControl - Control NatureCode - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 3252649210 - Control 4061120276 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Code of the task</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkBudgetControl - Control TaskCode - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Report 3252649210 - Control 4061120276 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Head No :</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkBudgetControl - Control TaskCode - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Report 1260461456 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Budget Line Transfer</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -4817,6 +4937,11 @@
           <source>Bank Account Users</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkSalesOrderProRC - Action AfkBankAccountUsers - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3297313626 - Action 3252649210 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 2747922353">
+          <source>Budget Control</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkSalesOrderProRC - Action AfkBudgetControl - Property Caption</note>
         </trans-unit>
         <trans-unit id="PageExtension 3297313626 - Action 3247986958 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 2747922353">
           <source>View or edit detailed information about budgets</source>
