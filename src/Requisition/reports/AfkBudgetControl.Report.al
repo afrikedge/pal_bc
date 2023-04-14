@@ -121,8 +121,11 @@ report 50009 AfkBudgetControl
 
             trigger OnAfterGetRecord()
             var
+                PurchCrMemo: Record "Purch. Cr. Memo Hdr.";
+                PurchInvoice: Record "Purch. Inv. Header";
                 PurchOrder: Record "Purchase Header";
                 PurchOrderArchive: Record "Purchase Header Archive";
+                idType: Integer;
             begin
 
 
@@ -132,28 +135,59 @@ report 50009 AfkBudgetControl
 
 
                 OrderNo := OrderNosList[Number];
-                if (PurchOrder.get(PurchOrder."Document Type"::Order, OrderNo)) then begin
-                    OrderDate := PurchOrder."Order Date";
-                    PurchOrder.CalcFields(Amount);
-                    OrderAmount := PurchOrder.Amount;
-                    CumulativeAmount := CumulativeAmount + OrderAmount;
-                    AvailableAmount := InitialBudget - CumulativeAmount;
-                    Supplier := PurchOrder."Buy-from Vendor Name";
-                    OrderPurpose := PurchOrder.Afk_Object;
-                end else begin
+                idType := OrderTypeList[Number];
+
+                if (idType = 0) then begin
+                    if (PurchOrder.get(PurchOrder."Document Type"::Order, OrderNo)) then
+                        FillLineOrder(PurchOrder, OrderDate, OrderAmount, CumulativeAmount,
+                            AvailableAmount, Supplier, OrderPurpose);
+                end;
+
+                if (idType = 1) then begin
                     PurchOrderArchive.Reset();
                     PurchOrderArchive.SetRange("Document Type", PurchOrderArchive."Document Type"::Order);
                     PurchOrderArchive.SetRange(PurchOrderArchive."No.", OrderNo);
                     if PurchOrderArchive.FindFirst() then begin
-                        OrderDate := PurchOrderArchive."Order Date";
-                        PurchOrderArchive.CalcFields(Amount);
-                        OrderAmount := PurchOrderArchive.Amount;
-                        CumulativeAmount := CumulativeAmount + OrderAmount;
-                        AvailableAmount := InitialBudget - CumulativeAmount;
-                        Supplier := PurchOrderArchive."Buy-from Vendor Name";
-                        OrderPurpose := PurchOrderArchive.Afk_Object;
+                        FillLineArchiveOrder(PurchOrderArchive, OrderDate, OrderAmount, CumulativeAmount,
+                            AvailableAmount, Supplier, OrderPurpose);
                     end;
                 end;
+
+                if (idType = 2) then begin//Demandes d'achat
+                    if (PurchOrder.get(PurchOrder."Document Type"::Quote, OrderNo)) then
+                        FillLineOrder(PurchOrder, OrderDate, OrderAmount, CumulativeAmount,
+                            AvailableAmount, Supplier, OrderPurpose);
+                end;
+
+                if (idType = 3) then begin//Factures directes
+                    if (PurchInvoice.get(OrderNo)) then
+                        FillLineInvoice(PurchInvoice, OrderDate, OrderAmount, CumulativeAmount,
+                            AvailableAmount, Supplier, OrderPurpose);
+                end;
+
+                if (idType = 4) then begin//Avoir directes
+                    if (PurchCrMemo.get(OrderNo)) then
+                        FillLineCreditMemo(PurchCrMemo, OrderDate, OrderAmount, CumulativeAmount,
+                            AvailableAmount, Supplier, OrderPurpose);
+                end;
+
+
+                // if (PurchOrder.get(PurchOrder."Document Type"::Order, OrderNo)) then begin
+                //     FillLineOrder(PurchOrder, OrderDate, OrderAmount, CumulativeAmount, AvailableAmount, Supplier, OrderPurpose);
+                // end else begin
+                //     PurchOrderArchive.Reset();
+                //     PurchOrderArchive.SetRange("Document Type", PurchOrderArchive."Document Type"::Order);
+                //     PurchOrderArchive.SetRange(PurchOrderArchive."No.", OrderNo);
+                //     if PurchOrderArchive.FindFirst() then begin
+                //         OrderDate := PurchOrderArchive."Order Date";
+                //         PurchOrderArchive.CalcFields(Amount);
+                //         OrderAmount := PurchOrderArchive.Amount;
+                //         CumulativeAmount := CumulativeAmount + OrderAmount;
+                //         AvailableAmount := InitialBudget - CumulativeAmount;
+                //         Supplier := PurchOrderArchive."Buy-from Vendor Name";
+                //         OrderPurpose := PurchOrderArchive.Afk_Object;
+                //     end;
+                // end;
 
 
 
@@ -268,6 +302,7 @@ report 50009 AfkBudgetControl
         OrderAmount: Decimal;
 
         OrderDatesListLength: Integer;
+        OrderTypeList: array[500] of Integer;
         FooterLabel01: Label 'Pôle de Référence au cœur du golfe de Guinée | Pole of Reference at the Heart of the Gulf of Guinea';
         FooterLabel02: Label 'Société Anonyme à Capital Public | Capital social : %1 | N° Contribuable : %2 | RCCM : %3 | NACAM : %4';
         FooterLabel03: Label 'Port Authority of Limbe Transitional Administration P.O Box 456 Limbe';
@@ -296,6 +331,8 @@ report 50009 AfkBudgetControl
 
     local procedure PrepareLists()
     var
+        PurchCreditMemo: Record "Purch. Cr. Memo Hdr.";
+        PurchInvoice: Record "Purch. Inv. Header";
         PurchOrder: Record "Purchase Header";
         PurchOrderArchive: Record "Purchase Header Archive";
         i: Integer;
@@ -314,6 +351,7 @@ report 50009 AfkBudgetControl
             repeat
                 OrderDatesList[i] := PurchOrder."Order Date";
                 OrderNosList[i] := PurchOrder."No.";
+                OrderTypeList[i] := 0;
                 OrderDatesListLength := OrderDatesListLength + 1;
                 i := i + 1;
             until PurchOrder.Next() = 0;
@@ -328,10 +366,58 @@ report 50009 AfkBudgetControl
                 if (ValueExistsInList(PurchOrderArchive."No.") = false) then begin
                     OrderDatesList[i] := PurchOrderArchive."Order Date";
                     OrderNosList[i] := PurchOrderArchive."No.";
+                    OrderTypeList[i] := 1;
                     OrderDatesListLength := OrderDatesListLength + 1;
                     i := i + 1;
                 end;
             until PurchOrderArchive.Next() = 0;
+
+
+        PurchOrder.Reset();
+        PurchOrder.SetRange(PurchOrder."Document Type", PurchOrder."Document Type"::Quote);
+        PurchOrder.SetRange(PurchOrder."Shortcut Dimension 1 Code", TaskCode);
+        PurchOrder.SetRange(PurchOrder."Shortcut Dimension 2 Code", NatureCode);
+        PurchOrder.SETFILTER(PurchOrder."Order Date", '%1..%2', DateDeb, DateFin);
+        if PurchOrder.FindSet() then
+            repeat
+                OrderDatesList[i] := PurchOrder."Order Date";
+                OrderNosList[i] := PurchOrder."No.";
+                OrderTypeList[i] := 2;
+                OrderDatesListLength := OrderDatesListLength + 1;
+                i := i + 1;
+            until PurchOrder.Next() = 0;
+
+
+        PurchInvoice.Reset();
+        PurchInvoice.SetCurrentKey("Order No.");
+        PurchInvoice.SetRange(PurchInvoice."Order No.", '');
+        PurchInvoice.SetRange("Shortcut Dimension 1 Code", TaskCode);
+        PurchInvoice.SetRange("Shortcut Dimension 2 Code", NatureCode);
+        PurchInvoice.SETFILTER("Posting Date", '%1..%2', DateDeb, DateFin);
+        if PurchInvoice.FindSet() then
+            repeat
+                OrderDatesList[i] := PurchInvoice."Posting Date";
+                OrderNosList[i] := PurchInvoice."No.";
+                OrderTypeList[i] := 3;
+                OrderDatesListLength := OrderDatesListLength + 1;
+                i := i + 1;
+            until PurchInvoice.Next() = 0;
+
+
+        PurchCreditMemo.Reset();
+        //PurchCreditMemo.SetCurrentKey("Order No.");
+        //PurchCreditMemo.SetRange("Order No.", '');
+        PurchCreditMemo.SetRange("Shortcut Dimension 1 Code", TaskCode);
+        PurchCreditMemo.SetRange("Shortcut Dimension 2 Code", NatureCode);
+        PurchCreditMemo.SETFILTER("Posting Date", '%1..%2', DateDeb, DateFin);
+        if PurchCreditMemo.FindSet() then
+            repeat
+                OrderDatesList[i] := PurchCreditMemo."Posting Date";
+                OrderNosList[i] := PurchCreditMemo."No.";
+                OrderTypeList[i] := 4;
+                OrderDatesListLength := OrderDatesListLength + 1;
+                i := i + 1;
+            until PurchCreditMemo.Next() = 0;
 
     end;
 
@@ -362,6 +448,7 @@ report 50009 AfkBudgetControl
         lowerValue2: Code[20];
         lowerValue: Date;
         i: Integer;
+        idValue: Integer;
     begin
         itemMoved := false;
         repeat
@@ -377,9 +464,65 @@ report 50009 AfkBudgetControl
                     OrderNosList[i + 1] := OrderNosList[i];
                     OrderNosList[i] := lowerValue2;
 
+                    idValue := OrderTypeList[i + 1];
+                    OrderTypeList[i + 1] := OrderTypeList[i];
+                    OrderTypeList[i] := idValue;
+
                     itemMoved := true;
                 end;
             end;
         until itemMoved = false;
+    end;
+
+    local procedure FillLineOrder(PurchOrder: Record "Purchase Header";
+        var OrderDate1: Date; var OrderAmount1: decimal; var CumulativeAmount1: decimal;
+        var AvailableAmount1: decimal; var Supplier1: Text; var OrderPurpose1: Text)
+    begin
+        OrderDate1 := PurchOrder."Order Date";
+        PurchOrder.CalcFields(Amount);
+        OrderAmount1 := PurchOrder.Amount;
+        CumulativeAmount1 := CumulativeAmount + OrderAmount;
+        AvailableAmount1 := InitialBudget - CumulativeAmount;
+        Supplier1 := PurchOrder."Buy-from Vendor Name";
+        OrderPurpose1 := PurchOrder.Afk_Object;
+    end;
+
+    local procedure FillLineArchiveOrder(PurchOrderArchive: Record "Purchase Header Archive";
+        var OrderDate1: Date; var OrderAmount1: decimal; var CumulativeAmount1: decimal;
+        var AvailableAmount1: decimal; var Supplier1: Text; var OrderPurpose1: Text)
+    begin
+        OrderDate1 := PurchOrderArchive."Order Date";
+        PurchOrderArchive.CalcFields(Amount);
+        OrderAmount1 := PurchOrderArchive.Amount;
+        CumulativeAmount1 := CumulativeAmount + OrderAmount;
+        AvailableAmount1 := InitialBudget - CumulativeAmount;
+        Supplier1 := PurchOrderArchive."Buy-from Vendor Name";
+        OrderPurpose1 := PurchOrderArchive.Afk_Object;
+    end;
+
+    local procedure FillLineInvoice(PurchInvoice: Record "Purch. Inv. Header";
+        var OrderDate1: Date; var OrderAmount1: decimal; var CumulativeAmount1: decimal;
+        var AvailableAmount1: decimal; var Supplier1: Text; var OrderPurpose1: Text)
+    begin
+        OrderDate1 := PurchInvoice."Posting Date";
+        PurchInvoice.CalcFields(Amount);
+        OrderAmount1 := PurchInvoice.Amount;
+        CumulativeAmount1 := CumulativeAmount1 + OrderAmount1;
+        AvailableAmount1 := InitialBudget - CumulativeAmount1;
+        Supplier1 := PurchInvoice."Buy-from Vendor Name";
+        OrderPurpose1 := '';//PurchInvoice.Afk_Object;
+    end;
+
+    local procedure FillLineCreditMemo(PurchCreMemo: Record "Purch. Cr. Memo Hdr.";
+        var OrderDate1: Date; var OrderAmount1: decimal; var CumulativeAmount1: decimal;
+        var AvailableAmount1: decimal; var Supplier1: Text; var OrderPurpose1: Text)
+    begin
+        OrderDate1 := PurchCreMemo."Posting Date";
+        PurchCreMemo.CalcFields(Amount);
+        OrderAmount1 := -PurchCreMemo.Amount;
+        CumulativeAmount1 := CumulativeAmount1 + OrderAmount1;
+        AvailableAmount1 := InitialBudget - CumulativeAmount1;
+        Supplier1 := PurchCreMemo."Buy-from Vendor Name";
+        OrderPurpose1 := '';//PurchInvoice.Afk_Object;
     end;
 }

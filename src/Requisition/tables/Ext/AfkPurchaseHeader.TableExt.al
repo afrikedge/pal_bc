@@ -65,15 +65,6 @@ tableextension 50005 AfkPurchaseHeader extends "Purchase Header"
             Caption = 'Commitment Type';
             DataClassification = CustomerContent;
         }
-        // field(50010; "Afk_ValidityStartingDate"; Date)
-        // {
-        //     Caption = 'Validity Starting Date';
-        //     DataClassification = CustomerContent;
-        //     trigger OnValidate()
-        //     begin
-        //         RefreshValidityEndingDate();
-        //     end;
-        // }
         field(50011; "Afk_Validity"; Integer)
         {
             Caption = 'Validity (Days)';
@@ -101,22 +92,6 @@ tableextension 50005 AfkPurchaseHeader extends "Purchase Header"
         {
             DataClassification = CustomerContent;
         }
-        // field(50016; Afk_TSR_Pourcent; Decimal)
-        // {
-        //     Caption = 'TSR %';
-        //     DecimalPlaces = 0 : 5;
-        //     MaxValue = 100;
-        //     MinValue = 0;
-        //     DataClassification = CustomerContent;
-        // }
-        // field(50017; Afk_IR_Pourcent; Decimal)
-        // {
-        //     Caption = 'IR %';
-        //     DecimalPlaces = 0 : 5;
-        //     MaxValue = 100;
-        //     MinValue = 0;
-        //     DataClassification = CustomerContent;
-        // }
         field(50018; "Afk_Object"; Code[250])
         {
             Caption = 'Purpose of expense';
