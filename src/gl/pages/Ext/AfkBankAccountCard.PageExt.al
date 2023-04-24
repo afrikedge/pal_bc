@@ -1,14 +1,7 @@
-pageextension 50028 AfkVendorBankAccountCard extends "Vendor Bank Account Card"
+pageextension 50044 AfkBankAccountCard extends "Bank Account Card"
 {
     layout
     {
-        addafter(Name)
-        {
-            field("AfkBeneficiary"; Rec.AfkBeneficiary)
-            {
-                ApplicationArea = Basic;
-            }
-        }
         addbefore("RIB Key")
         {
             field(AfkRIBKeyText; Rec."AfkRIBKeyText")

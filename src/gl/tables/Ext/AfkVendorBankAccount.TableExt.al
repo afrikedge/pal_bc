@@ -7,5 +7,10 @@ tableextension 50018 AfkVendorBankAccount extends "Vendor Bank Account"
             Caption = 'Beneficiary';
             DataClassification = CustomerContent;
         }
+        field(50001; AfkRIBKeyText; Code[2])
+        {
+            Caption = 'RIB Code';
+            DataClassification = CustomerContent;
+        }
     }
 }

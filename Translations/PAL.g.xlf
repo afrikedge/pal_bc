@@ -5038,6 +5038,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkSalesOrderProRC - Action AfkVendors - Property Caption</note>
         </trans-unit>
+        <trans-unit id="TableExtension 991377797 - Field 913053025 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 1682139193">
+          <source>RIB Code</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension AfkBankAccount - Field AfkRIBKeyText - Property Caption</note>
+        </trans-unit>
         <trans-unit id="TableExtension 1946468287 - Field 3036543227 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 2798690647">
           <source>Operation Type</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -5897,6 +5902,11 @@
           <source>Beneficiary</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">TableExtension AfkVendorBankAccount - Field AfkBeneficiary - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="TableExtension 3019736009 - Field 913053025 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 4231435149">
+          <source>RIB Code</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension AfkVendorBankAccount - Field AfkRIBKeyText - Property Caption</note>
         </trans-unit>
         <trans-unit id="TableExtension 497414593 - Field 912991442 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 3194161445">
           <source>IR Account</source>

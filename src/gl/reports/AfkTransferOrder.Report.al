@@ -113,7 +113,7 @@ report 50007 AfkTransferOrder
                 PayBankAccount: Record "Bank Account";
                 Vend: Record Vendor;
                 VendBankAccount: Record "Vendor Bank Account";
-
+                RealRIB: Code[2];
             begin
 
                 if ("Currency Code" = '') then
@@ -165,7 +165,11 @@ report 50007 AfkTransferOrder
                     TestField("Recipient Bank Account");
                     Vend.get("Account No.");
                     VendBankAccount.get("Account No.", "Recipient Bank Account");
-                    VendorRIB := VendBankAccount."Bank Branch No." + ' ' + VendBankAccount."Agency Code" + ' ' + VendBankAccount."Bank Account No." + ' ' + Format(VendBankAccount."RIB Key");
+                    if (VendBankAccount.AfkRIBKeyText = '') then
+                        RealRIB := Format(VendBankAccount."RIB Key")
+                    else
+                        RealRIB := Format(VendBankAccount.AfkRIBKeyText);
+                    VendorRIB := VendBankAccount."Bank Branch No." + ' ' + VendBankAccount."Agency Code" + ' ' + VendBankAccount."Bank Account No." + ' ' + Format(RealRIB);
                     VendorName := VendBankAccount.AfkBeneficiary;
                     VendorBankAccountCode := VendorRIB;
                     VendorBankAccountName := VendBankAccount.Name;
@@ -259,8 +263,8 @@ report 50007 AfkTransferOrder
 
     local procedure ReplaceString(OriginString: Text; ReplaceString: Text): Text
     var
-        Rep: Text;
         pos: Integer;
+        Rep: Text;
     begin
         Rep := OriginString;
         pos := StrPos(OriginString, ReplaceString);
