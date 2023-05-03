@@ -113,6 +113,12 @@ report 50009 AfkBudgetControl
             column(TxtPeriod; TxtPeriod)
             {
             }
+            column(DocStatus; DocStatus)
+            {
+            }
+            column(LblDocStatus; LblDocStatus)
+            {
+            }
 
 
 
@@ -121,6 +127,7 @@ report 50009 AfkBudgetControl
 
             trigger OnAfterGetRecord()
             var
+                GLEntry: Record "G/L Entry";
                 PurchCrMemo: Record "Purch. Cr. Memo Hdr.";
                 PurchInvoice: Record "Purch. Inv. Header";
                 PurchOrder: Record "Purchase Header";
@@ -141,35 +148,58 @@ report 50009 AfkBudgetControl
                     if (PurchOrder.get(PurchOrder."Document Type"::Order, OrderNo)) then
                         FillLineOrder(PurchOrder, OrderDate, OrderAmount, CumulativeAmount,
                             AvailableAmount, Supplier, OrderPurpose);
+                    DocStatus := LblEngage;
                 end;
 
-                if (idType = 1) then begin
-                    PurchOrderArchive.Reset();
-                    PurchOrderArchive.SetRange("Document Type", PurchOrderArchive."Document Type"::Order);
-                    PurchOrderArchive.SetRange(PurchOrderArchive."No.", OrderNo);
-                    if PurchOrderArchive.FindFirst() then begin
-                        FillLineArchiveOrder(PurchOrderArchive, OrderDate, OrderAmount, CumulativeAmount,
-                            AvailableAmount, Supplier, OrderPurpose);
+                /*
+                    if (idType = 1) then begin
+                        PurchOrderArchive.Reset();
+                        PurchOrderArchive.SetRange("Document Type", PurchOrderArchive."Document Type"::Order);
+                        PurchOrderArchive.SetRange(PurchOrderArchive."No.", OrderNo);
+                        if PurchOrderArchive.FindFirst() then begin
+                            FillLineArchiveOrder(PurchOrderArchive, OrderDate, OrderAmount, CumulativeAmount,
+                                AvailableAmount, Supplier, OrderPurpose);
+                        end;
                     end;
-                end;
+                */
 
                 if (idType = 2) then begin//Demandes d'achat
                     if (PurchOrder.get(PurchOrder."Document Type"::Quote, OrderNo)) then
                         FillLineOrder(PurchOrder, OrderDate, OrderAmount, CumulativeAmount,
                             AvailableAmount, Supplier, OrderPurpose);
+                    DocStatus := LblPreEngage;
                 end;
 
-                if (idType = 3) then begin//Factures directes
-                    if (PurchInvoice.get(OrderNo)) then
-                        FillLineInvoice(PurchInvoice, OrderDate, OrderAmount, CumulativeAmount,
+
+                if (idType = 3) then begin//GL Entries
+                    if (GLEntry.get(OrderNo)) then
+                        FillLineInvoice(GLEntry, Orderno, OrderDate, OrderAmount, CumulativeAmount,
                             AvailableAmount, Supplier, OrderPurpose);
+                    DocStatus := LblRealise;
                 end;
 
-                if (idType = 4) then begin//Avoir directes
-                    if (PurchCrMemo.get(OrderNo)) then
-                        FillLineCreditMemo(PurchCrMemo, OrderDate, OrderAmount, CumulativeAmount,
+
+                if (idType = 5) then begin//Facture d'achat directes
+                    if (PurchOrder.get(PurchOrder."Document Type"::Invoice, OrderNo)) then
+                        FillLineOrder(PurchOrder, OrderDate, OrderAmount, CumulativeAmount,
                             AvailableAmount, Supplier, OrderPurpose);
+                    DocStatus := LblEngage;
                 end;
+
+
+                /*
+                                if (idType = 3) then begin//Factures directes
+                                    if (PurchInvoice.get(OrderNo)) then
+                                        FillLineInvoice(PurchInvoice, OrderDate, OrderAmount, CumulativeAmount,
+                                            AvailableAmount, Supplier, OrderPurpose);
+                                end;
+
+                                if (idType = 4) then begin//Avoir directes
+                                    if (PurchCrMemo.get(OrderNo)) then
+                                        FillLineCreditMemo(PurchCrMemo, OrderDate, OrderAmount, CumulativeAmount,
+                                            AvailableAmount, Supplier, OrderPurpose);
+                                end;
+                                */
 
 
                 // if (PurchOrder.get(PurchOrder."Document Type"::Order, OrderNo)) then begin
@@ -198,6 +228,8 @@ report 50009 AfkBudgetControl
             trigger OnPreDataItem()
             begin
                 AddOnSetup.Get();
+                AddOnSetup.Testfield("Budgeted G/L Account Filter");
+
                 CompanyInformation.Get();
                 CompanyInformation.CalcFields(Picture);
 
@@ -311,15 +343,20 @@ report 50009 AfkBudgetControl
         LblBudgetaryHead: Label 'Budgetary Head :';
         LblCumulativeAmount: Label 'CUMULATIVE AMOUNT';
         LblDate: Label 'DATE';
+        LblDocStatus: Label 'Statut';
+        LblEngage: Label 'Commited';
         LblExpenditure: Label 'Expenditure :';
         LblHeadNo: Label 'Head No :';
         LblInitialBudget: Label 'Project Budget :';
         LblPeriod: Label 'PERIOD :';
         LblPONumber: Label 'PURCHASE ORDER NO.';
+        LblPreEngage: Label 'Precommited';
         LblPurpose: Label 'PURPOSE OF EXPENDITURE';
+        LblRealise: Label 'Realized';
         LblSubHead: Label 'Sub-Head No :';
         LblSupplier: Label 'SUPPLIER';
         LblTitle: Label 'BUDGET CONTROL AND FOLLOW-UP SHEET';
+        DocStatus: Text;
         NatureName: Text;
         OrderPurpose: Text;
         TaskName: Text;
@@ -331,6 +368,7 @@ report 50009 AfkBudgetControl
 
     local procedure PrepareLists()
     var
+        GLEntry: Record "G/L Entry";
         PurchCreditMemo: Record "Purch. Cr. Memo Hdr.";
         PurchInvoice: Record "Purch. Inv. Header";
         PurchOrder: Record "Purchase Header";
@@ -341,7 +379,7 @@ report 50009 AfkBudgetControl
         OrderDatesListLength := 0;
         i := 1;
 
-
+        //Engage
         PurchOrder.Reset();
         PurchOrder.SetRange(PurchOrder."Document Type", PurchOrder."Document Type"::Order);
         PurchOrder.SetRange(PurchOrder."Shortcut Dimension 1 Code", TaskCode);
@@ -356,23 +394,42 @@ report 50009 AfkBudgetControl
                 i := i + 1;
             until PurchOrder.Next() = 0;
 
-        PurchOrderArchive.Reset();
-        PurchOrderArchive.SetRange("Document Type", PurchOrder."Document Type"::Order);
-        PurchOrderArchive.SetRange("Shortcut Dimension 1 Code", TaskCode);
-        PurchOrderArchive.SetRange("Shortcut Dimension 2 Code", NatureCode);
-        PurchOrderArchive.SETFILTER("Order Date", '%1..%2', DateDeb, DateFin);
-        if PurchOrderArchive.FindSet() then
+        /*
+            PurchOrderArchive.Reset();
+            PurchOrderArchive.SetRange("Document Type", PurchOrder."Document Type"::Order);
+            PurchOrderArchive.SetRange("Shortcut Dimension 1 Code", TaskCode);
+            PurchOrderArchive.SetRange("Shortcut Dimension 2 Code", NatureCode);
+            PurchOrderArchive.SETFILTER("Order Date", '%1..%2', DateDeb, DateFin);
+            if PurchOrderArchive.FindSet() then
+                repeat
+                    if (ValueExistsInList(PurchOrderArchive."No.") = false) then begin
+                        OrderDatesList[i] := PurchOrderArchive."Order Date";
+                        OrderNosList[i] := PurchOrderArchive."No.";
+                        OrderTypeList[i] := 1;
+                        OrderDatesListLength := OrderDatesListLength + 1;
+                        i := i + 1;
+                    end;
+                until PurchOrderArchive.Next() = 0;
+        */
+
+        //engage facture directe
+        PurchOrder.Reset();
+        PurchOrder.SetRange(PurchOrder."Document Type", PurchOrder."Document Type"::Invoice);
+        PurchOrder.SetRange(PurchOrder."Shortcut Dimension 1 Code", TaskCode);
+        PurchOrder.SetRange(PurchOrder."Shortcut Dimension 2 Code", NatureCode);
+        PurchOrder.SETFILTER(PurchOrder."Order Date", '%1..%2', DateDeb, DateFin);
+        if PurchOrder.FindSet() then
             repeat
-                if (ValueExistsInList(PurchOrderArchive."No.") = false) then begin
-                    OrderDatesList[i] := PurchOrderArchive."Order Date";
-                    OrderNosList[i] := PurchOrderArchive."No.";
-                    OrderTypeList[i] := 1;
-                    OrderDatesListLength := OrderDatesListLength + 1;
-                    i := i + 1;
-                end;
-            until PurchOrderArchive.Next() = 0;
+                OrderDatesList[i] := PurchOrder."Posting Date";
+                OrderNosList[i] := PurchOrder."No.";
+                OrderTypeList[i] := 5;
+                OrderDatesListLength := OrderDatesListLength + 1;
+                i := i + 1;
+            until PurchOrder.Next() = 0;
 
 
+
+        //Pre-engage
         PurchOrder.Reset();
         PurchOrder.SetRange(PurchOrder."Document Type", PurchOrder."Document Type"::Quote);
         PurchOrder.SetRange(PurchOrder."Shortcut Dimension 1 Code", TaskCode);
@@ -387,38 +444,57 @@ report 50009 AfkBudgetControl
                 i := i + 1;
             until PurchOrder.Next() = 0;
 
+        //Realise
 
-        PurchInvoice.Reset();
-        PurchInvoice.SetCurrentKey("Order No.");
-        PurchInvoice.SetRange(PurchInvoice."Order No.", '');
-        PurchInvoice.SetRange("Shortcut Dimension 1 Code", TaskCode);
-        PurchInvoice.SetRange("Shortcut Dimension 2 Code", NatureCode);
-        PurchInvoice.SETFILTER("Posting Date", '%1..%2', DateDeb, DateFin);
-        if PurchInvoice.FindSet() then
+        GLEntry.Reset();
+        GLEntry.SetCurrentKey("G/L Account No.", "Posting Date");
+        GLEntry.SetFilter("G/L Account No.", AddOnSetup."Budgeted G/L Account Filter");
+        GLEntry.SETRANGE("Posting Date", DateDeb, DateFin);
+        GLEntry.SetRange("Global Dimension 1 Code", TaskCode);
+        GLEntry.SetRange("Global Dimension 2 Code", NatureCode);
+        if GLEntry.FindSet() then
             repeat
-                OrderDatesList[i] := PurchInvoice."Posting Date";
-                OrderNosList[i] := PurchInvoice."No.";
+                OrderDatesList[i] := GLEntry."Posting Date";
+                OrderNosList[i] := Format(GLEntry."Entry No.");
                 OrderTypeList[i] := 3;
                 OrderDatesListLength := OrderDatesListLength + 1;
                 i := i + 1;
-            until PurchInvoice.Next() = 0;
+            until GLEntry.Next() = 0;
 
 
-        PurchCreditMemo.Reset();
-        //PurchCreditMemo.SetCurrentKey("Order No.");
-        //PurchCreditMemo.SetRange("Order No.", '');
-        PurchCreditMemo.SetRange("Shortcut Dimension 1 Code", TaskCode);
-        PurchCreditMemo.SetRange("Shortcut Dimension 2 Code", NatureCode);
-        PurchCreditMemo.SETFILTER("Posting Date", '%1..%2', DateDeb, DateFin);
-        if PurchCreditMemo.FindSet() then
-            repeat
-                OrderDatesList[i] := PurchCreditMemo."Posting Date";
-                OrderNosList[i] := PurchCreditMemo."No.";
-                OrderTypeList[i] := 4;
-                OrderDatesListLength := OrderDatesListLength + 1;
-                i := i + 1;
-            until PurchCreditMemo.Next() = 0;
 
+        /*
+            PurchInvoice.Reset();
+            PurchInvoice.SetCurrentKey("Order No.");
+            PurchInvoice.SetRange(PurchInvoice."Order No.", '');
+            PurchInvoice.SetRange("Shortcut Dimension 1 Code", TaskCode);
+            PurchInvoice.SetRange("Shortcut Dimension 2 Code", NatureCode);
+            PurchInvoice.SETFILTER("Posting Date", '%1..%2', DateDeb, DateFin);
+            if PurchInvoice.FindSet() then
+                repeat
+                    OrderDatesList[i] := PurchInvoice."Posting Date";
+                    OrderNosList[i] := PurchInvoice."No.";
+                    OrderTypeList[i] := 3;
+                    OrderDatesListLength := OrderDatesListLength + 1;
+                    i := i + 1;
+                until PurchInvoice.Next() = 0;
+
+
+            PurchCreditMemo.Reset();
+            //PurchCreditMemo.SetCurrentKey("Order No.");
+            //PurchCreditMemo.SetRange("Order No.", '');
+            PurchCreditMemo.SetRange("Shortcut Dimension 1 Code", TaskCode);
+            PurchCreditMemo.SetRange("Shortcut Dimension 2 Code", NatureCode);
+            PurchCreditMemo.SETFILTER("Posting Date", '%1..%2', DateDeb, DateFin);
+            if PurchCreditMemo.FindSet() then
+                repeat
+                    OrderDatesList[i] := PurchCreditMemo."Posting Date";
+                    OrderNosList[i] := PurchCreditMemo."No.";
+                    OrderTypeList[i] := 4;
+                    OrderDatesListLength := OrderDatesListLength + 1;
+                    i := i + 1;
+                until PurchCreditMemo.Next() = 0;
+        */
     end;
 
     local procedure CalcInitialBudget(): Decimal
@@ -477,10 +553,13 @@ report 50009 AfkBudgetControl
     local procedure FillLineOrder(PurchOrder: Record "Purchase Header";
         var OrderDate1: Date; var OrderAmount1: decimal; var CumulativeAmount1: decimal;
         var AvailableAmount1: decimal; var Supplier1: Text; var OrderPurpose1: Text)
+    var
+        BudgetControl: Codeunit AfkBudgetControl;
     begin
         OrderDate1 := PurchOrder."Order Date";
-        PurchOrder.CalcFields(Amount);
-        OrderAmount1 := PurchOrder.Amount;
+        OrderAmount1 := BudgetControl.GetDocPurchaseNotInvAmount(PurchOrder);
+        //PurchOrder.CalcFields(not);
+        //OrderAmount1 := PurchOrder.Amount;
         CumulativeAmount1 := CumulativeAmount + OrderAmount;
         AvailableAmount1 := InitialBudget - CumulativeAmount;
         Supplier1 := PurchOrder."Buy-from Vendor Name";
@@ -511,6 +590,30 @@ report 50009 AfkBudgetControl
         AvailableAmount1 := InitialBudget - CumulativeAmount1;
         Supplier1 := PurchInvoice."Buy-from Vendor Name";
         OrderPurpose1 := '';//PurchInvoice.Afk_Object;
+    end;
+
+    local procedure FillLineInvoice(GLEntry: Record "G/L Entry"; var docNo: Code[20];
+        var OrderDate1: Date; var OrderAmount1: decimal; var CumulativeAmount1: decimal;
+        var AvailableAmount1: decimal; var Supplier1: Text; var OrderPurpose1: Text)
+    var
+        PurchCrMemo: Record "Purch. Cr. Memo Hdr.";
+        PurchInvoice: Record "Purch. Inv. Header";
+    begin
+        OrderDate1 := GLEntry."Posting Date";
+        OrderAmount1 := GLEntry.Amount;
+        docNo := GLEntry."Document No.";
+        CumulativeAmount1 := CumulativeAmount1 + OrderAmount1;
+        AvailableAmount1 := InitialBudget - CumulativeAmount1;
+
+        if (PurchCrMemo.get(GLEntry."Document No.")) then
+            Supplier1 := PurchCrMemo."Buy-from Vendor Name"
+        else
+            if (PurchInvoice.get(GLEntry."Document No.")) then begin
+                Supplier1 := PurchInvoice."Buy-from Vendor Name";
+                OrderPurpose1 := PurchInvoice.Afk_Object;
+            end;
+
+        //PurchInvoice.Afk_Object;
     end;
 
     local procedure FillLineCreditMemo(PurchCreMemo: Record "Purch. Cr. Memo Hdr.";

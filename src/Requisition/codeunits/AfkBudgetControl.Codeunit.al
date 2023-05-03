@@ -322,7 +322,8 @@ codeunit 50009 AfkBudgetControl
         exit(amt1 + amt2);
     end;
 
-    local procedure GetRealizedAmt(CodeNature: Code[20];
+    /*
+        local procedure GetRealizedAmt(CodeNature: Code[20];
             CodeTache: Code[20]; DateDeb: Date; DateFin: Date) ReturnAmt: Decimal
     var
         amt1: Decimal;
@@ -332,6 +333,7 @@ codeunit 50009 AfkBudgetControl
         amt2 := GetRealizedAmt(CodeNature, CodeTache, DateDeb, DateFin, false);
         exit(amt1 + amt2);
     end;
+    */
 
     local procedure GetPrecommitmentAmt(CodeNature: Code[20];
     CodeTache: Code[20];
@@ -438,6 +440,25 @@ codeunit 50009 AfkBudgetControl
     end;
 
     procedure GetRealizedAmt(CodeNature: Code[20]; CodeTache: Code[20];
+             DateDeb: Date; DateFin: Date) ReturnAmt: Decimal
+    var
+        GLEntry: Record "G/L Entry";
+    //PostedCreditMemoHeader: Record "Purch. Cr. Memo Hdr.";
+    //PostedPurchHeader: Record "Purch. Inv. Header";
+    begin
+
+        GLEntry.Reset();
+        GLEntry.SetCurrentKey("G/L Account No.", "Posting Date");
+        GLEntry.SetFilter("G/L Account No.", AddOnSetup."Budgeted G/L Account Filter");
+        GLEntry.SETRANGE("Posting Date", DateDeb, DateFin);
+        GLEntry.SetRange("Global Dimension 1 Code", CodeTache);
+        GLEntry.SetRange("Global Dimension 2 Code", CodeNature);
+        GLEntry.CalcSums("Amount");
+        exit(GLEntry.Amount);
+
+    end;
+
+    procedure GetRealizedAmtxxx(CodeNature: Code[20]; CodeTache: Code[20];
          DateDeb: Date; DateFin: Date; IsItem: Boolean) ReturnAmt: Decimal
     var
         AfkDocItem: Record AfkWhseDelivery;
@@ -628,6 +649,8 @@ codeunit 50009 AfkBudgetControl
 
         AddOnSetup.GET;
         AddOnSetup.TESTFIELD(AddOnSetup."Default Budget Code");
+        AddOnSetup.TESTFIELD(AddOnSetup."Budgeted G/L Account Filter");
+
 
 
         //Year
@@ -744,7 +767,7 @@ codeunit 50009 AfkBudgetControl
             UNTIL PurchLine.NEXT = 0;
     end;
 
-    local procedure GetDocPurchaseNotInvAmount(PurchHeader: Record "Purchase Header") ReturnAmt: Decimal
+    procedure GetDocPurchaseNotInvAmount(PurchHeader: Record "Purchase Header") ReturnAmt: Decimal
     var
         PurchLine: Record "Purchase Line";
         LineAmt: Decimal;

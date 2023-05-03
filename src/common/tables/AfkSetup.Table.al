@@ -93,6 +93,10 @@ table 50004 AfkSetup
         {
             Caption = 'Transfer No Suffix';
         }
+        field(50017; "Budgeted G/L Account Filter"; Code[500])
+        {
+            Caption = 'Budgeted G/L Account Filter';
+        }
     }
 
     keys

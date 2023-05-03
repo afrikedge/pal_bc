@@ -10,6 +10,133 @@
       <rd:DataSourceID>af35f477-479a-4018-ba43-8582c7b7adab</rd:DataSourceID>
     </DataSource>
   </DataSources>
+  <DataSets>
+    <DataSet Name="DataSet_Result">
+      <Query>
+        <DataSourceName>DataSource</DataSourceName>
+        <CommandText />
+      </Query>
+      <Fields>
+        <Field Name="OrderNo">
+          <DataField>OrderNo</DataField>
+        </Field>
+        <Field Name="OrderDate">
+          <DataField>OrderDate</DataField>
+        </Field>
+        <Field Name="OrderAmount">
+          <DataField>OrderAmount</DataField>
+        </Field>
+        <Field Name="OrderAmountFormat">
+          <DataField>OrderAmountFormat</DataField>
+        </Field>
+        <Field Name="CumulativeAmount">
+          <DataField>CumulativeAmount</DataField>
+        </Field>
+        <Field Name="CumulativeAmountFormat">
+          <DataField>CumulativeAmountFormat</DataField>
+        </Field>
+        <Field Name="Supplier">
+          <DataField>Supplier</DataField>
+        </Field>
+        <Field Name="AvailableAmount">
+          <DataField>AvailableAmount</DataField>
+        </Field>
+        <Field Name="AvailableAmountFormat">
+          <DataField>AvailableAmountFormat</DataField>
+        </Field>
+        <Field Name="OrderPurpose">
+          <DataField>OrderPurpose</DataField>
+        </Field>
+        <Field Name="DateDeb">
+          <DataField>DateDeb</DataField>
+        </Field>
+        <Field Name="DateFin">
+          <DataField>DateFin</DataField>
+        </Field>
+        <Field Name="InitialBudget">
+          <DataField>InitialBudget</DataField>
+        </Field>
+        <Field Name="InitialBudgetFormat">
+          <DataField>InitialBudgetFormat</DataField>
+        </Field>
+        <Field Name="FooterLabel01">
+          <DataField>FooterLabel01</DataField>
+        </Field>
+        <Field Name="FooterLabel02Text">
+          <DataField>FooterLabel02Text</DataField>
+        </Field>
+        <Field Name="FooterLabel03">
+          <DataField>FooterLabel03</DataField>
+        </Field>
+        <Field Name="TaskCode">
+          <DataField>TaskCode</DataField>
+        </Field>
+        <Field Name="NatureCode">
+          <DataField>NatureCode</DataField>
+        </Field>
+        <Field Name="TaskName">
+          <DataField>TaskName</DataField>
+        </Field>
+        <Field Name="NatureName">
+          <DataField>NatureName</DataField>
+        </Field>
+        <Field Name="LblAmount">
+          <DataField>LblAmount</DataField>
+        </Field>
+        <Field Name="LblAvailableAmount">
+          <DataField>LblAvailableAmount</DataField>
+        </Field>
+        <Field Name="LblCumulativeAmount">
+          <DataField>LblCumulativeAmount</DataField>
+        </Field>
+        <Field Name="LblDate">
+          <DataField>LblDate</DataField>
+        </Field>
+        <Field Name="LblExpenditure">
+          <DataField>LblExpenditure</DataField>
+        </Field>
+        <Field Name="LblHeadNo">
+          <DataField>LblHeadNo</DataField>
+        </Field>
+        <Field Name="LblInitialBudget">
+          <DataField>LblInitialBudget</DataField>
+        </Field>
+        <Field Name="LblPeriod">
+          <DataField>LblPeriod</DataField>
+        </Field>
+        <Field Name="LblPONumber">
+          <DataField>LblPONumber</DataField>
+        </Field>
+        <Field Name="LblPurpose">
+          <DataField>LblPurpose</DataField>
+        </Field>
+        <Field Name="LblSubHead">
+          <DataField>LblSubHead</DataField>
+        </Field>
+        <Field Name="LblSupplier">
+          <DataField>LblSupplier</DataField>
+        </Field>
+        <Field Name="LblTitle">
+          <DataField>LblTitle</DataField>
+        </Field>
+        <Field Name="LblBudgetaryHead">
+          <DataField>LblBudgetaryHead</DataField>
+        </Field>
+        <Field Name="AfkCompanyPicture">
+          <DataField>AfkCompanyPicture</DataField>
+        </Field>
+        <Field Name="TxtPeriod">
+          <DataField>TxtPeriod</DataField>
+        </Field>
+        <Field Name="DocStatus">
+          <DataField>DocStatus</DataField>
+        </Field>
+        <Field Name="LblDocStatus">
+          <DataField>LblDocStatus</DataField>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
   <ReportSections>
     <ReportSection>
       <Body>
@@ -33,10 +160,13 @@
                   <Width>2.63407cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>5.74244cm</Width>
+                  <Width>1.94043cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>8.88584cm</Width>
+                  <Width>5.11805cm</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>7.56292cm</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -194,6 +324,38 @@
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox126</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>LightBlue</BackgroundColor>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox2">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!LblDocStatus.Value</Value>
+                                  <Style>
+                                    <FontFamily>Calibri</FontFamily>
+                                    <FontSize>9pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox2</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -457,6 +619,43 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
+                        <Textbox Name="DocStatus">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!DocStatus.Value</Value>
+                                  <Style>
+                                    <FontFamily>Calibri</FontFamily>
+                                    <FontSize>9pt</FontSize>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>DocStatus</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <TopBorder>
+                              <Style>None</Style>
+                            </TopBorder>
+                            <BackgroundColor>=IIF(ROWNUMBER(NOTHING) MOD 2,"White","#dadada")</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                          </Style>
+                        </Textbox>
+                        <rd:Selected>true</rd:Selected>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
                         <Textbox Name="Supplier">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
@@ -490,7 +689,6 @@
                             <PaddingRight>1pt</PaddingRight>
                           </Style>
                         </Textbox>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -543,6 +741,7 @@
                 <TablixMember />
                 <TablixMember />
                 <TablixMember />
+                <TablixMember />
               </TablixMembers>
             </TablixColumnHierarchy>
             <TablixRowHierarchy>
@@ -560,7 +759,7 @@
             <Top>0.07056cm</Top>
             <Left>0.0664cm</Left>
             <Height>1.1cm</Height>
-            <Width>27.49219cm</Width>
+            <Width>27.48531cm</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1676,6 +1875,12 @@
       </Page>
     </ReportSection>
   </ReportSections>
+  <ReportParametersLayout>
+    <GridLayoutDefinition>
+      <NumberOfColumns>4</NumberOfColumns>
+      <NumberOfRows>2</NumberOfRows>
+    </GridLayoutDefinition>
+  </ReportParametersLayout>
   <Code>Public Function BlankZero(ByVal Value As Decimal)
     if Value = 0 then
         Return ""
@@ -1715,125 +1920,4 @@ End Function
   <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
   <rd:ReportUnitType>Cm</rd:ReportUnitType>
   <rd:ReportID>0eeb6585-38ae-40f1-885b-8d50088d51b4</rd:ReportID>
-  <DataSets>
-    <DataSet Name="DataSet_Result">
-      <Fields>
-        <Field Name="OrderNo">
-          <DataField>OrderNo</DataField>
-        </Field>
-        <Field Name="OrderDate">
-          <DataField>OrderDate</DataField>
-        </Field>
-        <Field Name="OrderAmount">
-          <DataField>OrderAmount</DataField>
-        </Field>
-        <Field Name="OrderAmountFormat">
-          <DataField>OrderAmountFormat</DataField>
-        </Field>
-        <Field Name="CumulativeAmount">
-          <DataField>CumulativeAmount</DataField>
-        </Field>
-        <Field Name="CumulativeAmountFormat">
-          <DataField>CumulativeAmountFormat</DataField>
-        </Field>
-        <Field Name="Supplier">
-          <DataField>Supplier</DataField>
-        </Field>
-        <Field Name="AvailableAmount">
-          <DataField>AvailableAmount</DataField>
-        </Field>
-        <Field Name="AvailableAmountFormat">
-          <DataField>AvailableAmountFormat</DataField>
-        </Field>
-        <Field Name="OrderPurpose">
-          <DataField>OrderPurpose</DataField>
-        </Field>
-        <Field Name="DateDeb">
-          <DataField>DateDeb</DataField>
-        </Field>
-        <Field Name="DateFin">
-          <DataField>DateFin</DataField>
-        </Field>
-        <Field Name="InitialBudget">
-          <DataField>InitialBudget</DataField>
-        </Field>
-        <Field Name="InitialBudgetFormat">
-          <DataField>InitialBudgetFormat</DataField>
-        </Field>
-        <Field Name="FooterLabel01">
-          <DataField>FooterLabel01</DataField>
-        </Field>
-        <Field Name="FooterLabel02Text">
-          <DataField>FooterLabel02Text</DataField>
-        </Field>
-        <Field Name="FooterLabel03">
-          <DataField>FooterLabel03</DataField>
-        </Field>
-        <Field Name="TaskCode">
-          <DataField>TaskCode</DataField>
-        </Field>
-        <Field Name="NatureCode">
-          <DataField>NatureCode</DataField>
-        </Field>
-        <Field Name="TaskName">
-          <DataField>TaskName</DataField>
-        </Field>
-        <Field Name="NatureName">
-          <DataField>NatureName</DataField>
-        </Field>
-        <Field Name="LblAmount">
-          <DataField>LblAmount</DataField>
-        </Field>
-        <Field Name="LblAvailableAmount">
-          <DataField>LblAvailableAmount</DataField>
-        </Field>
-        <Field Name="LblCumulativeAmount">
-          <DataField>LblCumulativeAmount</DataField>
-        </Field>
-        <Field Name="LblDate">
-          <DataField>LblDate</DataField>
-        </Field>
-        <Field Name="LblExpenditure">
-          <DataField>LblExpenditure</DataField>
-        </Field>
-        <Field Name="LblHeadNo">
-          <DataField>LblHeadNo</DataField>
-        </Field>
-        <Field Name="LblInitialBudget">
-          <DataField>LblInitialBudget</DataField>
-        </Field>
-        <Field Name="LblPeriod">
-          <DataField>LblPeriod</DataField>
-        </Field>
-        <Field Name="LblPONumber">
-          <DataField>LblPONumber</DataField>
-        </Field>
-        <Field Name="LblPurpose">
-          <DataField>LblPurpose</DataField>
-        </Field>
-        <Field Name="LblSubHead">
-          <DataField>LblSubHead</DataField>
-        </Field>
-        <Field Name="LblSupplier">
-          <DataField>LblSupplier</DataField>
-        </Field>
-        <Field Name="LblTitle">
-          <DataField>LblTitle</DataField>
-        </Field>
-        <Field Name="LblBudgetaryHead">
-          <DataField>LblBudgetaryHead</DataField>
-        </Field>
-        <Field Name="AfkCompanyPicture">
-          <DataField>AfkCompanyPicture</DataField>
-        </Field>
-        <Field Name="TxtPeriod">
-          <DataField>TxtPeriod</DataField>
-        </Field>
-      </Fields>
-      <Query>
-        <DataSourceName>DataSource</DataSourceName>
-        <CommandText />
-      </Query>
-    </DataSet>
-  </DataSets>
 </Report>

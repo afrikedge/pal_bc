@@ -4,6 +4,14 @@ pageextension 50025 AfkPurchaseInvoice extends "Purchase Invoice"
     {
         moveafter("Vendor Order No."; "Shortcut Dimension 2 Code")
         moveafter("Vendor Order No."; "Shortcut Dimension 1 Code")
+        addafter("Vendor Order No.")
+        {
+            field(Afk_Object; Rec.Afk_Object)
+            {
+                ApplicationArea = Basic, Suite;
+                MultiLine = true;
+            }
+        }
 
         addafter(PurchLines)
         {
