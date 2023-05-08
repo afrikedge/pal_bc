@@ -209,7 +209,7 @@ report 50009 AfkBudgetControl
                 //     PurchOrderArchive.SetRange("Document Type", PurchOrderArchive."Document Type"::Order);
                 //     PurchOrderArchive.SetRange(PurchOrderArchive."No.", OrderNo);
                 //     if PurchOrderArchive.FindFirst() then begin
-                //         OrderDate := PurchOrderArchive."Order Date";
+                //         OrderDate := PurchOrderArchive."Document Date";
                 //         PurchOrderArchive.CalcFields(Amount);
                 //         OrderAmount := PurchOrderArchive.Amount;
                 //         CumulativeAmount := CumulativeAmount + OrderAmount;
@@ -387,7 +387,7 @@ report 50009 AfkBudgetControl
         PurchOrder.SETFILTER(PurchOrder."Document Date", '%1..%2', DateDeb, DateFin);
         if PurchOrder.FindSet() then
             repeat
-                OrderDatesList[i] := PurchOrder."Order Date";
+                OrderDatesList[i] := PurchOrder."Document Date";
                 OrderNosList[i] := PurchOrder."No.";
                 OrderTypeList[i] := 0;
                 OrderDatesListLength := OrderDatesListLength + 1;
@@ -399,11 +399,11 @@ report 50009 AfkBudgetControl
             PurchOrderArchive.SetRange("Document Type", PurchOrder."Document Type"::Order);
             PurchOrderArchive.SetRange("Shortcut Dimension 1 Code", TaskCode);
             PurchOrderArchive.SetRange("Shortcut Dimension 2 Code", NatureCode);
-            PurchOrderArchive.SETFILTER("Order Date", '%1..%2', DateDeb, DateFin);
+            PurchOrderArchive.SETFILTER("Document Date", '%1..%2', DateDeb, DateFin);
             if PurchOrderArchive.FindSet() then
                 repeat
                     if (ValueExistsInList(PurchOrderArchive."No.") = false) then begin
-                        OrderDatesList[i] := PurchOrderArchive."Order Date";
+                        OrderDatesList[i] := PurchOrderArchive."Document Date";
                         OrderNosList[i] := PurchOrderArchive."No.";
                         OrderTypeList[i] := 1;
                         OrderDatesListLength := OrderDatesListLength + 1;
@@ -437,7 +437,7 @@ report 50009 AfkBudgetControl
         PurchOrder.SETFILTER(PurchOrder."Document Date", '%1..%2', DateDeb, DateFin);
         if PurchOrder.FindSet() then
             repeat
-                OrderDatesList[i] := PurchOrder."Order Date";
+                OrderDatesList[i] := PurchOrder."Document Date";
                 OrderNosList[i] := PurchOrder."No.";
                 OrderTypeList[i] := 2;
                 OrderDatesListLength := OrderDatesListLength + 1;
@@ -556,7 +556,7 @@ report 50009 AfkBudgetControl
     var
         BudgetControl: Codeunit AfkBudgetControl;
     begin
-        OrderDate1 := PurchOrder."Order Date";
+        OrderDate1 := PurchOrder."Document Date";
         OrderAmount1 := BudgetControl.GetDocPurchaseNotInvAmount(PurchOrder);
         //PurchOrder.CalcFields(not);
         //OrderAmount1 := PurchOrder.Amount;
@@ -570,7 +570,7 @@ report 50009 AfkBudgetControl
         var OrderDate1: Date; var OrderAmount1: decimal; var CumulativeAmount1: decimal;
         var AvailableAmount1: decimal; var Supplier1: Text; var OrderPurpose1: Text)
     begin
-        OrderDate1 := PurchOrderArchive."Order Date";
+        OrderDate1 := PurchOrderArchive."Document Date";
         PurchOrderArchive.CalcFields(Amount);
         OrderAmount1 := PurchOrderArchive.Amount;
         CumulativeAmount1 := CumulativeAmount + OrderAmount;
@@ -583,7 +583,7 @@ report 50009 AfkBudgetControl
         var OrderDate1: Date; var OrderAmount1: decimal; var CumulativeAmount1: decimal;
         var AvailableAmount1: decimal; var Supplier1: Text; var OrderPurpose1: Text)
     begin
-        OrderDate1 := PurchInvoice."Posting Date";
+        OrderDate1 := PurchInvoice."Document Date";
         PurchInvoice.CalcFields(Amount);
         OrderAmount1 := PurchInvoice.Amount;
         CumulativeAmount1 := CumulativeAmount1 + OrderAmount1;
@@ -620,7 +620,7 @@ report 50009 AfkBudgetControl
         var OrderDate1: Date; var OrderAmount1: decimal; var CumulativeAmount1: decimal;
         var AvailableAmount1: decimal; var Supplier1: Text; var OrderPurpose1: Text)
     begin
-        OrderDate1 := PurchCreMemo."Posting Date";
+        OrderDate1 := PurchCreMemo."Document Date";
         PurchCreMemo.CalcFields(Amount);
         OrderAmount1 := -PurchCreMemo.Amount;
         CumulativeAmount1 := CumulativeAmount1 + OrderAmount1;
