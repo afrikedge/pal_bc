@@ -300,7 +300,7 @@ codeunit 50009 AfkBudgetControl
     end;
 
 
-    local procedure GetPrecommitmentAmt(CodeNature: Code[20];
+    procedure GetPrecommitmentAmt(CodeNature: Code[20];
             CodeTache: Code[20]; DateDeb: Date; DateFin: Date) ReturnAmt: Decimal
     var
         amt1: Decimal;
@@ -311,7 +311,7 @@ codeunit 50009 AfkBudgetControl
         exit(amt1 + amt2);
     end;
 
-    local procedure GetCommitmentAmt(CodeNature: Code[20];
+    procedure GetCommitmentAmt(CodeNature: Code[20];
             CodeTache: Code[20]; DateDeb: Date; DateFin: Date) ReturnAmt: Decimal
     var
         amt1: Decimal;
@@ -447,6 +447,8 @@ codeunit 50009 AfkBudgetControl
     //PostedPurchHeader: Record "Purch. Inv. Header";
     begin
 
+        AddOnSetup.Get();
+
         GLEntry.Reset();
         GLEntry.SetCurrentKey("G/L Account No.", "Posting Date");
         GLEntry.SetFilter("G/L Account No.", AddOnSetup."Budgeted G/L Account Filter");
@@ -456,6 +458,49 @@ codeunit 50009 AfkBudgetControl
         GLEntry.CalcSums("Amount");
         exit(GLEntry.Amount);
 
+    end;
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="CodeNature"></param>
+    /// <param name="CodeTache"></param>
+    /// <param name="DateDeb"></param>
+    /// <param name="DateFin"></param>
+    /// <param name="TypeBudget">0=Initial 1=Increase 2=Decrease</param>
+    /// <returns></returns>
+    procedure GetBudgetAmount(CodeNature: Code[20]; CodeTache: Code[20];
+             DateDeb: Date; DateFin: Date; TypeBudget: Integer) ReturnAmt: Decimal
+    var
+        GLBudgetEntry: Record "G/L Budget Entry";
+    begin
+
+        GLBudgetEntry.Reset();
+        //GLEntry.SetCurrentKey("G/L Account No.", "Posting Date");
+        //GLBudgetEntry.SetFilter("G/L Account No.", AddOnSetup."Budgeted G/L Account Filter");
+        GLBudgetEntry.SetRange("Date", DateDeb, DateFin);
+        GLBudgetEntry.SetRange("Global Dimension 1 Code", CodeTache);
+        GLBudgetEntry.SetRange("Global Dimension 2 Code", CodeNature);
+
+        if (TypeBudget = 0) then begin//Initial
+            GLBudgetEntry.SetFilter(Afk_Operation_Type, '%1|%2',
+                GLBudgetEntry.Afk_Operation_Type::" ", GLBudgetEntry.Afk_Operation_Type::Initial);
+        end;
+
+        if (TypeBudget = 1) then begin//Increase
+            GLBudgetEntry.SetFilter(Afk_Operation_Type, '%1|%2',
+                GLBudgetEntry.Afk_Operation_Type::Transfer, GLBudgetEntry.Afk_Operation_Type::Increase);
+            GLBudgetEntry.SetFilter(Amount, '>%1', 0);
+
+        end;
+        if (TypeBudget = 2) then begin//Decrease
+            GLBudgetEntry.SetFilter(Afk_Operation_Type, '%1|%2',
+                GLBudgetEntry.Afk_Operation_Type::Transfer, GLBudgetEntry.Afk_Operation_Type::Decrease);
+            GLBudgetEntry.SetFilter(Amount, '<%1', 0);
+        end;
+
+        GLBudgetEntry.CalcSums("Amount");
+        exit(Abs(GLBudgetEntry.Amount));
     end;
 
     procedure GetRealizedAmtxxx(CodeNature: Code[20]; CodeTache: Code[20];

@@ -173,7 +173,7 @@ report 50009 AfkBudgetControl
 
                 if (idType = 3) then begin//GL Entries
                     if (GLEntry.get(OrderNo)) then
-                        FillLineInvoice(GLEntry, Orderno, OrderDate, OrderAmount, CumulativeAmount,
+                        FillLineGLEntry(GLEntry, Orderno, OrderDate, OrderAmount, CumulativeAmount,
                             AvailableAmount, Supplier, OrderPurpose);
                     DocStatus := LblRealise;
                 end;
@@ -384,7 +384,7 @@ report 50009 AfkBudgetControl
         PurchOrder.SetRange(PurchOrder."Document Type", PurchOrder."Document Type"::Order);
         PurchOrder.SetRange(PurchOrder."Shortcut Dimension 1 Code", TaskCode);
         PurchOrder.SetRange(PurchOrder."Shortcut Dimension 2 Code", NatureCode);
-        PurchOrder.SETFILTER(PurchOrder."Order Date", '%1..%2', DateDeb, DateFin);
+        PurchOrder.SETFILTER(PurchOrder."Document Date", '%1..%2', DateDeb, DateFin);
         if PurchOrder.FindSet() then
             repeat
                 OrderDatesList[i] := PurchOrder."Order Date";
@@ -417,7 +417,7 @@ report 50009 AfkBudgetControl
         PurchOrder.SetRange(PurchOrder."Document Type", PurchOrder."Document Type"::Invoice);
         PurchOrder.SetRange(PurchOrder."Shortcut Dimension 1 Code", TaskCode);
         PurchOrder.SetRange(PurchOrder."Shortcut Dimension 2 Code", NatureCode);
-        PurchOrder.SETFILTER(PurchOrder."Order Date", '%1..%2', DateDeb, DateFin);
+        PurchOrder.SETFILTER(PurchOrder."Document Date", '%1..%2', DateDeb, DateFin);
         if PurchOrder.FindSet() then
             repeat
                 OrderDatesList[i] := PurchOrder."Posting Date";
@@ -434,7 +434,7 @@ report 50009 AfkBudgetControl
         PurchOrder.SetRange(PurchOrder."Document Type", PurchOrder."Document Type"::Quote);
         PurchOrder.SetRange(PurchOrder."Shortcut Dimension 1 Code", TaskCode);
         PurchOrder.SetRange(PurchOrder."Shortcut Dimension 2 Code", NatureCode);
-        PurchOrder.SETFILTER(PurchOrder."Order Date", '%1..%2', DateDeb, DateFin);
+        PurchOrder.SETFILTER(PurchOrder."Document Date", '%1..%2', DateDeb, DateFin);
         if PurchOrder.FindSet() then
             repeat
                 OrderDatesList[i] := PurchOrder."Order Date";
@@ -592,7 +592,7 @@ report 50009 AfkBudgetControl
         OrderPurpose1 := '';//PurchInvoice.Afk_Object;
     end;
 
-    local procedure FillLineInvoice(GLEntry: Record "G/L Entry"; var docNo: Code[20];
+    local procedure FillLineGLEntry(GLEntry: Record "G/L Entry"; var docNo: Code[20];
         var OrderDate1: Date; var OrderAmount1: decimal; var CumulativeAmount1: decimal;
         var AvailableAmount1: decimal; var Supplier1: Text; var OrderPurpose1: Text)
     var

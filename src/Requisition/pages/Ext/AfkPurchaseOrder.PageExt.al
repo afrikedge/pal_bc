@@ -129,6 +129,30 @@ pageextension 50016 AfkPurchaseOrder extends "Purchase Order"
 
         addafter(CopyDocument)
         {
+            action(AfkPrintAprioriBudgetCommitment)
+            {
+                ApplicationArea = All;
+                Caption = 'A priori control of commitments';
+                Ellipsis = true;
+                //Enabled = "No." <> '';
+                Image = PrintVoucher;
+                Promoted = true;
+                PromotedCategory = Process;
+                PromotedIsBig = true;
+                //ToolTip = 'calculate special lines based on the tax-free total of the invoice.';
+
+                trigger OnAction()
+                var
+                    PurchaseHeader1: Record "Purchase Header";
+                    BudgetControlOnDoc: Report AfkBudgetControlOnDoc;
+                begin
+                    PurchaseHeader1.Reset();
+                    PurchaseHeader1.SetRange("Document Type", Rec."Document Type");
+                    PurchaseHeader1.SetRange(PurchaseHeader1."No.", Rec."No.");
+                    BudgetControlOnDoc.SetTableView(PurchaseHeader1);
+                    BudgetControlOnDoc.Run();
+                end;
+            }
             action(AfkCalculateBudget)
             {
                 ApplicationArea = Suite;
@@ -161,6 +185,9 @@ pageextension 50016 AfkPurchaseOrder extends "Purchase Order"
                     AfkPurchaseReqMgt.SolderCdeAchat(Rec);
                 end;
             }
+
+
+
         }
     }
     trigger OnOpenPage()

@@ -2728,6 +2728,121 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report AfkBudgetControl - Control TaskCode - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Report 2074346089 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>A priori control of commitments</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkBudgetControlOnDoc - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 2074346089 - NamedType 2569633030" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Pôle de Référence au cœur du golfe de Guinée | Pole of Reference at the Heart of the Gulf of Guinea</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkBudgetControlOnDoc - NamedType FooterLabel01</note>
+        </trans-unit>
+        <trans-unit id="Report 2074346089 - NamedType 656543179" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Société Anonyme à Capital Public | Capital social : %1 | N° Contribuable : %2 | RCCM : %3 | NACAM : %4</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkBudgetControlOnDoc - NamedType FooterLabel02</note>
+        </trans-unit>
+        <trans-unit id="Report 2074346089 - NamedType 1294239796" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Port Authority of Limbe Transitional Administration P.O Box 456 Limbe</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkBudgetControlOnDoc - NamedType FooterLabel03</note>
+        </trans-unit>
+        <trans-unit id="Report 2074346089 - NamedType 1394903600" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Action :</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkBudgetControlOnDoc - NamedType LblAction</note>
+        </trans-unit>
+        <trans-unit id="Report 2074346089 - NamedType 184628925" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Activity :</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkBudgetControlOnDoc - NamedType LblActivite</note>
+        </trans-unit>
+        <trans-unit id="Report 2074346089 - NamedType 1040123058" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Cumulative consumption to date : </source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkBudgetControlOnDoc - NamedType LblCumulConso</note>
+        </trans-unit>
+        <trans-unit id="Report 2074346089 - NamedType 967178711" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The Director of Management Control certifies that :</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkBudgetControlOnDoc - NamedType LblDirecteur</note>
+        </trans-unit>
+        <trans-unit id="Report 2074346089 - NamedType 1817427356" size-unit="char" translate="yes" xml:space="preserve">
+          <source>COMMITMENT APPROUVED</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkBudgetControlOnDoc - NamedType LblEngagementApprove</note>
+        </trans-unit>
+        <trans-unit id="Report 2074346089 - NamedType 778253311" size-unit="char" translate="yes" xml:space="preserve">
+          <source>THE DIRECTOR OF BUDGETARY CONTROL</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkBudgetControlOnDoc - NamedType LblLeDirControleBud</note>
+        </trans-unit>
+        <trans-unit id="Report 2074346089 - NamedType 2370862339" size-unit="char" translate="yes" xml:space="preserve">
+          <source>the above-referenced budget line has sufficient credit</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkBudgetControlOnDoc - NamedType LblLigneBudgetaire</note>
+        </trans-unit>
+        <trans-unit id="Report 2074346089 - NamedType 1339795374" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Initial account amount </source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkBudgetControlOnDoc - NamedType LblMontantBudgetInitial</note>
+        </trans-unit>
+        <trans-unit id="Report 2074346089 - NamedType 3876650810" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Amount of the proposed transaction :</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkBudgetControlOnDoc - NamedType LblMontantOp</note>
+        </trans-unit>
+        <trans-unit id="Report 2074346089 - NamedType 4201880125" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Nature :</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkBudgetControlOnDoc - NamedType LblNature</note>
+        </trans-unit>
+        <trans-unit id="Report 2074346089 - NamedType 2918752488" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Of object</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkBudgetControlOnDoc - NamedType LblObjet</note>
+        </trans-unit>
+        <trans-unit id="Report 2074346089 - NamedType 653788305" size-unit="char" translate="yes" xml:space="preserve">
+          <source>For the operation initiated on </source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkBudgetControlOnDoc - NamedType LblOpInitieeLe</note>
+        </trans-unit>
+        <trans-unit id="Report 2074346089 - NamedType 753506546" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Program :</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkBudgetControlOnDoc - NamedType LblProgramme</note>
+        </trans-unit>
+        <trans-unit id="Report 2074346089 - NamedType 749792858" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Account balance to date :</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkBudgetControlOnDoc - NamedType LblSoldeCompteADate</note>
+        </trans-unit>
+        <trans-unit id="Report 2074346089 - NamedType 2131075137" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Structure :</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkBudgetControlOnDoc - NamedType LblStructure</note>
+        </trans-unit>
+        <trans-unit id="Report 2074346089 - NamedType 4178177947" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Task :</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkBudgetControlOnDoc - NamedType LblTache</note>
+        </trans-unit>
+        <trans-unit id="Report 2074346089 - NamedType 1119041022" size-unit="char" translate="yes" xml:space="preserve">
+          <source>A PRIORI CONTROL OF COMMITMENTS</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkBudgetControlOnDoc - NamedType LblTitle</note>
+        </trans-unit>
+        <trans-unit id="Report 2074346089 - NamedType 269196637" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Transfers ( - ) :</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkBudgetControlOnDoc - NamedType LblTransfertMoins</note>
+        </trans-unit>
+        <trans-unit id="Report 2074346089 - NamedType 782270737" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Transfers ( + ) :</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkBudgetControlOnDoc - NamedType LblTransfertPlus</note>
+        </trans-unit>
         <trans-unit id="Report 1260461456 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Budget Line Transfer</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -4548,6 +4663,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkPurchaseInvoice - Action AfkCalculateBudget - Property Caption</note>
         </trans-unit>
+        <trans-unit id="PageExtension 787257282 - Action 3453140183 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 2437096118">
+          <source>A priori control of commitments</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkPurchaseInvoice - Action AfkPrintAprioriBudgetCommitment - Property Caption</note>
+        </trans-unit>
         <trans-unit id="PageExtension 787257282 - Control 1242598336 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 2437096118">
           <source>Budget summary</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -4572,6 +4692,11 @@
           <source>Close Document</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkPurchaseOrder - Action AfkCloseDocument - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 678316379 - Action 3453140183 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 387971303">
+          <source>A priori control of commitments</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkPurchaseOrder - Action AfkPrintAprioriBudgetCommitment - Property Caption</note>
         </trans-unit>
         <trans-unit id="PageExtension 678316379 - Control 1242598336 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 387971303">
           <source>Budget summary</source>
@@ -4647,6 +4772,11 @@
           <source>Close Document</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkPurchaseQuote - Action AfkCloseDocument - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 2819668743 - Action 3453140183 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 3321822267">
+          <source>A priori control of commitments</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension AfkPurchaseQuote - Action AfkPrintAprioriBudgetCommitment - Property Caption</note>
         </trans-unit>
         <trans-unit id="PageExtension 2819668743 - Action 2041854035 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 3321822267">
           <source>Print Preview</source>
