@@ -1232,6 +1232,7 @@ report 50004 "AfkPurchaseOrder"
                 // AfkService: Record Afk_Service;
                 Country: Record "Country/Region";
                 Vend: Record Vendor;
+                typehelp: Codeunit "Type Helper";
                 QRCodeText: Text;
             begin
 
@@ -1260,9 +1261,14 @@ report 50004 "AfkPurchaseOrder"
                 AfkLimbeLeText := AfkLimbeLeLbl;
 
                 "Purchase Header".CalcFields("Purchase Header"."Amount Including VAT");
+
                 QRCodeText := StrSubstNo(QRCodeLbl, "Purchase Header"."No.",
                 "Purchase Header"."Order Date", "Purchase Header"."Amount Including VAT",
                     Vend.Name);
+
+                //QRCodeText := 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx';
+                QRCodeText := CopyStr(QRCodeText, 1, 100);
+
                 QRCode := QRCodeMgt.GenerateQRCode(QRCodeText);
                 //************************
                 CurrReport.Language := Language.GetLanguageIdOrDefault("Language Code");
