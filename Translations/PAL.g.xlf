@@ -3553,6 +3553,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report AfkPurchaseOrder - NamedType AfkAdresseLivraisonLbl</note>
         </trans-unit>
+        <trans-unit id="Report 678316379 - NamedType 1804790323" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bank Account :</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkPurchaseOrder - NamedType AfkBankAccountLbl</note>
+        </trans-unit>
         <trans-unit id="Report 678316379 - NamedType 2297264105" size-unit="char" translate="yes" xml:space="preserve">
           <source>Payment terms :</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -3564,7 +3569,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Report AfkPurchaseOrder - NamedType AfkDeviseLbl</note>
         </trans-unit>
         <trans-unit id="Report 678316379 - NamedType 2728316162" size-unit="char" translate="yes" xml:space="preserve">
-          <source>The Deputy Director</source>
+          <source>The Director Delegate</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report AfkPurchaseOrder - NamedType AfkDirecteurDelegueLbl</note>
         </trans-unit>
@@ -3688,10 +3693,20 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report AfkPurchaseOrder - NamedType AfkVAT1925Lbl</note>
         </trans-unit>
+        <trans-unit id="Report 678316379 - NamedType 1887497661" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Account No:</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkPurchaseOrder - NamedType AfkVendorAccountLbl</note>
+        </trans-unit>
         <trans-unit id="Report 678316379 - NamedType 3151073540" size-unit="char" translate="yes" xml:space="preserve">
           <source>Vendor Address :</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report AfkPurchaseOrder - NamedType AfkVendorAdressLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 678316379 - NamedType 3909650754" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bank :</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkPurchaseOrder - NamedType AfkVendorBanqueLbl</note>
         </trans-unit>
         <trans-unit id="Report 678316379 - NamedType 2189117947" size-unit="char" translate="yes" xml:space="preserve">
           <source>Allow Invoice Discount</source>
@@ -3869,7 +3884,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Report AfkPurchaseOrder - NamedType PurchLineLineDiscCaptionLbl</note>
         </trans-unit>
         <trans-unit id="Report 678316379 - NamedType 2648456304" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Order No : %1 Date : %2 Total Amount Incl VAT : %3 Vendor Name : %4</source>
+          <source>Order : %1 Date : %2 Amount Incl VAT : %3 Vendor : %4</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report AfkPurchaseOrder - NamedType QRCodeLbl</note>
         </trans-unit>

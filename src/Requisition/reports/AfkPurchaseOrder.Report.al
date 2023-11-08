@@ -183,6 +183,22 @@ report 50004 "AfkPurchaseOrder"
             {
             }
 
+            column(AfkBankAccountLbl; AfkBankAccountLbl)
+            {
+            }
+            column(AfkVendorAccountLbl; AfkVendorAccountLbl)
+            {
+            }
+            column(AfkVendorBanqueLbl; AfkVendorBanqueLbl)
+            {
+            }
+            column(VendorBankAccountName; VendorBankAccountName)
+            {
+            }
+            column(VendorBankAccountNo; VendorBankAccountNo)
+            {
+            }
+
             //***********************data**********************************
             //*********************************************************************************************************
 
@@ -1232,7 +1248,9 @@ report 50004 "AfkPurchaseOrder"
                 // AfkService: Record Afk_Service;
                 Country: Record "Country/Region";
                 Vend: Record Vendor;
+                VendorBankAccount: Record "Vendor Bank Account";
                 typehelp: Codeunit "Type Helper";
+                RealRIB: Code[2];
                 QRCodeText: Text;
             begin
 
@@ -1248,6 +1266,21 @@ report 50004 "AfkPurchaseOrder"
                 if not Vend.Get("Buy-from Vendor No.") then
                     Clear(Vend);
 
+                if (Vend."Preferred Bank Account Code" <> '') then begin
+                    if (VendorBankAccount.get(Vend."No.", Vend."Preferred Bank Account Code")) then begin
+                        if (VendorBankAccount.AfkRIBKeyText = '') then
+                            RealRIB := Format(VendorBankAccount."RIB Key")
+                        else
+                            RealRIB := Format(VendorBankAccount.AfkRIBKeyText);
+                        VendorBankAccountName := VendorBankAccount.Name;
+                        VendorBankAccountNo := VendorBankAccount."Bank Branch No." + ' '
+                        + VendorBankAccount."Agency Code" + ' '
+                        + VendorBankAccount."Bank Account No." + ' '
+                        + FORMAT(RealRIB);
+                    end;
+                end;
+                // VendorBankAccountName:Text;
+                //                 VendorBankAccountNo:Text;
 
                 if AfkCurrency.Get(AfkCurrencyCode) then
                     AfkCurrencyName := AfkCurrency.Description;
@@ -1476,9 +1509,11 @@ report 50004 "AfkPurchaseOrder"
         PrepmtLoopLineNo: Integer;
         AfkAcheteurLbl: Label 'Purchaser :';
         AfkAdresseLivraisonLbl: Label 'Shipping Address :';
+
+        AfkBankAccountLbl: Label 'Bank Account :';
         AfkCondPaiementLbl: Label 'Payment terms :';
         AfkDeviseLbl: Label 'Currency';
-        AfkDirecteurDelegueLbl: Label 'The Deputy Director';
+        AfkDirecteurDelegueLbl: Label 'The Director Delegate';
         AfkDureeValiditeLbl: Label 'Validity Period (Days)';
         AfkEmetteurLbl: Label 'Issuer :';
         AfkLigneDesignationLbl: Label 'Description';
@@ -1503,7 +1538,9 @@ report 50004 "AfkPurchaseOrder"
         AfkTotalHTDeviseLbl: Label 'Total Excl. VAT :';
         AfkTotalTTCDeviseLbl: Label 'Total Incl. VAT :';
         AfkVAT1925Lbl: Label 'VAT 19.25% :';
+        AfkVendorAccountLbl: Label 'Account No:';
         AfkVendorAdressLbl: Label 'Vendor Address :';
+        AfkVendorBanqueLbl: Label 'Bank :';
         AllowInvoiceDiscCaptionLbl: Label 'Allow Invoice Discount';
         AmountCaptionLbl: Label 'Amount';
         BuyFromContactEmailLbl: Label 'Buy-from Contact E-Mail';
@@ -1540,7 +1577,7 @@ report 50004 "AfkPurchaseOrder"
         PrepymtVATAmtSpecCaptionLbl: Label 'Prepayment VAT Amount Specification';
         PurchLineInvDiscAmtCaptionLbl: Label 'Invoice Discount Amount';
         PurchLineLineDiscCaptionLbl: Label 'Discount %';
-        QRCodeLbl: Label 'Order No : %1 Date : %2 Total Amount Incl VAT : %3 Vendor Name : %4';
+        QRCodeLbl: Label 'Order : %1 Date : %2 Amount Incl VAT : %3 Vendor : %4';
         ShipmentMethodDescCaptionLbl: Label 'Shipment Method';
         ShiptoAddressCaptionLbl: Label 'Ship-to Address';
         SubtotalCaptionLbl: Label 'Subtotal';
@@ -1567,6 +1604,8 @@ report 50004 "AfkPurchaseOrder"
         AfkVendorAddress2: Text;
 
         QRCode: Text;
+        VendorBankAccountName: Text;
+        VendorBankAccountNo: Text;
         AfkCurrencyCode: Text[20];
         AllowInvDisctxt: Text[30];
         CopyText: Text[30];
@@ -1596,6 +1635,8 @@ report 50004 "AfkPurchaseOrder"
         VendAddr: array[8] of Text[100];
         DimText: Text[120];
         FooterLabel02Text: Text[250];
+
+
 
     procedure InitializeRequest(NewNoOfCopies: Integer; NewShowInternalInfo: Boolean; NewArchiveDocument: Boolean; NewLogInteraction: Boolean)
     begin
