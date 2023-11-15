@@ -3303,6 +3303,16 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report AfkPostedSalesInvoice - NamedType CompanyInfoPhoneNoLbl</note>
         </trans-unit>
+        <trans-unit id="Report 3198086736 - NamedType 904004213" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Arrival Date</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkPostedSalesInvoice - NamedType DateEntreeLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 3198086736 - NamedType 3237242530" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Departure Date</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkPostedSalesInvoice - NamedType DepartureLbl</note>
+        </trans-unit>
         <trans-unit id="Report 3198086736 - NamedType 1630935363" size-unit="char" translate="yes" xml:space="preserve">
           <source>DUPLICATA</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -3373,10 +3383,25 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report AfkPostedSalesInvoice - NamedType JobTaskNoLbl2</note>
         </trans-unit>
+        <trans-unit id="Report 3198086736 - NamedType 907382884" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Width</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkPostedSalesInvoice - NamedType LargeurLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 3198086736 - NamedType 1589552897" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Length</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkPostedSalesInvoice - NamedType LongueurLbl</note>
+        </trans-unit>
         <trans-unit id="Report 3198086736 - NamedType 2491107794" size-unit="char" translate="yes" xml:space="preserve">
           <source>You must specify one or more filters to avoid accidently printing all documents.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report AfkPostedSalesInvoice - NamedType NoFilterSetErr</note>
+        </trans-unit>
+        <trans-unit id="Report 3198086736 - NamedType 1832703004" size-unit="char" translate="yes" xml:space="preserve">
+          <source>N° Piloting Sheet</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkPostedSalesInvoice - NamedType NumFichePilotageLbl</note>
         </trans-unit>
         <trans-unit id="Report 3198086736 - NamedType 3539596564" size-unit="char" translate="yes" xml:space="preserve">
           <source>The invoice has been partially paid. The remaining amount is %1</source>
@@ -3443,10 +3468,30 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report AfkPostedSalesInvoice - NamedType ThanksLbl</note>
         </trans-unit>
+        <trans-unit id="Report 3198086736 - NamedType 952379777" size-unit="char" translate="yes" xml:space="preserve">
+          <source>T. cal</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkPostedSalesInvoice - NamedType TirantCalculeLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 3198086736 - NamedType 2346123993" size-unit="char" translate="yes" xml:space="preserve">
+          <source>T. eau</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkPostedSalesInvoice - NamedType TirantEauLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 3198086736 - NamedType 3881461738" size-unit="char" translate="yes" xml:space="preserve">
+          <source>T.J.B</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkPostedSalesInvoice - NamedType TJBLbl</note>
+        </trans-unit>
         <trans-unit id="Report 3198086736 - NamedType 2410138484" size-unit="char" translate="yes" xml:space="preserve">
           <source>Total</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report AfkPostedSalesInvoice - NamedType TotalLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 3198086736 - NamedType 3921269240" size-unit="char" translate="yes" xml:space="preserve">
+          <source> at </source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkPostedSalesInvoice - NamedType ToTimeLbl</note>
         </trans-unit>
         <trans-unit id="Report 3198086736 - NamedType 984818344" size-unit="char" translate="yes" xml:space="preserve">
           <source>Unit</source>
@@ -3472,6 +3517,11 @@
           <source>VAT Clause</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report AfkPostedSalesInvoice - NamedType VATClausesLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 3198086736 - NamedType 753562542" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Volume</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkPostedSalesInvoice - NamedType VolumeLbl</note>
         </trans-unit>
         <trans-unit id="Report 3198086736 - ReportDataItem 907109761 - Property 1806354803" size-unit="char" translate="yes" xml:space="preserve">
           <source>Sales Invoice</source>

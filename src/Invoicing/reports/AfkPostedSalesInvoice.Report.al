@@ -54,6 +54,38 @@ report 50001 "AfkPostedSalesInvoice"
             column(Afk_Terminal; Header."Responsibility Center")
             {
             }
+            column(Afk_NumeroFichePilotage; Header.Afk_PilotingSheetNumber)
+            {
+            }
+            //151123***
+            column(TxtVolumeBateau; TxtVolumeBateau)
+            {
+            }
+            column(TxtNumeroFichePilotage; TxtNumeroFichePilotage)
+            {
+            }
+            column(TxtLongueurBateau; TxtLongueurBateau)
+            {
+            }
+            column(TxtLargeurBateau; TxtLargeurBateau)
+            {
+            }
+            column(TxtTirantEauBateau; TxtTirantEauBateau)
+            {
+            }
+            column(TxtTirantEauBateauCalcule; TxtTirantEauBateauCalcule)
+            {
+            }
+            column(TxtTJBBateau; TxtTJBBateau)
+            {
+            }
+            column(TxtDateDepart; TxtDateDepart)
+            {
+            }
+            column(TxtDateArrivee; TxtDateArrivee)
+            {
+            }
+
             column(Afk_BoatType; AfkBoat.BoatType)
             {
             }
@@ -200,6 +232,8 @@ report 50001 "AfkPostedSalesInvoice"
             column(BankAccountLbl; BankAccountLbl)
             {
             }
+            
+            
 
 
 
@@ -1623,6 +1657,23 @@ report 50001 "AfkPostedSalesInvoice"
 
                 BankAccount1 := CompanyInfo."Bank Name";
                 BankAccount2 := CompanyInfo."Bank Branch No." + ' ' + CompanyInfo."Bank Account No.";
+
+                //151123********************************
+                TexteDateArriveeNavire := Format(Header.Afk_Arrival_Boat_Amarre_Date)+' '+ToTimeLbl+' '+
+                    Format(Header.Afk_Arrival_Boat_Amarre_Time,5);
+                TexteDateDepartNavire := Format(Header.Afk_Depart_Boat_Appareil_Date)+' '+ ToTimeLbl + ' '+
+                    Format(Header.Afk_Depart_Boat_Appareil_Time,5);
+
+                TxtVolumeBateau := VolumeLbl + ' : ' + Format(AfkBoat.Volume);
+                TxtLongueurBateau := LongueurLbl + ' : ' + Format(AfkBoat.Length);
+                TxtLargeurBateau := LargeurLbl + ' : ' + Format(AfkBoat.Width);
+                TxtTirantEauBateau := TirantEauLbl + ' : ' + Format(AfkBoat."Boat Draught");
+                TxtTirantEauBateauCalcule := TirantCalculeLbl + ' : ' + Format(AfkBoat."Calculated Boat Draught");
+                TxtTJBBateau := TJBLbl + ' : ' + Format(AfkBoat.TJB);
+                TxtDateArrivee := DateEntreeLbl + ' : ' + Format(TexteDateArriveeNavire);
+                TxtDateDepart  := DepartureLbl + ' : ' + Format(TexteDateDepartNavire);
+                TxtNumeroFichePilotage := NumFichePilotageLbl + ' : ' + Format(Header.Afk_PilotingSheetNumber);
+
                 //************************************************************************************
 
                 FooterLabel02Text := StrSubstNo(FooterLabel02,
@@ -1905,6 +1956,25 @@ report 50001 "AfkPostedSalesInvoice"
         BodyLbl: Label 'Thank you for your business. Your invoice is attached to this message.';
         ChecksPayableLbl: Label 'Please make checks payable to %1', Comment = '%1 = company name';
         ClosingLbl: Label 'Sincerely';
+        //141123**********************
+        VolumeLbl: Label 'Volume';
+        LongueurLbl: Label 'Length';
+        LargeurLbl: Label 'Width';
+        TirantEauLbl: Label 'T. eau';
+        TirantCalculeLbl: Label 'T. cal';
+        TJBLbl: Label 'T.J.B';
+        DateEntreeLbl: Label 'Arrival Date';
+        DepartureLbl: Label 'Departure Date';
+        NumFichePilotageLbl: Label 'N° Piloting Sheet';
+        TxtVolumeBateau:Text;
+        TxtLongueurBateau: Text;
+        TxtLargeurBateau: Text;
+        TxtTirantEauBateau: Text;
+        TxtTirantEauBateauCalcule: Text;
+        TxtTJBBateau:Text;
+        TxtDateDepart:Text;
+        TxtDateArrivee: Text;
+        TxtNumeroFichePilotage: Text;
 
 
 
@@ -1962,6 +2032,7 @@ report 50001 "AfkPostedSalesInvoice"
         ThanksLbl: Label 'Thank You!';
         TotalLbl: Label 'Total';
         UnitLbl: Label 'Unit';
+        ToTimeLbl:Label ' at ';
         VATAmountLCYLbl: Label 'VAT Amount (LCY)';
         // VATAmtSpecificationLbl: Label 'VAT Amount Specification';
         VATAmtLbl: Label 'VAT Amount';
@@ -1997,6 +2068,8 @@ report 50001 "AfkPostedSalesInvoice"
         TotalAmountExclInclVATTextValue: Text;
         VATClausesText: Text;
         WorkDescriptionLine: Text;
+        TexteDateArriveeNavire:Text;
+        TexteDateDepartNavire:Text;
         TextDuplicata: Text[20];
         SalesPersonText: Text[30];
         AfkFormattedAmtHT: Text[50];
