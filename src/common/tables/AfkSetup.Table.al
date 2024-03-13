@@ -97,6 +97,44 @@ table 50004 AfkSetup
         {
             Caption = 'Budgeted G/L Account Filter';
         }
+        field(50018; "Afk_Road_Access_Percent"; Decimal)
+        {
+            Caption = 'Road access majoration %';
+            DecimalPlaces = 0 : 2;
+            MinValue = 0;
+        }
+        field(50019; "Afk_Water_Network_Percent"; Decimal)
+        {
+            Caption = 'Water access majoration %';
+            DecimalPlaces = 0 : 2;
+            MinValue = 0;
+        }
+        field(50020; "Afk_Rail_Access_Percent"; Decimal)
+        {
+            Caption = 'Rail access majoration %';
+            DecimalPlaces = 0 : 2;
+            MinValue = 0;
+        }
+        field(50021; "Afk_Elect_Network_Percent"; Decimal)
+        {
+            Caption = 'Electricity network majoration %';
+            DecimalPlaces = 0 : 2;
+            MinValue = 0;
+        }
+        field(50022; "Afk_Phone_Network_Percent"; Decimal)
+        {
+            Caption = 'Phone network majoration %';
+            DecimalPlaces = 0 : 2;
+            MinValue = 0;
+        }
+        field(50023; "Afk_Strip_On_Quay_Percent"; Decimal)
+        {
+            Caption = 'Strip on quay majoration %';
+            DecimalPlaces = 0 : 2;
+            MinValue = 0;
+        }
+        
+
     }
 
     keys

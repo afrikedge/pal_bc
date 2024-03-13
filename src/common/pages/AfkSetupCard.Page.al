@@ -89,6 +89,30 @@ page 50005 AfkSetupCard
                     ToolTip = '/BCF/SAF/DD/PAL';
                     ApplicationArea = Suite;
                 }
+                field("Afk_Elect_Network_Percent"; Rec.Afk_Elect_Network_Percent)
+                {
+                    ApplicationArea = Suite;
+                }
+                field("Afk_Phone_Network_Percent"; Rec.Afk_Phone_Network_Percent)
+                {
+                    ApplicationArea = Suite;
+                }
+                field("Afk_Rail_Access_Percent"; Rec.Afk_Rail_Access_Percent)
+                {
+                    ApplicationArea = Suite;
+                }
+                field("Afk_Road_Access_Percent"; Rec.Afk_Road_Access_Percent)
+                {
+                    ApplicationArea = Suite;
+                }
+                field("Afk_Strip_On_Quay_Percent"; Rec.Afk_Strip_On_Quay_Percent)
+                {
+                    ApplicationArea = Suite;
+                }
+                field("Afk_Water_Network_Percent"; Rec.Afk_Water_Network_Percent)
+                {
+                    ApplicationArea = Suite;
+                }
             }
         }
     }

@@ -86,7 +86,7 @@
                               <Top>0.00707in</Top>
                               <Left>3.74358in</Left>
                               <Height>0.28333in</Height>
-                              <Width>3.47147in</Width>
+                              <Width>3.54376in</Width>
                               <ZIndex>1</ZIndex>
                               <Style>
                                 <Border>
@@ -154,7 +154,7 @@
                               <Top>0.37749in</Top>
                               <Left>0.676in</Left>
                               <Height>0.2in</Height>
-                              <Width>6.53905in</Width>
+                              <Width>6.61134in</Width>
                               <ZIndex>3</ZIndex>
                               <Style>
                                 <Border>
@@ -196,7 +196,7 @@
                                                     <Value>=Fields!AfkTerminalLbl.Value</Value>
                                                     <Style>
                                                       <FontFamily>Lato</FontFamily>
-                                                      <FontSize>9pt</FontSize>
+                                                      <FontSize>8pt</FontSize>
                                                       <FontWeight>Bold</FontWeight>
                                                     </Style>
                                                   </TextRun>
@@ -226,7 +226,7 @@
                                                     <Value>=Fields!Afk_Terminal.Value</Value>
                                                     <Style>
                                                       <FontFamily>Lato</FontFamily>
-                                                      <FontSize>9pt</FontSize>
+                                                      <FontSize>8pt</FontSize>
                                                     </Style>
                                                   </TextRun>
                                                 </TextRuns>
@@ -255,7 +255,7 @@
                                                     <Value>=Fields!AfkCodeClientLbl.Value</Value>
                                                     <Style>
                                                       <FontFamily>Lato</FontFamily>
-                                                      <FontSize>9pt</FontSize>
+                                                      <FontSize>8pt</FontSize>
                                                       <FontWeight>Bold</FontWeight>
                                                     </Style>
                                                   </TextRun>
@@ -285,7 +285,7 @@
                                                     <Value>=Fields!AfkCustNo.Value</Value>
                                                     <Style>
                                                       <FontFamily>Lato</FontFamily>
-                                                      <FontSize>9pt</FontSize>
+                                                      <FontSize>8pt</FontSize>
                                                     </Style>
                                                   </TextRun>
                                                 </TextRuns>
@@ -319,7 +319,7 @@
                                                     <Value>=Fields!AfkTypeNavireLbl.Value</Value>
                                                     <Style>
                                                       <FontFamily>Lato</FontFamily>
-                                                      <FontSize>9pt</FontSize>
+                                                      <FontSize>8pt</FontSize>
                                                       <FontWeight>Bold</FontWeight>
                                                     </Style>
                                                   </TextRun>
@@ -349,7 +349,7 @@
                                                     <Value>=Fields!Afk_BoatType.Value</Value>
                                                     <Style>
                                                       <FontFamily>Lato</FontFamily>
-                                                      <FontSize>9pt</FontSize>
+                                                      <FontSize>8pt</FontSize>
                                                     </Style>
                                                   </TextRun>
                                                 </TextRuns>
@@ -378,7 +378,7 @@
                                                     <Value>=Fields!AfkNomClientLbl.Value</Value>
                                                     <Style>
                                                       <FontFamily>Lato</FontFamily>
-                                                      <FontSize>9pt</FontSize>
+                                                      <FontSize>8pt</FontSize>
                                                       <FontWeight>Bold</FontWeight>
                                                     </Style>
                                                   </TextRun>
@@ -408,7 +408,7 @@
                                                     <Value>=Fields!AfkCustName.Value</Value>
                                                     <Style>
                                                       <FontFamily>Lato</FontFamily>
-                                                      <FontSize>9pt</FontSize>
+                                                      <FontSize>8pt</FontSize>
                                                     </Style>
                                                   </TextRun>
                                                 </TextRuns>
@@ -442,7 +442,7 @@
                                                     <Value>=Fields!AfkNomNavireLbl.Value</Value>
                                                     <Style>
                                                       <FontFamily>Lato</FontFamily>
-                                                      <FontSize>9pt</FontSize>
+                                                      <FontSize>8pt</FontSize>
                                                       <FontWeight>Bold</FontWeight>
                                                     </Style>
                                                   </TextRun>
@@ -472,7 +472,7 @@
                                                     <Value>=Fields!Afk_BoatName.Value</Value>
                                                     <Style>
                                                       <FontFamily>Lato</FontFamily>
-                                                      <FontSize>9pt</FontSize>
+                                                      <FontSize>8pt</FontSize>
                                                     </Style>
                                                   </TextRun>
                                                 </TextRuns>
@@ -501,7 +501,7 @@
                                                     <Value>=Fields!AfkNumContribuableLbl.Value</Value>
                                                     <Style>
                                                       <FontFamily>Lato</FontFamily>
-                                                      <FontSize>9pt</FontSize>
+                                                      <FontSize>8pt</FontSize>
                                                       <FontWeight>Bold</FontWeight>
                                                     </Style>
                                                   </TextRun>
@@ -531,7 +531,7 @@
                                                     <Value>=Fields!Afk_Contribuable.Value</Value>
                                                     <Style>
                                                       <FontFamily>Lato</FontFamily>
-                                                      <FontSize>9pt</FontSize>
+                                                      <FontSize>8pt</FontSize>
                                                     </Style>
                                                   </TextRun>
                                                 </TextRuns>
@@ -565,7 +565,7 @@
                                                     <Value>=Fields!AfkAgentFacturationLbl.Value</Value>
                                                     <Style>
                                                       <FontFamily>Lato</FontFamily>
-                                                      <FontSize>9pt</FontSize>
+                                                      <FontSize>8pt</FontSize>
                                                       <FontWeight>Bold</FontWeight>
                                                     </Style>
                                                   </TextRun>
@@ -595,7 +595,7 @@
                                                     <Value>=Fields!SalesPersonName.Value</Value>
                                                     <Style>
                                                       <FontFamily>Lato</FontFamily>
-                                                      <FontSize>9pt</FontSize>
+                                                      <FontSize>8pt</FontSize>
                                                     </Style>
                                                   </TextRun>
                                                 </TextRuns>
@@ -624,7 +624,7 @@
                                                     <Value>=Fields!AfkRCCMLbl.Value</Value>
                                                     <Style>
                                                       <FontFamily>Lato</FontFamily>
-                                                      <FontSize>9pt</FontSize>
+                                                      <FontSize>8pt</FontSize>
                                                       <FontWeight>Bold</FontWeight>
                                                     </Style>
                                                   </TextRun>
@@ -654,7 +654,7 @@
                                                     <Value>=Fields!Afk_RegistreCommerce.Value</Value>
                                                     <Style>
                                                       <FontFamily>Lato</FontFamily>
-                                                      <FontSize>9pt</FontSize>
+                                                      <FontSize>8pt</FontSize>
                                                     </Style>
                                                   </TextRun>
                                                 </TextRuns>
@@ -728,7 +728,7 @@
                                                         <Value>=Fields!AfkAddresseFacturationLbl.Value</Value>
                                                         <Style>
                                                           <FontFamily>lato</FontFamily>
-                                                          <FontSize>9pt</FontSize>
+                                                          <FontSize>8pt</FontSize>
                                                           <FontWeight>Bold</FontWeight>
                                                           <TextDecoration>Underline</TextDecoration>
                                                         </Style>
@@ -766,7 +766,7 @@
                                                         <Value>=Fields!AfkCompanyAddress1.Value</Value>
                                                         <Style>
                                                           <FontFamily>lato</FontFamily>
-                                                          <FontSize>9pt</FontSize>
+                                                          <FontSize>8pt</FontSize>
                                                         </Style>
                                                       </TextRun>
                                                     </TextRuns>
@@ -802,7 +802,7 @@
                                                         <Value>=Fields!AfkCompanyAddress2.Value</Value>
                                                         <Style>
                                                           <FontFamily>lato</FontFamily>
-                                                          <FontSize>9pt</FontSize>
+                                                          <FontSize>8pt</FontSize>
                                                         </Style>
                                                       </TextRun>
                                                     </TextRuns>
@@ -838,7 +838,7 @@
                                                         <Value>=Fields!AfkCompanyAddress3.Value</Value>
                                                         <Style>
                                                           <FontFamily>lato</FontFamily>
-                                                          <FontSize>9pt</FontSize>
+                                                          <FontSize>8pt</FontSize>
                                                         </Style>
                                                       </TextRun>
                                                     </TextRuns>
@@ -924,7 +924,7 @@
                                                         <Value>=Fields!AfkAddresseFacturationClientLbl.Value</Value>
                                                         <Style>
                                                           <FontFamily>Lato</FontFamily>
-                                                          <FontSize>9pt</FontSize>
+                                                          <FontSize>8pt</FontSize>
                                                           <FontWeight>Bold</FontWeight>
                                                           <TextDecoration>Underline</TextDecoration>
                                                         </Style>
@@ -962,7 +962,7 @@
                                                         <Value>=Fields!AfkCustomerAddress1.Value</Value>
                                                         <Style>
                                                           <FontFamily>Lato</FontFamily>
-                                                          <FontSize>9pt</FontSize>
+                                                          <FontSize>8pt</FontSize>
                                                         </Style>
                                                       </TextRun>
                                                     </TextRuns>
@@ -998,7 +998,7 @@
                                                         <Value>=Fields!AfkCustomerAddress2.Value</Value>
                                                         <Style>
                                                           <FontFamily>Lato</FontFamily>
-                                                          <FontSize>9pt</FontSize>
+                                                          <FontSize>8pt</FontSize>
                                                         </Style>
                                                       </TextRun>
                                                     </TextRuns>
@@ -1034,7 +1034,7 @@
                                                         <Value>=Fields!AfkCustomerAddress3.Value</Value>
                                                         <Style>
                                                           <FontFamily>Lato</FontFamily>
-                                                          <FontSize>9pt</FontSize>
+                                                          <FontSize>8pt</FontSize>
                                                         </Style>
                                                       </TextRun>
                                                     </TextRuns>
@@ -3241,7 +3241,7 @@
                           <Value EvaluationMode="Constant">REPUBLIC OF CAMEROON</Value>
                           <Style>
                             <FontFamily>Lato</FontFamily>
-                            <FontSize>9pt</FontSize>
+                            <FontSize>8pt</FontSize>
                             <FontWeight>Bold</FontWeight>
                           </Style>
                         </TextRun>
@@ -3274,7 +3274,7 @@
                           <Value EvaluationMode="Constant">Peace – Work – Fatherland</Value>
                           <Style>
                             <FontFamily>Lato</FontFamily>
-                            <FontSize>9pt</FontSize>
+                            <FontSize>8pt</FontSize>
                             <FontWeight>Bold</FontWeight>
                           </Style>
                         </TextRun>
@@ -3320,7 +3320,7 @@
                           <Value EvaluationMode="Constant">PORT AUTHORITY OF DOUALA</Value>
                           <Style>
                             <FontFamily>Lato</FontFamily>
-                            <FontSize>9pt</FontSize>
+                            <FontSize>8pt</FontSize>
                             <FontWeight>Bold</FontWeight>
                           </Style>
                         </TextRun>
@@ -3354,7 +3354,7 @@
                           <Value EvaluationMode="Constant">(P.A.D)</Value>
                           <Style>
                             <FontFamily>Lato</FontFamily>
-                            <FontSize>9pt</FontSize>
+                            <FontSize>8pt</FontSize>
                             <FontWeight>Bold</FontWeight>
                           </Style>
                         </TextRun>
@@ -3400,7 +3400,7 @@
                           <Value EvaluationMode="Constant">PORT AUTHORITY OF LIMBE</Value>
                           <Style>
                             <FontFamily>Lato</FontFamily>
-                            <FontSize>9pt</FontSize>
+                            <FontSize>8pt</FontSize>
                             <FontWeight>Bold</FontWeight>
                           </Style>
                         </TextRun>
@@ -3434,7 +3434,7 @@
                           <Value EvaluationMode="Constant">TRANSITIONAL ADMINISTRATION</Value>
                           <Style>
                             <FontFamily>Lato</FontFamily>
-                            <FontSize>9pt</FontSize>
+                            <FontSize>8pt</FontSize>
                             <FontWeight>Bold</FontWeight>
                           </Style>
                         </TextRun>
@@ -3487,8 +3487,8 @@
               <Value>=First(Fields!CompanyPicture.Value, "DataSet_Result")</Value>
               <MIMEType>image/png</MIMEType>
               <Sizing>FitProportional</Sizing>
-              <Top>0.22206cm</Top>
-              <Left>6.12183cm</Left>
+              <Top>0.23115cm</Top>
+              <Left>6.43933cm</Left>
               <Height>4.33079cm</Height>
               <Width>5.60637cm</Width>
               <ZIndex>1</ZIndex>
@@ -3520,9 +3520,9 @@
               </Paragraphs>
               <rd:DefaultName>Textbox14</rd:DefaultName>
               <Top>1.60993in</Top>
-              <Left>4.64518in</Left>
+              <Left>4.87435in</Left>
               <Height>0.2in</Height>
-              <Width>2.64216in</Width>
+              <Width>2.41299in</Width>
               <ZIndex>2</ZIndex>
               <Style>
                 <Border>
@@ -3544,7 +3544,7 @@
                           <Value EvaluationMode="Constant">RÉPUBLIQUE DU CAMEROUN</Value>
                           <Style>
                             <FontFamily>Lato</FontFamily>
-                            <FontSize>9pt</FontSize>
+                            <FontSize>8pt</FontSize>
                             <FontWeight>Bold</FontWeight>
                           </Style>
                         </TextRun>
@@ -3557,7 +3557,7 @@
                   <rd:DefaultName>Textbox14</rd:DefaultName>
                   <Top>0.07361in</Top>
                   <Height>0.15in</Height>
-                  <Width>2.59425in</Width>
+                  <Width>2.36508in</Width>
                   <Style>
                     <Border>
                       <Style>None</Style>
@@ -3577,7 +3577,7 @@
                           <Style>
                             <FontStyle>Normal</FontStyle>
                             <FontFamily>Lato</FontFamily>
-                            <FontSize>9pt</FontSize>
+                            <FontSize>8pt</FontSize>
                             <FontWeight>Bold</FontWeight>
                             <TextDecoration>None</TextDecoration>
                             <Color>#000000</Color>
@@ -3592,7 +3592,7 @@
                   <rd:DefaultName>Textbox14</rd:DefaultName>
                   <Top>0.25in</Top>
                   <Height>0.15in</Height>
-                  <Width>2.59425in</Width>
+                  <Width>2.36508in</Width>
                   <ZIndex>1</ZIndex>
                   <Style>
                     <Border>
@@ -3604,7 +3604,7 @@
                 </Textbox>
                 <Line Name="Line4">
                   <Top>1.12395cm</Top>
-                  <Left>2.37193cm</Left>
+                  <Left>1.78985cm</Left>
                   <Height>0cm</Height>
                   <Width>2.16959cm</Width>
                   <ZIndex>2</ZIndex>
@@ -3624,7 +3624,7 @@
                           <Value EvaluationMode="Constant">PORT AUTONOME DE DOUALA</Value>
                           <Style>
                             <FontFamily>Lato</FontFamily>
-                            <FontSize>9pt</FontSize>
+                            <FontSize>8pt</FontSize>
                             <FontWeight>Bold</FontWeight>
                           </Style>
                         </TextRun>
@@ -3637,7 +3637,7 @@
                   <rd:DefaultName>Textbox14</rd:DefaultName>
                   <Top>0.52514in</Top>
                   <Height>0.15in</Height>
-                  <Width>2.59425in</Width>
+                  <Width>2.36508in</Width>
                   <ZIndex>3</ZIndex>
                   <Style>
                     <Border>
@@ -3657,7 +3657,7 @@
                           <Value EvaluationMode="Constant">(P.A.D)</Value>
                           <Style>
                             <FontFamily>Lato</FontFamily>
-                            <FontSize>9pt</FontSize>
+                            <FontSize>8pt</FontSize>
                             <FontWeight>Bold</FontWeight>
                           </Style>
                         </TextRun>
@@ -3670,7 +3670,7 @@
                   <rd:DefaultName>Textbox14</rd:DefaultName>
                   <Top>0.70153in</Top>
                   <Height>0.15in</Height>
-                  <Width>2.59425in</Width>
+                  <Width>2.36508in</Width>
                   <ZIndex>4</ZIndex>
                   <Style>
                     <Border>
@@ -3682,7 +3682,7 @@
                 </Textbox>
                 <Line Name="Line5">
                   <Top>2.23908cm</Top>
-                  <Left>2.37193cm</Left>
+                  <Left>1.78985cm</Left>
                   <Height>0cm</Height>
                   <Width>2.16959cm</Width>
                   <ZIndex>5</ZIndex>
@@ -3702,7 +3702,7 @@
                           <Value EvaluationMode="Constant">ADMINISTRATION TRANSITOIRE DU PORT</Value>
                           <Style>
                             <FontFamily>Lato</FontFamily>
-                            <FontSize>9pt</FontSize>
+                            <FontSize>8pt</FontSize>
                             <FontWeight>Bold</FontWeight>
                           </Style>
                         </TextRun>
@@ -3715,7 +3715,7 @@
                   <rd:DefaultName>Textbox14</rd:DefaultName>
                   <Top>0.95014in</Top>
                   <Height>0.15in</Height>
-                  <Width>2.59425in</Width>
+                  <Width>2.36508in</Width>
                   <ZIndex>6</ZIndex>
                   <Style>
                     <Border>
@@ -3735,7 +3735,7 @@
                           <Value EvaluationMode="Constant">AUTONOME DE LIMBE</Value>
                           <Style>
                             <FontFamily>Lato</FontFamily>
-                            <FontSize>9pt</FontSize>
+                            <FontSize>8pt</FontSize>
                             <FontWeight>Bold</FontWeight>
                           </Style>
                         </TextRun>
@@ -3748,7 +3748,7 @@
                   <rd:DefaultName>Textbox14</rd:DefaultName>
                   <Top>1.12653in</Top>
                   <Height>0.15in</Height>
-                  <Width>2.59425in</Width>
+                  <Width>2.36508in</Width>
                   <ZIndex>7</ZIndex>
                   <Style>
                     <Border>
@@ -3760,7 +3760,7 @@
                 </Textbox>
                 <Line Name="Line6">
                   <Top>3.31857cm</Top>
-                  <Left>2.37193cm</Left>
+                  <Left>1.78985cm</Left>
                   <Height>0cm</Height>
                   <Width>2.16959cm</Width>
                   <ZIndex>8</ZIndex>
@@ -3773,9 +3773,9 @@
               </ReportItems>
               <KeepTogether>true</KeepTogether>
               <Top>0.22206cm</Top>
-              <Left>11.79876cm</Left>
+              <Left>12.38084cm</Left>
               <Height>1.40458in</Height>
-              <Width>2.64216in</Width>
+              <Width>2.41299in</Width>
               <ZIndex>3</ZIndex>
               <Style>
                 <Border>
@@ -3793,7 +3793,7 @@
                       <Value>=First(Fields!TextDuplicata.Value, "DataSet_Result")</Value>
                       <Style>
                         <FontFamily>Lato</FontFamily>
-                        <FontSize>14pt</FontSize>
+                        <FontSize>12pt</FontSize>
                         <FontWeight>Bold</FontWeight>
                         <Color>Red</Color>
                       </Style>

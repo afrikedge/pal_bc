@@ -194,6 +194,34 @@ report 50000 "AfkSalesInvoicePreview"
             column(BankAccountLbl; BankAccountLbl)
             {
             }
+            //151123***
+            column(TxtVolumeBateau; TxtVolumeBateau)
+            {
+            }
+            column(TxtNumeroFichePilotage; TxtNumeroFichePilotage)
+            {
+            }
+            column(TxtLongueurBateau; TxtLongueurBateau)
+            {
+            }
+            column(TxtLargeurBateau; TxtLargeurBateau)
+            {
+            }
+            column(TxtTirantEauBateau; TxtTirantEauBateau)
+            {
+            }
+            column(TxtTirantEauBateauCalcule; TxtTirantEauBateauCalcule)
+            {
+            }
+            column(TxtTJBBateau; TxtTJBBateau)
+            {
+            }
+            column(TxtDateDepart; TxtDateDepart)
+            {
+            }
+            column(TxtDateArrivee; TxtDateArrivee)
+            {
+            }
 
 
 
@@ -1081,7 +1109,8 @@ report 50000 "AfkSalesInvoicePreview"
                     // if (AfkLinesNumber < 10) then
                     //     SetRange(Number, 1, 10 - AfkLinesNumber)
                     // else
-                    SetRange(Number, 1, 14 - AfkLinesNumber);
+                    //SetRange(Number, 1, 14 - AfkLinesNumber);
+                    SetRange(Number, 1, 0);
                 end;
             }
             dataitem(WorkDescriptionLines; "Integer")
@@ -1625,6 +1654,22 @@ report 50000 "AfkSalesInvoicePreview"
                 FooterLabel02Text := StrSubstNo(FooterLabel02,
                     CompanyInfo."Stock Capital", CompanyInfo."Registration No."
                     , CompanyInfo."Trade Register", CompanyInfo."APE Code");
+
+                //151123********************************
+                TexteDateArriveeNavire := Format(Header.Afk_Arrival_Boat_Amarre_Date) + ' ' + ToTimeLbl + ' ' +
+                    Format(Header.Afk_Arrival_Boat_Amarre_Time, 5);
+                TexteDateDepartNavire := Format(Header.Afk_Depart_Boat_Appareil_Date) + ' ' + ToTimeLbl + ' ' +
+                    Format(Header.Afk_Depart_Boat_Appareil_Time, 5);
+
+                TxtVolumeBateau := VolumeLbl + ' : ' + Format(AfkBoat.Volume);
+                TxtLongueurBateau := LongueurLbl + ' : ' + Format(AfkBoat.Length);
+                TxtLargeurBateau := LargeurLbl + ' : ' + Format(AfkBoat.Width);
+                TxtTirantEauBateau := TirantEauLbl + ' : ' + Format(AfkBoat."Boat Draught");
+                TxtTirantEauBateauCalcule := TirantCalculeLbl + ' : ' + Format(AfkBoat."Calculated Boat Draught");
+                TxtTJBBateau := TJBLbl + ' : ' + Format(AfkBoat.TJB);
+                TxtDateArrivee := DateEntreeLbl + ' : ' + Format(TexteDateArriveeNavire);
+                TxtDateDepart := DepartureLbl + ' : ' + Format(TexteDateDepartNavire);
+                TxtNumeroFichePilotage := NumFichePilotageLbl + ' : ' + Format(Header.Afk_PilotingSheetNumber);
                 //************************************************************************************
 
 
@@ -1903,6 +1948,28 @@ report 50000 "AfkSalesInvoicePreview"
         ChecksPayableLbl: Label 'Please make checks payable to %1', Comment = '%1 = company name';
         ClosingLbl: Label 'Sincerely';
 
+        //141123**********************
+        ToTimeLbl:Label ' at ';
+        VolumeLbl: Label 'Volume';
+        LongueurLbl: Label 'Length';
+        LargeurLbl: Label 'Width';
+        TirantEauLbl: Label 'T. eau';
+        TirantCalculeLbl: Label 'T. cal';
+        TJBLbl: Label 'T.J.B';
+        DateEntreeLbl: Label 'Arrival Date';
+        DepartureLbl: Label 'Departure Date';
+        NumFichePilotageLbl: Label 'N° Piloting Sheet';
+        TxtVolumeBateau: Text;
+        TxtLongueurBateau: Text;
+        TxtLargeurBateau: Text;
+        TxtTirantEauBateau: Text;
+        TxtTirantEauBateauCalcule: Text;
+        TxtTJBBateau: Text;
+        TxtDateDepart: Text;
+        TxtDateArrivee: Text;
+        TxtNumeroFichePilotage: Text;
+        TexteDateArriveeNavire:Text;
+        TexteDateDepartNavire:Text;
 
 
 

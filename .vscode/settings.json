@@ -28,7 +28,7 @@
     "alOutline.enableCodeCopFixes": true,
     "alOutline.stripNonAlphanumericCharactersFromObjectNames": true,
     "editor.codeActionsOnSave": {
-        "source.fixAll.al": true
+        "source.fixAll.al": "explicit"
     },
     "alOutline.codeActionsOnSave": [
         //"SortProcedures",

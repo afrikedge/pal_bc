@@ -948,6 +948,36 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table AfkSetup - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 252127493 - Field 2501947575 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Electricity network majoration %</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkSetup - Field Afk_Elect_Network_Percent - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 252127493 - Field 2824763966 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Phone network majoration %</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkSetup - Field Afk_Phone_Network_Percent - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 252127493 - Field 2873364758 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Rail access majoration %</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkSetup - Field Afk_Rail_Access_Percent - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 252127493 - Field 852080024 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Road access majoration %</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkSetup - Field Afk_Road_Access_Percent - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 252127493 - Field 3244892682 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Strip on quay majoration %</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkSetup - Field Afk_Strip_On_Quay_Percent - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 252127493 - Field 3527426157 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Water access majoration %</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table AfkSetup - Field Afk_Water_Network_Percent - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 252127493 - Field 736507108 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Budget Period</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -4278,6 +4308,16 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report AfkSalesInvoicePreview - NamedType CompanyInfoPhoneNoLbl</note>
         </trans-unit>
+        <trans-unit id="Report 882492609 - NamedType 904004213" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Arrival Date</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkSalesInvoicePreview - NamedType DateEntreeLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 882492609 - NamedType 3237242530" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Departure Date</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkSalesInvoicePreview - NamedType DepartureLbl</note>
+        </trans-unit>
         <trans-unit id="Report 882492609 - NamedType 1198791402" size-unit="char" translate="yes" xml:space="preserve">
           <source>Email</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -4343,10 +4383,25 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report AfkSalesInvoicePreview - NamedType JobTaskNoLbl2</note>
         </trans-unit>
+        <trans-unit id="Report 882492609 - NamedType 907382884" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Width</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkSalesInvoicePreview - NamedType LargeurLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 882492609 - NamedType 1589552897" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Length</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkSalesInvoicePreview - NamedType LongueurLbl</note>
+        </trans-unit>
         <trans-unit id="Report 882492609 - NamedType 2491107794" size-unit="char" translate="yes" xml:space="preserve">
           <source>You must specify one or more filters to avoid accidently printing all documents.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report AfkSalesInvoicePreview - NamedType NoFilterSetErr</note>
+        </trans-unit>
+        <trans-unit id="Report 882492609 - NamedType 1832703004" size-unit="char" translate="yes" xml:space="preserve">
+          <source>N° Piloting Sheet</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkSalesInvoicePreview - NamedType NumFichePilotageLbl</note>
         </trans-unit>
         <trans-unit id="Report 882492609 - NamedType 3539596564" size-unit="char" translate="yes" xml:space="preserve">
           <source>The invoice has been partially paid. The remaining amount is %1</source>
@@ -4413,10 +4468,30 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report AfkSalesInvoicePreview - NamedType ThanksLbl</note>
         </trans-unit>
+        <trans-unit id="Report 882492609 - NamedType 952379777" size-unit="char" translate="yes" xml:space="preserve">
+          <source>T. cal</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkSalesInvoicePreview - NamedType TirantCalculeLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 882492609 - NamedType 2346123993" size-unit="char" translate="yes" xml:space="preserve">
+          <source>T. eau</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkSalesInvoicePreview - NamedType TirantEauLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 882492609 - NamedType 3881461738" size-unit="char" translate="yes" xml:space="preserve">
+          <source>T.J.B</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkSalesInvoicePreview - NamedType TJBLbl</note>
+        </trans-unit>
         <trans-unit id="Report 882492609 - NamedType 2410138484" size-unit="char" translate="yes" xml:space="preserve">
           <source>Total</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report AfkSalesInvoicePreview - NamedType TotalLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 882492609 - NamedType 3921269240" size-unit="char" translate="yes" xml:space="preserve">
+          <source> at </source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkSalesInvoicePreview - NamedType ToTimeLbl</note>
         </trans-unit>
         <trans-unit id="Report 882492609 - NamedType 984818344" size-unit="char" translate="yes" xml:space="preserve">
           <source>Unit</source>
@@ -4442,6 +4517,11 @@
           <source>VAT Clause</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report AfkSalesInvoicePreview - NamedType VATClausesLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 882492609 - NamedType 753562542" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Volume</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkSalesInvoicePreview - NamedType VolumeLbl</note>
         </trans-unit>
         <trans-unit id="Report 882492609 - ReportDataItem 907109761 - Property 1806354803" size-unit="char" translate="yes" xml:space="preserve">
           <source>Sales Invoice</source>
@@ -6027,6 +6107,16 @@
           <source>Water Network</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">TableExtension AfkSalesInvLine - Field Afk_Water_Network - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="TableExtension 1729934766 - NamedType 4279852135" size-unit="char" translate="yes" xml:space="preserve" al-object-target="TableExtension 1729934766">
+          <source>The unit price increased of %1 % will be cancelled \ Do you want to continue ?</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension AfkSalesLine - NamedType DecreaseUPWarning</note>
+        </trans-unit>
+        <trans-unit id="TableExtension 1729934766 - NamedType 744878773" size-unit="char" translate="yes" xml:space="preserve" al-object-target="TableExtension 1729934766">
+          <source>The unit price will be increased by %1 % \ Do you want to continue ?</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension AfkSalesLine - NamedType IncreaseUPWarning</note>
         </trans-unit>
         <trans-unit id="TableExtension 1729934766 - Field 1512746691 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 2574427010">
           <source>Electricity Network</source>

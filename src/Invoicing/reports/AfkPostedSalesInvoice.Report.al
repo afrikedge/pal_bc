@@ -1124,10 +1124,9 @@ report 50001 "AfkPostedSalesInvoice"
 
                 trigger OnPreDataItem()
                 begin
-                    // if (AfkLinesNumber < 10) then
-                    //     SetRange(Number, 1, 10 - AfkLinesNumber)
-                    // else
-                    SetRange(Number, 1, 14 - AfkLinesNumber);
+                    
+                    //SetRange(Number, 1, 14 - AfkLinesNumber);
+                    SetRange(Number, 1, 0);
                 end;
             }
             dataitem(WorkDescriptionLines; "Integer")
