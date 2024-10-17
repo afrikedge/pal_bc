@@ -3528,6 +3528,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report AfkPostedSalesInvoice - NamedType UnitLbl</note>
         </trans-unit>
+        <trans-unit id="Report 3198086736 - NamedType 2403314333" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Validated by</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkPostedSalesInvoice - NamedType ValidatedByLbl</note>
+        </trans-unit>
         <trans-unit id="Report 3198086736 - NamedType 803899421" size-unit="char" translate="yes" xml:space="preserve">
           <source>VAT Amount (LCY)</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -4497,6 +4502,11 @@
           <source>Unit</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report AfkSalesInvoicePreview - NamedType UnitLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 882492609 - NamedType 2403314333" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Validated by</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkSalesInvoicePreview - NamedType ValidatedByLbl</note>
         </trans-unit>
         <trans-unit id="Report 882492609 - NamedType 803899421" size-unit="char" translate="yes" xml:space="preserve">
           <source>VAT Amount (LCY)</source>
