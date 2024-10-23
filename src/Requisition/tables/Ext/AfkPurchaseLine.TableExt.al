@@ -20,6 +20,26 @@ tableextension 50006 AfkPurchaseLine extends "Purchase Line"
             Editable = false;
             DataClassification = CustomerContent;
         }
+        field(50003; "Afk_Quantity1"; Decimal)
+        {
+            Caption = 'Number of Days';
+            DecimalPlaces = 0 : 5;
+            DataClassification = CustomerContent;
+            trigger OnValidate()
+            begin
+                Validate(Quantity, Afk_Quantity1 * Afk_Quantity2);
+            end;
+        }
+        field(50004; "Afk_Quantity2"; Decimal)
+        {
+            Caption = 'Number of Participants';
+            DecimalPlaces = 0 : 5;
+            DataClassification = CustomerContent;
+            trigger OnValidate()
+            begin
+                Validate(Quantity, Afk_Quantity1 * Afk_Quantity2);
+            end;
+        }
     }
     keys
     {
@@ -28,5 +48,4 @@ tableextension 50006 AfkPurchaseLine extends "Purchase Line"
 
         }
     }
-
 }
