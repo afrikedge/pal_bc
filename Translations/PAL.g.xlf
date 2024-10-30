@@ -3528,6 +3528,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report AfkPostedSalesInvoice - NamedType UnitLbl</note>
         </trans-unit>
+        <trans-unit id="Report 3198086736 - NamedType 2403314333" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Validated by</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkPostedSalesInvoice - NamedType ValidatedByLbl</note>
+        </trans-unit>
         <trans-unit id="Report 3198086736 - NamedType 803899421" size-unit="char" translate="yes" xml:space="preserve">
           <source>VAT Amount (LCY)</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -4497,6 +4502,11 @@
           <source>Unit</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report AfkSalesInvoicePreview - NamedType UnitLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 882492609 - NamedType 2403314333" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Validated by</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkSalesInvoicePreview - NamedType ValidatedByLbl</note>
         </trans-unit>
         <trans-unit id="Report 882492609 - NamedType 803899421" size-unit="char" translate="yes" xml:space="preserve">
           <source>VAT Amount (LCY)</source>
@@ -5643,6 +5653,16 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">TableExtension AfkPurchaseHeaderArchive - Field Afk_VendorNotified - Property Caption</note>
         </trans-unit>
+        <trans-unit id="TableExtension 2992215532 - Field 1298251163 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 2575310733">
+          <source>Number of Days</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension AfkPurchaseInvLine - Field Afk_Quantity1 - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="TableExtension 2992215532 - Field 3211341014 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 2575310733">
+          <source>Number of Participants</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension AfkPurchaseInvLine - Field Afk_Quantity2 - Property Caption</note>
+        </trans-unit>
         <trans-unit id="TableExtension 3390462835 - Field 2848937635 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 1519909599">
           <source>Purchase Account</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -5657,6 +5677,26 @@
           <source>Purchase Req Doc</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">TableExtension AfkPurchaseLine - Field Afk_PurchReqNo - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="TableExtension 3390462835 - Field 1298251163 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 1519909599">
+          <source>Number of Days</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension AfkPurchaseLine - Field Afk_Quantity1 - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="TableExtension 3390462835 - Field 3211341014 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 1519909599">
+          <source>Number of Participants</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension AfkPurchaseLine - Field Afk_Quantity2 - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="TableExtension 280163397 - Field 1298251163 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 2809873457">
+          <source>Number of Days</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension AfkPurchaseLineArchive - Field Afk_Quantity1 - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="TableExtension 280163397 - Field 3211341014 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 2809873457">
+          <source>Number of Participants</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension AfkPurchaseLineArchive - Field Afk_Quantity2 - Property Caption</note>
         </trans-unit>
         <trans-unit id="TableExtension 1017865314 - Field 3404457557 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 1592379974">
           <source>Budget Code</source>

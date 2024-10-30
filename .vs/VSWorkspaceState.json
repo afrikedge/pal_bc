@@ -1,0 +1,11 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\Invoicing",
+    "\\src\\Invoicing\\reports",
+    "\\src\\Invoicing\\reports\\layouts"
+  ],
+  "SelectedNode": "\\src\\Invoicing\\reports\\layouts\\AfkPostedSalesInvoice.rdlc",
+  "PreviewInSolutionExplorer": false
+}

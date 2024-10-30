@@ -1,6 +1,6 @@
 report 50000 "AfkSalesInvoicePreview"
 {
-    RDLCLayout = './src/Invoicing/reports/layouts/AfkSalesInvoicePreview.rdlc';
+    RDLCLayout = './src/Invoicing/reports/layouts/AfkSalesInvoicePreview.rdl';
     WordLayout = './src/Invoicing/reports/layouts/AfkSalesInvoicePreview.docx';
     Caption = 'PAL Sales Invoice Preview';
     DefaultLayout = RDLC;
@@ -688,6 +688,9 @@ report 50000 "AfkSalesInvoicePreview"
             {
             }
             column(ExternalDocumentNo_Lbl; FieldCaption("External Document No."))
+            {
+            }
+            column(ValidatedByLbl; ValidatedByLbl)
             {
             }
             dataitem(Line; "Sales Line")
@@ -1948,29 +1951,6 @@ report 50000 "AfkSalesInvoicePreview"
         ChecksPayableLbl: Label 'Please make checks payable to %1', Comment = '%1 = company name';
         ClosingLbl: Label 'Sincerely';
 
-        //141123**********************
-        ToTimeLbl:Label ' at ';
-        VolumeLbl: Label 'Volume';
-        LongueurLbl: Label 'Length';
-        LargeurLbl: Label 'Width';
-        TirantEauLbl: Label 'T. eau';
-        TirantCalculeLbl: Label 'T. cal';
-        TJBLbl: Label 'T.J.B';
-        DateEntreeLbl: Label 'Arrival Date';
-        DepartureLbl: Label 'Departure Date';
-        NumFichePilotageLbl: Label 'N° Piloting Sheet';
-        TxtVolumeBateau: Text;
-        TxtLongueurBateau: Text;
-        TxtLargeurBateau: Text;
-        TxtTirantEauBateau: Text;
-        TxtTirantEauBateauCalcule: Text;
-        TxtTJBBateau: Text;
-        TxtDateDepart: Text;
-        TxtDateArrivee: Text;
-        TxtNumeroFichePilotage: Text;
-        TexteDateArriveeNavire:Text;
-        TexteDateDepartNavire:Text;
-
 
 
 
@@ -1990,6 +1970,8 @@ report 50000 "AfkSalesInvoicePreview"
         CompanyInfoBankNameLbl: Label 'Bank';
         CompanyInfoGiroNoLbl: Label 'Giro No.';
         CompanyInfoPhoneNoLbl: Label 'Phone No.';
+        DateEntreeLbl: Label 'Arrival Date';
+        DepartureLbl: Label 'Departure Date';
         // CopyLbl: Label 'Copy';
         EMailLbl: Label 'Email';
         ExchangeRateTxt: Label 'Exchange rate: %1/%2', Comment = '%1 and %2 are both amounts.';
@@ -2005,7 +1987,10 @@ report 50000 "AfkSalesInvoicePreview"
         JobNoLbl2: Label 'Job No.';
         JobTaskDescLbl: Label 'Job Task Description';
         JobTaskNoLbl2: Label 'Job Task No.';
+        LargeurLbl: Label 'Width';
+        LongueurLbl: Label 'Length';
         NoFilterSetErr: Label 'You must specify one or more filters to avoid accidently printing all documents.';
+        NumFichePilotageLbl: Label 'N° Piloting Sheet';
         PartiallyPaidLbl: Label 'The invoice has been partially paid. The remaining amount is %1', Comment = '%1=an amount';
         PaymentMethodDescLbl: Label 'Payment Method :';
         // LineAmtAfterInvDiscLbl: Label 'Payment Discount on VAT';
@@ -2027,14 +2012,22 @@ report 50000 "AfkSalesInvoicePreview"
         ShptMethodDescLbl: Label 'Shipment Method';
         SubtotalLbl: Label 'Subtotal';
         ThanksLbl: Label 'Thank You!';
+        TirantCalculeLbl: Label 'T. cal';
+        TirantEauLbl: Label 'T. eau';
+        TJBLbl: Label 'T.J.B';
         TotalLbl: Label 'Total';
+
+        //141123**********************
+        ToTimeLbl: Label ' at ';
         UnitLbl: Label 'Unit';
+        ValidatedByLbl: Label 'Validated by';
         VATAmountLCYLbl: Label 'VAT Amount (LCY)';
         // VATAmtSpecificationLbl: Label 'VAT Amount Specification';
         VATAmtLbl: Label 'VAT Amount';
         VATBaseLbl: Label 'VAT Base';
         // VATBaseLCYLbl: Label 'VAT Base (LCY)';
         VATClausesLbl: Label 'VAT Clause';
+        VolumeLbl: Label 'Volume';
         Afk_AmountInWords: Text;
         AfkCompanyAddress1: Text;
         AfkCompanyAddress2: Text;
@@ -2061,7 +2054,18 @@ report 50000 "AfkSalesInvoicePreview"
         PmtDiscText: Text;
         QRCode: Text;
         RemainingAmountTxt: Text;
+        TexteDateArriveeNavire: Text;
+        TexteDateDepartNavire: Text;
         TotalAmountExclInclVATTextValue: Text;
+        TxtDateArrivee: Text;
+        TxtDateDepart: Text;
+        TxtLargeurBateau: Text;
+        TxtLongueurBateau: Text;
+        TxtNumeroFichePilotage: Text;
+        TxtTirantEauBateau: Text;
+        TxtTirantEauBateauCalcule: Text;
+        TxtTJBBateau: Text;
+        TxtVolumeBateau: Text;
         VATClausesText: Text;
         WorkDescriptionLine: Text;
         TextApercu: Text[20];
@@ -2341,8 +2345,8 @@ report 50000 "AfkSalesInvoicePreview"
 
     local procedure ReplaceString(OriginString: Text; ReplaceString: Text): Text
     var
-        Rep: Text;
         pos: Integer;
+        Rep: Text;
     begin
         Rep := OriginString;
         pos := StrPos(OriginString, ReplaceString);
