@@ -5,6 +5,7 @@ page 50005 AfkSetupCard
     PageType = Card;
     //RefreshOnActivate = true;
     SourceTable = AfkSetup;
+    ApplicationArea = all;
 
     DeleteAllowed = false;
     InsertAllowed = false;

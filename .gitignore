@@ -1,3 +1,7 @@
 Translations/Afk_Port_Serv_Invoicing.g.xlf
 .vscode/.alcache/*
 .vscode/.altemplates/*
+.vscode/rad.json
+.snapshots/*
+*.app
+

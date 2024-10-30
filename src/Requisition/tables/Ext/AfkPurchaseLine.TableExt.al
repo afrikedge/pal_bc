@@ -27,7 +27,7 @@ tableextension 50006 AfkPurchaseLine extends "Purchase Line"
             DataClassification = CustomerContent;
             trigger OnValidate()
             begin
-                Validate(Quantity, Afk_Quantity1 * Afk_Quantity2);
+                UpdateAmounts();
             end;
         }
         field(50004; "Afk_Quantity2"; Decimal)
@@ -37,7 +37,7 @@ tableextension 50006 AfkPurchaseLine extends "Purchase Line"
             DataClassification = CustomerContent;
             trigger OnValidate()
             begin
-                Validate(Quantity, Afk_Quantity1 * Afk_Quantity2);
+                UpdateAmounts();
             end;
         }
     }
@@ -48,4 +48,10 @@ tableextension 50006 AfkPurchaseLine extends "Purchase Line"
 
         }
     }
+    local procedure UpdateAmounts()
+    var
+    begin
+        Validate(Quantity, Afk_Quantity1 * Afk_Quantity2);
+        Validate("Direct Unit Cost");
+    end;
 }
