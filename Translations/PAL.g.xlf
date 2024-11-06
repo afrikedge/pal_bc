@@ -3723,6 +3723,16 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report AfkPurchaseOrder - NamedType AfkNatureBudgetaireLbl</note>
         </trans-unit>
+        <trans-unit id="Report 678316379 - NamedType 2863141217" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Nb of day</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkPurchaseOrder - NamedType AfkNbOfDayLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 678316379 - NamedType 3781097088" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Nb of persons</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report AfkPurchaseOrder - NamedType AfkNbOfPartLbl</note>
+        </trans-unit>
         <trans-unit id="Report 678316379 - NamedType 3408290755" size-unit="char" translate="yes" xml:space="preserve">
           <source>Vendor name :</source>
           <note from="Developer" annotates="general" priority="2"></note>
