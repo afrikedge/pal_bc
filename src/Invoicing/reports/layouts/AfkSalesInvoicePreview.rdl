@@ -3183,7 +3183,7 @@
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>=First(Fields!ValidatedByLbl.Value, "DataSet_Result")</Value>
+                                      <Value />
                                       <Style>
                                         <FontStyle>Italic</FontStyle>
                                         <FontFamily>Lato</FontFamily>
@@ -3219,7 +3219,7 @@
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>=Fields!Afk_UserID.Value</Value>
+                                      <Value />
                                       <Style>
                                         <FontFamily>Lato</FontFamily>
                                         <FontSize>7pt</FontSize>
