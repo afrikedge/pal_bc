@@ -1,7 +1,7 @@
 report 50004 "AfkPurchaseOrder"
 {
     DefaultLayout = RDLC;
-    RDLCLayout = './src/requisition/reports/layouts/AfkPurchaseOrder.rdlc';
+    RDLCLayout = './src/requisition/reports/layouts/AfkPurchaseOrder.rdl';
     Caption = 'Order';
     PreviewMode = PrintLayout;
 
@@ -196,6 +196,12 @@ report 50004 "AfkPurchaseOrder"
             {
             }
             column(VendorBankAccountNo; VendorBankAccountNo)
+            {
+            }
+            column(AfkNbOfDayLbl; AfkNbOfDayLbl)
+            {
+            }
+            column(AfkNbOfPartLbl; AfkNbOfPartLbl)
             {
             }
 
@@ -651,6 +657,12 @@ report 50004 "AfkPurchaseOrder"
                         {
                         }
                         column(AfkIsLigne; AfkIsLine)
+                        {
+                        }
+                        column(Afk_Qty1; "Purchase Line".Afk_Quantity1)
+                        {
+                        }
+                        column(Afk_Qty2; "Purchase Line".Afk_Quantity2)
                         {
                         }
                         dataitem(DimensionLoop2; "Integer")
@@ -1527,6 +1539,8 @@ report 50004 "AfkPurchaseOrder"
         AfkLigneUniteLbl: Label 'Unit';
         AfkLimbeLeLbl: Label 'Limbe on ___________________';
         AfkNatureBudgetaireLbl: Label 'Expense nature :';
+        AfkNbOfDayLbl: Label 'Nb of day';
+        AfkNbOfPartLbl: Label 'Nb of persons';
         AfkNomFournisseurLbl: Label 'Vendor name :';
         AfkNumCommandeLbl: Label 'PURCHASE ORDER %1';
         AfkNumDALbl: Label 'Requisition No';
